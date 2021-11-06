@@ -10,5 +10,5 @@ package com.milkyway.entity;
  * @author DaiAustinYersin
  */
 public class NhanVien {
-    
+    private String MaNV;
 }
