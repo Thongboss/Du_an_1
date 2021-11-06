@@ -10,8 +10,9 @@ package com.milkyway.entity;
  * @author hoang
  */
 public class DongSP {
-    private int MaDongSP,MaTH;
-    private String TenDongSP,GhiChu;
+
+    private int MaDongSP, MaTH;
+    private String TenDongSP, GhiChu;
     private boolean TrangThai;
 
     public DongSP() {
@@ -64,5 +65,5 @@ public class DongSP {
     public void setTrangThai(boolean TrangThai) {
         this.TrangThai = TrangThai;
     }
-    
+
 }

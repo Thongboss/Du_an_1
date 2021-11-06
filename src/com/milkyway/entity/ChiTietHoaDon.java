@@ -10,11 +10,19 @@ package com.milkyway.entity;
  * @author Admin
  */
 public class ChiTietHoaDon {
-    private int MaHD,ID;
+
+    private int MaHD, ID;
     private int SoLuong;
     private double DonGia;
 
     public ChiTietHoaDon() {
+    }
+
+    public ChiTietHoaDon(int MaHD, int ID, int SoLuong, double DonGia) {
+        this.MaHD = MaHD;
+        this.ID = ID;
+        this.SoLuong = SoLuong;
+        this.DonGia = DonGia;
     }
 
     public int getMaHD() {
@@ -48,6 +56,5 @@ public class ChiTietHoaDon {
     public void setDonGia(double DonGia) {
         this.DonGia = DonGia;
     }
-    
-    
+
 }

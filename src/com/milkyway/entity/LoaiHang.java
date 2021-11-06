@@ -10,8 +10,9 @@ package com.milkyway.entity;
  * @author hoang
  */
 public class LoaiHang {
-    private int MaLoai,MaNhom;
-    private String TenLoai,GhiChu;
+
+    private int MaLoai, MaNhom;
+    private String TenLoai, GhiChu;
 
     public LoaiHang() {
     }
@@ -54,5 +55,5 @@ public class LoaiHang {
     public void setGhiChu(String GhiChu) {
         this.GhiChu = GhiChu;
     }
-    
+
 }

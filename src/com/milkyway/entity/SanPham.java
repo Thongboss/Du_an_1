@@ -12,9 +12,11 @@ import java.util.Date;
  * @author hoang
  */
 public class SanPham {
-    private int MaSP,MaLoai,MaDongSP;
-    private String TenSP,GhiChu;
+
+    private int MaSP, MaLoai, MaDongSP;
+    private String TenSP;
     private Date NgayXK;
+    private String GhiChu;
     private boolean TrangThai;
 
     public SanPham() {
@@ -85,5 +87,5 @@ public class SanPham {
     public void setTrangThai(boolean TrangThai) {
         this.TrangThai = TrangThai;
     }
-    
+
 }

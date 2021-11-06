@@ -12,24 +12,27 @@ import java.util.Date;
  * @author hoang
  */
 public class ChiTietSanPham {
-    private int ID,MaSP,SoLuongTon,MaXuatXu,MaKhoiLuong,MaDVT,MaAnhSP,BarCode;
+
+    private int ID, MaSP;
     private Date HanSD;
-    private float DonGia;
+    private int SoLuongTon;
+    private double DonGia;
+    private int MaXuatXu, MaKhoiLuong, MaDVT, MaAnhSP, BarCode;
 
     public ChiTietSanPham() {
     }
 
-    public ChiTietSanPham(int ID, int MaSP, int SoLuongTon, int MaXuatXu, int MaKhoiLuong, int MaDVT, int MaAnhSP, int BarCode, Date HanSD, float DonGia) {
+    public ChiTietSanPham(int ID, int MaSP, Date HanSD, int SoLuongTon, double DonGia, int MaXuatXu, int MaKhoiLuong, int MaDVT, int MaAnhSP, int BarCode) {
         this.ID = ID;
         this.MaSP = MaSP;
+        this.HanSD = HanSD;
         this.SoLuongTon = SoLuongTon;
+        this.DonGia = DonGia;
         this.MaXuatXu = MaXuatXu;
         this.MaKhoiLuong = MaKhoiLuong;
         this.MaDVT = MaDVT;
         this.MaAnhSP = MaAnhSP;
         this.BarCode = BarCode;
-        this.HanSD = HanSD;
-        this.DonGia = DonGia;
     }
 
     public int getID() {
@@ -104,13 +107,12 @@ public class ChiTietSanPham {
         this.HanSD = HanSD;
     }
 
-    public float getDonGia() {
+    public double getDonGia() {
         return DonGia;
     }
 
-    public void setDonGia(float DonGia) {
+    public void setDonGia(double DonGia) {
         this.DonGia = DonGia;
     }
-    
-    
+
 }

@@ -14,7 +14,8 @@ import java.util.Date;
 public class NhanVien {
 
     private int MaNV;
-    private byte[] Password;
+    private String TaiKhoan;
+    private byte[] MatKhau;
     private String HoTen;
     private boolean GioiTinh;
     private Date NgaySinh;
@@ -22,17 +23,17 @@ public class NhanVien {
     private String CMND;
     private String Email;
     private String HinhAnh;
-    private Date NgayTao;
-    private int NguoiTao;
-    private Date NgayHetHan;
+    private boolean VaiTro;
     private boolean TrangThai;
+    private byte[] Salt;
 
     public NhanVien() {
     }
 
-    public NhanVien(int MaNV, byte[] Password, String HoTen, boolean GioiTinh, Date NgaySinh, String SDT, String CMND, String Email, String HinhAnh, Date NgayTao, int NguoiTao, Date NgayHetHan, boolean TrangThai) {
+    public NhanVien(int MaNV, String TaiKhoan, byte[] MatKhau, String HoTen, boolean GioiTinh, Date NgaySinh, String SDT, String CMND, String Email, String HinhAnh, boolean VaiTro, boolean TrangThai, byte[] Salt) {
         this.MaNV = MaNV;
-        this.Password = Password;
+        this.TaiKhoan = TaiKhoan;
+        this.MatKhau = MatKhau;
         this.HoTen = HoTen;
         this.GioiTinh = GioiTinh;
         this.NgaySinh = NgaySinh;
@@ -40,10 +41,9 @@ public class NhanVien {
         this.CMND = CMND;
         this.Email = Email;
         this.HinhAnh = HinhAnh;
-        this.NgayTao = NgayTao;
-        this.NguoiTao = NguoiTao;
-        this.NgayHetHan = NgayHetHan;
+        this.VaiTro = VaiTro;
         this.TrangThai = TrangThai;
+        this.Salt = Salt;
     }
 
     public int getMaNV() {
@@ -54,12 +54,20 @@ public class NhanVien {
         this.MaNV = MaNV;
     }
 
-    public byte[] getPassword() {
-        return Password;
+    public String getTaiKhoan() {
+        return TaiKhoan;
     }
 
-    public void setPassword(byte[] Password) {
-        this.Password = Password;
+    public void setTaiKhoan(String TaiKhoan) {
+        this.TaiKhoan = TaiKhoan;
+    }
+
+    public byte[] getMatKhau() {
+        return MatKhau;
+    }
+
+    public void setMatKhau(byte[] MatKhau) {
+        this.MatKhau = MatKhau;
     }
 
     public String getHoTen() {
@@ -118,28 +126,12 @@ public class NhanVien {
         this.HinhAnh = HinhAnh;
     }
 
-    public Date getNgayTao() {
-        return NgayTao;
+    public boolean isVaiTro() {
+        return VaiTro;
     }
 
-    public void setNgayTao(Date NgayTao) {
-        this.NgayTao = NgayTao;
-    }
-
-    public int getNguoiTao() {
-        return NguoiTao;
-    }
-
-    public void setNguoiTao(int NguoiTao) {
-        this.NguoiTao = NguoiTao;
-    }
-
-    public Date getNgayHetHan() {
-        return NgayHetHan;
-    }
-
-    public void setNgayHetHan(Date NgayHetHan) {
-        this.NgayHetHan = NgayHetHan;
+    public void setVaiTro(boolean VaiTro) {
+        this.VaiTro = VaiTro;
     }
 
     public boolean isTrangThai() {
@@ -148,5 +140,13 @@ public class NhanVien {
 
     public void setTrangThai(boolean TrangThai) {
         this.TrangThai = TrangThai;
+    }
+
+    public byte[] getSalt() {
+        return Salt;
+    }
+
+    public void setSalt(byte[] Salt) {
+        this.Salt = Salt;
     }
 }

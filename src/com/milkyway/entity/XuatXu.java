@@ -10,13 +10,23 @@ package com.milkyway.entity;
  * @author ASUS
  */
 public class XuatXu {
-    private String MaQG,TenQG;
 
-    public String getMaQG() {
+    private int MaQG;
+    private String TenQG;
+
+    public XuatXu() {
+    }
+
+    public XuatXu(int MaQG, String TenQG) {
+        this.MaQG = MaQG;
+        this.TenQG = TenQG;
+    }
+
+    public int getMaQG() {
         return MaQG;
     }
 
-    public void setMaQG(String MaQG) {
+    public void setMaQG(int MaQG) {
         this.MaQG = MaQG;
     }
 
@@ -27,6 +37,5 @@ public class XuatXu {
     public void setTenQG(String TenQG) {
         this.TenQG = TenQG;
     }
-    
-    
+
 }

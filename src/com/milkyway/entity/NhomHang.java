@@ -10,8 +10,9 @@ package com.milkyway.entity;
  * @author hoang
  */
 public class NhomHang {
+
     private int MaNhom;
-    private String TenNhom,GhiChu;
+    private String TenNhom, GhiChu;
 
     public NhomHang() {
     }
@@ -45,5 +46,5 @@ public class NhomHang {
     public void setGhiChu(String GhiChu) {
         this.GhiChu = GhiChu;
     }
-    
+
 }
