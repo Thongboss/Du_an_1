@@ -3,24 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.milkyway.entity;
+package com.milkyway.Model;
 
 /**
  *
  * @author hoang
  */
-public class NhomHang {
+public class LoaiHang {
 
-    private int MaNhom;
-    private String TenNhom, GhiChu;
+    private int MaLoai, MaNhom;
+    private String TenLoai, GhiChu;
 
-    public NhomHang() {
+    public LoaiHang() {
     }
 
-    public NhomHang(int MaNhom, String TenNhom, String GhiChu) {
+    public LoaiHang(int MaLoai, int MaNhom, String TenLoai, String GhiChu) {
+        this.MaLoai = MaLoai;
         this.MaNhom = MaNhom;
-        this.TenNhom = TenNhom;
+        this.TenLoai = TenLoai;
         this.GhiChu = GhiChu;
+    }
+
+    public int getMaLoai() {
+        return MaLoai;
+    }
+
+    public void setMaLoai(int MaLoai) {
+        this.MaLoai = MaLoai;
     }
 
     public int getMaNhom() {
@@ -31,12 +40,12 @@ public class NhomHang {
         this.MaNhom = MaNhom;
     }
 
-    public String getTenNhom() {
-        return TenNhom;
+    public String getTenLoai() {
+        return TenLoai;
     }
 
-    public void setTenNhom(String TenNhom) {
-        this.TenNhom = TenNhom;
+    public void setTenLoai(String TenLoai) {
+        this.TenLoai = TenLoai;
     }
 
     public String getGhiChu() {
