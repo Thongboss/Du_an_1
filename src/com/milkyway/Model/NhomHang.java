@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.milkyway.entity;
+package com.milkyway.Model;
 
 /**
  *
  * @author hoang
  */
 public class NhomHang {
+
     private int MaNhom;
-    private String TenNhom,GhiChu;
+    private String TenNhom, GhiChu;
 
     public NhomHang() {
     }
@@ -45,5 +46,5 @@ public class NhomHang {
     public void setGhiChu(String GhiChu) {
         this.GhiChu = GhiChu;
     }
-    
+
 }

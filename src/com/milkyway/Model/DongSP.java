@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.milkyway.entity;
+package com.milkyway.Model;
 
 /**
  *
  * @author hoang
  */
 public class DongSP {
-    private int MaDongSP,MaTH;
-    private String TenDongSP,GhiChu;
+
+    private int MaDongSP, MaTH;
+    private String TenDongSP, GhiChu;
     private boolean TrangThai;
 
     public DongSP() {
@@ -64,5 +65,5 @@ public class DongSP {
     public void setTrangThai(boolean TrangThai) {
         this.TrangThai = TrangThai;
     }
-    
+
 }

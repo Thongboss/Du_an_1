@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.milkyway.entity;
+package com.milkyway.Model;
 
 import java.util.Date;
 
@@ -12,15 +12,26 @@ import java.util.Date;
  * @author Admin
  */
 public class HoaDon {
+
     private int MaHD;
     private Date NgayLap;
     private int MaNV;
     private int MaTheTV;
     private double TongTien;
     private String GhiChu;
-    private int TrangThai;
+    private boolean TrangThai;
 
     public HoaDon() {
+    }
+
+    public HoaDon(int MaHD, Date NgayLap, int MaNV, int MaTheTV, double TongTien, String GhiChu, boolean TrangThai) {
+        this.MaHD = MaHD;
+        this.NgayLap = NgayLap;
+        this.MaNV = MaNV;
+        this.MaTheTV = MaTheTV;
+        this.TongTien = TongTien;
+        this.GhiChu = GhiChu;
+        this.TrangThai = TrangThai;
     }
 
     public int getMaHD() {
@@ -71,13 +82,11 @@ public class HoaDon {
         this.GhiChu = GhiChu;
     }
 
-    public int getTrangThai() {
+    public boolean getTrangThai() {
         return TrangThai;
     }
 
-    public void setTrangThai(int TrangThai) {
+    public void setTrangThai(boolean TrangThai) {
         this.TrangThai = TrangThai;
     }
-    
-    
 }

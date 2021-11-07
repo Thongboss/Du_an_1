@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.milkyway.entity;
+package com.milkyway.Model;
 
 import java.util.Date;
 
@@ -12,15 +12,32 @@ import java.util.Date;
  * @author Admin
  */
 public class TheThanhVien {
+
     private int MaTheTV;
-    private String tenKH;
+    private String TenKH;
     private boolean GioiTinh;
     private Date NgaySinh;
-    private String SDT,CMND,Email,HinhAnh;
-    private Date NgayTao,NgayHetHan;
+    private String SDT, CMND, Email, HinhAnh;
     private int NguoiTao;
+    private Date NgayTao, NgayHetHan;
+    private boolean TrangThai;
 
     public TheThanhVien() {
+    }
+
+    public TheThanhVien(int MaTheTV, String TenKH, boolean GioiTinh, Date NgaySinh, String SDT, String CMND, String Email, String HinhAnh, int NguoiTao, Date NgayTao, Date NgayHetHan, boolean TrangThai) {
+        this.MaTheTV = MaTheTV;
+        this.TenKH = TenKH;
+        this.GioiTinh = GioiTinh;
+        this.NgaySinh = NgaySinh;
+        this.SDT = SDT;
+        this.CMND = CMND;
+        this.Email = Email;
+        this.HinhAnh = HinhAnh;
+        this.NguoiTao = NguoiTao;
+        this.NgayTao = NgayTao;
+        this.NgayHetHan = NgayHetHan;
+        this.TrangThai = TrangThai;
     }
 
     public int getMaTheTV() {
@@ -32,11 +49,11 @@ public class TheThanhVien {
     }
 
     public String getTenKH() {
-        return tenKH;
+        return TenKH;
     }
 
-    public void setTenKH(String tenKH) {
-        this.tenKH = tenKH;
+    public void setTenKH(String TenKH) {
+        this.TenKH = TenKH;
     }
 
     public boolean isGioiTinh() {
@@ -87,6 +104,14 @@ public class TheThanhVien {
         this.HinhAnh = HinhAnh;
     }
 
+    public int getNguoiTao() {
+        return NguoiTao;
+    }
+
+    public void setNguoiTao(int NguoiTao) {
+        this.NguoiTao = NguoiTao;
+    }
+
     public Date getNgayTao() {
         return NgayTao;
     }
@@ -103,14 +128,11 @@ public class TheThanhVien {
         this.NgayHetHan = NgayHetHan;
     }
 
-    public int getNguoiTao() {
-        return NguoiTao;
+    public boolean isTrangThai() {
+        return TrangThai;
     }
 
-    public void setNguoiTao(int NguoiTao) {
-        this.NguoiTao = NguoiTao;
+    public void setTrangThai(boolean TrangThai) {
+        this.TrangThai = TrangThai;
     }
-    
-    
-    
 }
