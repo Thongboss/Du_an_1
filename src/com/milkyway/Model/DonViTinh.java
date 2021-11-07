@@ -3,20 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.milkyway.entity;
+package com.milkyway.Model;
 
 /**
  *
  * @author ASUS
  */
 public class DonViTinh {
-   private String MaDVT,TenDVT;
 
-    public String getMaDVT() {
+    private int MaDVT;
+    private String TenDVT;
+
+    public DonViTinh() {
+    }
+    
+    public DonViTinh(int MaDVT, String TenDVT) {
+        this.MaDVT = MaDVT;
+        this.TenDVT = TenDVT;
+    }
+
+    public int getMaDVT() {
         return MaDVT;
     }
 
-    public void setMaDVT(String MaDVT) {
+    public void setMaDVT(int MaDVT) {
         this.MaDVT = MaDVT;
     }
 
@@ -27,9 +37,5 @@ public class DonViTinh {
     public void setTenDVT(String TenDVT) {
         this.TenDVT = TenDVT;
     }
-    
-   
-   
-   
-    
+
 }
