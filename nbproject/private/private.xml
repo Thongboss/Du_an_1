@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
 <<<<<<< HEAD
             <file>file:/D:/DUAN1/MilkyWay/MilkyWay/src/com/milkyway/entity/ThuongHieu.java</file>
@@ -12,5 +13,8 @@
             <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/entity/NhanVien.java</file>
 >>>>>>> 7e5dfc5118615c83a83b05729df2162fc9111548
         </group>
+=======
+        <group/>
+>>>>>>> 16aa71b801f515b68ae5ef8ea310f43560557683
     </open-files>
 </project-private>
