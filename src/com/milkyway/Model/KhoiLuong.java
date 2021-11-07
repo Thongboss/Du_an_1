@@ -3,20 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.milkyway.entity;
+package com.milkyway.Model;
 
 /**
  *
  * @author ASUS
  */
 public class KhoiLuong {
-    private String  MaKhoiLuong,TenKhoiLuong;
 
-    public String getMaKhoiLuong() {
+    private int MaKhoiLuong;
+    private String TenKhoiLuong;
+
+    public KhoiLuong() {
+    }
+
+    public KhoiLuong(int MaKhoiLuong, String TenKhoiLuong) {
+        this.MaKhoiLuong = MaKhoiLuong;
+        this.TenKhoiLuong = TenKhoiLuong;
+    }
+
+    public int getMaKhoiLuong() {
         return MaKhoiLuong;
     }
 
-    public void setMaKhoiLuong(String MaKhoiLuong) {
+    public void setMaKhoiLuong(int MaKhoiLuong) {
         this.MaKhoiLuong = MaKhoiLuong;
     }
 
@@ -27,7 +37,5 @@ public class KhoiLuong {
     public void setTenKhoiLuong(String TenKhoiLuong) {
         this.TenKhoiLuong = TenKhoiLuong;
     }
-    
-    
-    
+
 }

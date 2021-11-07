@@ -3,17 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.milkyway.entity;
+package com.milkyway.Model;
 
 /**
  *
  * @author ASUS
  */
 public class ThuongHieu {
-    
-    
-    private String MaTH,TenTh,GhiChu;
+
+    private String MaTH, TenTh, GhiChu;
     private boolean Trangthai;
+
+    public ThuongHieu() {
+    }
+
+    public ThuongHieu(String MaTH, String TenTh, String GhiChu, boolean Trangthai) {
+        this.MaTH = MaTH;
+        this.TenTh = TenTh;
+        this.GhiChu = GhiChu;
+        this.Trangthai = Trangthai;
+    }
 
     public String getMaTH() {
         return MaTH;
@@ -47,8 +56,4 @@ public class ThuongHieu {
         this.Trangthai = Trangthai;
     }
 
- 
-    
-    
-    
 }
