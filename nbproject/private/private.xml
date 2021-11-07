@@ -3,16 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/hoang/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/entity/ChiTietSanPham.java</file>
-            <file>file:/C:/Users/hoang/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/entity/SanPham.java</file>
-            <file>file:/C:/Users/hoang/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/entity/DongSP.java</file>
-            <file>file:/C:/Users/hoang/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/entity/NhanVien.java</file>
-            <file>file:/C:/Users/hoang/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/entity/NhomHang.java</file>
-            <file>file:/C:/Users/hoang/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/entity/LoaiHang.java</file>
-=======
-            <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/entity/NhanVien.java</file>
->>>>>>> 7e5dfc5118615c83a83b05729df2162fc9111548
+            <file>file:/C:/Users/hoang/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/Model/NhanVien.java</file>
         </group>
     </open-files>
 </project-private>
