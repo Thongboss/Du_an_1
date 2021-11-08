@@ -11,12 +11,12 @@ import javax.swing.JFrame;
  *
  * @author ASUS
  */
-public class TheThanhVien extends javax.swing.JPanel {
+public class TheThanhVienJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form TheThanhVien
      */
-    public TheThanhVien() {
+    public TheThanhVienJPanel() {
         initComponents();
         
     }

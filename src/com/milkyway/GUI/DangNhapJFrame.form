@@ -24,47 +24,21 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="203" max="32767" attributes="0"/>
-=======
-          <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
->>>>>>> 65f679b6125a0f994c2c3484031a49365b1b7450
-          </Group>
+          <Component id="jPanel2" max="32767" attributes="0"/>
+          <Component id="jPanel1" pref="501" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-<<<<<<< HEAD
-              <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="168" max="32767" attributes="0"/>
-=======
+          <Group type="102" attributes="0">
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
->>>>>>> 65f679b6125a0f994c2c3484031a49365b1b7450
+              <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
+              <Component id="jPanel2" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-<<<<<<< HEAD
-    <Component class="javax.swing.JButton" name="jButton1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jButton1"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
-      </Events>
-    </Component>
-=======
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -75,24 +49,28 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" pref="145" max="-2" attributes="0"/>
-                  <EmptySpace pref="243" max="32767" attributes="0"/>
-                  <Component id="jLabel3" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="jLabel2" min="-2" pref="41" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jLabel1" min="-2" pref="324" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="jLabel4" min="-2" pref="48" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel2" alignment="3" pref="72" max="32767" attributes="0"/>
-                      <Component id="jLabel1" alignment="3" max="32767" attributes="0"/>
-                      <Component id="jLabel3" alignment="3" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jLabel2" max="32767" attributes="0"/>
+                      <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -108,13 +86,11 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="X"/>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng nh&#x1ead;p"/>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel1MouseClicked"/>
-          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="24" style="1"/>
@@ -122,8 +98,19 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng Nh&#xe2;&#x323;p"/>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/milkyway/Icons/btn-minimize.png"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel4MouseClicked"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel4MouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel4MouseExited"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
@@ -133,18 +120,34 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="-"/>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/milkyway/Icons/btn-close.png"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel3MouseClicked"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel3MouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel3MouseExited"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel2">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/milkyway/Icons/logo.png"/>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="c0" green="af" red="95" type="rgb"/>
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
       </Properties>
 
@@ -153,26 +156,22 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="txtQuenMK" min="-2" pref="130" max="-2" attributes="0"/>
+                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="btnThoat1" min="-2" pref="105" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                          <Component id="btnThoat" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="btnDangNhap" min="-2" pref="105" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel4" max="32767" attributes="0"/>
-                              <Component id="jLabel5" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtMaNV" max="32767" attributes="0"/>
-                              <Component id="txtMatKhau" pref="304" max="32767" attributes="0"/>
+                              <Component id="jTextField1" pref="186" max="32767" attributes="0"/>
+                              <Component id="jPasswordField1" max="32767" attributes="0"/>
                           </Group>
                       </Group>
+                      <Component id="jPanel3" pref="265" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -180,97 +179,93 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtMaNV" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jPasswordField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel3" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtMatKhau" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnDangNhap" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnThoat" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnThoat1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="txtQuenMK" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="41" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="18" style="1"/>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/milkyway/Icons/logo-big.jpg"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Ma&#x303; Nh&#xe2;n Vi&#xea;n"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
+        <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="18" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="M&#xe2;&#x323;t Kh&#xe2;&#x309;u"/>
+            <Property name="text" type="java.lang.String" value="T&#xe0;i kho&#x1ea3;n:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtMaNV">
+        <Component class="javax.swing.JTextField" name="jTextField1">
         </Component>
-        <Component class="javax.swing.JPasswordField" name="txtMatKhau">
+        <Component class="javax.swing.JLabel" name="jLabel8">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="M&#x1ead;t kh&#x1ea9;u:"/>
+          </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnDangNhap">
+        <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+        </Component>
+        <Component class="javax.swing.JSeparator" name="jSeparator1">
+        </Component>
+        <Container class="javax.swing.JPanel" name="jPanel3">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f0" green="b9" red="6b" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng Nh&#xe2;&#x323;p"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnThoat">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&#x110;&#xf4;&#x309;i M&#xe2;&#x323;t Kh&#xe2;&#x309;u"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThoatActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="txtQuenMK">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="16" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Qu&#xea;n m&#xe2;&#x323;t kh&#xe2;&#x309;u ?"/>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtQuenMKMouseClicked"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnThoat1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Thoa&#x301;t"/>
-          </Properties>
-        </Component>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="jButton1">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="ff" red="66" type="rgb"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/milkyway/Icons/Tick.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng nh&#x1ead;p"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton2">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="99" green="99" red="ff" type="rgb"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/milkyway/Icons/Delete.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="H&#x1ee7;y b&#x1ecf;"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
->>>>>>> 65f679b6125a0f994c2c3484031a49365b1b7450
   </SubComponents>
 </Form>

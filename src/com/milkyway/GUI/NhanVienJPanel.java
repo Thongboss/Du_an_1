@@ -9,12 +9,12 @@ package com.milkyway.GUI;
  *
  * @author Admin
  */
-public class QuanLyNhanVien extends javax.swing.JPanel {
+public class NhanVienJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form QuanLyNhanVien
      */
-    public QuanLyNhanVien() {
+    public NhanVienJPanel() {
         initComponents();
     }
 
@@ -142,22 +142,16 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(Table);
 
-        btnthem.setIcon(new javax.swing.ImageIcon("E:\\MilkyWay\\src\\com\\milkyway\\Icons\\Add.png")); // NOI18N
         btnthem.setText("Thêm");
 
-        btnsua.setIcon(new javax.swing.ImageIcon("E:\\MilkyWay\\src\\com\\milkyway\\Icons\\Notes.png")); // NOI18N
         btnsua.setText("Sửa");
 
-        btnxoa.setIcon(new javax.swing.ImageIcon("E:\\MilkyWay\\src\\com\\milkyway\\Icons\\Delete.png")); // NOI18N
         btnxoa.setText("Xóa");
 
-        btntimkiem.setIcon(new javax.swing.ImageIcon("E:\\MilkyWay\\src\\com\\milkyway\\Icons\\Search.png")); // NOI18N
         btntimkiem.setText("Tìm Kiếm");
 
-        jButton5.setIcon(new javax.swing.ImageIcon("E:\\MilkyWay\\src\\com\\milkyway\\Icons\\Clipboard.png")); // NOI18N
         jButton5.setText("Mới");
 
-        btnchonanh.setIcon(new javax.swing.ImageIcon("E:\\MilkyWay\\src\\com\\milkyway\\Icons\\Camera.png")); // NOI18N
         btnchonanh.setText("Chụp Ảnh");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
