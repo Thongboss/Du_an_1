@@ -9,12 +9,12 @@ package com.milkyway.GUI;
  *
  * @author hoang
  */
-public class SanPhamPanel extends javax.swing.JPanel {
+public class SanPhamJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form SanPhamPanel
      */
-    public SanPhamPanel() {
+    public SanPhamJPanel() {
         initComponents();
         
     }
