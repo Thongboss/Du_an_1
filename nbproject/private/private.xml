@@ -4,7 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/MainJFrame.java</file>
+=======
+            <file>file:/D:/DUAN1/MilkyWay/MilkyWay/src/com/milkyway/GUI/DangNhapJFrame.java</file>
+            <file>file:/D:/DUAN1/MilkyWay/MilkyWay/src/com/milkyway/Model/TheThanhVien.java</file>
+            <file>file:/D:/DUAN1/MilkyWay/MilkyWay/src/com/milkyway/GUI/TheThanhVien.java</file>
+>>>>>>> 23f3f8ec338ba5710564f3eae62889e398a5e2a6
 =======
             <file>file:/C:/Users/hoang/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/DangNhapJFrame.java</file>
             <file>file:/C:/Users/hoang/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/QuenMKFrame.java</file>
