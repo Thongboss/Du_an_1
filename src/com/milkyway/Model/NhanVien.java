@@ -24,26 +24,11 @@ public class NhanVien {
     private String Email;
     private String HinhAnh;
     private boolean VaiTro;
+    private String GhiChu;
     private boolean TrangThai;
     private byte[] Salt;
 
     public NhanVien() {
-    }
-
-    public NhanVien(int MaNV, String TaiKhoan, byte[] MatKhau, String HoTen, boolean GioiTinh, Date NgaySinh, String SDT, String CMND, String Email, String HinhAnh, boolean VaiTro, boolean TrangThai, byte[] Salt) {
-        this.MaNV = MaNV;
-        this.TaiKhoan = TaiKhoan;
-        this.MatKhau = MatKhau;
-        this.HoTen = HoTen;
-        this.GioiTinh = GioiTinh;
-        this.NgaySinh = NgaySinh;
-        this.SDT = SDT;
-        this.CMND = CMND;
-        this.Email = Email;
-        this.HinhAnh = HinhAnh;
-        this.VaiTro = VaiTro;
-        this.TrangThai = TrangThai;
-        this.Salt = Salt;
     }
 
     public int getMaNV() {
@@ -134,6 +119,14 @@ public class NhanVien {
         this.VaiTro = VaiTro;
     }
 
+    public String getGhiChu() {
+        return GhiChu;
+    }
+
+    public void setGhiChu(String GhiChu) {
+        this.GhiChu = GhiChu;
+    }
+
     public boolean isTrangThai() {
         return TrangThai;
     }
@@ -149,4 +142,6 @@ public class NhanVien {
     public void setSalt(byte[] Salt) {
         this.Salt = Salt;
     }
+
+    
 }
