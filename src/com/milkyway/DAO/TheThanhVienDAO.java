@@ -18,7 +18,7 @@ import java.util.List;
  *
  * @author DaiAustinYersin
  */
-public class TheThanhVienDAO extends MilKyway<TheThanhVien, String> {
+public class TheThanhVienDAO extends MilkyWayDao<TheThanhVien, String> {
 
     String insert_sql = (String) "insert into TheThanhVien(TenKH,GioiTinh,NgaySinh,SDT,CMND,Email,HinhAnh,NguoiTao,NgayTao,NgayHetHan,TrangThai)Values(?,?,?,?,?,?,?,?,?,?)";
     String update_sql = (String) "UPDATE  TheThanhVien SET TenKH = ? ,SET GioiTinh = ?,SET NgaySinh = ?,SET SDT = ?,"
@@ -45,7 +45,7 @@ public class TheThanhVienDAO extends MilKyway<TheThanhVien, String> {
     }
 
     @Override
-    public TheThanhVien selectByid(String id) {
+    public TheThanhVien selectById(String id) {
         List<TheThanhVien> list = this.selectBySql(select_Byid_sql, id);
         if (list.isEmpty()) {
             return null;
@@ -89,7 +89,6 @@ public class TheThanhVienDAO extends MilKyway<TheThanhVien, String> {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 
 }

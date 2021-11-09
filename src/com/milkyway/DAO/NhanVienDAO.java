@@ -71,6 +71,7 @@ public class NhanVienDAO extends MilkyWayDao<NhanVien, String> {
 
     @Override
     protected List<NhanVien> selectBySql(String sql, Object... args) {
+<<<<<<< HEAD
 //        try {
 //            List<NhanVien> lstNhanVien = new ArrayList<>();
 //                        ResultSet rs = JDBCHelper.query(sql, args);
@@ -89,6 +90,25 @@ public class NhanVienDAO extends MilkyWayDao<NhanVien, String> {
 //            e.printStackTrace();
 //        }
 //    }
+=======
+        List<NhanVien> lstNhanVien = new ArrayList<>();
+        try {
+            ResultSet rs = JDBCHelper.query(sql, args);
+>>>>>>> 8b3e4ac7fa29717793168d3c4f5adb48cc9fcc0c
 
+            while (rs.next()) {
+                NhanVien entity = new NhanVien();
+                entity.setMaNV(rs.getInt("MaNV"));
+                entity.setTaiKhoan(rs.getString("TaiKhoan"));
+//                entity.setMatKhau(rs.get); ()
+                entity.setHoTen(rs.getString("HoTen"));
+                lstNhanVien.add(entity);
+            }
+            rs.getStatement().getConnection().close();
+            return lstNhanVien;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 

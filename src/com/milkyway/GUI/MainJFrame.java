@@ -22,6 +22,7 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     private SanPhamJPanel spPanel;
     private TheThanhVienJPanel theTVPanel;
+    private NhanVienJPanel nhanVien;
 
     public MainJFrame() {
         initComponents();
@@ -679,7 +680,13 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThongKeMouseExited
 
     private void btnNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNhanVienMouseClicked
-        
+        if (nhanVien == null || tbpMainPortal.getComponentCount() == 0) {
+            nhanVien = new NhanVienJPanel();
+            tbpMainPortal.addTab("Quản lý nhân viên", nhanVien);
+            tbpMainPortal.setSelectedComponent(nhanVien);
+        } else {
+            tbpMainPortal.setSelectedComponent(nhanVien);
+        }
     }//GEN-LAST:event_btnNhanVienMouseClicked
 
     private void btnNhanVienMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNhanVienMouseEntered
