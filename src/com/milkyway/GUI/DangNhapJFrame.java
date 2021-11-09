@@ -232,7 +232,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         dmk.setLocationRelativeTo(null);
         dmk.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }//GEN-LAST:event_btnThoatActionPerformed
-=======
+
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_jLabel4MouseClicked
@@ -256,7 +256,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
     private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
         jLabel3.setIcon(new ImageIcon("src/com/milkyway/Icons/btn-close.png"));
     }//GEN-LAST:event_jLabel3MouseExited
->>>>>>> 7a8361c92abe3c5afd96816c70314e23a88b4a22
+
 
     /**
      * @param args the command line arguments
