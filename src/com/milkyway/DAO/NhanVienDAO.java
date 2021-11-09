@@ -79,7 +79,7 @@ public class NhanVienDAO extends MilkyWayDao<NhanVien, String> {
 //                NhanVien entity = new NhanVien();
 //                entity.setMaNV(rs.getInt("MaNV"));
 //                entity.setTaiKhoan(rs.getString("TaiKhoan"));
-////                entity.setMatKhau(rs.get); ()
+//                entity.setMatKhau(rs.get); ()
 //                entity.setHoTen(rs.getString("HoTen"));
 //                
 //                
@@ -88,6 +88,7 @@ public class NhanVienDAO extends MilkyWayDao<NhanVien, String> {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-////    }
+//    }
 
 }
+
