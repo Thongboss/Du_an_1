@@ -204,7 +204,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-<<<<<<< HEAD
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -213,9 +213,9 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {                                     
         this.setState(JFrame.ICONIFIED);        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel3MouseClicked
+    }                                    
 
     private void txtQuenMKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtQuenMKMouseClicked
         QuenMKFrame qmk = new QuenMKFrame();
