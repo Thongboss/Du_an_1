@@ -204,6 +204,35 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+<<<<<<< HEAD
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        System.exit(0);        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        this.setState(JFrame.ICONIFIED);        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void txtQuenMKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtQuenMKMouseClicked
+        QuenMKFrame qmk = new QuenMKFrame();
+        qmk.setVisible(true);// TODO add your handling code here:
+        qmk.pack();
+        qmk.setLocationRelativeTo(null);
+        qmk.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }//GEN-LAST:event_txtQuenMKMouseClicked
+
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        DoiMatKhauFrame dmk = new DoiMatKhauFrame();
+        dmk.setVisible(true);// TODO add your handling code here:
+        dmk.pack();
+        dmk.setLocationRelativeTo(null);
+        dmk.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }//GEN-LAST:event_btnThoatActionPerformed
+=======
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_jLabel4MouseClicked
@@ -227,6 +256,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
     private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
         jLabel3.setIcon(new ImageIcon("src/com/milkyway/Icons/btn-close.png"));
     }//GEN-LAST:event_jLabel3MouseExited
+>>>>>>> 7a8361c92abe3c5afd96816c70314e23a88b4a22
 
     /**
      * @param args the command line arguments
