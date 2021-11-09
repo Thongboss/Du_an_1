@@ -11,35 +11,36 @@ package com.milkyway.Model;
  */
 public class DongSP {
 
-    private int MaDongSP, MaTH;
+    private String MaDongSP;
+    private int IDThuongHieu;
     private String TenDongSP, GhiChu;
     private boolean TrangThai;
 
     public DongSP() {
     }
 
-    public DongSP(int MaDongSP, int MaTH, String TenDongSP, String GhiChu, boolean TrangThai) {
+    public DongSP(String MaDongSP, int MaTH, String TenDongSP, String GhiChu, boolean TrangThai) {
         this.MaDongSP = MaDongSP;
-        this.MaTH = MaTH;
+        this.IDThuongHieu = MaTH;
         this.TenDongSP = TenDongSP;
         this.GhiChu = GhiChu;
         this.TrangThai = TrangThai;
     }
 
-    public int getMaDongSP() {
+    public String getMaDongSP() {
         return MaDongSP;
     }
 
-    public void setMaDongSP(int MaDongSP) {
+    public void setMaDongSP(String MaDongSP) {
         this.MaDongSP = MaDongSP;
     }
 
-    public int getMaTH() {
-        return MaTH;
+    public int getIDThuongHieu() {
+        return IDThuongHieu;
     }
 
-    public void setMaTH(int MaTH) {
-        this.MaTH = MaTH;
+    public void setIDThuongHieu(int IDThuongHieu) {
+        this.IDThuongHieu = IDThuongHieu;
     }
 
     public String getTenDongSP() {

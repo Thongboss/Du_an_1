@@ -11,23 +11,23 @@ package com.milkyway.Model;
  */
 public class NhomHang {
 
-    private int MaNhom;
+    private String MaNhom;
     private String TenNhom, GhiChu;
 
     public NhomHang() {
     }
 
-    public NhomHang(int MaNhom, String TenNhom, String GhiChu) {
+    public NhomHang(String MaNhom, String TenNhom, String GhiChu) {
         this.MaNhom = MaNhom;
         this.TenNhom = TenNhom;
         this.GhiChu = GhiChu;
     }
 
-    public int getMaNhom() {
+    public String getMaNhom() {
         return MaNhom;
     }
 
-    public void setMaNhom(int MaNhom) {
+    public void setMaNhom(String MaNhom) {
         this.MaNhom = MaNhom;
     }
 

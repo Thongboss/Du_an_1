@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class NhanVien {
 
-    private int MaNV;
+    private String MaNV;
     private String TaiKhoan;
     private byte[] MatKhau;
     private String HoTen;
@@ -31,11 +31,11 @@ public class NhanVien {
     public NhanVien() {
     }
 
-    public int getMaNV() {
+    public String getMaNV() {
         return MaNV;
     }
 
-    public void setMaNV(int MaNV) {
+    public void setMaNV(String MaNV) {
         this.MaNV = MaNV;
     }
 

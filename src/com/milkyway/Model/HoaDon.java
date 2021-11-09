@@ -13,10 +13,10 @@ import java.util.Date;
  */
 public class HoaDon {
 
-    private int MaHD;
+    private String MaHD;
+    private int IDNhanVien;
+    private int IDTheTV;
     private Date NgayLap;
-    private int MaNV;
-    private int MaTheTV;
     private double TongTien;
     private String GhiChu;
     private boolean TrangThai;
@@ -24,22 +24,38 @@ public class HoaDon {
     public HoaDon() {
     }
 
-    public HoaDon(int MaHD, Date NgayLap, int MaNV, int MaTheTV, double TongTien, String GhiChu, boolean TrangThai) {
+    public HoaDon(String MaHD, int IDNhanVien, int IDTheTV, Date NgayLap, double TongTien, String GhiChu, boolean TrangThai) {
         this.MaHD = MaHD;
+        this.IDNhanVien = IDNhanVien;
+        this.IDTheTV = IDTheTV;
         this.NgayLap = NgayLap;
-        this.MaNV = MaNV;
-        this.MaTheTV = MaTheTV;
         this.TongTien = TongTien;
         this.GhiChu = GhiChu;
         this.TrangThai = TrangThai;
     }
 
-    public int getMaHD() {
+    public String getMaHD() {
         return MaHD;
     }
 
-    public void setMaHD(int MaHD) {
+    public void setMaHD(String MaHD) {
         this.MaHD = MaHD;
+    }
+
+    public int getIDNhanVien() {
+        return IDNhanVien;
+    }
+
+    public void setIDNhanVien(int IDNhanVien) {
+        this.IDNhanVien = IDNhanVien;
+    }
+
+    public int getIDTheTV() {
+        return IDTheTV;
+    }
+
+    public void setIDTheTV(int IDTheTV) {
+        this.IDTheTV = IDTheTV;
     }
 
     public Date getNgayLap() {
@@ -48,22 +64,6 @@ public class HoaDon {
 
     public void setNgayLap(Date NgayLap) {
         this.NgayLap = NgayLap;
-    }
-
-    public int getMaNV() {
-        return MaNV;
-    }
-
-    public void setMaNV(int MaNV) {
-        this.MaNV = MaNV;
-    }
-
-    public int getMaTheTV() {
-        return MaTheTV;
-    }
-
-    public void setMaTheTV(int MaTheTV) {
-        this.MaTheTV = MaTheTV;
     }
 
     public double getTongTien() {
@@ -82,7 +82,7 @@ public class HoaDon {
         this.GhiChu = GhiChu;
     }
 
-    public boolean getTrangThai() {
+    public boolean isTrangThai() {
         return TrangThai;
     }
 
