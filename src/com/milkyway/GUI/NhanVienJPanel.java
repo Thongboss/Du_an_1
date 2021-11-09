@@ -151,6 +151,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         rdoNam.setText("Nam");
 
         buttonGroup1.add(rdoNu);
+        rdoNu.setSelected(true);
         rdoNu.setText("Nữ");
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
