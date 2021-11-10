@@ -163,27 +163,27 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         jPanel6.setBackground(new java.awt.Color(107, 185, 240));
 
         btnThem.setBackground(new java.awt.Color(153, 255, 153));
-        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Create.png"))); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon("C:\\MilkyWay\\src\\com\\milkyway\\Icons\\Create.png")); // NOI18N
         btnThem.setText("Thêm");
         jPanel6.add(btnThem);
 
         btnCapNhat.setBackground(new java.awt.Color(255, 255, 102));
-        btnCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Edit.png"))); // NOI18N
+        btnCapNhat.setIcon(new javax.swing.ImageIcon("C:\\MilkyWay\\src\\com\\milkyway\\Icons\\Edit.png")); // NOI18N
         btnCapNhat.setText("Cập nhật");
         jPanel6.add(btnCapNhat);
 
         btnMoi.setBackground(new java.awt.Color(204, 204, 204));
-        btnMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Document.png"))); // NOI18N
+        btnMoi.setIcon(new javax.swing.ImageIcon("C:\\MilkyWay\\src\\com\\milkyway\\Icons\\Document.png")); // NOI18N
         btnMoi.setText("Mới");
         jPanel6.add(btnMoi);
 
         btnUpdateStatus.setBackground(new java.awt.Color(153, 255, 255));
-        btnUpdateStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Save.png"))); // NOI18N
+        btnUpdateStatus.setIcon(new javax.swing.ImageIcon("C:\\MilkyWay\\src\\com\\milkyway\\Icons\\Save.png")); // NOI18N
         btnUpdateStatus.setText("Cập nhật trạng thái");
         jPanel6.add(btnUpdateStatus);
 
         btnWebcam.setBackground(new java.awt.Color(255, 102, 255));
-        btnWebcam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Camera.png"))); // NOI18N
+        btnWebcam.setIcon(new javax.swing.ImageIcon("C:\\MilkyWay\\src\\com\\milkyway\\Icons\\Camera.png")); // NOI18N
         btnWebcam.setText("Chụp ảnh");
         btnWebcam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
