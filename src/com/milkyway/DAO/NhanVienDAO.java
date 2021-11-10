@@ -77,7 +77,7 @@ public class NhanVienDAO extends MilkyWayDao<NhanVien, String> {
 
             while (rs.next()) {
                 NhanVien entity = new NhanVien();
-                entity.setMaNV(rs.getInt("MaNV"));
+                entity.setMaNV(rs.getString("MaNV"));
                 entity.setTaiKhoan(rs.getString("TaiKhoan"));
 //                entity.setMatKhau(rs.get); ()
                 entity.setHoTen(rs.getString("HoTen"));

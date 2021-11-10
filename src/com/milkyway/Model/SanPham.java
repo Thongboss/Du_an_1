@@ -13,7 +13,8 @@ import java.util.Date;
  */
 public class SanPham {
 
-    private int MaSP, MaLoai, MaDongSP;
+    private String MaSP; 
+    private int IDLoaiSP, IDDongSP;
     private String TenSP;
     private Date NgayXK;
     private String GhiChu;
@@ -22,38 +23,38 @@ public class SanPham {
     public SanPham() {
     }
 
-    public SanPham(int MaSP, int MaLoai, int MaDongSP, String TenSP, String GhiChu, Date NgayXK, boolean TrangThai) {
+    public SanPham(String MaSP, int MaLoai, int MaDongSP, String TenSP, String GhiChu, Date NgayXK, boolean TrangThai) {
         this.MaSP = MaSP;
-        this.MaLoai = MaLoai;
-        this.MaDongSP = MaDongSP;
+        this.IDLoaiSP = MaLoai;
+        this.IDDongSP = MaDongSP;
         this.TenSP = TenSP;
         this.GhiChu = GhiChu;
         this.NgayXK = NgayXK;
         this.TrangThai = TrangThai;
     }
 
-    public int getMaSP() {
+    public String getMaSP() {
         return MaSP;
     }
 
-    public void setMaSP(int MaSP) {
+    public void setMaSP(String MaSP) {
         this.MaSP = MaSP;
     }
 
-    public int getMaLoai() {
-        return MaLoai;
+    public int getIDLoaiSP() {
+        return IDLoaiSP;
     }
 
-    public void setMaLoai(int MaLoai) {
-        this.MaLoai = MaLoai;
+    public void setIDLoaiSP(int IDLoaiSP) {
+        this.IDLoaiSP = IDLoaiSP;
     }
 
-    public int getMaDongSP() {
-        return MaDongSP;
+    public int getIDDongSP() {
+        return IDDongSP;
     }
 
-    public void setMaDongSP(int MaDongSP) {
-        this.MaDongSP = MaDongSP;
+    public void setIDDongSP(int IDDongSP) {
+        this.IDDongSP = IDDongSP;
     }
 
     public String getTenSP() {
