@@ -5,21 +5,23 @@
  */
 package com.milkyway.GUI;
 
+import com.milkyway.Utils.MsgBox;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 
 /**
  *
  * @author DaiAustinYersin
  */
-public class DangNhapJFrame extends javax.swing.JFrame {
+public class DangNhapJDialog extends javax.swing.JDialog {
 
     /**
-     * Creates new form DangNhapJFrame
+     * Creates new form DangNhapJDialog
      */
-    public DangNhapJFrame() {
+    public DangNhapJDialog(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
@@ -33,7 +35,6 @@ public class DangNhapJFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnMinimise = new javax.swing.JLabel();
         btnClose = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -47,7 +48,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(107, 185, 240));
@@ -56,23 +57,6 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Đăng nhập");
-
-        btnMinimise.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnMinimise.setForeground(new java.awt.Color(255, 255, 255));
-        btnMinimise.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnMinimise.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/btn-minimize.png"))); // NOI18N
-        btnMinimise.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnMinimise.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnMinimiseMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnMinimiseMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnMinimiseMouseExited(evt);
-            }
-        });
 
         btnClose.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnClose.setForeground(new java.awt.Color(255, 255, 255));
@@ -102,10 +86,8 @@ public class DangNhapJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnMinimise, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnClose)
                 .addGap(41, 41, 41))
         );
@@ -116,7 +98,6 @@ public class DangNhapJFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnClose, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnMinimise, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -204,20 +185,10 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnMinimiseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimiseMouseClicked
-        setState(JFrame.ICONIFIED);
-    }//GEN-LAST:event_btnMinimiseMouseClicked
-
-    private void btnMinimiseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimiseMouseEntered
-        btnMinimise.setIcon(new ImageIcon("src/com/milkyway/Icons/btn-minimize--hover.png"));
-    }//GEN-LAST:event_btnMinimiseMouseEntered
-
-    private void btnMinimiseMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimiseMouseExited
-        btnMinimise.setIcon(new ImageIcon("src/com/milkyway/Icons/btn-minimize.png"));
-    }//GEN-LAST:event_btnMinimiseMouseExited
-
     private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
-        System.exit(0);
+        if (MsgBox.confirm(this, "Bạn có thật sự muốn thoát khỏi phiên làm việc?")) {
+            System.exit(0);
+        }
     }//GEN-LAST:event_btnCloseMouseClicked
 
     private void btnCloseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseEntered
@@ -245,27 +216,33 @@ public class DangNhapJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DangNhapJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DangNhapJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DangNhapJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DangNhapJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DangNhapJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DangNhapJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DangNhapJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DangNhapJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DangNhapJFrame().setVisible(true);
+                DangNhapJDialog dialog = new DangNhapJDialog(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnClose;
-    private javax.swing.JLabel btnMinimise;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

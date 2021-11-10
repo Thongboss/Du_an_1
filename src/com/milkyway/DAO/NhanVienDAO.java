@@ -8,11 +8,8 @@ package com.milkyway.DAO;
 import com.milkyway.Model.NhanVien;
 import com.milkyway.Utils.JDBCHelper;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -28,20 +25,12 @@ public class NhanVienDAO extends MilkyWayDao<NhanVien, String> {
 
     @Override
     public void insert(NhanVien entity) {
-        try {
-            JDBCHelper.update(INSERT_SQL, entity.getMatKhau(), entity.getHoTen(), entity.isGioiTinh(), entity.getNgaySinh(), entity.getNgaySinh(), entity.getCMND(), entity.getEmail(), entity.isVaiTro(), entity.getGhiChu(), entity.isTrangThai(), entity.getSalt());
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+        JDBCHelper.update(INSERT_SQL, entity.getMatKhau(), entity.getHoTen(), entity.isGioiTinh(), entity.getNgaySinh(), entity.getNgaySinh(), entity.getCMND(), entity.getEmail(), entity.isVaiTro(), entity.getGhiChu(), entity.isTrangThai(), entity.getSalt());
     }
 
     @Override
     public void update(NhanVien entity) {
-        try {
-            JDBCHelper.update(Update_SQL, entity.getHoTen(), entity.isGioiTinh(), entity.getNgaySinh(), entity.getSDT(), entity.getCMND(), entity.getEmail(), entity.getHinhAnh(), entity.isVaiTro(), entity.getGhiChu(), entity.isTrangThai(), entity.getSalt());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        JDBCHelper.update(Update_SQL, entity.getHoTen(), entity.isGioiTinh(), entity.getNgaySinh(), entity.getSDT(), entity.getCMND(), entity.getEmail(), entity.getHinhAnh(), entity.isVaiTro(), entity.getGhiChu(), entity.isTrangThai(), entity.getSalt());
     }
 
     @Override

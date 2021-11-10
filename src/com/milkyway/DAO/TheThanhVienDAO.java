@@ -7,9 +7,7 @@ package com.milkyway.DAO;
 
 import com.milkyway.Model.TheThanhVien;
 import com.milkyway.Utils.JDBCHelper;
-import com.milkyway.Utils.JDBCSupporter;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -29,19 +27,19 @@ public class TheThanhVienDAO extends MilkyWayDao<TheThanhVien, String> {
 
     @Override
     public void insert(TheThanhVien Entity) {
-        JDBCSupporter.executeUpdate(insert_sql, Entity.getTenKH(), Entity.isGioiTinh(), Entity.getNgaySinh(), Entity.getSDT(),
+        JDBCHelper.update(insert_sql, Entity.getTenKH(), Entity.isGioiTinh(), Entity.getNgaySinh(), Entity.getSDT(),
                 Entity.getCMND(), Entity.getEmail(), Entity.getHinhAnh(), Entity.getNguoiTao(), Entity.getNgayTao(), Entity.getNgayHetHan(), Entity.isTrangThai());
     }
 
     @Override
     public void update(TheThanhVien Entity) {
-        JDBCSupporter.executeUpdate(insert_sql, Entity.getTenKH(), Entity.isGioiTinh(), Entity.getNgaySinh(), Entity.getSDT(), Entity.getCMND(), Entity.getEmail(),
+        JDBCHelper.update(insert_sql, Entity.getTenKH(), Entity.isGioiTinh(), Entity.getNgaySinh(), Entity.getSDT(), Entity.getCMND(), Entity.getEmail(),
                 Entity.getHinhAnh(), Entity.getNguoiTao(), Entity.getNgayTao(), Entity.getNgayHetHan(), Entity.isTrangThai(), Entity.getMaTheTV());
     }
 
     @Override
     public void delete(String id) {
-        JDBCSupporter.executeUpdate(delete_sql, id);
+        JDBCHelper.update(delete_sql, id);
     }
 
     @Override
@@ -64,7 +62,7 @@ public class TheThanhVienDAO extends MilkyWayDao<TheThanhVien, String> {
         List<TheThanhVien> list = new ArrayList<>();
         try {
 
-            ResultSet rs = JDBCSupporter.executeQuery(sql, args);
+            ResultSet rs = JDBCHelper.query(sql, args);
             while (rs.next()) {
 
                 TheThanhVien Entity = new TheThanhVien();

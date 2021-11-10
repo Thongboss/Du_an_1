@@ -5,20 +5,7 @@
  */
 package com.milkyway.GUI;
 
-import com.github.sarxos.webcam.Webcam;
-import com.github.sarxos.webcam.WebcamPanel;
-import com.github.sarxos.webcam.WebcamResolution;
-import com.milkyway.Utils.MsgBox;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
+import com.milkyway.Utils.WebcamUtils;
 
 /**
  *
@@ -59,7 +46,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         txtConfirmPass = new javax.swing.JPasswordField();
         txtPass = new javax.swing.JPasswordField();
         jPanel5 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
+        lblAnh = new javax.swing.JLabel();
         txtMaNV = new javax.swing.JTextField();
         txtTaiKhoan = new javax.swing.JTextField();
         txtHoTen = new javax.swing.JTextField();
@@ -73,7 +60,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         txtCMND = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
-        txtRole = new javax.swing.JCheckBox();
+        ckbRole = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtNote = new javax.swing.JTextArea();
         jPanel6 = new javax.swing.JPanel();
@@ -82,11 +69,12 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         btnMoi = new javax.swing.JButton();
         btnUpdateStatus = new javax.swing.JButton();
         btnWebcam = new javax.swing.JButton();
+        btnChonAnh = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblNhanVien = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblNhanVienDaThoiViec = new javax.swing.JTable();
         btnUpdateStatus1 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(107, 185, 240));
@@ -128,7 +116,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         jPanel5.setBackground(new java.awt.Color(107, 185, 240));
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
 
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAnh.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -136,14 +124,14 @@ public class NhanVienJPanel extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                .addComponent(lblAnh, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblAnh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -166,7 +154,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel14.setText("Ghi chú:");
 
-        txtRole.setText("Trưởng phòng");
+        ckbRole.setText("Trưởng phòng");
 
         txtNote.setColumns(20);
         txtNote.setRows(5);
@@ -203,6 +191,11 @@ public class NhanVienJPanel extends javax.swing.JPanel {
             }
         });
         jPanel6.add(btnWebcam);
+
+        btnChonAnh.setBackground(new java.awt.Color(153, 153, 255));
+        btnChonAnh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Upload.png"))); // NOI18N
+        btnChonAnh.setText("Chọn ảnh");
+        jPanel6.add(btnChonAnh);
 
         tblNhanVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -275,7 +268,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtRole)))
+                                    .addComponent(ckbRole)))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addGap(18, 18, 18)
@@ -313,7 +306,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel5)
                             .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13)
-                            .addComponent(txtRole))
+                            .addComponent(ckbRole))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -351,7 +344,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
 
         jPanel4.setBackground(new java.awt.Color(107, 185, 240));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblNhanVienDaThoiViec.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
@@ -377,8 +370,8 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable2.setRowHeight(25);
-        jScrollPane4.setViewportView(jTable2);
+        tblNhanVienDaThoiViec.setRowHeight(25);
+        jScrollPane4.setViewportView(tblNhanVienDaThoiViec);
 
         btnUpdateStatus1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Save.png"))); // NOI18N
         btnUpdateStatus1.setText("Cập nhật trạng thái");
@@ -459,55 +452,21 @@ public class NhanVienJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnWebcamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWebcamActionPerformed
-        Webcam webcam = Webcam.getDefault();
-        webcam.setViewSize(WebcamResolution.VGA.getSize());
-        WebcamPanel panel = new WebcamPanel(webcam);
-        panel.setFPSDisplayed(true);
-        panel.setDisplayDebugInfo(true);
-        panel.setImageSizeDisplayed(true);
-        panel.setMirrored(true);
-
-        JButton btn = new JButton("Chụp ảnh");
-        btn.setBackground(new java.awt.Color(255, 102, 255));
-        btn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    ImageIO.write(webcam.getImage(), "JPG", new File("img/hihi.jpg"));
-                    MsgBox.alert(null, "Chụp ảnh thành công");
-                    webcam.close();
-                } catch (IOException ex) {
-                    MsgBox.alert(null, "Đường dẫn không hợp lệ");
-                }
-            }
-        });
-        JFrame frame = new JFrame("Webcam");
-
-        panel.add(btn);
-        frame.add(panel);
-        frame.setResizable(true);
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                
-            }
-        });
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+        WebcamUtils.chupAnh("NhanVien");
     }//GEN-LAST:event_btnWebcamActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;
+    private javax.swing.JButton btnChonAnh;
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnUpdateStatus;
     private javax.swing.JButton btnUpdateStatus1;
     private javax.swing.JButton btnWebcam;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JCheckBox ckbRole;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -530,10 +489,11 @@ public class NhanVienJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JLabel lblAnh;
     private javax.swing.JRadioButton rdoNam;
     private javax.swing.JRadioButton rdoNu;
     private javax.swing.JTable tblNhanVien;
+    private javax.swing.JTable tblNhanVienDaThoiViec;
     private javax.swing.JTextField txtCMND;
     private javax.swing.JPasswordField txtConfirmPass;
     private javax.swing.JTextField txtEmail;
@@ -542,7 +502,6 @@ public class NhanVienJPanel extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser txtNgaySinh;
     private javax.swing.JTextArea txtNote;
     private javax.swing.JPasswordField txtPass;
-    private javax.swing.JCheckBox txtRole;
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtTaiKhoan;
     // End of variables declaration//GEN-END:variables
