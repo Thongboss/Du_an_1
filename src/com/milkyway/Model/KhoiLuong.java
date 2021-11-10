@@ -11,31 +11,31 @@ package com.milkyway.Model;
  */
 public class KhoiLuong {
 
-    private int MaKhoiLuong;
-    private String TenKhoiLuong;
+    private String MaKhoiLuong;
+    private int GiaTri;
 
     public KhoiLuong() {
     }
 
-    public KhoiLuong(int MaKhoiLuong, String TenKhoiLuong) {
+    public KhoiLuong(String MaKhoiLuong, int GiaTri) {
         this.MaKhoiLuong = MaKhoiLuong;
-        this.TenKhoiLuong = TenKhoiLuong;
+        this.GiaTri = GiaTri;
     }
 
-    public int getMaKhoiLuong() {
+    public String getMaKhoiLuong() {
         return MaKhoiLuong;
     }
 
-    public void setMaKhoiLuong(int MaKhoiLuong) {
+    public void setMaKhoiLuong(String MaKhoiLuong) {
         this.MaKhoiLuong = MaKhoiLuong;
     }
 
-    public String getTenKhoiLuong() {
-        return TenKhoiLuong;
+    public int getGiaTri() {
+        return GiaTri;
     }
 
-    public void setTenKhoiLuong(String TenKhoiLuong) {
-        this.TenKhoiLuong = TenKhoiLuong;
+    public void setGiaTri(int GiaTri) {
+        this.GiaTri = GiaTri;
     }
 
 }

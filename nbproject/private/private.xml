@@ -3,9 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/hoang/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/DAO/LoạiHangDAO.java</file>
             <file>file:/C:/Users/hoang/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/DAO/NhomHangDAO.java</file>
             <file>file:/C:/Users/hoang/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/Model/LoaiHang.java</file>
+=======
+            <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/DangNhapJFrame.java</file>
+            <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/MainJFrame.java</file>
+            <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/NhanVienJPanel.java</file>
+            <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/TheThanhVienJPanel.java</file>
+>>>>>>> 170f4f7d0730640be24170e2ce4d788972caf121
         </group>
     </open-files>
 </project-private>

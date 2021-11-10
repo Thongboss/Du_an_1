@@ -13,42 +13,42 @@ import java.util.Date;
  */
 public class ChiTietSanPham {
 
-    private int ID, MaSP;
+    private int IDChiTietHD, IDSanPham;
     private Date HanSD;
     private int SoLuongTon;
     private double DonGia;
-    private int MaXuatXu, MaKhoiLuong, MaDVT, MaAnhSP, BarCode;
+    private int IDXuatXu, IDKhoiLuong, IDDonViTinh, IDAnhSP, BarCode;
 
     public ChiTietSanPham() {
     }
 
-    public ChiTietSanPham(int ID, int MaSP, Date HanSD, int SoLuongTon, double DonGia, int MaXuatXu, int MaKhoiLuong, int MaDVT, int MaAnhSP, int BarCode) {
-        this.ID = ID;
-        this.MaSP = MaSP;
+    public ChiTietSanPham(int IDChiTietHD, int IDSanPham, Date HanSD, int SoLuongTon, double DonGia, int IDXuatXu, int IDKhoiLuong, int IDDonViTinh, int IDAnhSP, int BarCode) {
+        this.IDChiTietHD = IDChiTietHD;
+        this.IDSanPham = IDSanPham;
         this.HanSD = HanSD;
         this.SoLuongTon = SoLuongTon;
         this.DonGia = DonGia;
-        this.MaXuatXu = MaXuatXu;
-        this.MaKhoiLuong = MaKhoiLuong;
-        this.MaDVT = MaDVT;
-        this.MaAnhSP = MaAnhSP;
+        this.IDXuatXu = IDXuatXu;
+        this.IDKhoiLuong = IDKhoiLuong;
+        this.IDDonViTinh = IDDonViTinh;
+        this.IDAnhSP = IDAnhSP;
         this.BarCode = BarCode;
     }
 
-    public int getID() {
-        return ID;
+    public int getIDChiTietHD() {
+        return IDChiTietHD;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setIDChiTietHD(int IDChiTietHD) {
+        this.IDChiTietHD = IDChiTietHD;
     }
 
-    public int getMaSP() {
-        return MaSP;
+    public int getIDSanPham() {
+        return IDSanPham;
     }
 
-    public void setMaSP(int MaSP) {
-        this.MaSP = MaSP;
+    public void setIDSanPham(int IDSanPham) {
+        this.IDSanPham = IDSanPham;
     }
 
     public int getSoLuongTon() {
@@ -59,36 +59,36 @@ public class ChiTietSanPham {
         this.SoLuongTon = SoLuongTon;
     }
 
-    public int getMaXuatXu() {
-        return MaXuatXu;
+    public int getIDXuatXu() {
+        return IDXuatXu;
     }
 
-    public void setMaXuatXu(int MaXuatXu) {
-        this.MaXuatXu = MaXuatXu;
+    public void setIDXuatXu(int IDXuatXu) {
+        this.IDXuatXu = IDXuatXu;
     }
 
-    public int getMaKhoiLuong() {
-        return MaKhoiLuong;
+    public int getIDKhoiLuong() {
+        return IDKhoiLuong;
     }
 
-    public void setMaKhoiLuong(int MaKhoiLuong) {
-        this.MaKhoiLuong = MaKhoiLuong;
+    public void setIDKhoiLuong(int IDKhoiLuong) {
+        this.IDKhoiLuong = IDKhoiLuong;
     }
 
-    public int getMaDVT() {
-        return MaDVT;
+    public int getIDDonViTinh() {
+        return IDDonViTinh;
     }
 
-    public void setMaDVT(int MaDVT) {
-        this.MaDVT = MaDVT;
+    public void setIDDonViTinh(int IDDonViTinh) {
+        this.IDDonViTinh = IDDonViTinh;
     }
 
-    public int getMaAnhSP() {
-        return MaAnhSP;
+    public int getIDAnhSP() {
+        return IDAnhSP;
     }
 
-    public void setMaAnhSP(int MaAnhSP) {
-        this.MaAnhSP = MaAnhSP;
+    public void setIDAnhSP(int IDAnhSP) {
+        this.IDAnhSP = IDAnhSP;
     }
 
     public int getBarCode() {

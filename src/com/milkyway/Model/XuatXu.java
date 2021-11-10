@@ -11,22 +11,22 @@ package com.milkyway.Model;
  */
 public class XuatXu {
 
-    private int MaQG;
+    private String MaQG;
     private String TenQG;
 
     public XuatXu() {
     }
 
-    public XuatXu(int MaQG, String TenQG) {
+    public XuatXu(String MaQG, String TenQG) {
         this.MaQG = MaQG;
         this.TenQG = TenQG;
     }
 
-    public int getMaQG() {
+    public String getMaQG() {
         return MaQG;
     }
 
-    public void setMaQG(int MaQG) {
+    public void setMaQG(String MaQG) {
         this.MaQG = MaQG;
     }
 

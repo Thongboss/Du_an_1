@@ -11,22 +11,24 @@ package com.milkyway.Model;
  */
 public class DonViTinh {
 
-    private int MaDVT;
+    private String MaDVT;
     private String TenDVT;
+    private String VietTat;
 
     public DonViTinh() {
     }
-    
-    public DonViTinh(int MaDVT, String TenDVT) {
+
+    public DonViTinh(String MaDVT, String TenDVT, String VietTat) {
         this.MaDVT = MaDVT;
         this.TenDVT = TenDVT;
+        this.VietTat = VietTat;
     }
 
-    public int getMaDVT() {
+    public String getMaDVT() {
         return MaDVT;
     }
 
-    public void setMaDVT(int MaDVT) {
+    public void setMaDVT(String MaDVT) {
         this.MaDVT = MaDVT;
     }
 
@@ -36,6 +38,14 @@ public class DonViTinh {
 
     public void setTenDVT(String TenDVT) {
         this.TenDVT = TenDVT;
+    }
+
+    public String getVietTat() {
+        return VietTat;
+    }
+
+    public void setVietTat(String VietTat) {
+        this.VietTat = VietTat;
     }
 
 }

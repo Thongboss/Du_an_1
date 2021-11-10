@@ -11,34 +11,34 @@ package com.milkyway.Model;
  */
 public class ChiTietHoaDon {
 
-    private int MaHD, ID;
+    private int IDChiTietHD, IDHoaDon;
     private int SoLuong;
     private double DonGia;
 
     public ChiTietHoaDon() {
     }
 
-    public ChiTietHoaDon(int MaHD, int ID, int SoLuong, double DonGia) {
-        this.MaHD = MaHD;
-        this.ID = ID;
+    public ChiTietHoaDon(int IDChiTietHD, int IDHoaDon, int SoLuong, double DonGia) {
+        this.IDChiTietHD = IDChiTietHD;
+        this.IDHoaDon = IDHoaDon;
         this.SoLuong = SoLuong;
         this.DonGia = DonGia;
     }
 
-    public int getMaHD() {
-        return MaHD;
+    public int getIDChiTietHD() {
+        return IDChiTietHD;
     }
 
-    public void setMaHD(int MaHD) {
-        this.MaHD = MaHD;
+    public void setIDChiTietHD(int IDChiTietHD) {
+        this.IDChiTietHD = IDChiTietHD;
     }
 
-    public int getID() {
-        return ID;
+    public int getIDHoaDon() {
+        return IDHoaDon;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setIDHoaDon(int IDHoaDon) {
+        this.IDHoaDon = IDHoaDon;
     }
 
     public int getSoLuong() {
