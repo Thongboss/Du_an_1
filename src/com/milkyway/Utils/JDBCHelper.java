@@ -12,10 +12,10 @@ import java.sql.SQLException;
  */
 public class JDBCHelper {
 
-    static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    static String url = "jdbc:sqlserver://localhost:1433;databaseName=MilkyWay";
-    static String user = "sa";
-    static String pass = "123";
+    public static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+    public static String url = "jdbc:sqlserver://localhost:1433;databaseName=MilkyWay";
+    public static String user = "sa";
+    public static String pass = "123";
 
     static {
         try {

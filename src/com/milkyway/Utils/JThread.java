@@ -42,7 +42,7 @@ public class JThread {
         Thread t = new Thread() {
             @Override
             public void run() {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd:MM:yyyy hh:mm:ss a");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
                 while (true) {                    
                     Date d = new Date();
                     lbl.setText(dateFormat.format(d));

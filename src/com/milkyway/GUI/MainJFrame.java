@@ -6,6 +6,7 @@
 package com.milkyway.GUI;
 
 import com.milkyway.Utils.ImageUtils;
+import com.milkyway.Utils.JThread;
 import com.milkyway.Utils.MsgBox;
 import java.awt.Color;
 import java.awt.Frame;
@@ -24,6 +25,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private SanPhamJPanel spPanel;
     private TheThanhVienJPanel theTVPanel;
     private NhanVienJPanel nhanVienPanel;
+    private BanHangJPanel banHangJPanel;
 
     public MainJFrame() {
         initComponents();
@@ -34,8 +36,9 @@ public class MainJFrame extends javax.swing.JFrame {
         setIconImage(ImageUtils.getAppIcon());
         setExtendedState(getExtendedState() | Frame.MAXIMIZED_BOTH);
         new WelcomeJDialog(this, true).setVisible(true);
-//        new JdbcJDialog(this, true).setVisible(true);
+        new JdbcJDialog(this, true).setVisible(true);
 //        new DangNhapJDialog(this, true).setVisible(true);
+        JThread.runDateTime(lblDateTime);
     }
 
     /**
@@ -607,7 +610,17 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitMouseExited
 
     private void btnBanHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBanHangMouseClicked
-        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            tbpMainPortal.remove(banHangJPanel);
+            return;
+        }
+        if (banHangJPanel == null || tbpMainPortal.getComponentCount() == 0) {
+            banHangJPanel = new BanHangJPanel();
+            tbpMainPortal.addTab("Quản lý bán hàng", banHangJPanel);
+            tbpMainPortal.setSelectedComponent(banHangJPanel);
+        } else {
+            tbpMainPortal.setSelectedComponent(banHangJPanel);
+        }
     }//GEN-LAST:event_btnBanHangMouseClicked
 
     private void btnBanHangMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBanHangMouseEntered
