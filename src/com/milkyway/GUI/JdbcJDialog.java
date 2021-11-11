@@ -5,6 +5,11 @@
  */
 package com.milkyway.GUI;
 
+import com.milkyway.Utils.JDBCHelper;
+import com.milkyway.Utils.MsgBox;
+import com.milkyway.Utils.Validator;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import javax.swing.ImageIcon;
 
 /**
@@ -211,7 +216,22 @@ public class JdbcJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConnectActionPerformed
-        
+        StringBuilder sb = new StringBuilder();
+        Validator.isNull(txtUser, "User chưa nhập", sb);
+        Validator.isNull(txtPass, "Mật khẩu chưa nhập", sb);
+        if (sb.length() > 0) {
+            MsgBox.alert(this, sb.toString());
+        } else {
+            try {
+                Connection con = DriverManager.getConnection(JDBCHelper.url, txtUser.getText(), new String(txtPass.getPassword()));
+                MsgBox.alert(this, "Kết nối user thành công");
+                JDBCHelper.user = txtUser.getText();
+                JDBCHelper.pass = new String(txtPass.getPassword());
+                this.dispose();
+            } catch (Exception e) {
+                MsgBox.alert(this, "Kết nối user thất bại");
+            }
+        }
     }//GEN-LAST:event_btnConnectActionPerformed
 
     /**
