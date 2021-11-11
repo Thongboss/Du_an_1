@@ -8,6 +8,8 @@ package com.milkyway.DAO;
 import com.milkyway.Model.LoaiHang;
 import com.milkyway.Model.NhomHang;
 import com.milkyway.Utils.JDBCHelper;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,7 +17,7 @@ import java.util.List;
  * @author hoang
  */
 public class LoạiHangDAO extends MilkyWayDao<LoaiHang, String>{
-     String INSERT_SQL = "INSERT INTO LoaiHang(MaLoai,TenLoai,GhiChu) values(?,?,?)";
+    String INSERT_SQL = "INSERT INTO LoaiHang(MaLoai,TenLoai,GhiChu) values(?,?,?)";
     String UPDATE_SQL = "update LoaiHang set  TenLoai = ? Ghi Chu =? where MaLoai = ?";
     String DELETE_SQL = "Delete from LoaiHang where MaLoai =?";
     String SELECT_ALL = "Select * from LoaiHang";
@@ -33,7 +35,7 @@ public class LoạiHangDAO extends MilkyWayDao<LoaiHang, String>{
     @Override
     public void update(LoaiHang entity) {
         try {
-            JDBCHelper.update(INSERT_SQL, entity.getTenLoai(),entity.getGhiChu());
+            JDBCHelper.update(UPDATE_SQL, entity.getTenLoai(),entity.getGhiChu());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -41,13 +43,13 @@ public class LoạiHangDAO extends MilkyWayDao<LoaiHang, String>{
 
     @Override
     public void delete(String id) {
-        try {
+        
             try {
                 JDBCHelper.update(DELETE_SQL, id);
             } catch (Exception e) {
             }
-        } catch (Exception e) {
-        }
+        
+        
     }
 
     @Override
@@ -66,7 +68,21 @@ public class LoạiHangDAO extends MilkyWayDao<LoaiHang, String>{
 
     @Override
     protected List<LoaiHang> selectBySql(String sql, Object... args) {
-       
+        try {
+             List<LoaiHang> lstLoaiHang =  new ArrayList<>();
+            ResultSet rs = JDBCHelper.query(sql, args);
+            while(rs.next()){
+                LoaiHang entity = new LoaiHang();
+                entity.setMaLoai(rs.getString("MaLoai"));
+                entity.setTenLoai(rs.getString("TenLoai"));
+                entity.setGhiChu(rs.getString("GhiChu"));
+            }
+             rs.getStatement().getConnection().close();
+            return lstLoaiHang;
+        } catch (Exception e) {
+              e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
    

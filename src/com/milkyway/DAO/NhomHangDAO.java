@@ -71,9 +71,9 @@ public class NhomHangDAO extends MilkyWayDao<NhomHang, String>{
             ResultSet rs = JDBCHelper.query(sql, args);
             while(rs.next()){
                 NhomHang entity = new NhomHang();
-                entity.setMaNhom("MaNhom");
-                entity.setTenNhom("TenNhom");
-                entity.setGhiChu("GhiChu");
+                entity.setMaNhom(rs.getString("MaNhom"));
+                entity.setTenNhom(rs.getString("TenNhom"));
+                entity.setGhiChu(rs.getString("GhiChu"));
             }
              rs.getStatement().getConnection().close();
             return lstNhomHang;
