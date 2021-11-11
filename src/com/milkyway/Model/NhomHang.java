@@ -47,4 +47,6 @@ public class NhomHang {
         this.GhiChu = GhiChu;
     }
 
+    
+
 }

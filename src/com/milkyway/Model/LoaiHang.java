@@ -11,16 +11,20 @@ package com.milkyway.Model;
  */
 public class LoaiHang {
 
+
+    
+
+
     private String MaLoai;
-    private int IDNhomHang;
+    
     private String TenLoai, GhiChu;
+
 
     public LoaiHang() {
     }
 
-    public LoaiHang(String MaLoai, int MaNhom, String TenLoai, String GhiChu) {
+    public LoaiHang(String MaLoai, String TenLoai, String GhiChu) {
         this.MaLoai = MaLoai;
-        this.IDNhomHang = MaNhom;
         this.TenLoai = TenLoai;
         this.GhiChu = GhiChu;
     }
@@ -31,14 +35,6 @@ public class LoaiHang {
 
     public void setMaLoai(String MaLoai) {
         this.MaLoai = MaLoai;
-    }
-
-    public int getIDNhomHang() {
-        return IDNhomHang;
-    }
-
-    public void setIDNhomHang(int IDNhomHang) {
-        this.IDNhomHang = IDNhomHang;
     }
 
     public String getTenLoai() {
@@ -57,4 +53,7 @@ public class LoaiHang {
         this.GhiChu = GhiChu;
     }
 
-}
+
+    
+
+    }
