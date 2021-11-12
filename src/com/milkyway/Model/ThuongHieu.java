@@ -10,18 +10,27 @@ package com.milkyway.Model;
  * @author ASUS
  */
 public class ThuongHieu {
-
+private int IDThuongHieu;
     private String MaTH, TenTh, GhiChu;
     private boolean Trangthai;
 
     public ThuongHieu() {
     }
 
-    public ThuongHieu(String MaTH, String TenTh, String GhiChu, boolean Trangthai) {
+    public ThuongHieu(int IDThuongHieu, String MaTH, String TenTh, String GhiChu, boolean Trangthai) {
+        this.IDThuongHieu = IDThuongHieu;
         this.MaTH = MaTH;
         this.TenTh = TenTh;
         this.GhiChu = GhiChu;
         this.Trangthai = Trangthai;
+    }
+
+    public int getIDThuongHieu() {
+        return IDThuongHieu;
+    }
+
+    public void setIDThuongHieu(int IDThuongHieu) {
+        this.IDThuongHieu = IDThuongHieu;
     }
 
     public String getMaTH() {
@@ -55,5 +64,7 @@ public class ThuongHieu {
     public void setTrangthai(boolean Trangthai) {
         this.Trangthai = Trangthai;
     }
+
+   
 
 }

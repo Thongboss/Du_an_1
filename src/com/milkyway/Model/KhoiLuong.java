@@ -10,16 +10,25 @@ package com.milkyway.Model;
  * @author ASUS
  */
 public class KhoiLuong {
-
+private int IDKhoiLuong;
     private String MaKhoiLuong;
     private int GiaTri;
 
     public KhoiLuong() {
     }
 
-    public KhoiLuong(String MaKhoiLuong, int GiaTri) {
+    public KhoiLuong(int IDKhoiLuong, String MaKhoiLuong, int GiaTri) {
+        this.IDKhoiLuong = IDKhoiLuong;
         this.MaKhoiLuong = MaKhoiLuong;
         this.GiaTri = GiaTri;
+    }
+
+    public int getIDKhoiLuong() {
+        return IDKhoiLuong;
+    }
+
+    public void setIDKhoiLuong(int IDKhoiLuong) {
+        this.IDKhoiLuong = IDKhoiLuong;
     }
 
     public String getMaKhoiLuong() {
@@ -37,5 +46,7 @@ public class KhoiLuong {
     public void setGiaTri(int GiaTri) {
         this.GiaTri = GiaTri;
     }
+
+  
 
 }

@@ -12,10 +12,11 @@ import java.util.Date;
  * @author Admin
  */
 public class HoaDon {
-
+private int IDHoaDon;
     private String MaHD;
     private int IDNhanVien;
     private int IDTheTV;
+    private int IDHinhThucThanhToan;
     private Date NgayLap;
     private double TongTien;
     private String GhiChu;
@@ -24,14 +25,24 @@ public class HoaDon {
     public HoaDon() {
     }
 
-    public HoaDon(String MaHD, int IDNhanVien, int IDTheTV, Date NgayLap, double TongTien, String GhiChu, boolean TrangThai) {
+    public HoaDon(int IDHoaDon, String MaHD, int IDNhanVien, int IDTheTV, int IDHinhThucThanhToan, Date NgayLap, double TongTien, String GhiChu, boolean TrangThai) {
+        this.IDHoaDon = IDHoaDon;
         this.MaHD = MaHD;
         this.IDNhanVien = IDNhanVien;
         this.IDTheTV = IDTheTV;
+        this.IDHinhThucThanhToan = IDHinhThucThanhToan;
         this.NgayLap = NgayLap;
         this.TongTien = TongTien;
         this.GhiChu = GhiChu;
         this.TrangThai = TrangThai;
+    }
+
+    public int getIDHoaDon() {
+        return IDHoaDon;
+    }
+
+    public void setIDHoaDon(int IDHoaDon) {
+        this.IDHoaDon = IDHoaDon;
     }
 
     public String getMaHD() {
@@ -56,6 +67,14 @@ public class HoaDon {
 
     public void setIDTheTV(int IDTheTV) {
         this.IDTheTV = IDTheTV;
+    }
+
+    public int getIDHinhThucThanhToan() {
+        return IDHinhThucThanhToan;
+    }
+
+    public void setIDHinhThucThanhToan(int IDHinhThucThanhToan) {
+        this.IDHinhThucThanhToan = IDHinhThucThanhToan;
     }
 
     public Date getNgayLap() {
@@ -89,4 +108,6 @@ public class HoaDon {
     public void setTrangThai(boolean TrangThai) {
         this.TrangThai = TrangThai;
     }
+
+    
 }

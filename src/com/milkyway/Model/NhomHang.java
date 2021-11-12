@@ -10,17 +10,26 @@ package com.milkyway.Model;
  * @author hoang
  */
 public class NhomHang {
-
+private int IDNhomHang;
     private String MaNhom;
     private String TenNhom, GhiChu;
 
     public NhomHang() {
     }
 
-    public NhomHang(String MaNhom, String TenNhom, String GhiChu) {
+    public NhomHang(int IDNhomHang, String MaNhom, String TenNhom, String GhiChu) {
+        this.IDNhomHang = IDNhomHang;
         this.MaNhom = MaNhom;
         this.TenNhom = TenNhom;
         this.GhiChu = GhiChu;
+    }
+
+    public int getIDNhomHang() {
+        return IDNhomHang;
+    }
+
+    public void setIDNhomHang(int IDNhomHang) {
+        this.IDNhomHang = IDNhomHang;
     }
 
     public String getMaNhom() {
@@ -47,6 +56,7 @@ public class NhomHang {
         this.GhiChu = GhiChu;
     }
 
+   
     
 
 }
