@@ -4,10 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/MainJFrame.java</file>
-            <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/JdbcJDialog.java</file>
-            <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/Utils/Validator.java</file>
+            <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/ThemVaoGioJDialog.java</file>
+            <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/QuetMaVachJFrame.java</file>
             <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/Utils/JDBCHelper.java</file>
-            <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/TheThanhVienJPanel.java</file>
         </group>
     </open-files>
 </project-private>
