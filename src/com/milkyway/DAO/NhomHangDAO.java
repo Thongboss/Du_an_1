@@ -84,9 +84,5 @@ public class NhomHangDAO extends MilkyWayDao<NhomHang, String>{
         
     }
 
-    @Override
-    public NhomHang selectByUserName(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+   
 }

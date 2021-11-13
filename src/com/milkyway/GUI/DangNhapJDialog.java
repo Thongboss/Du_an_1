@@ -42,7 +42,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             return;
         }
         NhanVien nv;
-        nv = dao.selectByUserName(txtTaiKhoan.getText());
+        nv = dao.selectByUser(txtTaiKhoan.getText());
         try {
             CallableStatement cs = (CallableStatement) JDBCHelper.getStmt("{call SP_DangNhap(?,?,?,?)}");
             cs.setString(1, txtTaiKhoan.getText());
@@ -57,7 +57,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
                     MsgBox.alert(this, "Nhân viên có tên đăng nhập" + txtTaiKhoan.getText()+"hiện không còn hoạt động");
                     return;
                 }
-                NhanVien nhanvien = dao.selectByUserName(txtTaiKhoan.getText());
+                NhanVien nhanvien = dao.selectByUser(txtTaiKhoan.getText());
                 Auth.user = nhanvien;
                 this.dispose();
             }

@@ -86,9 +86,6 @@ public class DongSPDAO extends MilkyWayDao<DongSP, String> {
           
     }
 
-    @Override
-    public DongSP selectByUserName(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
     
 }

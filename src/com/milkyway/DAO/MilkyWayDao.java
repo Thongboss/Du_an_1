@@ -23,7 +23,7 @@ public abstract class MilkyWayDao<EntityType, KeyType> {
 
     abstract public EntityType selectById(KeyType id);
     
-    abstract public EntityType selectByUserName(KeyType id);
+    
 
     abstract public List<EntityType> selectAll();
 

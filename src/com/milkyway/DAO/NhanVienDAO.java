@@ -22,6 +22,7 @@ public class NhanVienDAO extends MilkyWayDao<NhanVien, String> {
     String delete_SQL = "Delete From NhanVien WHERE MaNV =?";
     String Select_All = "SELECT * FROM NhanVien";
     String Select_By_id = "Select *from NhanVien Where MaNV=?";
+    String Select_By_user = "Select *from NhanVien Where TaiKhoan=?";
     String Select_By_UserName = "Select *from NhanVien Where TaiKhoan=?";
 
     
@@ -94,9 +95,9 @@ public class NhanVienDAO extends MilkyWayDao<NhanVien, String> {
         }
     }
 
-    @Override
-    public NhanVien selectByUserName(String id) {
-        List<NhanVien> list = this.selectBySql(Select_By_UserName, id);
+    
+      public NhanVien selectByUser(String id) {
+        List<NhanVien> list = this.selectBySql(Select_By_user, id);
         if (list.isEmpty()) {
             return null;
         }
