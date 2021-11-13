@@ -85,6 +85,11 @@ public class LoạiHangDAO extends MilkyWayDao<LoaiHang, String>{
         }
     }
 
+    @Override
+    public LoaiHang selectByUserName(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
    
     
 }

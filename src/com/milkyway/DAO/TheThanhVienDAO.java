@@ -89,4 +89,9 @@ public class TheThanhVienDAO extends MilkyWayDao<TheThanhVien, String> {
         }
     }
 
+    @Override
+    public TheThanhVien selectByUserName(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

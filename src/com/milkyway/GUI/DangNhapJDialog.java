@@ -5,14 +5,24 @@
  */
 package com.milkyway.GUI;
 
+import com.milkyway.DAO.NhanVienDAO;
+import com.milkyway.Model.NhanVien;
+import com.milkyway.Utils.Auth;
+import com.milkyway.Utils.JDBCHelper;
 import com.milkyway.Utils.MsgBox;
+import com.milkyway.Utils.Validator;
+import com.sun.javafx.css.CalculatedValue;
+import java.sql.CallableStatement;
+import java.sql.Types;
 import javax.swing.ImageIcon;
+import sun.net.www.protocol.http.AuthCache;
 
 /**
  *
  * @author DaiAustinYersin
  */
 public class DangNhapJDialog extends javax.swing.JDialog {
+    NhanVienDAO dao = new  NhanVienDAO();
 
     /**
      * Creates new form DangNhapJDialog
@@ -23,6 +33,41 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         setResizable(false);
     }
+    private void DangNhap(){
+        StringBuilder sb = new StringBuilder();
+        Validator.isNull(txtTaiKhoan, "Chưa nhập tên đăng nhập", sb);
+        Validator.isNull(txtMatKhau, "Chưa nhập mật khẩu", sb);
+        if (sb.length()>0) {
+            MsgBox.alert(this, sb.toString());
+            return;
+        }
+        NhanVien nv;
+        nv = dao.selectByUserName(txtTaiKhoan.getText());
+        try {
+            CallableStatement cs = (CallableStatement) JDBCHelper.getStmt("{call SP_DangNhap(?,?,?,?)}");
+            cs.setString(1, txtTaiKhoan.getText());
+            cs.setString(2, new String(txtMatKhau.getPassword()));
+            cs.registerOutParameter(3, Types.BIT);
+            cs.registerOutParameter(4, Types.NVARCHAR);
+            cs.execute();
+            if (!cs.getBoolean(3)) {
+                MsgBox.alert(this, cs.getNString(4));
+            }else{
+                if (!nv.isTrangThai()) {
+                    MsgBox.alert(this, "Nhân viên có tên đăng nhập" + txtTaiKhoan.getText()+"hiện không còn hoạt động");
+                    return;
+                }
+                NhanVien nhanvien = dao.selectByUserName(txtTaiKhoan.getText());
+                Auth.user = nhanvien;
+                this.dispose();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+           
+        }
+        
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,9 +85,9 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtTaiKhoan = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtMatKhau = new javax.swing.JPasswordField();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -116,11 +161,21 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         jButton1.setBackground(new java.awt.Color(102, 255, 102));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Tick.png"))); // NOI18N
         jButton1.setText("Đăng nhập");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton1);
 
         jButton2.setBackground(new java.awt.Color(255, 153, 153));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Delete.png"))); // NOI18N
         jButton2.setText("Hủy bỏ");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton2);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -139,8 +194,8 @@ public class DangNhapJDialog extends javax.swing.JDialog {
                             .addComponent(jLabel8))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                            .addComponent(jPasswordField1)))
+                            .addComponent(txtTaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                            .addComponent(txtMatKhau)))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -155,11 +210,11 @@ public class DangNhapJDialog extends javax.swing.JDialog {
                         .addGap(55, 55, 55)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -198,6 +253,16 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     private void btnCloseMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseExited
         btnClose.setIcon(new ImageIcon("src/com/milkyway/Icons/btn-close.png"));
     }//GEN-LAST:event_btnCloseMouseExited
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    if (MsgBox.confirm(this, "Bạn muốn hủy bỏ đăng nhập?")) {
+            System.exit(0);
+        }    // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+DangNhap();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,8 +318,8 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField txtMatKhau;
+    private javax.swing.JTextField txtTaiKhoan;
     // End of variables declaration//GEN-END:variables
 }

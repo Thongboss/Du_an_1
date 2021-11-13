@@ -17,11 +17,14 @@ import java.util.List;
  */
 public class NhanVienDAO extends MilkyWayDao<NhanVien, String> {
 
-    String INSERT_SQL = "INSERT INTO NhanVien(MạtKhau,HoTen,GioiTinh,NgaySinh,SDT,CMND,Email,HinhAnh,VaiTro,GhiChu,TrangThai,Salt)VALUES(?,?,?,?,?,? ,?,?,?,?,?,?,?)";
+    String INSERT_SQL = "INSERT INTO NhanVien(MaNV,TaiKhoan,Máº¡tKhau,HoTen,GioiTinh,NgaySinh,SDT,CMND,Email,HinhAnh,VaiTro,GhiChu,TrangThai,Salt)VALUES(?,?,?,?,?,? ,?,?,?,?,?,?,?,?)";
     String Update_SQL = "Update NhanVien HoTen = ?,GioiTinh=?,NgaySinh=?,SDT=?,CMND=?,Email=?,HinhAnh=?,VaiTro=?,GhiChu=?,TrangThai=?,Salt=? Where MaNV = ?";
     String delete_SQL = "Delete From NhanVien WHERE MaNV =?";
-    String Select_All = "select*from NhanVien";
+    String Select_All = "SELECT * FROM NhanVien";
     String Select_By_id = "Select *from NhanVien Where MaNV=?";
+    String Select_By_UserName = "Select *from NhanVien Where TaiKhoan=?";
+
+    
 
     @Override
     public void insert(NhanVien entity) {
@@ -52,24 +55,36 @@ public class NhanVienDAO extends MilkyWayDao<NhanVien, String> {
         }
         return list.get(0);
     }
+    
 
     @Override
     public List<NhanVien> selectAll() {
-        return this.selectBySql(Select_All);
+        return selectBySql(Select_All);
     }
+    
 
     @Override
     protected List<NhanVien> selectBySql(String sql, Object... args) {
         List<NhanVien> lstNhanVien = new ArrayList<>();
         try {
             ResultSet rs = JDBCHelper.query(sql, args);
-
             while (rs.next()) {
                 NhanVien entity = new NhanVien();
+                entity.setIDNhanVien(rs.getInt("IDNhanVien"));
                 entity.setMaNV(rs.getString("MaNV"));
-                entity.setTaiKhoan(rs.getString("TaiKhoan"));
-//                entity.setMatKhau(rs.get); ()
+                entity.setMatKhau(rs.getBytes("MatKhau"));
                 entity.setHoTen(rs.getString("HoTen"));
+                entity.setGioiTinh(rs.getBoolean("GioiTinh"));
+                entity.setNgaySinh(rs.getDate("NgaySinh"));
+                entity.setSDT(rs.getString("SDT"));
+                entity.setCMND(rs.getString("CMND"));
+                entity.setEmail(rs.getString("Email"));
+                entity.setHinhAnh(rs.getString("HinhAnh"));
+                entity.setVaiTro(rs.getBoolean("VaiTro"));
+                entity.setGhiChu(rs.getString("VaiTro"));
+                entity.setTrangThai(rs.getBoolean("TrangThai"));
+                entity.setSalt(rs.getBytes("salt"));
+              
                 lstNhanVien.add(entity);
             }
             rs.getStatement().getConnection().close();
@@ -77,5 +92,14 @@ public class NhanVienDAO extends MilkyWayDao<NhanVien, String> {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public NhanVien selectByUserName(String id) {
+        List<NhanVien> list = this.selectBySql(Select_By_UserName, id);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
     }
 }

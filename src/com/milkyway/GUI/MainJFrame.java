@@ -36,8 +36,8 @@ public class MainJFrame extends javax.swing.JFrame {
         setIconImage(ImageUtils.getAppIcon());
         setExtendedState(getExtendedState() | Frame.MAXIMIZED_BOTH);
         new WelcomeJDialog(this, true).setVisible(true);
-        new JdbcJDialog(this, true).setVisible(true);
-//        new DangNhapJDialog(this, true).setVisible(true);
+//        new JdbcJDialog(this, true).setVisible(true);
+        new DangNhapJDialog(this, true).setVisible(true);
         JThread.runDateTime(lblDateTime);
     }
 
@@ -118,6 +118,11 @@ public class MainJFrame extends javax.swing.JFrame {
         tbarDoiMK.setFocusable(false);
         tbarDoiMK.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         tbarDoiMK.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbarDoiMK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbarDoiMKActionPerformed(evt);
+            }
+        });
         jToolBar1.add(tbarDoiMK);
 
         tbarStop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Stop.png"))); // NOI18N
@@ -726,6 +731,10 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnNhanVienMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNhanVienMouseExited
         pnlNhanVien.setBackground(new Color(107, 185, 240));
     }//GEN-LAST:event_btnNhanVienMouseExited
+
+    private void tbarDoiMKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbarDoiMKActionPerformed
+new DoiMatKhauJDialog(this, true).setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_tbarDoiMKActionPerformed
 
     /**
      * @param args the command line arguments
