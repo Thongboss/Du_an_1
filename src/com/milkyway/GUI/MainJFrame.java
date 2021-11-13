@@ -25,7 +25,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private SanPhamJPanel spPanel;
     private TheThanhVienJPanel theTVPanel;
     private NhanVienJPanel nhanVienPanel;
-    private BanHangJPanel banHangJPanel;
+    private BanHang banHang;
 
     public MainJFrame() {
         initComponents();
@@ -611,15 +611,15 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnBanHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBanHangMouseClicked
         if (evt.getClickCount() == 2) {
-            tbpMainPortal.remove(banHangJPanel);
+            tbpMainPortal.remove(banHang);
             return;
         }
-        if (banHangJPanel == null || tbpMainPortal.getComponentCount() == 0) {
-            banHangJPanel = new BanHangJPanel();
-            tbpMainPortal.addTab("Quản lý bán hàng", banHangJPanel);
-            tbpMainPortal.setSelectedComponent(banHangJPanel);
+        if (banHang == null || tbpMainPortal.getComponentCount() == 0) {
+            banHang = new BanHang();
+            tbpMainPortal.addTab("Quản lý bán hàng", banHang);
+            tbpMainPortal.setSelectedComponent(banHang);
         } else {
-            tbpMainPortal.setSelectedComponent(banHangJPanel);
+            tbpMainPortal.setSelectedComponent(banHang);
         }
     }//GEN-LAST:event_btnBanHangMouseClicked
 
