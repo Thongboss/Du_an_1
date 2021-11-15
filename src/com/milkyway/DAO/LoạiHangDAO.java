@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author hoang
  */
-public class LoạiHangDAO extends MilkyWayDao<LoaiHang, String>{
+public class LoạiHangDAO extends MilkyWayDAO<LoaiHang, String>{
     String INSERT_SQL = "INSERT INTO LoaiHang(MaLoai,TenLoai,GhiChu) values(?,?,?)";
     String UPDATE_SQL = "update LoaiHang set  TenLoai = ? Ghi Chu =? where MaLoai = ?";
     String DELETE_SQL = "Delete from LoaiHang where MaLoai =?";
@@ -84,6 +84,8 @@ public class LoạiHangDAO extends MilkyWayDao<LoaiHang, String>{
             throw new RuntimeException(e);
         }
     }
+
+   
 
    
     

@@ -37,8 +37,9 @@ public class MainJFrame extends javax.swing.JFrame {
         setExtendedState(getExtendedState() | Frame.MAXIMIZED_BOTH);
         new WelcomeJDialog(this, true).setVisible(true);
         new JdbcJDialog(this, true).setVisible(true);
-//        new DangNhapJDialog(this, true).setVisible(true);
+        new DangNhapJDialog(this, true).setVisible(true);
         JThread.runDateTime(lblDateTime);
+        JThread.runText(lblMain);
     }
 
     /**
@@ -93,7 +94,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnExit = new javax.swing.JLabel();
         btnMinimise = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblMain = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hệ thống đại lý sữa Milky Way");
@@ -118,6 +119,11 @@ public class MainJFrame extends javax.swing.JFrame {
         tbarDoiMK.setFocusable(false);
         tbarDoiMK.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         tbarDoiMK.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbarDoiMK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbarDoiMKActionPerformed(evt);
+            }
+        });
         jToolBar1.add(tbarDoiMK);
 
         tbarStop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Stop.png"))); // NOI18N
@@ -546,10 +552,10 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Phầm mềm quản lý đại lý sữa Milky Way");
+        lblMain.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblMain.setForeground(new java.awt.Color(255, 255, 255));
+        lblMain.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMain.setText("Phầm mềm quản lý đại lý sữa Milky Way   ");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -559,7 +565,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1120, Short.MAX_VALUE)
+                .addComponent(lblMain, javax.swing.GroupLayout.DEFAULT_SIZE, 1120, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnMinimise, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -574,7 +580,7 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnMinimise, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -727,6 +733,10 @@ public class MainJFrame extends javax.swing.JFrame {
         pnlNhanVien.setBackground(new Color(107, 185, 240));
     }//GEN-LAST:event_btnNhanVienMouseExited
 
+    private void tbarDoiMKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbarDoiMKActionPerformed
+new DoiMatKhauJDialog(this, true).setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_tbarDoiMKActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -774,7 +784,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
@@ -788,6 +797,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator5;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lblDateTime;
+    private javax.swing.JLabel lblMain;
     private javax.swing.JLabel lblRole;
     private javax.swing.JLabel lblTenNV;
     private javax.swing.JPanel pnlBanHang;

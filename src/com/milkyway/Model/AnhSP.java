@@ -11,15 +11,25 @@ package com.milkyway.Model;
  */
 public class AnhSP {
 
+    private int IDAnhSP;
     private String MaAnhSP;
     private String TenAnhSP;
 
     public AnhSP() {
     }
 
-    public AnhSP(String MaAnhSP, String TenAnhSP) {
+    public AnhSP(int IDAnhSP, String MaAnhSP, String TenAnhSP) {
+        this.IDAnhSP = IDAnhSP;
         this.MaAnhSP = MaAnhSP;
         this.TenAnhSP = TenAnhSP;
+    }
+
+    public int getIDAnhSP() {
+        return IDAnhSP;
+    }
+
+    public void setIDAnhSP(int IDAnhSP) {
+        this.IDAnhSP = IDAnhSP;
     }
 
     public String getMaAnhSP() {
@@ -37,5 +47,7 @@ public class AnhSP {
     public void setTenAnhSP(String TenAnhSP) {
         this.TenAnhSP = TenAnhSP;
     }
+
+
 
 }

@@ -13,6 +13,7 @@ import java.util.Date;
  */
 public class TheThanhVien {
 
+    private int IDTheTV;
     private String MaTheTV;
     private String TenKH;
     private boolean GioiTinh;
@@ -25,7 +26,8 @@ public class TheThanhVien {
     public TheThanhVien() {
     }
 
-    public TheThanhVien(String MaTheTV, String TenKH, boolean GioiTinh, Date NgaySinh, String SDT, String CMND, String Email, String HinhAnh, int NguoiTao, Date NgayTao, Date NgayHetHan, boolean TrangThai) {
+    public TheThanhVien(int IDTheTV, String MaTheTV, String TenKH, boolean GioiTinh, Date NgaySinh, String SDT, String CMND, String Email, String HinhAnh, int NguoiTao, Date NgayTao, Date NgayHetHan, boolean TrangThai) {
+        this.IDTheTV = IDTheTV;
         this.MaTheTV = MaTheTV;
         this.TenKH = TenKH;
         this.GioiTinh = GioiTinh;
@@ -38,6 +40,14 @@ public class TheThanhVien {
         this.NgayTao = NgayTao;
         this.NgayHetHan = NgayHetHan;
         this.TrangThai = TrangThai;
+    }
+
+    public int getIDTheTV() {
+        return IDTheTV;
+    }
+
+    public void setIDTheTV(int IDTheTV) {
+        this.IDTheTV = IDTheTV;
     }
 
     public String getMaTheTV() {
@@ -135,4 +145,5 @@ public class TheThanhVien {
     public void setTrangThai(boolean TrangThai) {
         this.TrangThai = TrangThai;
     }
+
 }

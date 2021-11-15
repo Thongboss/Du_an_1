@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author hoang
  */
-public class ThuongHieuDAO extends MilkyWayDao<ThuongHieu, String> {
+public class ThuongHieuDAO extends MilkyWayDAO<ThuongHieu, String> {
      String INSERT_SQL = "Insert into ThuongHieu(MaTH,TenTH,GhiChu,TrangThai) values (?,?,?,?)";
     String UPDATE_SQL = "Update ThuongHieu set TenTH =? GhiChu =? TrangThai =? where MaTH =? ";
     String DELETE_SQL = "Delete from ThuongHieu where MaTH =?";
@@ -80,5 +80,7 @@ public class ThuongHieuDAO extends MilkyWayDao<ThuongHieu, String> {
             throw  new RuntimeException(e);
         }
     }
+
+   
     
 }

@@ -11,6 +11,7 @@ package com.milkyway.Model;
  */
 public class DonViTinh {
 
+    private int IDDonViTinh;
     private String MaDVT;
     private String TenDVT;
     private String VietTat;
@@ -18,10 +19,19 @@ public class DonViTinh {
     public DonViTinh() {
     }
 
-    public DonViTinh(String MaDVT, String TenDVT, String VietTat) {
+    public DonViTinh(int IDDonViTinh, String MaDVT, String TenDVT, String VietTat) {
+        this.IDDonViTinh = IDDonViTinh;
         this.MaDVT = MaDVT;
         this.TenDVT = TenDVT;
         this.VietTat = VietTat;
+    }
+
+    public int getIDDonViTinh() {
+        return IDDonViTinh;
+    }
+
+    public void setIDDonViTinh(int IDDonViTinh) {
+        this.IDDonViTinh = IDDonViTinh;
     }
 
     public String getMaDVT() {

@@ -13,7 +13,7 @@ import java.util.List;
  * @param <EntityType>
  * @param <KeyType>
  */
-public abstract class MilkyWayDao<EntityType, KeyType> {
+public abstract class MilkyWayDAO<EntityType, KeyType> {
 
     abstract public void insert(EntityType entity);
 

@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author hoang
  */
-public class NhomHangDAO extends MilkyWayDao<NhomHang, String>{
+public class NhomHangDAO extends MilkyWayDAO<NhomHang, String>{
     String INSERT_SQL = "Insert into NhomHang(MaNhom,TenNhom,GhiChu) values (?,?,?)";
     String UPDATE_SQL = "Update NhomHang TenNhom =?,GhiChu=? where MaNhom = ?";
     String DELETE_SQL = "Delete from NhomHang where MaNhom =?";
@@ -83,5 +83,6 @@ public class NhomHangDAO extends MilkyWayDao<NhomHang, String>{
         }
         
     }
-    
+
+   
 }

@@ -11,6 +11,7 @@ package com.milkyway.Model;
  */
 public class HinhThucThanhToan {
 
+    private int IDHinhThucThanhToan;
     private String MaHinhThucThanhToan;
     private String TenHinhThucThanhToan;
     private String GhiChu;
@@ -18,10 +19,19 @@ public class HinhThucThanhToan {
     public HinhThucThanhToan() {
     }
 
-    public HinhThucThanhToan(String MaHinhThucThanhToan, String TenHinhThucThanhToan, String GhiChu) {
+    public HinhThucThanhToan(int IDHinhThucThanhToan, String MaHinhThucThanhToan, String TenHinhThucThanhToan, String GhiChu) {
+        this.IDHinhThucThanhToan = IDHinhThucThanhToan;
         this.MaHinhThucThanhToan = MaHinhThucThanhToan;
         this.TenHinhThucThanhToan = TenHinhThucThanhToan;
         this.GhiChu = GhiChu;
+    }
+
+    public int getIDHinhThucThanhToan() {
+        return IDHinhThucThanhToan;
+    }
+
+    public void setIDHinhThucThanhToan(int IDHinhThucThanhToan) {
+        this.IDHinhThucThanhToan = IDHinhThucThanhToan;
     }
 
     public String getMaHinhThucThanhToan() {
@@ -47,4 +57,5 @@ public class HinhThucThanhToan {
     public void setGhiChu(String GhiChu) {
         this.GhiChu = GhiChu;
     }
+
 }

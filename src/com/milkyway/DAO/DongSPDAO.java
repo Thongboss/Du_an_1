@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author hoang
  */
-public class DongSPDAO extends MilkyWayDao<DongSP, String> {
+public class DongSPDAO extends MilkyWayDAO<DongSP, String> {
     String INSERT_SQL = "INSERT INTO DongSP(MaDongSP,TenDongSP,GhiChu,TrangThai) values(?,?,?)";
     String UPDATE_SQL = "update DongSP set  TenDongSP = ? Ghi Chu =? TrangThai = ? where MaDongSP = ?";
     String DELETE_SQL = "Delete from DongSP where MaDongSP =?";
@@ -85,5 +85,7 @@ public class DongSPDAO extends MilkyWayDao<DongSP, String> {
         }
           
     }
+
+   
     
 }

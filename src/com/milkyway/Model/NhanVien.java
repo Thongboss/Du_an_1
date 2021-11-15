@@ -12,7 +12,7 @@ import java.util.Date;
  * @author DaiAustinYersin
  */
 public class NhanVien {
-
+private int IDNhanVien;
     private String MaNV;
     private String TaiKhoan;
     private byte[] MatKhau;
@@ -29,6 +29,32 @@ public class NhanVien {
     private byte[] Salt;
 
     public NhanVien() {
+    }
+
+    public NhanVien(int IDNhanVien, String MaNV, String TaiKhoan, byte[] MatKhau, String HoTen, boolean GioiTinh, Date NgaySinh, String SDT, String CMND, String Email, String HinhAnh, boolean VaiTro, String GhiChu, boolean TrangThai, byte[] Salt) {
+        this.IDNhanVien = IDNhanVien;
+        this.MaNV = MaNV;
+        this.TaiKhoan = TaiKhoan;
+        this.MatKhau = MatKhau;
+        this.HoTen = HoTen;
+        this.GioiTinh = GioiTinh;
+        this.NgaySinh = NgaySinh;
+        this.SDT = SDT;
+        this.CMND = CMND;
+        this.Email = Email;
+        this.HinhAnh = HinhAnh;
+        this.VaiTro = VaiTro;
+        this.GhiChu = GhiChu;
+        this.TrangThai = TrangThai;
+        this.Salt = Salt;
+    }
+
+    public int getIDNhanVien() {
+        return IDNhanVien;
+    }
+
+    public void setIDNhanVien(int IDNhanVien) {
+        this.IDNhanVien = IDNhanVien;
     }
 
     public String getMaNV() {
@@ -143,5 +169,6 @@ public class NhanVien {
         this.Salt = Salt;
     }
 
+   
     
 }

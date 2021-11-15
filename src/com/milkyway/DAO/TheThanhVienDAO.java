@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author DaiAustinYersin
  */
-public class TheThanhVienDAO extends MilkyWayDao<TheThanhVien, String> {
+public class TheThanhVienDAO extends MilkyWayDAO<TheThanhVien, String> {
 
     String insert_sql = (String) "insert into TheThanhVien(TenKH,GioiTinh,NgaySinh,SDT,CMND,Email,HinhAnh,NguoiTao,NgayTao,NgayHetHan,TrangThai)Values(?,?,?,?,?,?,?,?,?,?)";
     String update_sql = (String) "UPDATE  TheThanhVien SET TenKH = ? ,SET GioiTinh = ?,SET NgaySinh = ?,SET SDT = ?,"
@@ -88,5 +88,7 @@ public class TheThanhVienDAO extends MilkyWayDao<TheThanhVien, String> {
             throw new RuntimeException(e);
         }
     }
+
+    
 
 }

@@ -13,7 +13,8 @@ import java.util.Date;
  */
 public class SanPham {
 
-    private String MaSP; 
+    private int IDSanPham;
+    private String MaSP;
     private int IDLoaiSP, IDDongSP;
     private String TenSP;
     private Date NgayXK;
@@ -23,14 +24,23 @@ public class SanPham {
     public SanPham() {
     }
 
-    public SanPham(String MaSP, int MaLoai, int MaDongSP, String TenSP, String GhiChu, Date NgayXK, boolean TrangThai) {
+    public SanPham(int IDSanPham, String MaSP, int IDLoaiSP, int IDDongSP, String TenSP, Date NgayXK, String GhiChu, boolean TrangThai) {
+        this.IDSanPham = IDSanPham;
         this.MaSP = MaSP;
-        this.IDLoaiSP = MaLoai;
-        this.IDDongSP = MaDongSP;
+        this.IDLoaiSP = IDLoaiSP;
+        this.IDDongSP = IDDongSP;
         this.TenSP = TenSP;
-        this.GhiChu = GhiChu;
         this.NgayXK = NgayXK;
+        this.GhiChu = GhiChu;
         this.TrangThai = TrangThai;
+    }
+
+    public int getIDSanPham() {
+        return IDSanPham;
+    }
+
+    public void setIDSanPham(int IDSanPham) {
+        this.IDSanPham = IDSanPham;
     }
 
     public String getMaSP() {
@@ -65,20 +75,20 @@ public class SanPham {
         this.TenSP = TenSP;
     }
 
-    public String getGhiChu() {
-        return GhiChu;
-    }
-
-    public void setGhiChu(String GhiChu) {
-        this.GhiChu = GhiChu;
-    }
-
     public Date getNgayXK() {
         return NgayXK;
     }
 
     public void setNgayXK(Date NgayXK) {
         this.NgayXK = NgayXK;
+    }
+
+    public String getGhiChu() {
+        return GhiChu;
+    }
+
+    public void setGhiChu(String GhiChu) {
+        this.GhiChu = GhiChu;
     }
 
     public boolean isTrangThai() {
