@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.6" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="btnGrpNhomLoaiHang">
     </Component>
@@ -180,7 +180,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                                   <Component id="jPanel18" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="753" max="32767" attributes="0"/>
+                                  <EmptySpace pref="777" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -418,6 +418,9 @@
                                     </Property>
                                     <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemNhomHangActionPerformed"/>
+                                  </Events>
                                 </Component>
                                 <Component class="javax.swing.JButton" name="btnCapNhatNhomHang">
                                   <Properties>
@@ -429,6 +432,9 @@
                                     </Property>
                                     <Property name="text" type="java.lang.String" value="C&#x1ead;p nh&#x1ead;t"/>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCapNhatNhomHangActionPerformed"/>
+                                  </Events>
                                 </Component>
                                 <Component class="javax.swing.JButton" name="btnMoiNhomHang">
                                   <Properties>
@@ -440,6 +446,9 @@
                                     </Property>
                                     <Property name="text" type="java.lang.String" value="M&#x1edb;i"/>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMoiNhomHangActionPerformed"/>
+                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>
@@ -460,10 +469,16 @@
                                       </Table>
                                     </Property>
                                     <Property name="rowHeight" type="int" value="25"/>
+                                    <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
+                                      <JTableSelectionModel selectionMode="0"/>
+                                    </Property>
                                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                     </Property>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblNhomHangMouseClicked"/>
+                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>
@@ -653,6 +668,9 @@
                                     </Property>
                                     <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemLoaiHangActionPerformed"/>
+                                  </Events>
                                 </Component>
                                 <Component class="javax.swing.JButton" name="btnCapNhatLoaiHang">
                                   <Properties>
@@ -664,6 +682,9 @@
                                     </Property>
                                     <Property name="text" type="java.lang.String" value="C&#x1ead;p nh&#x1ead;t"/>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCapNhatLoaiHangActionPerformed"/>
+                                  </Events>
                                 </Component>
                                 <Component class="javax.swing.JButton" name="btnMoiLoaiHang">
                                   <Properties>
@@ -675,6 +696,9 @@
                                     </Property>
                                     <Property name="text" type="java.lang.String" value="M&#x1edb;i"/>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMoiLoaiHangActionPerformed"/>
+                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>
@@ -688,18 +712,48 @@
                                 <Component class="javax.swing.JTable" name="tblLoaiHang">
                                   <Properties>
                                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                      <Table columnCount="4" rowCount="4">
+                                      <Table columnCount="4" rowCount="0">
                                         <Column editable="false" title="M&#xe3; lo&#x1ea1;i h&#xe0;ng" type="java.lang.Object"/>
                                         <Column editable="false" title="T&#xea;n lo&#x1ea1;i h&#xe0;ng" type="java.lang.Object"/>
-                                        <Column editable="true" title="Nh&#xf3;m h&#xe0;ng" type="java.lang.Object"/>
+                                        <Column editable="false" title="Nh&#xf3;m h&#xe0;ng" type="java.lang.Object"/>
                                         <Column editable="false" title="Ghi ch&#xfa;" type="java.lang.Object"/>
                                       </Table>
                                     </Property>
+                                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                      <TableColumnModel selectionModel="0">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                      </TableColumnModel>
+                                    </Property>
                                     <Property name="rowHeight" type="int" value="25"/>
+                                    <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
+                                      <JTableSelectionModel selectionMode="0"/>
+                                    </Property>
                                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                     </Property>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblLoaiHangMouseClicked"/>
+                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>
@@ -745,6 +799,9 @@
                                       <StringArray count="0"/>
                                     </Property>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbbNhomHangPhanLoaiItemStateChanged"/>
+                                  </Events>
                                   <AuxValues>
                                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                                   </AuxValues>
@@ -999,6 +1056,9 @@
                                     </Property>
                                     <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemThuongHieuActionPerformed"/>
+                                  </Events>
                                 </Component>
                                 <Component class="javax.swing.JButton" name="btnCapNhatThuongHieu">
                                   <Properties>
@@ -1010,6 +1070,9 @@
                                     </Property>
                                     <Property name="text" type="java.lang.String" value="C&#x1ead;p nh&#x1ead;t"/>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCapNhatThuongHieuActionPerformed"/>
+                                  </Events>
                                 </Component>
                                 <Component class="javax.swing.JButton" name="btnMoiThuongHieu">
                                   <Properties>
@@ -1021,6 +1084,9 @@
                                     </Property>
                                     <Property name="text" type="java.lang.String" value="M&#x1edb;i"/>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMoiThuongHieuActionPerformed"/>
+                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>
@@ -1066,10 +1132,16 @@
                                       </TableColumnModel>
                                     </Property>
                                     <Property name="rowHeight" type="int" value="25"/>
+                                    <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
+                                      <JTableSelectionModel selectionMode="0"/>
+                                    </Property>
                                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                     </Property>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblThuongHieuMouseClicked"/>
+                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>
@@ -1125,6 +1197,9 @@
                                     <Property name="selected" type="boolean" value="true"/>
                                     <Property name="text" type="java.lang.String" value="&#x110;ang h&#x1ee3;p t&#xe1;c"/>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="rdoDangHopTacItemStateChanged"/>
+                                  </Events>
                                 </Component>
                                 <Component class="javax.swing.JRadioButton" name="rdoNgungHopTac">
                                   <Properties>
@@ -1360,7 +1435,7 @@
 
                               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
                               <SubComponents>
-                                <Component class="javax.swing.JButton" name="btnThem7">
+                                <Component class="javax.swing.JButton" name="btnThemDongSP">
                                   <Properties>
                                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                       <Color blue="99" green="ff" red="99" type="rgb"/>
@@ -1370,8 +1445,11 @@
                                     </Property>
                                     <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemDongSPActionPerformed"/>
+                                  </Events>
                                 </Component>
-                                <Component class="javax.swing.JButton" name="btnCapNhat7">
+                                <Component class="javax.swing.JButton" name="btnCapNhatDongSP">
                                   <Properties>
                                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                       <Color blue="66" green="ff" red="ff" type="rgb"/>
@@ -1381,8 +1459,11 @@
                                     </Property>
                                     <Property name="text" type="java.lang.String" value="C&#x1ead;p nh&#x1ead;t"/>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCapNhatDongSPActionPerformed"/>
+                                  </Events>
                                 </Component>
-                                <Component class="javax.swing.JButton" name="btnMoi7">
+                                <Component class="javax.swing.JButton" name="btnMoiDongSP">
                                   <Properties>
                                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                       <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -1392,6 +1473,9 @@
                                     </Property>
                                     <Property name="text" type="java.lang.String" value="M&#x1edb;i"/>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMoiDongSPActionPerformed"/>
+                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>
@@ -1443,10 +1527,16 @@
                                       </TableColumnModel>
                                     </Property>
                                     <Property name="rowHeight" type="int" value="25"/>
+                                    <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
+                                      <JTableSelectionModel selectionMode="0"/>
+                                    </Property>
                                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                     </Property>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblDongSPMouseClicked"/>
+                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>
@@ -1505,6 +1595,9 @@
                                     <Property name="selected" type="boolean" value="true"/>
                                     <Property name="text" type="java.lang.String" value="&#x110;ang kinh doanh"/>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="rdoDangKinhDoanhItemStateChanged"/>
+                                  </Events>
                                 </Component>
                                 <Component class="javax.swing.JRadioButton" name="rdoNgungKinhDoanh">
                                   <Properties>
@@ -1523,6 +1616,9 @@
                                       <StringArray count="0"/>
                                     </Property>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbbThuongHieuPhanLoaiItemStateChanged"/>
+                                  </Events>
                                   <AuxValues>
                                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                                   </AuxValues>
@@ -1643,8 +1739,8 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jScrollPane5" pref="441" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane5" min="-2" pref="367" max="-2" attributes="0"/>
+                              <EmptySpace pref="111" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1843,7 +1939,7 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jPanel11" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="141" max="32767" attributes="0"/>
+                              <EmptySpace pref="113" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1878,8 +1974,8 @@
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jTextField2" min="-2" pref="233" max="-2" attributes="0"/>
-                                              <Component id="jTextField1" min="-2" pref="233" max="-2" attributes="0"/>
+                                              <Component id="txtMaDVT" min="-2" pref="233" max="-2" attributes="0"/>
+                                              <Component id="txtTenDVT" min="-2" pref="233" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -1898,12 +1994,12 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtMaDVT" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtTenDVT" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="jPanel26" min="-2" max="-2" attributes="0"/>
@@ -1937,9 +2033,9 @@
                             <Property name="text" type="java.lang.String" value="T&#xea;n &#x111;&#x1a1;n v&#x1ecb; t&#xed;nh:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField1">
+                        <Component class="javax.swing.JTextField" name="txtTenDVT">
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField2">
+                        <Component class="javax.swing.JTextField" name="txtMaDVT">
                         </Component>
                         <Container class="javax.swing.JPanel" name="jPanel26">
                           <Properties>
@@ -1950,7 +2046,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JButton" name="btnThemNhomHang1">
+                            <Component class="javax.swing.JButton" name="btnThemDVT">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="99" green="ff" red="99" type="rgb"/>
@@ -1961,7 +2057,7 @@
                                 <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JButton" name="btnCapNhatNhomHang1">
+                            <Component class="javax.swing.JButton" name="btnCapNhatDVT">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="ff" red="ff" type="rgb"/>
@@ -1972,7 +2068,7 @@
                                 <Property name="text" type="java.lang.String" value="C&#x1ead;p nh&#x1ead;t"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JButton" name="btnMoiNhomHang1">
+                            <Component class="javax.swing.JButton" name="btnMoiDVT">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -1992,7 +2088,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="jTable1">
+                            <Component class="javax.swing.JTable" name="tblDVT">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="2" rowCount="4">
@@ -2052,8 +2148,8 @@
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jTextField4" max="32767" attributes="0"/>
-                                              <Component id="jSpinner1" max="32767" attributes="0"/>
+                                              <Component id="txtMaKhoiLuong" max="32767" attributes="0"/>
+                                              <Component id="txtGiaTri" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Component id="jPanel27" min="-2" max="-2" attributes="0"/>
@@ -2070,12 +2166,12 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtMaKhoiLuong" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtGiaTri" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jPanel27" min="-2" max="-2" attributes="0"/>
@@ -2111,7 +2207,7 @@
                             <Property name="text" type="java.lang.String" value="Gi&#xe1; tr&#x1ecb;:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField4">
+                        <Component class="javax.swing.JTextField" name="txtMaKhoiLuong">
                         </Component>
                         <Container class="javax.swing.JPanel" name="jPanel27">
                           <Properties>
@@ -2122,7 +2218,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JButton" name="btnThemNhomHang2">
+                            <Component class="javax.swing.JButton" name="btnThemKhoiLuong">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="99" green="ff" red="99" type="rgb"/>
@@ -2133,7 +2229,7 @@
                                 <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JButton" name="btnCapNhatNhomHang2">
+                            <Component class="javax.swing.JButton" name="btnCapNhatKhoiLuong">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="ff" red="ff" type="rgb"/>
@@ -2144,7 +2240,7 @@
                                 <Property name="text" type="java.lang.String" value="C&#x1ead;p nh&#x1ead;t"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JButton" name="btnMoiNhomHang2">
+                            <Component class="javax.swing.JButton" name="btnMoiKhoiLuong">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -2164,7 +2260,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="jTable2">
+                            <Component class="javax.swing.JTable" name="tblKhoiLuong">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="2" rowCount="4">
@@ -2194,7 +2290,7 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Component class="javax.swing.JSpinner" name="jSpinner1">
+                        <Component class="javax.swing.JSpinner" name="txtGiaTri">
                         </Component>
                       </SubComponents>
                     </Container>
@@ -2227,8 +2323,8 @@
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jTextField6" min="-2" pref="233" max="-2" attributes="0"/>
-                                              <Component id="jTextField5" min="-2" pref="233" max="-2" attributes="0"/>
+                                              <Component id="txtTenQG" min="-2" pref="233" max="-2" attributes="0"/>
+                                              <Component id="txtMaQG" min="-2" pref="233" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
                                       </Group>
@@ -2248,12 +2344,12 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtMaQG" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jTextField6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtTenQG" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="jPanel28" min="-2" max="-2" attributes="0"/>
@@ -2287,7 +2383,7 @@
                             <Property name="text" type="java.lang.String" value="T&#xea;n qu&#x1ed1;c gia:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField5">
+                        <Component class="javax.swing.JTextField" name="txtMaQG">
                         </Component>
                         <Container class="javax.swing.JPanel" name="jPanel28">
                           <Properties>
@@ -2298,7 +2394,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JButton" name="btnThemNhomHang3">
+                            <Component class="javax.swing.JButton" name="btnThemXuatXu">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="99" green="ff" red="99" type="rgb"/>
@@ -2309,7 +2405,7 @@
                                 <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JButton" name="btnCapNhatNhomHang3">
+                            <Component class="javax.swing.JButton" name="btnCapNhatXuatXu">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="ff" red="ff" type="rgb"/>
@@ -2320,7 +2416,7 @@
                                 <Property name="text" type="java.lang.String" value="C&#x1ead;p nh&#x1ead;t"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JButton" name="btnMoiNhomHang3">
+                            <Component class="javax.swing.JButton" name="btnMoiXuatXu">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -2340,7 +2436,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="jTable3">
+                            <Component class="javax.swing.JTable" name="tblXuatXu">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="2" rowCount="4">
@@ -2370,7 +2466,7 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Component class="javax.swing.JTextField" name="jTextField6">
+                        <Component class="javax.swing.JTextField" name="txtTenQG">
                         </Component>
                       </SubComponents>
                     </Container>
@@ -2402,8 +2498,8 @@
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jTextField8" alignment="0" min="-2" pref="233" max="-2" attributes="0"/>
-                                              <Component id="jTextField7" alignment="0" min="-2" pref="233" max="-2" attributes="0"/>
+                                              <Component id="txtTenAnhSP" alignment="0" min="-2" pref="233" max="-2" attributes="0"/>
+                                              <Component id="txtMaAnhSP" alignment="0" min="-2" pref="233" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Component id="jPanel29" pref="0" max="32767" attributes="0"/>
@@ -2422,16 +2518,16 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField7" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtMaAnhSP" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField8" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtTenAnhSP" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jPanel29" min="-2" pref="85" max="-2" attributes="0"/>
-                                  <EmptySpace pref="93" max="32767" attributes="0"/>
+                                  <EmptySpace pref="145" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -2466,7 +2562,7 @@
                             <Property name="text" type="java.lang.String" value="T&#xea;n &#x1ea3;nh s&#x1ea3;n ph&#x1ea9;m:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField7">
+                        <Component class="javax.swing.JTextField" name="txtMaAnhSP">
                         </Component>
                         <Container class="javax.swing.JPanel" name="jPanel29">
                           <Properties>
@@ -2477,7 +2573,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JButton" name="btnThemNhomHang4">
+                            <Component class="javax.swing.JButton" name="btnThemAnhSP">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="99" green="ff" red="99" type="rgb"/>
@@ -2488,7 +2584,7 @@
                                 <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JButton" name="btnCapNhatNhomHang4">
+                            <Component class="javax.swing.JButton" name="btnCapNhatAnhSP">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="ff" red="ff" type="rgb"/>
@@ -2499,7 +2595,7 @@
                                 <Property name="text" type="java.lang.String" value="C&#x1ead;p nh&#x1ead;t"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JButton" name="btnMoiNhomHang4">
+                            <Component class="javax.swing.JButton" name="btnMoiAnhSP">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -2544,7 +2640,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="jTable4">
+                            <Component class="javax.swing.JTable" name="tblAnhSP">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="2" rowCount="4">
@@ -2574,7 +2670,7 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Component class="javax.swing.JTextField" name="jTextField8">
+                        <Component class="javax.swing.JTextField" name="txtTenAnhSP">
                         </Component>
                         <Container class="javax.swing.JPanel" name="jPanel12">
                           <Properties>

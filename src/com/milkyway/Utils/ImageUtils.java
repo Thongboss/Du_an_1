@@ -13,6 +13,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 
 /**
  *
@@ -25,8 +27,8 @@ public class ImageUtils {
         return new ImageIcon(url).getImage();
     }
 
-    public static void save(File src) {
-        File dst = new File("img", src.getName());
+    public static void save(String folder, File src) {
+        File dst = new File("img/" + folder, src.getName());
         if (!dst.getParentFile().exists()) {
             dst.getParentFile().mkdirs();
         }
@@ -39,8 +41,20 @@ public class ImageUtils {
         }
     }
     
-    public static ImageIcon read(String fileName) {
-        File path = new File("img", fileName);
+    public static ImageIcon read(String folder, String fileName) {
+        File path = new File("img/" + folder, fileName);
         return new ImageIcon(path.getAbsolutePath());
+    }
+    
+    public static void insertHinhAnh(String folder, JLabel lbl) {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setMultiSelectionEnabled(false);
+        if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            ImageUtils.save(folder, file);
+            ImageIcon icon = ImageUtils.read(folder, file.getName());
+            lbl.setIcon(icon);
+            lbl.setToolTipText(file.getName());
+        }
     }
 }

@@ -66,4 +66,8 @@ public class ThuongHieu {
         this.Trangthai = Trangthai;
     }
 
+    @Override
+    public String toString() {
+        return TenTh;
+    }
 }

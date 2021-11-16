@@ -153,13 +153,18 @@ public class DangNhapJDialog extends javax.swing.JDialog {
 
         jLabel7.setText("Tài khoản:");
 
+        txtTaiKhoan.setText("dainnph13993");
+
         jLabel8.setText("Mật khẩu:");
+
+        txtMatKhau.setText("123");
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         btnDangNhap.setBackground(new java.awt.Color(102, 255, 102));
         btnDangNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Tick.png"))); // NOI18N
         btnDangNhap.setText("Đăng nhập");
+        btnDangNhap.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDangNhapActionPerformed(evt);
@@ -170,6 +175,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         btnHuyBo.setBackground(new java.awt.Color(255, 153, 153));
         btnHuyBo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Delete.png"))); // NOI18N
         btnHuyBo.setText("Hủy bỏ");
+        btnHuyBo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnHuyBo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHuyBoActionPerformed(evt);

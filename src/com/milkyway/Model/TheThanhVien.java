@@ -19,14 +19,13 @@ public class TheThanhVien {
     private boolean GioiTinh;
     private Date NgaySinh;
     private String SDT, CMND, Email, HinhAnh;
-    private int NguoiTao;
     private Date NgayTao, NgayHetHan;
-    private boolean TrangThai;
+    private String GhiChu;
 
     public TheThanhVien() {
     }
 
-    public TheThanhVien(int IDTheTV, String MaTheTV, String TenKH, boolean GioiTinh, Date NgaySinh, String SDT, String CMND, String Email, String HinhAnh, int NguoiTao, Date NgayTao, Date NgayHetHan, boolean TrangThai) {
+    public TheThanhVien(int IDTheTV, String MaTheTV, String TenKH, boolean GioiTinh, Date NgaySinh, String SDT, String CMND, String Email, String HinhAnh, Date NgayTao, Date NgayHetHan, String GhiChu) {
         this.IDTheTV = IDTheTV;
         this.MaTheTV = MaTheTV;
         this.TenKH = TenKH;
@@ -36,10 +35,9 @@ public class TheThanhVien {
         this.CMND = CMND;
         this.Email = Email;
         this.HinhAnh = HinhAnh;
-        this.NguoiTao = NguoiTao;
         this.NgayTao = NgayTao;
         this.NgayHetHan = NgayHetHan;
-        this.TrangThai = TrangThai;
+        this.GhiChu = GhiChu;
     }
 
     public int getIDTheTV() {
@@ -114,14 +112,6 @@ public class TheThanhVien {
         this.HinhAnh = HinhAnh;
     }
 
-    public int getNguoiTao() {
-        return NguoiTao;
-    }
-
-    public void setNguoiTao(int NguoiTao) {
-        this.NguoiTao = NguoiTao;
-    }
-
     public Date getNgayTao() {
         return NgayTao;
     }
@@ -138,12 +128,12 @@ public class TheThanhVien {
         this.NgayHetHan = NgayHetHan;
     }
 
-    public boolean isTrangThai() {
-        return TrangThai;
+    public String getGhiChu() {
+        return GhiChu;
     }
 
-    public void setTrangThai(boolean TrangThai) {
-        this.TrangThai = TrangThai;
+    public void setGhiChu(String GhiChu) {
+        this.GhiChu = GhiChu;
     }
 
 }

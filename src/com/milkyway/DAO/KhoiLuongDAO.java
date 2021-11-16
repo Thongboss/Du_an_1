@@ -6,6 +6,9 @@
 package com.milkyway.DAO;
 
 import com.milkyway.Model.KhoiLuong;
+import com.milkyway.Utils.JDBCHelper;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,34 +17,55 @@ import java.util.List;
  */
 public class KhoiLuongDAO extends MilkyWayDAO<KhoiLuong, String> {
 
+    final String INSERT_SQL = "INSERT INTO [dbo].[KhoiLuong]([MaKhoiLuong],[GiaTri]) VALUES(?,?)";
+    final String UPDATE_SQL = "UPDATE [dbo].[KhoiLuong] SET [GiaTri] = ? WHERE [MaKhoiLuong] = ?";
+    final String DELETE_SQL = "DELETE FROM [dbo].[KhoiLuong] WHERE [MaKhoiLuong] = ?";
+    final String SELECT_BY_ID_SQL = "SELECT * FROM [dbo].[KhoiLuong] WHERE [MaKhoiLuong] = ?";
+    final String SELECT_ALL_SQL = "SELECT * FROM [dbo].[KhoiLuong]";
+    
     @Override
     public void insert(KhoiLuong entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JDBCHelper.update(INSERT_SQL, entity.getMaKhoiLuong(), entity.getGiaTri());
     }
 
     @Override
     public void update(KhoiLuong entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JDBCHelper.update(UPDATE_SQL, entity.getGiaTri(), entity.getMaKhoiLuong());
     }
 
     @Override
     public void delete(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JDBCHelper.update(DELETE_SQL, id);
     }
 
     @Override
     public KhoiLuong selectById(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<KhoiLuong> lst = selectBySql(SELECT_BY_ID_SQL, id);
+        if (lst.isEmpty()) {
+            return null;
+        }
+        return lst.get(0);
     }
 
     @Override
     public List<KhoiLuong> selectAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return selectBySql(SELECT_ALL_SQL);
     }
 
     @Override
     protected List<KhoiLuong> selectBySql(String sql, Object... args) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<KhoiLuong> lst = new ArrayList<>();
+        try {
+            ResultSet rs = JDBCHelper.query(sql, args);
+            while (rs.next()) {                
+                KhoiLuong kl = new KhoiLuong(rs.getInt(1), rs.getString(2), rs.getInt(3));
+                lst.add(kl);
+            }
+            rs.getStatement().close();
+            return lst;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

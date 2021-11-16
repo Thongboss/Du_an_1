@@ -6,6 +6,9 @@
 package com.milkyway.DAO;
 
 import com.milkyway.Model.XuatXu;
+import com.milkyway.Utils.JDBCHelper;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,35 +16,56 @@ import java.util.List;
  * @author DaiAustinYersin
  */
 public class XuatXuDAO extends MilkyWayDAO<XuatXu, String> {
+    
+    final String INSERT_SQL = "INSERT INTO [dbo].[XuatXu]([MaQG],[TenQG]) VALUES(?,?)";
+    final String UPDATE_SQL = "UPDATE [dbo].[XuatXu] SET [TenQG] = ? WHERE [MaQG] = ?";
+    final String DELETE_SQL = "DELETE FROM [dbo].[XuatXu] WHERE [MaQG] = ?";
+    final String SELECT_BY_ID_SQL = "SELECT * FROM [dbo].[XuatXu] WHERE [MaQG] = ?";
+    final String SELECT_ALL_SQL = "SELECT * FROM [dbo].[XuatXu]";
 
     @Override
     public void insert(XuatXu entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JDBCHelper.update(INSERT_SQL, entity.getMaQG(), entity.getTenQG());
     }
 
     @Override
     public void update(XuatXu entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JDBCHelper.update(UPDATE_SQL, entity.getTenQG(), entity.getMaQG());
     }
 
     @Override
     public void delete(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JDBCHelper.update(DELETE_SQL, id);
     }
 
     @Override
     public XuatXu selectById(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<XuatXu> lst = selectBySql(SELECT_BY_ID_SQL, id);
+        if (lst.isEmpty()) {
+            return null;
+        }
+        return lst.get(0);
     }
 
     @Override
     public List<XuatXu> selectAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return selectBySql(SELECT_ALL_SQL);
     }
 
     @Override
     protected List<XuatXu> selectBySql(String sql, Object... args) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<XuatXu> lst = new ArrayList<>();
+        try {
+            ResultSet rs = JDBCHelper.query(sql, args);
+            while (rs.next()) {                
+                XuatXu kl = new XuatXu(rs.getInt(1), rs.getString(2), rs.getString(3));
+                lst.add(kl);
+            }
+            rs.getStatement().close();
+            return lst;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

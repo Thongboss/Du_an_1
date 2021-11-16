@@ -5,7 +5,20 @@
  */
 package com.milkyway.GUI;
 
+import com.milkyway.DAO.TheThanhVienDAO;
+import com.milkyway.Model.TheThanhVien;
+import com.milkyway.Utils.ImageUtils;
+import com.milkyway.Utils.MsgBox;
+import com.milkyway.Utils.Validator;
 import com.milkyway.Utils.WebcamUtils;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.Date;
+import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,8 +29,211 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
     /**
      * Creates new form NhanVienJPanel1
      */
+    TheThanhVienDAO dao = new TheThanhVienDAO();
+    int row = -1;
+    JFileChooser fileChooser = new JFileChooser();
+
     public TheThanhVienJPanel() {
         initComponents();
+        fillTable();
+    }
+
+    void insert() {
+        TheThanhVien tv = getForm();
+//        if (this.check() == true) {
+//            return;
+//
+//        }
+        try {
+            dao.insert(tv);
+            this.fillTable();
+            this.clearForm();
+            MsgBox.alert(this, "Thêm mới thành công!");
+
+        } catch (Exception e) {
+            MsgBox.alert(this, "Thêm mới thất bại!");
+            e.printStackTrace();
+        }
+
+    }
+
+    void clearForm() {
+        TheThanhVien tv = new TheThanhVien();
+        this.setForm(tv);
+        this.row = -1;
+        txtNgayTao.setDate(new Date());
+    }
+
+    TheThanhVien getForm() {
+        TheThanhVien tv = new TheThanhVien();
+        tv.setMaTheTV(txtMaTheTV.getText());
+        tv.setTenKH(txtHoTen.getText());
+        tv.setGioiTinh(rdoNu.isSelected());
+        tv.setNgaySinh(txtNgaySinh.getDate());
+        tv.setSDT(txtSDT.getText());
+        tv.setCMND(txtCMND.getText());
+        tv.setEmail(txtEmail.getText());
+        tv.setNgayTao(txtNgayTao.getDate());
+        tv.setNgayHetHan(txtNgayHetHan.getDate());
+        if (tv.getHinhAnh() != null) {
+            String anh = null;
+            ImageIcon icon = new ImageIcon(new ImageIcon(anh).getImage().getScaledInstance(lblAnh.getWidth(), lblAnh.getHeight(), Image.SCALE_DEFAULT));
+            lblAnh.setIcon(icon);
+        }
+
+        return tv;
+
+    }
+
+    void setForm(TheThanhVien tv) {
+        txtMaTheTV.setText(tv.getMaTheTV());
+        txtHoTen.setText(tv.getTenKH());
+        if (tv.isGioiTinh()) {
+            rdoNam.setSelected(true);
+        } else {
+            rdoNu.setSelected(true);
+
+        }
+        txtNgaySinh.setDate(tv.getNgaySinh());
+        txtSDT.setText(tv.getSDT());
+        txtCMND.setText(tv.getCMND());
+        txtEmail.setText(tv.getEmail());
+        txtNgayTao.setDate(tv.getNgayTao());
+        txtNgayHetHan.setDate(tv.getNgayHetHan());
+        lblAnh.setToolTipText(tv.getHinhAnh());
+        BufferedImage img = null;
+        if (tv.getHinhAnh() != null) {
+            String anh = null;
+            ImageIcon icon = new ImageIcon(new ImageIcon(anh).getImage().getScaledInstance(lblAnh.getWidth(), lblAnh.getHeight(), Image.SCALE_DEFAULT));
+            lblAnh.setIcon(icon);
+        }
+
+    }
+
+    void edit() {
+        String mattv = (String) tblTheThanhVien.getValueAt(this.row, 0);
+        TheThanhVien tv = dao.selectById(mattv);
+        this.setForm(tv);
+        this.row = -1;
+        this.updateStatus();
+    }
+
+    void update() {
+        TheThanhVien tv = new TheThanhVien();
+        try {
+            dao.update(tv);
+            this.fillTable();
+            MsgBox.alert(this, "Sửa thành công!");
+        } catch (Exception e) {
+            MsgBox.alert(this, "Sửa thất bại!");
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+    }
+
+//    boolean check() {
+//        
+//        
+//
+//    }
+    
+    void fillTable() {
+        DefaultTableModel model = (DefaultTableModel) tblTheThanhVien.getModel();
+        model.setRowCount(0);
+        try {
+            List<TheThanhVien> list = dao.selectAll();
+            for (TheThanhVien ttv : list) {
+                model.addRow(new Object[]{
+                    ttv.getMaTheTV(), ttv.getTenKH(), ttv.isGioiTinh() ? "Nam" : "Nữ", ttv.getNgaySinh(), ttv.getSDT(), ttv.getCMND(), ttv.getEmail(), ttv.getNgayTao(), ttv.getNgayHetHan()
+                });
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    void updateStatus() {
+        boolean edit = (this.row >= 0);
+        boolean first = (this.row == 0);
+        boolean last = (this.row == tblTheThanhVien.getRowCount() - 1);
+        btnThem.setEnabled(!edit);
+        btnMoi.setEnabled(!edit);
+        btnTimKiem.setEnabled(edit);
+        btnCapNhat.setEnabled(!edit);
+        btnChonAnh.setEnabled(!edit);
+        btnWebcam.setEnabled(!edit);
+
+    }
+
+    void chonAnh() {
+        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            ImageUtils.save("TheThanhVien", file);
+            ImageIcon icon = ImageUtils.read("TheThanhVien", file.getName());
+            lblAnh.setIcon(icon);
+            lblAnh.setToolTipText(file.getName());
+        }
+
+    }
+
+    private void setstatus(boolean insertable) {
+
+    }
+
+    void fillTabTheHetHan() {
+        DefaultTableModel model = (DefaultTableModel) tblTheThanhVien.getModel();
+        model.setRowCount(0);
+        try {
+            List<TheThanhVien> list = dao.selectAll();
+            for (TheThanhVien ttv : list) {
+                model.addRow(new Object[]{
+                    ttv.getMaTheTV(), ttv.getTenKH(), ttv.isGioiTinh() ? "Nam" : "Nữ", ttv.getNgaySinh(), ttv.getSDT(), ttv.getCMND(), ttv.getEmail(), ttv.getNgayTao(), ttv.getNgayHetHan()
+
+                });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    boolean check() {
+        StringBuilder sb = new StringBuilder();
+        Validator.isNull(txtMaTheTV, "không được để trống MaTheTV", sb);
+        Validator.isNull(txtHoTen, "không được để trống MaTheTV", sb);
+        Validator.isNull(txtSDT, "không được để trống MaTheTV ", sb);
+        Validator.isNull(txtMaTheTV, "không được để trống MaTheTV", sb);
+        Validator.isNull(txtMaTheTV, "không được để trống MaTheTV", sb);
+        Validator.isNull(txtCMND, "không được để trống MaTheTV", sb);
+        Validator.isNull(txtEmail, "không được để trống MaTheTV", sb);
+        Validator.checkEmail(txtEmail, sb);
+        Validator.checkNgaySinh(txtNgaySinh, sb);
+        Validator.checkNgayBatDau(txtNgaySinh, sb);
+
+        if (sb.length() > 0) {
+            MsgBox.alert(this, sb.toString());
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean checktrungmathetv() {
+        String mattv = txtMaTheTV.getText();
+        if (mattv == null) {
+            return true;
+        } else {
+            MsgBox.alert(this, "trùng mã nhân viên ");
+            return false;
+        }
+
+    }
+
+    public void ResizeImage(String imageName) {
+        ImageIcon icon = new ImageIcon("img" + imageName);
+
     }
 
     /**
@@ -148,21 +364,41 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         btnThem.setBackground(new java.awt.Color(153, 255, 153));
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Create.png"))); // NOI18N
         btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
         jPanel6.add(btnThem);
 
         btnCapNhat.setBackground(new java.awt.Color(255, 255, 102));
         btnCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Edit.png"))); // NOI18N
         btnCapNhat.setText("Cập nhật");
+        btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapNhatActionPerformed(evt);
+            }
+        });
         jPanel6.add(btnCapNhat);
 
         btnMoi.setBackground(new java.awt.Color(204, 204, 204));
         btnMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Document.png"))); // NOI18N
         btnMoi.setText("Mới");
+        btnMoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMoiActionPerformed(evt);
+            }
+        });
         jPanel6.add(btnMoi);
 
         btnUpdateStatus.setBackground(new java.awt.Color(153, 255, 255));
         btnUpdateStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Save.png"))); // NOI18N
         btnUpdateStatus.setText("Cập nhật trạng thái");
+        btnUpdateStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateStatusActionPerformed(evt);
+            }
+        });
         jPanel6.add(btnUpdateStatus);
 
         btnWebcam.setBackground(new java.awt.Color(255, 102, 255));
@@ -178,35 +414,38 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         btnChonAnh.setBackground(new java.awt.Color(153, 153, 255));
         btnChonAnh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Upload.png"))); // NOI18N
         btnChonAnh.setText("Chọn ảnh");
+        btnChonAnh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChonAnhActionPerformed(evt);
+            }
+        });
         jPanel6.add(btnChonAnh);
 
         tblTheThanhVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã thẻ", "Họ tên", "Giới tính", "Ngày sinh", "Số điện thoại", "CMND", "Email", "Ngày tạo", "Ngày hết hạn", "Trạng thái"
+                "Mã thẻ", "Họ tên", "Giới tính", "Ngày sinh", "Số điện thoại", "CMND", "Email", "Ngày tạo", "Ngày hết hạn"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
-            };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
         tblTheThanhVien.setRowHeight(25);
+        tblTheThanhVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTheThanhVienMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblTheThanhVien);
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -474,6 +713,48 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
     private void btnWebcamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWebcamActionPerformed
         WebcamUtils.chupAnh("TheThanhVien");
     }//GEN-LAST:event_btnWebcamActionPerformed
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        insert();
+        fillTable();
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
+        updateStatus();
+        fillTable();
+        fillTabTheHetHan();
+    }//GEN-LAST:event_btnCapNhatActionPerformed
+
+    private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
+        clearForm();
+        setstatus(true);
+    }//GEN-LAST:event_btnMoiActionPerformed
+
+    private void btnUpdateStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateStatusActionPerformed
+        try {
+            if (check()) {
+                update();
+                fillTable();
+                fillTabTheHetHan();
+            }
+
+        } catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_btnUpdateStatusActionPerformed
+
+    private void btnChonAnhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonAnhActionPerformed
+        chonAnh();
+    }//GEN-LAST:event_btnChonAnhActionPerformed
+
+    private void tblTheThanhVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTheThanhVienMouseClicked
+        try {
+            row = tblTheThanhVien.getSelectedRow();
+            edit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_tblTheThanhVienMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

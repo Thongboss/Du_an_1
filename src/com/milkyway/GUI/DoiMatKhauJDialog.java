@@ -90,7 +90,7 @@ public class DoiMatKhauJDialog extends java.awt.Dialog {
         txtNewPassCfm = new javax.swing.JPasswordField();
         jPanel6 = new javax.swing.JPanel();
         btnDangNhap = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
 
         setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -173,10 +173,15 @@ public class DoiMatKhauJDialog extends java.awt.Dialog {
         });
         jPanel6.add(btnDangNhap);
 
-        jButton6.setBackground(new java.awt.Color(255, 102, 102));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Delete.png"))); // NOI18N
-        jButton6.setText("Hủy bỏ");
-        jPanel6.add(jButton6);
+        btnCancel.setBackground(new java.awt.Color(255, 102, 102));
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Delete.png"))); // NOI18N
+        btnCancel.setText("Hủy bỏ");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnCancel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -261,6 +266,10 @@ public class DoiMatKhauJDialog extends java.awt.Dialog {
         DoiMK();   // TODO add your handling code here:
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -280,9 +289,9 @@ public class DoiMatKhauJDialog extends java.awt.Dialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancel;
     private javax.swing.JLabel btnClose;
     private javax.swing.JButton btnDangNhap;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

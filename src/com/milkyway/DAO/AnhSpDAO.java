@@ -6,6 +6,9 @@
 package com.milkyway.DAO;
 
 import com.milkyway.Model.AnhSP;
+import com.milkyway.Utils.JDBCHelper;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,34 +17,55 @@ import java.util.List;
  */
 public class AnhSpDAO extends MilkyWayDAO<AnhSP, String> {
 
+    final String INSERT_SQL = "INSERT INTO [dbo].[AnhSP]([MaAnhSP],[TenAnhSP])VALUES(?,?)";
+    final String UPDATE_SQL = "UPDATE [dbo].[AnhSP] SET [TenAnhSP] = ? WHERE [MaAnhSP] = ?";
+    final String DELETE_SQL = "DELETE FROM [dbo].[AnhSP] WHERE [MaAnhSP] = ?";
+    final String SELECT_BY_ID_SQL = "SELECT * FROM [dbo].[AnhSP] WHERE [MaAnhSP] = ?";
+    final String SELECT_ALL_SQL = "SELECT * FROM [dbo].[AnhSP]";
+
     @Override
     public void insert(AnhSP entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JDBCHelper.update(INSERT_SQL, entity.getMaAnhSP(), entity.getTenAnhSP());
     }
 
     @Override
     public void update(AnhSP entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JDBCHelper.update(UPDATE_SQL, entity.getTenAnhSP(), entity.getMaAnhSP());
     }
 
     @Override
     public void delete(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JDBCHelper.update(DELETE_SQL, id);
     }
 
     @Override
     public AnhSP selectById(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<AnhSP> lst = selectBySql(SELECT_BY_ID_SQL, id);
+        if (lst.isEmpty()) {
+            return null;
+        }
+        return lst.get(0);
     }
 
     @Override
     public List<AnhSP> selectAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return selectBySql(SELECT_ALL_SQL);
     }
 
     @Override
     protected List<AnhSP> selectBySql(String sql, Object... args) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            List<AnhSP> lst = new ArrayList<>();
+            ResultSet rs = JDBCHelper.query(sql, args);
+            while (rs.next()) {                
+                AnhSP entity = new AnhSP(rs.getInt(1), rs.getString(2), rs.getString(3));
+                lst.add(entity);
+            }
+            rs.getStatement().close();
+            return lst;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

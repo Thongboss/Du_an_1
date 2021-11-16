@@ -113,7 +113,11 @@ public class JdbcJDialog extends javax.swing.JDialog {
 
         jLabel7.setText("User:");
 
+        txtUser.setText("admin");
+
         jLabel8.setText("Password:");
+
+        txtPass.setText("123");
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 

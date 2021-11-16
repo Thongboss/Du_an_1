@@ -18,23 +18,24 @@ import java.util.List;
  */
 public class TheThanhVienDAO extends MilkyWayDAO<TheThanhVien, String> {
 
-    String insert_sql = (String) "insert into TheThanhVien(TenKH,GioiTinh,NgaySinh,SDT,CMND,Email,HinhAnh,NguoiTao,NgayTao,NgayHetHan,TrangThai)Values(?,?,?,?,?,?,?,?,?,?)";
-    String update_sql = (String) "UPDATE  TheThanhVien SET TenKH = ? ,SET GioiTinh = ?,SET NgaySinh = ?,SET SDT = ?,"
-            + " SET CMND = ?,SET Email = ?,SET HinhAnh = ?,SET NguoiTao =?, SET NgayTao = ? ,SET NgayHetHan=?, SET TrangThai = ? WHERE MaTheTV =?";
+    String insert_sql = "INSERT INTO [dbo].[TheThanhVien]([MaTheTV],[TenKH],[GioiTinh],[NgaySinh],[SDT],[CMND],[Email],[HinhAnh],[NgayTao],[NgayHetHan],[GhiChu])\n"
+            + "     VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+    String update_sql = "UPDATE  TheThanhVien SET TenKH = ? ,SET GioiTinh = ?,SET NgaySinh = ?,SET SDT = ?,"
+            + " SET CMND = ?,SET Email = ?,SET HinhAnh = ?,SET NguoiTao =?, SET NgayTao = ? ,SET NgayHetHan=?,SET GhiChu=?, SET TrangThai = ? WHERE MaTheTV =?";
     String delete_sql = "DELETE TheThanhVien where MaTheTV = ?";
     String select_all_sql = " select * from TheThanhVien";
-    String select_Byid_sql = " select * from TheThanhVien Where MaTheTV";
+    String select_Byid_sql = " select * from TheThanhVien Where MaTheTV = ?";
 
     @Override
     public void insert(TheThanhVien Entity) {
-        JDBCHelper.update(insert_sql, Entity.getTenKH(), Entity.isGioiTinh(), Entity.getNgaySinh(), Entity.getSDT(),
-                Entity.getCMND(), Entity.getEmail(), Entity.getHinhAnh(), Entity.getNguoiTao(), Entity.getNgayTao(), Entity.getNgayHetHan(), Entity.isTrangThai());
+        JDBCHelper.update(insert_sql, Entity.getMaTheTV(), Entity.getTenKH(), Entity.isGioiTinh(), Entity.getNgaySinh(), Entity.getSDT(),
+                Entity.getCMND(), Entity.getEmail(), Entity.getHinhAnh(), Entity.getNgayTao(), Entity.getNgayHetHan(), Entity.getGhiChu());
     }
 
     @Override
     public void update(TheThanhVien Entity) {
         JDBCHelper.update(insert_sql, Entity.getTenKH(), Entity.isGioiTinh(), Entity.getNgaySinh(), Entity.getSDT(), Entity.getCMND(), Entity.getEmail(),
-                Entity.getHinhAnh(), Entity.getNguoiTao(), Entity.getNgayTao(), Entity.getNgayHetHan(), Entity.isTrangThai(), Entity.getMaTheTV());
+                Entity.getHinhAnh(), Entity.getNgayTao(), Entity.getNgayHetHan(), Entity.getMaTheTV());
     }
 
     @Override
@@ -53,7 +54,7 @@ public class TheThanhVienDAO extends MilkyWayDAO<TheThanhVien, String> {
 
     @Override
     public List<TheThanhVien> selectAll() {
-        return this.selectBySql(insert_sql);
+        return this.selectBySql(select_all_sql);
     }
 
     @Override
@@ -66,7 +67,8 @@ public class TheThanhVienDAO extends MilkyWayDAO<TheThanhVien, String> {
             while (rs.next()) {
 
                 TheThanhVien Entity = new TheThanhVien();
-                Entity.setTenKH(rs.getString("MaTheTV"));
+                Entity.setIDTheTV(rs.getInt("IDTheTV"));
+                Entity.setMaTheTV(rs.getString("MaTheTV"));
                 Entity.setTenKH(rs.getString("TenKH"));
                 Entity.setGioiTinh(rs.getBoolean("GioiTinh"));
 
@@ -74,11 +76,11 @@ public class TheThanhVienDAO extends MilkyWayDAO<TheThanhVien, String> {
 
                 Entity.setSDT(rs.getString("SDT"));
                 Entity.setCMND(rs.getString("CMND"));
+                Entity.setEmail(rs.getString("Email"));
                 Entity.setHinhAnh("HinhAnh");
-                Entity.setNguoiTao(rs.getInt("NguoiTao"));
                 Entity.setNgayTao(rs.getDate("NgayTao"));
                 Entity.setNgayHetHan(rs.getDate("NgayHetHan"));
-                Entity.setTrangThai(rs.getBoolean("TrangThai"));
+                Entity.setGhiChu(rs.getString("GhiChu"));
                 list.add(Entity);
 
             }
@@ -88,7 +90,5 @@ public class TheThanhVienDAO extends MilkyWayDAO<TheThanhVien, String> {
             throw new RuntimeException(e);
         }
     }
-
-    
 
 }

@@ -14,16 +14,14 @@ public class DonViTinh {
     private int IDDonViTinh;
     private String MaDVT;
     private String TenDVT;
-    private String VietTat;
 
     public DonViTinh() {
     }
 
-    public DonViTinh(int IDDonViTinh, String MaDVT, String TenDVT, String VietTat) {
+    public DonViTinh(int IDDonViTinh, String MaDVT, String TenDVT) {
         this.IDDonViTinh = IDDonViTinh;
         this.MaDVT = MaDVT;
         this.TenDVT = TenDVT;
-        this.VietTat = VietTat;
     }
 
     public int getIDDonViTinh() {
@@ -48,14 +46,6 @@ public class DonViTinh {
 
     public void setTenDVT(String TenDVT) {
         this.TenDVT = TenDVT;
-    }
-
-    public String getVietTat() {
-        return VietTat;
-    }
-
-    public void setVietTat(String VietTat) {
-        this.VietTat = VietTat;
     }
 
 }

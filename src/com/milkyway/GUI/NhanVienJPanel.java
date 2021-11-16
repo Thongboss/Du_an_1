@@ -6,6 +6,17 @@
 package com.milkyway.GUI;
 
 import com.milkyway.Utils.WebcamUtils;
+import com.milkyway.DAO.NhanVienDAO;
+import com.milkyway.Model.NhanVien;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import com.milkyway.Utils.MsgBox;
+import com.milkyway.Utils.Validator;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import com.milkyway.Utils.ImageUtils;
 
 /**
  *
@@ -16,8 +27,15 @@ public class NhanVienJPanel extends javax.swing.JPanel {
     /**
      * Creates new form NhanVien
      */
+    NhanVienDAO nvdao = new NhanVienDAO();
+    int row = -1;
+    Boolean trangthai = true;
+    String imageName = "";
+
     public NhanVienJPanel() {
         initComponents();
+        fillToTable();
+        fillTableDaThoiViec();
     }
 
     /**
@@ -124,7 +142,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblAnh, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                .addComponent(lblAnh, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -163,27 +181,47 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         jPanel6.setBackground(new java.awt.Color(107, 185, 240));
 
         btnThem.setBackground(new java.awt.Color(153, 255, 153));
-        btnThem.setIcon(new javax.swing.ImageIcon("C:\\MilkyWay\\src\\com\\milkyway\\Icons\\Create.png")); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Create.png"))); // NOI18N
         btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
         jPanel6.add(btnThem);
 
         btnCapNhat.setBackground(new java.awt.Color(255, 255, 102));
-        btnCapNhat.setIcon(new javax.swing.ImageIcon("C:\\MilkyWay\\src\\com\\milkyway\\Icons\\Edit.png")); // NOI18N
+        btnCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Edit.png"))); // NOI18N
         btnCapNhat.setText("Cập nhật");
+        btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapNhatActionPerformed(evt);
+            }
+        });
         jPanel6.add(btnCapNhat);
 
         btnMoi.setBackground(new java.awt.Color(204, 204, 204));
-        btnMoi.setIcon(new javax.swing.ImageIcon("C:\\MilkyWay\\src\\com\\milkyway\\Icons\\Document.png")); // NOI18N
+        btnMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Document.png"))); // NOI18N
         btnMoi.setText("Mới");
+        btnMoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMoiActionPerformed(evt);
+            }
+        });
         jPanel6.add(btnMoi);
 
         btnUpdateStatus.setBackground(new java.awt.Color(153, 255, 255));
-        btnUpdateStatus.setIcon(new javax.swing.ImageIcon("C:\\MilkyWay\\src\\com\\milkyway\\Icons\\Save.png")); // NOI18N
+        btnUpdateStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Save.png"))); // NOI18N
         btnUpdateStatus.setText("Cập nhật trạng thái");
+        btnUpdateStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateStatusActionPerformed(evt);
+            }
+        });
         jPanel6.add(btnUpdateStatus);
 
         btnWebcam.setBackground(new java.awt.Color(255, 102, 255));
-        btnWebcam.setIcon(new javax.swing.ImageIcon("C:\\MilkyWay\\src\\com\\milkyway\\Icons\\Camera.png")); // NOI18N
+        btnWebcam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Camera.png"))); // NOI18N
         btnWebcam.setText("Chụp ảnh");
         btnWebcam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,6 +233,11 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         btnChonAnh.setBackground(new java.awt.Color(153, 153, 255));
         btnChonAnh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Upload.png"))); // NOI18N
         btnChonAnh.setText("Chọn ảnh");
+        btnChonAnh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChonAnhActionPerformed(evt);
+            }
+        });
         jPanel6.add(btnChonAnh);
 
         tblNhanVien.setModel(new javax.swing.table.DefaultTableModel(
@@ -224,6 +267,11 @@ public class NhanVienJPanel extends javax.swing.JPanel {
             }
         });
         tblNhanVien.setRowHeight(25);
+        tblNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblNhanVienMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblNhanVien);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -246,18 +294,19 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel9))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSDT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtHoTen, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                    .addComponent(rdoNam)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(rdoNu))
-                                .addComponent(txtPass, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtConfirmPass, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtMaNV, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtTaiKhoan, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtNgaySinh, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtSDT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                        .addComponent(rdoNam)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rdoNu))
+                                    .addComponent(txtPass, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtConfirmPass, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtMaNV, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtTaiKhoan, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNgaySinh, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)))
+                            .addComponent(txtHoTen))
                         .addGap(32, 32, 32)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel14)
@@ -276,7 +325,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(231, 231, 231))
+                        .addGap(195, 195, 195))
                     .addComponent(jScrollPane2))
                 .addContainerGap())
         );
@@ -375,6 +424,11 @@ public class NhanVienJPanel extends javax.swing.JPanel {
 
         btnUpdateStatus1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Save.png"))); // NOI18N
         btnUpdateStatus1.setText("Cập nhật trạng thái");
+        btnUpdateStatus1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateStatus1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -453,8 +507,321 @@ public class NhanVienJPanel extends javax.swing.JPanel {
 
     private void btnWebcamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWebcamActionPerformed
         WebcamUtils.chupAnh("NhanVien");
+
     }//GEN-LAST:event_btnWebcamActionPerformed
 
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+
+        try {
+
+            if (checkTrungMaNV() && validateForm() && checkTrungTaiKhoan()) {
+                insert();
+
+                fillToTable();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnChonAnhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonAnhActionPerformed
+        try {
+            JFileChooser file = new JFileChooser("img\\NhanVien\\");
+            int kq = file.showOpenDialog(file);
+            if (kq == JFileChooser.APPROVE_OPTION) {
+                imageName = file.getSelectedFile().getName();
+                ResizeImage(imageName);
+                lblAnh.setToolTipText(imageName);
+            } else {
+                JOptionPane.showMessageDialog(this, "Bạn chưa chọn ảnh...");
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, e.getMessage());
+        }
+    }//GEN-LAST:event_btnChonAnhActionPerformed
+
+    private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
+        try {
+            StringBuilder sb = new StringBuilder();
+            Validator.isNull(txtHoTen, "không được để trống họ tên", sb);
+            Validator.isNull(txtSDT, "không được để trống số điện thoại", sb);
+            Validator.isNull(txtCMND, "không được để trống CMND", sb);
+            Validator.isNull(txtEmail, "không được để trống Email", sb);
+            Validator.checkEmail(txtEmail, sb);
+            Validator.checkNgaySinh(txtNgaySinh, sb);
+
+            if (sb.length() > 0) {
+                MsgBox.alert(this, sb.toString());
+            } else {
+                update();
+                fillToTable();
+                fillTableDaThoiViec();
+            }
+
+        } catch (Exception e) {
+            MsgBox.alert(this, e.getMessage());
+        }
+    }//GEN-LAST:event_btnCapNhatActionPerformed
+
+    private void tblNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienMouseClicked
+
+        row = tblNhanVien.getSelectedRow();
+        this.showform();
+        setStatus(false);
+    }//GEN-LAST:event_tblNhanVienMouseClicked
+
+    private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
+        clear();
+        setStatus(true);
+    }//GEN-LAST:event_btnMoiActionPerformed
+
+    private void btnUpdateStatus1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateStatus1ActionPerformed
+        try {
+            for (int i = 0; i < tblNhanVienDaThoiViec.getRowCount(); i++) {
+                String manv = (String) tblNhanVienDaThoiViec.getValueAt(i, 0);
+                boolean trangthai = (boolean) tblNhanVienDaThoiViec.getValueAt(i, 9);
+                if (trangthai) {
+                    nvdao.updateNhanVienNghiViec(trangthai, manv);
+                }
+            }
+            fillTableDaThoiViec();
+            fillToTable();
+
+            MsgBox.alert(this, "Cập nhật trạng thái thành công");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnUpdateStatus1ActionPerformed
+
+    private void btnUpdateStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateStatusActionPerformed
+
+        for (int i = 0; i < tblNhanVien.getRowCount(); i++) {
+            String manv = (String) tblNhanVien.getValueAt(i, 0);
+            boolean trangthai = (boolean) tblNhanVien.getValueAt(i, 8);
+            nvdao.updateNhanVienNghiViec(trangthai, manv);
+        }
+        MsgBox.alert(this, "Cập nhật trạng thái thành công");
+        fillTableDaThoiViec();
+        fillToTable();
+    }//GEN-LAST:event_btnUpdateStatusActionPerformed
+
+    private NhanVien getForm() {
+        NhanVien nv = new NhanVien();
+        nv.setMaNV(txtMaNV.getText());
+        nv.setTaiKhoan(txtTaiKhoan.getText());
+        nv.setMatKhau(new String(txtPass.getPassword()).getBytes());
+        nv.setHoTen(txtHoTen.getText());
+        nv.setGioiTinh(rdoNam.isSelected());
+        nv.setNgaySinh(txtNgaySinh.getDate());
+        nv.setSDT(txtSDT.getText());
+        nv.setCMND(txtCMND.getText());
+        nv.setEmail(txtEmail.getText());
+        nv.setHinhAnh(lblAnh.getText());
+        nv.setVaiTro(ckbRole.isSelected());
+        nv.setGhiChu(txtNote.getText());
+        nv.setHinhAnh(lblAnh.getToolTipText());
+
+        return nv;
+
+    }
+
+    private void insert() {
+        try {
+            NhanVien nv = getForm();
+            nvdao.insert(nv);
+            MsgBox.alert(this, "thêm thành công nhân viên ");
+            fillToTable();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void fillToTable() {
+
+        DefaultTableModel model = (DefaultTableModel) tblNhanVien.getModel();
+        model.setRowCount(0);
+        try {
+
+            List<NhanVien> listnhanvien = nvdao.selectNhanVienDangHoatDong(trangthai);
+            for (NhanVien nv : listnhanvien) {
+                Object[] rowdata = new Object[]{
+                    nv.getMaNV(),
+                    nv.getHoTen(),
+                    nv.isGioiTinh() ? "Nam" : "Nữ",
+                    nv.getNgaySinh(),
+                    nv.getSDT(),
+                    nv.getCMND(),
+                    nv.getEmail(),
+                    nv.isVaiTro(),
+                    nv.isTrangThai()};
+
+                model.addRow(rowdata);
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void update() {
+
+        try {
+            NhanVien nv = getForm();
+            nvdao.update(nv);
+
+            MsgBox.alert(this, "Cập nhật thành công");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void showform() {
+        String MaNV = (String) tblNhanVien.getValueAt(row, 0);
+        NhanVien nv = nvdao.selectById(MaNV);
+        this.setForm(nv);
+
+    }
+
+    private void setForm(NhanVien nv) {
+        txtMaNV.setText(nv.getMaNV());
+        txtTaiKhoan.setText(nv.getTaiKhoan());
+        txtHoTen.setText(nv.getHoTen());
+        if (nv.isGioiTinh()) {
+            rdoNam.setSelected(true);
+        } else {
+            rdoNu.setSelected(true);
+        }
+        txtNgaySinh.setDate(nv.getNgaySinh());
+        txtSDT.setText(nv.getSDT());
+        txtCMND.setText(nv.getCMND());
+        txtEmail.setText(nv.getEmail());
+        if (nv.isVaiTro()) {
+            ckbRole.setSelected(true);
+        } else {
+            ckbRole.setSelected(false);
+        }
+        txtNote.setText(nv.getGhiChu());
+        if (nv.getHinhAnh() != null) {
+            lblAnh.setToolTipText(nv.getHinhAnh());
+            ImageIcon icon = ImageUtils.read("NhanVien", nv.getHinhAnh());
+            Image image = icon.getImage();
+            ImageIcon icon1 = new ImageIcon(image.getScaledInstance(lblAnh.getWidth(), lblAnh.getHeight(), image.SCALE_SMOOTH));
+            lblAnh.setIcon(icon1);
+        } else {
+            lblAnh.setIcon(null);
+        }
+
+    }
+
+    private boolean validateForm() {
+        StringBuilder sb = new StringBuilder();
+        Validator.isNull(txtMaNV, "không được để trống MaNV", sb);
+        Validator.isNull(txtHoTen, "không được để trống Họ Tên", sb);
+        Validator.isNull(txtTaiKhoan, "không được để trống tài khoản", sb);
+        Validator.isNull(txtPass, "không được để trống mật khẩu", sb);
+        Validator.isNull(txtConfirmPass, "không được để trống xác nhận mật khẩu", sb);
+        Validator.isNull(txtSDT, "không được để trống số điện thoại", sb);
+
+        Validator.isNull(txtCMND, "không được để trống CMND", sb);
+        Validator.isNull(txtEmail, "không được để trống Email", sb);
+        Validator.confirmPass(txtPass, txtConfirmPass, sb);
+        Validator.checkEmail(txtEmail, sb);
+        Validator.checkNgaySinh(txtNgaySinh, sb);
+
+        if (sb.length() > 0) {
+            MsgBox.alert(this, sb.toString());
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean checkTrungMaNV() {
+
+        String manv = txtMaNV.getText();
+
+        if (nvdao.selectById(manv) == null) {
+            return true;
+        } else {
+            MsgBox.alert(this, "Trùng mã nhân viên");
+            return false;
+        }
+    }
+
+    private boolean checkTrungTaiKhoan() {
+        String user = txtTaiKhoan.getText();
+
+        if (nvdao.selectByUser(user) == null) {
+            return true;
+        } else {
+            MsgBox.alert(this, "Trùng tài khoản");
+            return false;
+        }
+    }
+
+    private void fillTableDaThoiViec() {
+        DefaultTableModel model = (DefaultTableModel) tblNhanVienDaThoiViec.getModel();
+        model.setRowCount(0);
+        try {
+
+            List<NhanVien> listnhanvien = nvdao.selectNhanVienDangHoatDong(false);
+            for (NhanVien nv : listnhanvien) {
+                Object[] rowdata = new Object[]{
+                    nv.getMaNV(),
+                    nv.getTaiKhoan(),
+                    nv.getHoTen(),
+                    nv.isGioiTinh() ? "Nam" : "Nữ",
+                    nv.getNgaySinh(),
+                    nv.getSDT(),
+                    nv.getCMND(),
+                    nv.getEmail(),
+                    nv.isVaiTro(),
+                    nv.isTrangThai(),};
+
+                model.addRow(rowdata);
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void clear() {
+        txtMaNV.setText("");
+        txtHoTen.setText("");
+        txtPass.setText("");
+        txtConfirmPass.setText("");
+        txtEmail.setText("");
+        txtNgaySinh.setDate(null);
+        txtSDT.setText("");
+        txtNote.setText("");
+        txtTaiKhoan.setText("");
+        txtCMND.setText("");
+        ckbRole.setSelected(false);
+    }
+
+    private void setStatus(boolean insertable) {
+        txtPass.setEnabled(insertable);
+        txtConfirmPass.setEnabled(insertable);
+        btnThem.setEnabled(insertable);
+
+    }
+
+    public void ResizeImage(String imageName) {
+        ImageIcon icon = new ImageIcon("img\\NhanVien\\" + imageName);
+        Image image = icon.getImage();
+        ImageIcon icon1 = new ImageIcon(image.getScaledInstance(lblAnh.getWidth(), lblAnh.getHeight(), image.SCALE_SMOOTH));
+        lblAnh.setIcon(icon1);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;

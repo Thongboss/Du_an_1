@@ -5,6 +5,7 @@
  */
 package com.milkyway.GUI;
 
+import com.milkyway.Utils.Auth;
 import com.milkyway.Utils.ImageUtils;
 import com.milkyway.Utils.JThread;
 import com.milkyway.Utils.MsgBox;
@@ -25,7 +26,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private SanPhamJPanel spPanel;
     private TheThanhVienJPanel theTVPanel;
     private NhanVienJPanel nhanVienPanel;
-    private BanHang banHang;
+    private BanHangJPanel banHang;
+    private ThongKeJPanel thongKe;
 
     public MainJFrame() {
         initComponents();
@@ -40,6 +42,8 @@ public class MainJFrame extends javax.swing.JFrame {
         new DangNhapJDialog(this, true).setVisible(true);
         JThread.runDateTime(lblDateTime);
         JThread.runText(lblMain);
+        lblTenNV.setText(Auth.user.getHoTen());
+        lblRole.setText(Auth.user.isVaiTro() ? "Trưởng phòng" : "Nhân viên");
     }
 
     /**
@@ -621,7 +625,7 @@ public class MainJFrame extends javax.swing.JFrame {
             return;
         }
         if (banHang == null || tbpMainPortal.getComponentCount() == 0) {
-            banHang = new BanHang();
+            banHang = new BanHangJPanel();
             tbpMainPortal.addTab("Quản lý bán hàng", banHang);
             tbpMainPortal.setSelectedComponent(banHang);
         } else {
@@ -700,7 +704,17 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnKhachHangMouseExited
 
     private void btnThongKeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThongKeMouseClicked
-        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            tbpMainPortal.remove(thongKe);
+            return;
+        }
+        if (thongKe == null || tbpMainPortal.getComponentCount() == 0) {
+            thongKe = new ThongKeJPanel();
+            tbpMainPortal.addTab("Tổng hợp - thống kê", thongKe);
+            tbpMainPortal.setSelectedComponent(thongKe);
+        } else {
+            tbpMainPortal.setSelectedComponent(thongKe);
+        }
     }//GEN-LAST:event_btnThongKeMouseClicked
 
     private void btnThongKeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThongKeMouseEntered
@@ -734,7 +748,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNhanVienMouseExited
 
     private void tbarDoiMKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbarDoiMKActionPerformed
-new DoiMatKhauJDialog(this, true).setVisible(true);        // TODO add your handling code here:
+    new DoiMatKhauJDialog(this, true).setVisible(true);
     }//GEN-LAST:event_tbarDoiMKActionPerformed
 
     /**
