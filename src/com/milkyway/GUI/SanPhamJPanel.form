@@ -1814,58 +1814,52 @@
                                   <Component id="pnlTblSanPham" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="txtMaSP" linkSize="10" alignment="0" pref="262" max="32767" attributes="0"/>
-                                                  <Component id="txtTenSP" linkSize="10" alignment="0" pref="262" max="32767" attributes="0"/>
-                                                  <Component id="cbbLoaiSP" linkSize="10" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="cbbDongSP" linkSize="10" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="txtNgayXK" max="32767" attributes="0"/>
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <Component id="spnHanSD" min="-2" pref="213" max="-2" attributes="0"/>
-                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                      <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                          <Component id="txtMaSP" linkSize="10" alignment="0" pref="262" max="32767" attributes="0"/>
+                                                          <Component id="txtTenSP" linkSize="10" alignment="0" pref="262" max="32767" attributes="0"/>
+                                                          <Component id="cbbLoaiSP" linkSize="10" alignment="0" max="32767" attributes="0"/>
+                                                          <Component id="cbbDongSP" linkSize="10" alignment="0" max="32767" attributes="0"/>
+                                                          <Component id="txtNgayXK" max="32767" attributes="0"/>
+                                                          <Component id="txtHanSD" alignment="0" max="32767" attributes="0"/>
+                                                      </Group>
                                                   </Group>
+                                                  <Component id="jPanel15" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                          </Group>
-                                          <Component id="jPanel15" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jPanel14" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel39" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel21" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="cbbKhoiLuong" min="-2" pref="222" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="lblDVT" min="-2" pref="35" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="-2" pref="193" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel39" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel21" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="cbbDonViTinh" max="32767" attributes="0"/>
                                                   <Component id="txtBarcode" max="32767" attributes="0"/>
-                                                  <Component id="cbbXuatXu" pref="262" max="32767" attributes="0"/>
+                                                  <Component id="cbbXuatXu" pref="350" max="32767" attributes="0"/>
                                                   <Component id="txtDonGia" max="32767" attributes="0"/>
                                                   <Component id="spnSoLuong" max="32767" attributes="0"/>
+                                                  <Component id="cbbKhoiLuong" max="32767" attributes="0"/>
                                               </Group>
                                               <EmptySpace min="259" pref="259" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="jPanel14" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
@@ -1902,12 +1896,14 @@
                                           <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="cbbDongSP" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                               <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="cbbDonViTinh" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cbbDongSP" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -1916,17 +1912,17 @@
                                           <Component id="txtNgayXK" min="-2" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblDVT" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="cbbKhoiLuong" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="spnHanSD" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel39" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtBarcode" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel39" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtBarcode" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="txtHanSD" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                                       <Component id="jPanel14" min="-2" max="-2" attributes="0"/>
@@ -2149,18 +2145,6 @@
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="lblDVT">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Tahoma" size="15" style="0"/>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                        </Property>
-                        <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="ml"/>
-                      </Properties>
-                    </Component>
                     <Container class="javax.swing.JPanel" name="pnlTblSanPham">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -2186,7 +2170,7 @@
                               <Properties>
                                 <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                  <Table columnCount="14" rowCount="4">
+                                  <Table columnCount="15" rowCount="4">
                                     <Column editable="false" title="M&#xe3; s&#x1ea3;n ph&#x1ea9;m" type="java.lang.Object"/>
                                     <Column editable="false" title="T&#xea;n s&#x1ea3;n ph&#x1ea9;m" type="java.lang.Object"/>
                                     <Column editable="false" title="Lo&#x1ea1;i h&#xe0;ng" type="java.lang.Object"/>
@@ -2206,10 +2190,16 @@
                                       <Data value="null"/>
                                       <Data value="null"/>
                                     </Column>
+                                    <Column editable="false" title="&#x1ea2;nh" type="java.lang.Object"/>
                                   </Table>
                                 </Property>
                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                   <TableColumnModel selectionModel="0">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
                                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                                       <Title/>
                                       <Editor/>
@@ -2310,21 +2300,63 @@
                           <SubComponents>
                             <Component class="javax.swing.JTable" name="tblSanPhamNgungKD">
                               <Properties>
+                                <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                  <Table columnCount="9" rowCount="4">
+                                  <Table columnCount="15" rowCount="4">
                                     <Column editable="false" title="M&#xe3; s&#x1ea3;n ph&#x1ea9;m" type="java.lang.Object"/>
                                     <Column editable="false" title="T&#xea;n s&#x1ea3;n ph&#x1ea9;m" type="java.lang.Object"/>
+                                    <Column editable="false" title="Lo&#x1ea1;i h&#xe0;ng" type="java.lang.Object"/>
+                                    <Column editable="false" title="D&#xf2;ng s&#x1ea3;n ph&#x1ea9;m" type="java.lang.Object"/>
+                                    <Column editable="false" title="Ng&#xe0;y xu&#x1ea5;t kho" type="java.lang.Object"/>
+                                    <Column editable="false" title="H&#x1ea1;n s&#x1eed; d&#x1ee5;ng" type="java.lang.Object"/>
+                                    <Column editable="false" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng t&#x1ed3;n" type="java.lang.Object"/>
                                     <Column editable="false" title="&#x110;&#x1a1;n gi&#xe1;" type="java.lang.Object"/>
                                     <Column editable="false" title="Xu&#x1ea5;t x&#x1ee9;" type="java.lang.Object"/>
                                     <Column editable="false" title="Kh&#x1ed1;i l&#x1b0;&#x1ee3;ng" type="java.lang.Object"/>
                                     <Column editable="false" title="&#x110;&#x1a1;n v&#x1ecb; t&#xed;nh" type="java.lang.Object"/>
                                     <Column editable="false" title="Barcode" type="java.lang.Object"/>
                                     <Column editable="false" title="Ghi ch&#xfa;" type="java.lang.Object"/>
-                                    <Column editable="false" title="&#x110;ang kinh doanh" type="java.lang.Boolean"/>
+                                    <Column editable="true" title="&#x110;ang kinh doanh" type="java.lang.Boolean">
+                                      <Data value="false"/>
+                                      <Data value="null"/>
+                                      <Data value="null"/>
+                                      <Data value="null"/>
+                                    </Column>
+                                    <Column editable="false" title="&#x1ea2;nh" type="java.lang.Object"/>
                                   </Table>
                                 </Property>
                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                   <TableColumnModel selectionModel="0">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
                                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                                       <Title/>
                                       <Editor/>
@@ -2380,6 +2412,9 @@
                                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblSanPhamNgungKDMouseClicked"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>
@@ -2459,20 +2494,6 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JSpinner" name="spnHanSD">
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel24">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Tahoma" size="15" style="0"/>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                        </Property>
-                        <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="th&#xe1;ng"/>
-                      </Properties>
-                    </Component>
                     <Component class="javax.swing.JLabel" name="jLabel39">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -2529,21 +2550,32 @@
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCapNhatSPActionPerformed"/>
                           </Events>
                         </Component>
-                        <Component class="javax.swing.JButton" name="btnXoaSP">
+                        <Component class="javax.swing.JButton" name="btnUpdateStatusSP">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="99" green="99" red="ff" type="rgb"/>
+                              <Color blue="ff" green="ff" red="99" type="rgb"/>
                             </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/com/milkyway/Icons/Delete.png"/>
+                              <Image iconType="3" name="/com/milkyway/Icons/Save.png"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Xo&#xe1;"/>
+                            <Property name="text" type="java.lang.String" value="C&#x1ead;p nh&#x1ead;t tr&#x1ea1;ng th&#xe1;i"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="btnWebcamSP">
+                          <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="66" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                              <Image iconType="3" name="/com/milkyway/Icons/Camera.png"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Ch&#x1ee5;p &#x1ea3;nh"/>
                             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                               <Color id="Hand Cursor"/>
                             </Property>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaSPActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnWebcamSPActionPerformed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="btnChonAnhSP">
@@ -2561,23 +2593,6 @@
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChonAnhSPActionPerformed"/>
-                          </Events>
-                        </Component>
-                        <Component class="javax.swing.JButton" name="btnWebcamSP">
-                          <Properties>
-                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="ff" green="66" red="ff" type="rgb"/>
-                            </Property>
-                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/com/milkyway/Icons/Camera.png"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Ch&#x1ee5;p &#x1ea3;nh"/>
-                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Hand Cursor"/>
-                            </Property>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnWebcamSPActionPerformed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="btnMoiSP">
@@ -2605,9 +2620,6 @@
                           <StringArray count="0"/>
                         </Property>
                       </Properties>
-                      <Events>
-                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbbDonViTinhItemStateChanged"/>
-                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
@@ -2621,6 +2633,8 @@
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
+                    </Component>
+                    <Component class="com.toedter.calendar.JDateChooser" name="txtHanSD">
                     </Component>
                   </SubComponents>
                 </Container>
@@ -2928,14 +2942,14 @@
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="txtMaKhoiLuong" max="32767" attributes="0"/>
-                                              <Component id="txtGiaTri" pref="143" max="32767" attributes="0"/>
+                                              <Component id="txtMaKhoiLuong" pref="143" max="32767" attributes="0"/>
+                                              <Component id="txtGiaTri" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Component id="jPanel27" pref="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane2" pref="0" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane2" pref="402" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -3114,7 +3128,7 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Component class="javax.swing.JSpinner" name="txtGiaTri">
+                        <Component class="javax.swing.JTextField" name="txtGiaTri">
                         </Component>
                       </SubComponents>
                     </Container>

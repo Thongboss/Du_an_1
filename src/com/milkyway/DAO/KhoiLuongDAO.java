@@ -58,7 +58,7 @@ public class KhoiLuongDAO extends MilkyWayDAO<KhoiLuong, String> {
         try {
             ResultSet rs = JDBCHelper.query(sql, args);
             while (rs.next()) {                
-                KhoiLuong kl = new KhoiLuong(rs.getInt(1), rs.getString(2), rs.getInt(3));
+                KhoiLuong kl = new KhoiLuong(rs.getInt(1), rs.getString(2), rs.getString(3));
                 lst.add(kl);
             }
             rs.getStatement().close();

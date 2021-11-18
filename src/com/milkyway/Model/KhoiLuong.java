@@ -13,12 +13,12 @@ public class KhoiLuong {
 
     private int IDKhoiLuong;
     private String MaKhoiLuong;
-    private int GiaTri;
+    private String GiaTri;
 
     public KhoiLuong() {
     }
 
-    public KhoiLuong(int IDKhoiLuong, String MaKhoiLuong, int GiaTri) {
+    public KhoiLuong(int IDKhoiLuong, String MaKhoiLuong, String GiaTri) {
         this.IDKhoiLuong = IDKhoiLuong;
         this.MaKhoiLuong = MaKhoiLuong;
         this.GiaTri = GiaTri;
@@ -40,17 +40,17 @@ public class KhoiLuong {
         this.MaKhoiLuong = MaKhoiLuong;
     }
 
-    public int getGiaTri() {
+    public String getGiaTri() {
         return GiaTri;
     }
 
-    public void setGiaTri(int GiaTri) {
+    public void setGiaTri(String GiaTri) {
         this.GiaTri = GiaTri;
     }
 
     @Override
     public String toString() {
-        return GiaTri + "";
+        return GiaTri;
     }
 
 }

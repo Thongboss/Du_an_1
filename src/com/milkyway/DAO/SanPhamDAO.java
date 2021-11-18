@@ -23,8 +23,17 @@ public class SanPhamDAO extends MilkyWayDAO<SanPham, String> {
             + "SET [IDLoaiSP] = ?,[IDDongSP] = ?,[TenSP] = ?,[GhiChu] = ?,[TrangThai] = ?\n"
             + " WHERE [MaSP] = ?";
     final String Delete_SQL = "DELETE FROM SanPham where MaSP = ?";
-    final String SelectAll_SQL = "select * from SanPham a join ChiTietSanPham b on a.IDSanPham = b.IDSanPham";
+    final String SelectAll_SQL = "select * from SanPham MaSP";
     final String SelectByID_SQL = "select * from SanPham MaSP = ?";
+    final String select_All_About_SanPham = "	select MaSP, TenSP, TenLoai, TenDongSP, NgayXK, HanSD, SoLuongTon, DonGia, TenQG, GiaTri, TenDVT, BarCode, a.GhiChu, a.TrangThai, TenAnhSP\n"
+            + "	from SanPham a join ChiTietSanPham b on a.IDSanPham = b.IDSanPham\n"
+            + "	join LoaiHang c on c.IDLoaiHang = a.IDLoaiSP\n"
+            + "	join DongSP d on d.IDDongSP = a.IDDongSP\n"
+            + "	join XuatXu e on e.IDXuatXu = b.IDXuatXu\n"
+            + "	join DonViTinh f on f.IDDonViTinh = b.IDDonViTinh\n"
+            + "	join AnhSP g on g.IDAnhSP = b.IDAnhSP\n"
+            + "	join KhoiLuong h on h.IDKhoiLuong = b.IDKhoiLuong\n"
+            + "	where a.TrangThai = ?";
 
     @Override
     public void insert(SanPham entity) {
@@ -60,7 +69,7 @@ public class SanPhamDAO extends MilkyWayDAO<SanPham, String> {
         try {
             List<SanPham> lst = new ArrayList<>();
             ResultSet rs = JDBCHelper.query(sql, args);
-            while (rs.next()) {                
+            while (rs.next()) {
                 SanPham sp = new SanPham();
                 sp.setIDSanPham(rs.getInt(1));
                 sp.setMaSP(rs.getString(2));
@@ -80,4 +89,31 @@ public class SanPhamDAO extends MilkyWayDAO<SanPham, String> {
         }
     }
 
+    private List<Object[]> getListOfArray(String sql, String[] cols, Object... args) {
+        try {
+            List<Object[]> list = new ArrayList<>();
+            ResultSet rs = JDBCHelper.query(sql, args);
+            while (rs.next()) {
+                Object[] vals = new Object[cols.length];
+                for (int i = 0; i < cols.length; i++) {
+                    vals[i] = rs.getObject(cols[i]);
+                }
+                list.add(vals);
+            }
+            rs.getStatement().getConnection().close();
+            return list;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Object[]> getAllAboutSanPhamDangKD() {
+        String[] cols = {"MaSP", "TenSP", "TenLoai", "TenDongSP", "NgayXK", "HanSD", "SoLuongTon", "DonGia", "TenQG", "GiaTri", "TenDVT", "BarCode", "GhiChu", "TrangThai", "TenAnhSP"};
+        return this.getListOfArray(select_All_About_SanPham, cols, true);
+    }
+
+    public List<Object[]> getAllAboutSanPhamNgungKD() {
+        String[] cols = {"MaSP", "TenSP", "DonGia", "TenQG", "GiaTri", "TenDVT", "TenAnhSP", "BarCode"};
+        return this.getListOfArray(select_All_About_SanPham, cols, false);
+    }
 }
