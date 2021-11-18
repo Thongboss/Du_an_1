@@ -20,7 +20,7 @@ import javax.swing.JTextField;
  * @author DaiAustinYersin
  */
 public class Validator {
-    
+
     public static boolean isNull(JTextField txt, String mes, StringBuilder sb) {
         if (txt.getText().isEmpty()) {
             sb.append(mes).append("\n");
@@ -200,6 +200,20 @@ public class Validator {
             txt.setBackground(Color.white);
         }
 
+        return ok;
+    }
+
+    public static boolean checkSoNguyenDuong(Object obj, StringBuilder sb) {
+        boolean ok = true;
+        try {
+            if (Integer.parseInt(obj.toString()) < 0) {
+                sb.append("Giá trị phải là số nguyên dương").append("\n");
+                ok = false;
+            }
+        } catch (Exception e) {
+            sb.append("Giá trị phải là số nguyên dương").append("\n");
+            ok = false;
+        }
         return ok;
     }
 }

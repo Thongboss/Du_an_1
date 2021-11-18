@@ -48,4 +48,9 @@ public class XuatXu {
         this.TenQG = TenQG;
     }
 
+    @Override
+    public String toString() {
+        return TenQG;
+    }
+
 }

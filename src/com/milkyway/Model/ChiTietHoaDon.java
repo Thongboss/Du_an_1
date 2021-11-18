@@ -12,15 +12,17 @@ package com.milkyway.Model;
 public class ChiTietHoaDon {
 
     private int IDChiTietHD, IDHoaDon;
+    private int IDChiTietSP;
     private int SoLuong;
     private double DonGia;
 
     public ChiTietHoaDon() {
     }
 
-    public ChiTietHoaDon(int IDChiTietHD, int IDHoaDon, int SoLuong, double DonGia) {
+    public ChiTietHoaDon(int IDChiTietHD, int IDHoaDon, int IDChiTietSP, int SoLuong, double DonGia) {
         this.IDChiTietHD = IDChiTietHD;
         this.IDHoaDon = IDHoaDon;
+        this.IDChiTietSP = IDChiTietSP;
         this.SoLuong = SoLuong;
         this.DonGia = DonGia;
     }
@@ -39,6 +41,14 @@ public class ChiTietHoaDon {
 
     public void setIDHoaDon(int IDHoaDon) {
         this.IDHoaDon = IDHoaDon;
+    }
+
+    public int getIDChiTietSP() {
+        return IDChiTietSP;
+    }
+
+    public void setIDChiTietSP(int IDChiTietSP) {
+        this.IDChiTietSP = IDChiTietSP;
     }
 
     public int getSoLuong() {

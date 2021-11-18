@@ -30,6 +30,7 @@ public class DoiMatKhauJDialog extends java.awt.Dialog {
         super(parent, modal);
         setLocationRelativeTo(null);
         initComponents();
+        txtTaiKhoan.setText(Auth.user.getTaiKhoan());
     }
 
     private void DoiMK() {
@@ -133,7 +134,7 @@ public class DoiMatKhauJDialog extends java.awt.Dialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnClose)
@@ -155,17 +156,19 @@ public class DoiMatKhauJDialog extends java.awt.Dialog {
 
         jLabel13.setText("Tài khoản:");
 
+        txtTaiKhoan.setEditable(false);
+
         jLabel14.setText("Mật khẩu cũ:");
 
         jLabel15.setText("Mật khẩu mới:");
 
-        jLabel16.setText("Mật khẩu mới:");
+        jLabel16.setText("Xác nhận mật khẩu mới:");
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
         btnDangNhap.setBackground(new java.awt.Color(102, 255, 102));
         btnDangNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Tick.png"))); // NOI18N
-        btnDangNhap.setText("Đăng nhập");
+        btnDangNhap.setText("Xác nhận");
         btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDangNhapActionPerformed(evt);

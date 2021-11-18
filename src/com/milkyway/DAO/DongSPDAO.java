@@ -26,7 +26,7 @@ public class DongSPDAO extends MilkyWayDAO<DongSP, String> {
 
     @Override
     public void insert(DongSP entity) {
-        JDBCHelper.update(INSERT_SQL, entity.getIDDongSP(), entity.getMaDongSP(), entity.getTenDongSP(), entity.getGhiChu());
+        JDBCHelper.update(INSERT_SQL, entity.getMaDongSP(), entity.getIDThuongHieu(), entity.getTenDongSP(), entity.getGhiChu());
     }
 
     @Override
@@ -50,6 +50,10 @@ public class DongSPDAO extends MilkyWayDAO<DongSP, String> {
 
     public List<DongSP> selectByThuongHieuAndStatus(String id, boolean status) {
         return this.selectBySql("select * from DongSP where IDThuongHieu = ? and TrangThai = ?", id, status);
+    }
+    
+    public List<DongSP> selectByStatus(boolean status) {
+        return this.selectBySql("select * from DongSP where TrangThai = ?", status);
     }
 
     @Override

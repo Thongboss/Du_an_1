@@ -48,4 +48,9 @@ public class KhoiLuong {
         this.GiaTri = GiaTri;
     }
 
+    @Override
+    public String toString() {
+        return GiaTri + "";
+    }
+
 }

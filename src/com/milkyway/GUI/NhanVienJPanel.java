@@ -131,6 +131,10 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Số điện thoại:");
 
+        txtConfirmPass.setName("Xác nhận mật khẩu"); // NOI18N
+
+        txtPass.setName("Mật khẩu"); // NOI18N
+
         jPanel5.setBackground(new java.awt.Color(107, 185, 240));
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
 
@@ -240,6 +244,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         });
         jPanel6.add(btnChonAnh);
 
+        tblNhanVien.setAutoCreateRowSorter(true);
         tblNhanVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},

@@ -13,17 +13,18 @@ import java.util.Date;
  */
 public class ChiTietSanPham {
 
-    private int IDChiTietHD, IDSanPham;
+    private int IDChiTietSP, IDSanPham;
     private Date HanSD;
     private int SoLuongTon;
     private double DonGia;
-    private int IDXuatXu, IDKhoiLuong, IDDonViTinh, IDAnhSP, BarCode;
+    private int IDXuatXu, IDKhoiLuong, IDDonViTinh, IDAnhSP;
+    private String BarCode;
 
     public ChiTietSanPham() {
     }
 
-    public ChiTietSanPham(int IDChiTietHD, int IDSanPham, Date HanSD, int SoLuongTon, double DonGia, int IDXuatXu, int IDKhoiLuong, int IDDonViTinh, int IDAnhSP, int BarCode) {
-        this.IDChiTietHD = IDChiTietHD;
+    public ChiTietSanPham(int IDChiTietHD, int IDSanPham, Date HanSD, int SoLuongTon, double DonGia, int IDXuatXu, int IDKhoiLuong, int IDDonViTinh, int IDAnhSP, String BarCode) {
+        this.IDChiTietSP = IDChiTietHD;
         this.IDSanPham = IDSanPham;
         this.HanSD = HanSD;
         this.SoLuongTon = SoLuongTon;
@@ -35,12 +36,12 @@ public class ChiTietSanPham {
         this.BarCode = BarCode;
     }
 
-    public int getIDChiTietHD() {
-        return IDChiTietHD;
+    public int getIDChiTietSP() {
+        return IDChiTietSP;
     }
 
-    public void setIDChiTietHD(int IDChiTietHD) {
-        this.IDChiTietHD = IDChiTietHD;
+    public void setIDChiTietSP(int IDChiTietSP) {
+        this.IDChiTietSP = IDChiTietSP;
     }
 
     public int getIDSanPham() {
@@ -91,11 +92,11 @@ public class ChiTietSanPham {
         this.IDAnhSP = IDAnhSP;
     }
 
-    public int getBarCode() {
+    public String getBarCode() {
         return BarCode;
     }
 
-    public void setBarCode(int BarCode) {
+    public void setBarCode(String BarCode) {
         this.BarCode = BarCode;
     }
 

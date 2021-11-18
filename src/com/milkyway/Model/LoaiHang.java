@@ -67,4 +67,9 @@ public class LoaiHang {
         this.GhiChu = GhiChu;
     }
 
+    @Override
+    public String toString() {
+        return TenLoai;
+    }
+
 }

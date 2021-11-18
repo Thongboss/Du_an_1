@@ -76,4 +76,9 @@ public class DongSP {
         this.TrangThai = TrangThai;
     }
 
+    @Override
+    public String toString() {
+        return TenDongSP;
+    }
+
 }

@@ -48,4 +48,9 @@ public class DonViTinh {
         this.TenDVT = TenDVT;
     }
 
+    @Override
+    public String toString() {
+        return TenDVT;
+    }
+
 }

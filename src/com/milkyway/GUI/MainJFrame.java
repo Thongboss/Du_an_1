@@ -38,7 +38,7 @@ public class MainJFrame extends javax.swing.JFrame {
         setIconImage(ImageUtils.getAppIcon());
         setExtendedState(getExtendedState() | Frame.MAXIMIZED_BOTH);
         new WelcomeJDialog(this, true).setVisible(true);
-        new JdbcJDialog(this, true).setVisible(true);
+//        new JdbcJDialog(this, true).setVisible(true);
         new DangNhapJDialog(this, true).setVisible(true);
         JThread.runDateTime(lblDateTime);
         JThread.runText(lblMain);
@@ -476,7 +476,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(pnlThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pnlNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
