@@ -46,6 +46,14 @@ public class KhoiLuongDAO extends MilkyWayDAO<KhoiLuong, String> {
         }
         return lst.get(0);
     }
+    
+    public KhoiLuong selectByGiaTri(String val) {
+        List<KhoiLuong> list = selectBySql("select * from KhoiLuong where GiaTri = ?", val);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
 
     @Override
     public List<KhoiLuong> selectAll() {

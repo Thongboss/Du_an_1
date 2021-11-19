@@ -54,6 +54,14 @@ public class LoaiHangDAO extends MilkyWayDAO<LoaiHang, String> {
     public List<LoaiHang> selectByNhomHang(String id) {
         return selectBySql("select * from LoaiHang where IDNhomHang = ?", id);
     }
+    
+    public LoaiHang selectByTenLoai(String name) {
+        List<LoaiHang> list = selectBySql("select * from LoaiHang where TenLoai = ?", name);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
 
     @Override
     public List<LoaiHang> selectAll() {

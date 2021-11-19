@@ -46,6 +46,14 @@ public class DonViTinhDAO extends MilkyWayDAO<DonViTinh, String> {
         }
         return lst.get(0);
     }
+    
+    public DonViTinh selectByTenDVT(String name) {
+        List<DonViTinh> list = selectBySql("select * from DonViTinh where TenDVT = ?", name);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
 
     @Override
     public List<DonViTinh> selectAll() {

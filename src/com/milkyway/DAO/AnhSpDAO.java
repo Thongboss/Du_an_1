@@ -46,6 +46,14 @@ public class AnhSpDAO extends MilkyWayDAO<AnhSP, String> {
         }
         return lst.get(0);
     }
+    
+    public AnhSP selectByTenAnh(String name) {
+        List<AnhSP> list = selectBySql("select * from AnhSP where TenAnhSP = ?", name);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
 
     @Override
     public List<AnhSP> selectAll() {

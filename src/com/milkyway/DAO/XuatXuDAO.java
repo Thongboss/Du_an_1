@@ -46,6 +46,14 @@ public class XuatXuDAO extends MilkyWayDAO<XuatXu, String> {
         }
         return lst.get(0);
     }
+    
+    public XuatXu selectByTenQG(String name) {
+        List<XuatXu> list = selectBySql("select * from XuatXu where TenQG = ?", name);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
 
     @Override
     public List<XuatXu> selectAll() {

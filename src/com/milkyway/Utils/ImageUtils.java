@@ -46,15 +46,24 @@ public class ImageUtils {
         return new ImageIcon(path.getAbsolutePath());
     }
     
-    public static void insertHinhAnh(String folder, JLabel lbl) {
-        JFileChooser fileChooser = new JFileChooser();
+    public static void openAndInsertHinhAnh(String folder, JLabel lbl) {
+        JFileChooser fileChooser = new JFileChooser("img/" + folder);
         fileChooser.setMultiSelectionEnabled(false);
         if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
             ImageUtils.save(folder, file);
             ImageIcon icon = ImageUtils.read(folder, file.getName());
-            lbl.setIcon(icon);
+            lbl.setIcon(resizeImg(icon, lbl));
             lbl.setToolTipText(file.getName());
+        } else {
+            MsgBox.alert(null, "Bạn chưa chọn ảnh");
         }
+    }
+    
+    public static ImageIcon resizeImg(ImageIcon icon, JLabel lbl) {
+//        ImageIcon icon = new ImageIcon("img/" + folder + "/" + imgName);
+        Image image = icon.getImage();
+        ImageIcon resizedImg = new ImageIcon(image.getScaledInstance(lbl.getWidth(), lbl.getHeight(), Image.SCALE_SMOOTH));
+        return resizedImg;
     }
 }

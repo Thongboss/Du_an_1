@@ -53,6 +53,17 @@ public class Validator {
             return false;
         }
     }
+    
+    public static boolean isNull(JDateChooser date, String mes, StringBuilder sb) {
+        if (date.getDate() == null) {
+            sb.append(mes).append("\n");
+            date.setBackground(Color.YELLOW);
+            return true;
+        } else {
+            date.setBackground(Color.WHITE);
+            return false;
+        }
+    }
 
     public static boolean checkNgayBatDau(JDateChooser date, StringBuilder sb) {
         try {
