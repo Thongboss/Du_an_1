@@ -748,7 +748,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNhanVienMouseExited
 
     private void tbarDoiMKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbarDoiMKActionPerformed
-    new DoiMatKhauJDialog(this, true).setVisible(true);
+        new DoiMatKhauJDialog(this, true).setVisible(true);
     }//GEN-LAST:event_tbarDoiMKActionPerformed
 
     /**
