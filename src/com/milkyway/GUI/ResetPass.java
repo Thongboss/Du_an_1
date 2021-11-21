@@ -19,14 +19,14 @@ import javax.swing.ImageIcon;
  *
  * @author DaiAustinYersin
  */
-public class DoiMatKhauJDialog extends java.awt.Dialog {
+public class ResetPass extends java.awt.Dialog {
 
     NhanVienDAO dao = new NhanVienDAO();
 
     /**
      * Creates new form DoiMatKhauJDialog
      */
-    public DoiMatKhauJDialog(java.awt.Frame parent, boolean modal) {
+    public ResetPass(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setLocationRelativeTo(null);
         initComponents();
@@ -37,7 +37,7 @@ public class DoiMatKhauJDialog extends java.awt.Dialog {
     private void DoiMK() {
         StringBuilder sb = new StringBuilder();
         Validator.isNull(txtTaiKhoan, "Chưa nhập tên đăng nhập", sb);
-        Validator.isNull(txtOldPass, "Chưa nhập mật khẩu cũ", sb);
+ 
         Validator.isNull(txtNewPass, "Chưa nhập mật khẩu mới", sb);
         Validator.isNull(txtNewPassCfm, "Chưa xác nhận mật khẩu mới", sb);
         if (sb.length() > 0) {
@@ -48,19 +48,19 @@ public class DoiMatKhauJDialog extends java.awt.Dialog {
         nv = dao.selectById(txtTaiKhoan.getText());
         try {
              
-            CallableStatement cs = (CallableStatement) JDBCHelper.getStmt("{call SP_DoiMatKhau(?,?,?,?,?,?,?)}");
-            cs.setString(1, Auth.user.getMaNV());
-            cs.setString(2, txtTaiKhoan.getText());
-            cs.setString(3, new String(txtOldPass.getPassword()));
-            cs.setString(4, new String(txtNewPass.getPassword()));
-            cs.setString(5, new String(txtNewPassCfm.getPassword()));
-            cs.registerOutParameter(6, Types.BIT);
-            cs.registerOutParameter(7, Types.NVARCHAR); 
+            CallableStatement cs = (CallableStatement) JDBCHelper.getStmt("{call SP_ResetPass(?,?,?,?,?)}");
+            
+            cs.setString(1, txtTaiKhoan.getText());
+            
+            cs.setString(2, new String(txtNewPass.getPassword()));
+            cs.setString(3, new String(txtNewPassCfm.getPassword()));
+            cs.registerOutParameter(4, Types.BIT);
+            cs.registerOutParameter(5, Types.NVARCHAR); 
             cs.execute();
-            if (!cs.getBoolean(6)) {
-                MsgBox.alert(this, cs.getNString(7));
+            if (!cs.getBoolean(4)) {
+                MsgBox.alert(this, cs.getNString(5));
             } else{
-                MsgBox.alert(this, cs.getNString(7));
+                MsgBox.alert(this, cs.getNString(5));
                 this.dispose();
             } 
 
@@ -83,8 +83,6 @@ public class DoiMatKhauJDialog extends java.awt.Dialog {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         txtTaiKhoan = new javax.swing.JTextField();
-        txtOldPass = new javax.swing.JPasswordField();
-        jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         txtNewPass = new javax.swing.JPasswordField();
         jLabel16 = new javax.swing.JLabel();
@@ -156,8 +154,6 @@ public class DoiMatKhauJDialog extends java.awt.Dialog {
 
         jLabel13.setText("Tài khoản:");
 
-        jLabel14.setText("Mật khẩu cũ:");
-
         jLabel15.setText("Mật khẩu mới:");
 
         jLabel16.setText("Mật khẩu mới:");
@@ -166,7 +162,7 @@ public class DoiMatKhauJDialog extends java.awt.Dialog {
 
         btnDangNhap.setBackground(new java.awt.Color(102, 255, 102));
         btnDangNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Tick.png"))); // NOI18N
-        btnDangNhap.setText("Đăng nhập");
+        btnDangNhap.setText("Hoàn tất");
         btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDangNhapActionPerformed(evt);
@@ -192,14 +188,11 @@ public class DoiMatKhauJDialog extends java.awt.Dialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
-                            .addComponent(jLabel14)
                             .addComponent(jLabel15)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jLabel16))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtTaiKhoan)
-                                .addComponent(txtOldPass, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtTaiKhoan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNewPass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNewPassCfm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())
@@ -220,13 +213,9 @@ public class DoiMatKhauJDialog extends java.awt.Dialog {
                             .addComponent(txtTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14)
-                            .addComponent(txtOldPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
                             .addComponent(txtNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
                             .addComponent(txtNewPassCfm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -268,7 +257,7 @@ public class DoiMatKhauJDialog extends java.awt.Dialog {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DoiMatKhauJDialog dialog = new DoiMatKhauJDialog(new java.awt.Frame(), true);
+                ResetPass dialog = new ResetPass(new java.awt.Frame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
@@ -286,7 +275,6 @@ public class DoiMatKhauJDialog extends java.awt.Dialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
@@ -295,7 +283,6 @@ public class DoiMatKhauJDialog extends java.awt.Dialog {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPasswordField txtNewPass;
     private javax.swing.JPasswordField txtNewPassCfm;
-    private javax.swing.JPasswordField txtOldPass;
     private javax.swing.JTextField txtTaiKhoan;
     // End of variables declaration//GEN-END:variables
 }

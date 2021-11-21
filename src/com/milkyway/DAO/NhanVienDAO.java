@@ -24,6 +24,7 @@ public class NhanVienDAO extends MilkyWayDao<NhanVien, String> {
     String Select_By_id = "Select *from NhanVien Where MaNV=?";
     String Select_By_user = "Select *from NhanVien Where TaiKhoan=?";
     String Select_By_UserName = "Select *from NhanVien Where TaiKhoan=?";
+    String Update_Reset_pass = "UPDATE NhanVien SET MatKhau=? WHERE TaiKhoan=? and Email=?";
 
     
 
@@ -35,6 +36,9 @@ public class NhanVienDAO extends MilkyWayDao<NhanVien, String> {
     @Override
     public void update(NhanVien entity) {
         JDBCHelper.update(Update_SQL, entity.getHoTen(), entity.isGioiTinh(), entity.getNgaySinh(), entity.getSDT(), entity.getCMND(), entity.getEmail(), entity.getHinhAnh(), entity.isVaiTro(), entity.getGhiChu(), entity.isTrangThai(), entity.getSalt());
+    }
+    public void UpdatePass(NhanVien entity){
+        JDBCHelper.update(Update_Reset_pass, entity.getMatKhau());
     }
 
     @Override
@@ -103,4 +107,6 @@ public class NhanVienDAO extends MilkyWayDao<NhanVien, String> {
         }
         return list.get(0);
     }
+
+    
 }
