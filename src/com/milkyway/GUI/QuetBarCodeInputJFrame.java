@@ -221,6 +221,7 @@ public class QuetBarCodeInputJFrame extends javax.swing.JFrame implements Runnab
 
     private void btnXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacNhanActionPerformed
         SanPhamJPanel.barcode = txtKetQua.getText();
+        SanPhamJPanel.getBarCode = true;
         this.dispose();
     }//GEN-LAST:event_btnXacNhanActionPerformed
 

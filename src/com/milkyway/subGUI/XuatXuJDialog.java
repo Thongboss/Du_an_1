@@ -5,6 +5,14 @@
  */
 package com.milkyway.subGUI;
 
+import com.milkyway.DAO.XuatXuDAO;
+import com.milkyway.Model.XuatXu;
+import com.milkyway.Utils.MsgBox;
+import com.milkyway.Utils.Validator;
+import java.awt.Color;
+import java.util.List;
+import javax.swing.JTextField;
+
 /**
  *
  * @author DaiAustinYersin
@@ -14,10 +22,33 @@ public class XuatXuJDialog extends javax.swing.JDialog {
     /**
      * Creates new form NewJDialog
      */
+    
+    XuatXuDAO xuatXuDAO = new XuatXuDAO();
+    List<XuatXu> lst = xuatXuDAO.selectAll();
+    
     public XuatXuJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+    }
+    
+    private boolean checkNull(JTextField... txt) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < txt.length; i++) {
+            Validator.isNull(txt[i], txt[i].getName() + " chưa nhập", sb);
+        }
+        if (sb.length() > 0) {
+            MsgBox.alert(this, sb.toString());
+            return true;
+        }
+        return false;
+    }
+    
+    private XuatXu getFormXuatXu() {
+        XuatXu xx = new XuatXu();
+        xx.setMaQG(txtMaQG.getText().toUpperCase());
+        xx.setTenQG(txtTenQG.getText());
+        return xx;
     }
 
     /**
@@ -34,8 +65,12 @@ public class XuatXuJDialog extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        btnDangNhap = new javax.swing.JButton();
+        btnThem = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtMaQG = new javax.swing.JTextField();
+        txtTenQG = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Phầm mềm quản lý đại lý sữa Milky Way");
@@ -54,25 +89,39 @@ public class XuatXuJDialog extends javax.swing.JDialog {
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnDangNhap.setBackground(new java.awt.Color(102, 255, 102));
-        btnDangNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Create.png"))); // NOI18N
-        btnDangNhap.setText("Thêm");
-        btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
+        btnThem.setBackground(new java.awt.Color(102, 255, 102));
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Create.png"))); // NOI18N
+        btnThem.setText("Thêm");
+        btnThem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDangNhapActionPerformed(evt);
+                btnThemActionPerformed(evt);
             }
         });
-        jPanel6.add(btnDangNhap);
+        jPanel6.add(btnThem);
 
         btnCancel.setBackground(new java.awt.Color(255, 102, 102));
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Delete.png"))); // NOI18N
         btnCancel.setText("Hủy bỏ");
+        btnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelActionPerformed(evt);
             }
         });
         jPanel6.add(btnCancel);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(107, 185, 240));
+        jLabel6.setText("Mã quốc gia:");
+
+        txtMaQG.setName("Mã quốc gia"); // NOI18N
+
+        txtTenQG.setName("Tên quốc gia"); // NOI18N
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(107, 185, 240));
+        jLabel7.setText("Tên quốc gia:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -81,18 +130,40 @@ public class XuatXuJDialog extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTenQG, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMaQG, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtMaQG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(txtTenQG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))
                     .addComponent(jLabel12))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -101,7 +172,7 @@ public class XuatXuJDialog extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -128,9 +199,27 @@ public class XuatXuJDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-
-    }//GEN-LAST:event_btnDangNhapActionPerformed
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        try {
+            if (checkNull(txtMaQG, txtTenQG)) {
+                return;
+            }
+            for (XuatXu xx : lst) {
+                if (txtMaQG.getText().equalsIgnoreCase(xx.getMaQG())) {
+                    txtMaQG.setBackground(Color.red);
+                    MsgBox.alert(this, "Trùng mã khối lượng");
+                    return;
+                }
+            }
+            txtMaQG.setBackground(Color.white);
+            xuatXuDAO.insert(getFormXuatXu());
+            MsgBox.alert(this, "Thêm thành công");
+            this.dispose();
+        } catch (Exception e) {
+            e.printStackTrace();
+            MsgBox.alert(this, "Thêm thất bại");
+        }
+    }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         this.dispose();
@@ -182,11 +271,15 @@ public class XuatXuJDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
-    private javax.swing.JButton btnDangNhap;
+    private javax.swing.JButton btnThem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JTextField txtMaQG;
+    private javax.swing.JTextField txtTenQG;
     // End of variables declaration//GEN-END:variables
 }

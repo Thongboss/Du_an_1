@@ -18,7 +18,7 @@ public class XFormater {
 
     public static String toCurrency(double currencyAmount) {
         // Create a new Locale
-        Locale usa = new Locale("en", "US");
+        Locale usa = new Locale("vn", "VN");
         // Create a Currency instance for the Locale
         Currency dollars = Currency.getInstance(usa);
         // Create a formatter given the Locale

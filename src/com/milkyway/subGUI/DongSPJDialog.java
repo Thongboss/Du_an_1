@@ -5,6 +5,17 @@
  */
 package com.milkyway.subGUI;
 
+import com.milkyway.DAO.DongSPDAO;
+import com.milkyway.DAO.ThuongHieuDAO;
+import com.milkyway.Model.DongSP;
+import com.milkyway.Model.ThuongHieu;
+import com.milkyway.Utils.MsgBox;
+import com.milkyway.Utils.Validator;
+import java.awt.Color;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTextField;
+
 /**
  *
  * @author DaiAustinYersin
@@ -14,10 +25,51 @@ public class DongSPJDialog extends javax.swing.JDialog {
     /**
      * Creates new form NewJDialog
      */
+    
+    DongSPDAO dongSPDAO = new DongSPDAO();
+    List<DongSP> listDSP = dongSPDAO.selectAll();
+    ThuongHieuDAO thuongHieuDAO = new ThuongHieuDAO();
+    
     public DongSPJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        loadComboBoxThuongHieu();
+    }
+    
+    private void loadComboBoxThuongHieu() {
+        DefaultComboBoxModel comboBoxModel = (DefaultComboBoxModel) cbbThuongHieu.getModel();
+        comboBoxModel.removeAllElements();
+        try {
+            List<ThuongHieu> lst = thuongHieuDAO.selectAll();
+            for (ThuongHieu th : lst) {
+                comboBoxModel.addElement(th);
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, e.getMessage());
+        }
+    }
+    
+    private boolean checkNull(JTextField... txt) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < txt.length; i++) {
+            Validator.isNull(txt[i], txt[i].getName() + " chưa nhập", sb);
+        }
+        if (sb.length() > 0) {
+            MsgBox.alert(this, sb.toString());
+            return true;
+        }
+        return false;
+    }
+    
+    private DongSP getFormDongSP() {
+        ThuongHieu th = (ThuongHieu) cbbThuongHieu.getSelectedItem();
+        DongSP dsp = new DongSP();
+        dsp.setMaDongSP(txtMaDongSP.getText().toUpperCase());
+        dsp.setTenDongSP(txtTenDongSP.getText());
+        dsp.setIDThuongHieu(th.getIDThuongHieu());
+        dsp.setGhiChu(txtGhiChuDongSP.getText());
+        return dsp;
     }
 
     /**
@@ -34,8 +86,17 @@ public class DongSPJDialog extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        btnDangNhap = new javax.swing.JButton();
+        btnThem = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+        jLabel38 = new javax.swing.JLabel();
+        txtMaDongSP = new javax.swing.JTextField();
+        txtTenDongSP = new javax.swing.JTextField();
+        cbbThuongHieu = new javax.swing.JComboBox<>();
+        jScrollPane18 = new javax.swing.JScrollPane();
+        txtGhiChuDongSP = new javax.swing.JTextArea();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Phầm mềm quản lý đại lý sữa Milky Way");
@@ -54,25 +115,56 @@ public class DongSPJDialog extends javax.swing.JDialog {
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnDangNhap.setBackground(new java.awt.Color(102, 255, 102));
-        btnDangNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Create.png"))); // NOI18N
-        btnDangNhap.setText("Thêm");
-        btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
+        btnThem.setBackground(new java.awt.Color(102, 255, 102));
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Create.png"))); // NOI18N
+        btnThem.setText("Thêm");
+        btnThem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDangNhapActionPerformed(evt);
+                btnThemActionPerformed(evt);
             }
         });
-        jPanel6.add(btnDangNhap);
+        jPanel6.add(btnThem);
 
         btnCancel.setBackground(new java.awt.Color(255, 102, 102));
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Delete.png"))); // NOI18N
         btnCancel.setText("Hủy bỏ");
+        btnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelActionPerformed(evt);
             }
         });
         jPanel6.add(btnCancel);
+
+        jLabel38.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel38.setForeground(new java.awt.Color(107, 185, 240));
+        jLabel38.setText("Mã dòng sản phẩm:");
+
+        txtMaDongSP.setName("Mã dòng sản phẩm"); // NOI18N
+        txtMaDongSP.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtMaDongSPFocusLost(evt);
+            }
+        });
+
+        txtTenDongSP.setName("Tên dòng sản phẩm"); // NOI18N
+
+        txtGhiChuDongSP.setColumns(20);
+        txtGhiChuDongSP.setRows(5);
+        jScrollPane18.setViewportView(txtGhiChuDongSP);
+
+        jLabel35.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel35.setForeground(new java.awt.Color(107, 185, 240));
+        jLabel35.setText("Ghi chú:");
+
+        jLabel36.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel36.setForeground(new java.awt.Color(107, 185, 240));
+        jLabel36.setText("Thương hiệu:");
+
+        jLabel37.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel37.setForeground(new java.awt.Color(107, 185, 240));
+        jLabel37.setText("Tên dòng sản phẩm:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -81,18 +173,53 @@ public class DongSPJDialog extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel38)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtMaDongSP, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel37)
+                            .addComponent(jLabel36)
+                            .addComponent(jLabel35))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtTenDongSP)
+                            .addComponent(cbbThuongHieu, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
+                .addGap(57, 57, 57))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtMaDongSP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel38))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel37)
+                            .addComponent(txtTenDongSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(17, 17, 17)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel36)
+                            .addComponent(cbbThuongHieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel35)
+                            .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -101,7 +228,7 @@ public class DongSPJDialog extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -128,13 +255,36 @@ public class DongSPJDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-
-    }//GEN-LAST:event_btnDangNhapActionPerformed
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        try {
+            if (checkNull(txtMaDongSP, txtTenDongSP)) {
+                return;
+            }
+            for (DongSP dsp : listDSP) {
+                if (txtMaDongSP.getText().equalsIgnoreCase(dsp.getMaDongSP())) {
+                    txtMaDongSP.setBackground(Color.red);
+                    MsgBox.alert(this, "Trùng mã dòng sản phẩm");
+                    return;
+                }
+            }
+            txtMaDongSP.setBackground(Color.white);
+            DongSP dsp = getFormDongSP();
+            dongSPDAO.insert(dsp);
+            MsgBox.alert(this, "Thêm thành công");
+            this.dispose();
+        } catch (Exception e) {
+            MsgBox.alert(this, "Thêm thất bại");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void txtMaDongSPFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMaDongSPFocusLost
+        txtTenDongSP.setText(txtMaDongSP.getText().toLowerCase());
+    }//GEN-LAST:event_txtMaDongSPFocusLost
 
     /**
      * @param args the command line arguments
@@ -182,11 +332,20 @@ public class DongSPJDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
-    private javax.swing.JButton btnDangNhap;
+    private javax.swing.JButton btnThem;
+    private javax.swing.JComboBox<String> cbbThuongHieu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane18;
+    private javax.swing.JTextArea txtGhiChuDongSP;
+    private javax.swing.JTextField txtMaDongSP;
+    private javax.swing.JTextField txtTenDongSP;
     // End of variables declaration//GEN-END:variables
 }
