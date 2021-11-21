@@ -32,6 +32,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
+                  <Component id="jPanel12" max="32767" attributes="0"/>
+                  <Component id="jPanel1" max="32767" attributes="0"/>
+                  <Component id="jPanel2" max="32767" attributes="0"/>
+=======
                   <Component id="jPanel1" max="32767" attributes="0"/>
                   <Component id="jPanel2" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
@@ -39,6 +44,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="pnlWebcam" max="32767" attributes="0"/>
                   </Group>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
@@ -48,6 +54,20 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+<<<<<<< HEAD
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel13" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="jPanel12" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                  </Group>
+=======
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -62,6 +82,7 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jPanel13" max="32767" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -69,16 +90,125 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
+<<<<<<< HEAD
+    <Container class="javax.swing.JPanel" name="jPanel12">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Danh s&#xe1;ch h&#xf3;a &#x111;&#x1a1;n">
+              <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
+            </TitledBorder>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="jButton13" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="174" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jButton13" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTable" name="jTable1">
+              <Properties>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="5" rowCount="0">
+                    <Column editable="false" title="M&#xe3; H&#xf3;a &#x111;&#x1a1;n" type="java.lang.Object"/>
+                    <Column editable="false" title="M&#xe3; nh&#xe2;n vi&#xea;n" type="java.lang.Object"/>
+                    <Column editable="false" title="Ng&#xe0;y t&#x1ea1;o" type="java.lang.Object"/>
+                    <Column editable="false" title="M&#xe3; kh&#xe1;ch h&#xe0;ng" type="java.lang.Object"/>
+                    <Column editable="false" title="Tr&#x1ea1;ng th&#xe1;i" type="java.lang.Object"/>
+                  </Table>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                  </TableColumnModel>
+                </Property>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JButton" name="jButton13">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="chuy&#x1ec3;n"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="jPanel13">
+      <Properties>
+=======
     <Container class="javax.swing.JPanel" name="jPanel13">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="f0" green="b9" red="6b" type="rgb"/>
         </Property>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="T&#x1ea1;o h&#xf3;a &#x111;&#x1a1;n">
               <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
+<<<<<<< HEAD
+=======
               <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
             </TitledBorder>
           </Border>
         </Property>
@@ -92,26 +222,36 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
+              <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
+=======
               <Component id="jTabbedPane1" alignment="0" pref="0" max="32767" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
         <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+<<<<<<< HEAD
+=======
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="b9" red="6b" type="rgb"/>
             </Property>
           </Properties>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
           <SubComponents>
             <Container class="javax.swing.JPanel" name="jPanel3">
+<<<<<<< HEAD
+=======
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="f0" green="b9" red="6b" type="rgb"/>
                 </Property>
               </Properties>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="H&#xf3;a &#x111;&#x1a1;n">
@@ -128,6 +268,20 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jPanel5" max="32767" attributes="0"/>
                               <Component id="jPanel6" max="32767" attributes="0"/>
+<<<<<<< HEAD
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jButton10" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="86" max="32767" attributes="0"/>
+                                  <Component id="jButton9" min="-2" pref="149" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jButton8" min="-2" pref="180" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
+=======
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -137,6 +291,7 @@
                           <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                           <Component id="btnTaoHD" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -147,12 +302,23 @@
                           <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jButton8" min="-2" pref="72" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jButton9" pref="62" max="32767" attributes="0"/>
+                              <Component id="jButton10" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="24" max="32767" attributes="0"/>
+=======
                           <EmptySpace pref="45" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="btnXuatHD" pref="40" max="32767" attributes="0"/>
                               <Component id="btnTaoHD" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -160,14 +326,20 @@
               <SubComponents>
                 <Container class="javax.swing.JPanel" name="jPanel5">
                   <Properties>
+<<<<<<< HEAD
+=======
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="f0" green="b9" red="6b" type="rgb"/>
                     </Property>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder title="Th&#xf4;ng tin chung">
                           <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
+<<<<<<< HEAD
+=======
                           <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                         </TitledBorder>
                       </Border>
                     </Property>
@@ -178,11 +350,19 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
+<<<<<<< HEAD
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                      <Component id="jLabel4" min="-2" pref="164" max="-2" attributes="0"/>
+=======
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblDiachi" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="270" max="32767" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -191,6 +371,16 @@
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
+                                          <Component id="jTextField2" max="32767" attributes="0"/>
+                                          <Component id="jLabel7" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel9" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+=======
                                           <Component id="lblNgaytao" max="32767" attributes="0"/>
                                           <Component id="txtTheTV" max="32767" attributes="0"/>
                                       </Group>
@@ -202,6 +392,7 @@
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -211,25 +402,41 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel3" pref="22" max="32767" attributes="0"/>
+<<<<<<< HEAD
+                                  <Component id="jLabel4" max="32767" attributes="0"/>
+=======
                                   <Component id="lblMaNV" max="32767" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel5" min="-2" pref="25" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
+<<<<<<< HEAD
+                                      <Component id="jTextField2" max="32767" attributes="0"/>
+=======
                                       <Component id="txtTheTV" max="32767" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                                   </Group>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel6" pref="24" max="32767" attributes="0"/>
+<<<<<<< HEAD
+                                  <Component id="jLabel7" max="32767" attributes="0"/>
+=======
                                   <Component id="lblNgaytao" max="32767" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel8" min="-2" pref="22" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
+<<<<<<< HEAD
+                              <Component id="jLabel9" pref="35" max="32767" attributes="0"/>
+=======
                               <Component id="lblDiachi" pref="35" max="32767" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -241,7 +448,11 @@
                         <Property name="text" type="java.lang.String" value="M&#xe3; Nh&#xe2;n vi&#xea;n"/>
                       </Properties>
                     </Component>
+<<<<<<< HEAD
+                    <Component class="javax.swing.JLabel" name="jLabel4">
+=======
                     <Component class="javax.swing.JLabel" name="lblMaNV">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -257,14 +468,22 @@
                         <Property name="text" type="java.lang.String" value="M&#xe3; th&#x1ebb; th&#xe0;nh vi&#xea;n"/>
                       </Properties>
                     </Component>
+<<<<<<< HEAD
+                    <Component class="javax.swing.JTextField" name="jTextField2">
+=======
                     <Component class="javax.swing.JTextField" name="txtTheTV">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel6">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Ng&#xe0;y t&#x1ea1;o"/>
                       </Properties>
                     </Component>
+<<<<<<< HEAD
+                    <Component class="javax.swing.JLabel" name="jLabel7">
+=======
                     <Component class="javax.swing.JLabel" name="lblNgaytao">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -280,7 +499,11 @@
                         <Property name="text" type="java.lang.String" value="&#x110;&#x1ecb;a ch&#x1ec9; c&#x1eed;a h&#xe0;ng"/>
                       </Properties>
                     </Component>
+<<<<<<< HEAD
+                    <Component class="javax.swing.JLabel" name="jLabel9">
+=======
                     <Component class="javax.swing.JLabel" name="lblDiachi">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -295,14 +518,20 @@
                 </Container>
                 <Container class="javax.swing.JPanel" name="jPanel6">
                   <Properties>
+<<<<<<< HEAD
+=======
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="f0" green="b9" red="6b" type="rgb"/>
                     </Property>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder title="Chi ti&#x1ebf;t">
                           <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
+<<<<<<< HEAD
+=======
                           <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                         </TitledBorder>
                       </Border>
                     </Property>
@@ -318,7 +547,11 @@
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+<<<<<<< HEAD
+                                      <Component id="jComboBox1" max="32767" attributes="0"/>
+=======
                                       <Component id="cbbHinhthuc" max="32767" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -328,20 +561,34 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
+                                          <Component id="jLabel11" max="32767" attributes="0"/>
+                                          <Component id="jLabel13" max="32767" attributes="0"/>
+                                          <Component id="jTextField3" alignment="0" max="32767" attributes="0"/>
+=======
                                           <Component id="lblTongtien" max="32767" attributes="0"/>
                                           <Component id="lblGiamgia" max="32767" attributes="0"/>
                                           <Component id="txtPhikhac" alignment="0" max="32767" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+<<<<<<< HEAD
+                                      <Component id="jLabel30" max="32767" attributes="0"/>
+=======
                                       <Component id="lblTienCanTra" max="32767" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
+                                          <Component id="jCheckBox1" alignment="0" min="-2" max="-2" attributes="0"/>
+=======
                                           <Component id="cknChott" alignment="0" min="-2" max="-2" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
@@ -352,8 +599,13 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
+                                          <Component id="jTextField5" max="32767" attributes="0"/>
+                                          <Component id="jTextField4" max="32767" attributes="0"/>
+=======
                                           <Component id="txtTienthua" max="32767" attributes="0"/>
                                           <Component id="txtTienkhachtra" max="32767" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                                       </Group>
                                   </Group>
                               </Group>
@@ -367,36 +619,71 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel10" pref="24" max="32767" attributes="0"/>
+<<<<<<< HEAD
+                                  <Component id="jLabel11" max="32767" attributes="0"/>
+=======
                                   <Component id="lblTongtien" max="32767" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel12" pref="24" max="32767" attributes="0"/>
+<<<<<<< HEAD
+                                  <Component id="jLabel13" max="32767" attributes="0"/>
+=======
                                   <Component id="lblGiamgia" max="32767" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel14" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+<<<<<<< HEAD
+                                  <Component id="jTextField3" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+=======
                                   <Component id="txtPhikhac" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel15" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+<<<<<<< HEAD
+                                  <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+=======
                                   <Component id="cbbHinhthuc" alignment="3" min="-2" max="-2" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel16" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+<<<<<<< HEAD
+                                  <Component id="jLabel30" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+=======
                                   <Component id="lblTienCanTra" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel31" alignment="3" max="32767" attributes="0"/>
+<<<<<<< HEAD
+                                  <Component id="jTextField4" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+=======
                                   <Component id="txtTienkhachtra" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel17" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+<<<<<<< HEAD
+                                  <Component id="jTextField5" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jLabel18" min="-2" pref="22" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane4" min="-2" pref="92" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+=======
                                   <Component id="txtTienthua" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -406,6 +693,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jScrollPane4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -416,7 +704,11 @@
                         <Property name="text" type="java.lang.String" value="T&#x1ed5;ng ti&#x1ec1;n h&#xe0;ng"/>
                       </Properties>
                     </Component>
+<<<<<<< HEAD
+                    <Component class="javax.swing.JLabel" name="jLabel11">
+=======
                     <Component class="javax.swing.JLabel" name="lblTongtien">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -432,7 +724,11 @@
                         <Property name="text" type="java.lang.String" value="Gi&#x1ea3;m gi&#xe1;"/>
                       </Properties>
                     </Component>
+<<<<<<< HEAD
+                    <Component class="javax.swing.JLabel" name="jLabel13">
+=======
                     <Component class="javax.swing.JLabel" name="lblGiamgia">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -448,14 +744,22 @@
                         <Property name="text" type="java.lang.String" value="Ph&#xed;  kh&#xe1;c"/>
                       </Properties>
                     </Component>
+<<<<<<< HEAD
+                    <Component class="javax.swing.JTextField" name="jTextField3">
+=======
                     <Component class="javax.swing.JTextField" name="txtPhikhac">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel15">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="H&#xec;nh th&#x1ee9;c thanh to&#xe1;n"/>
                       </Properties>
                     </Component>
+<<<<<<< HEAD
+                    <Component class="javax.swing.JComboBox" name="jComboBox1">
+=======
                     <Component class="javax.swing.JComboBox" name="cbbHinhthuc">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
@@ -477,9 +781,18 @@
                         <Property name="text" type="java.lang.String" value="Ti&#x1ec1;n tr&#x1ea3; l&#x1ea1;i"/>
                       </Properties>
                     </Component>
+<<<<<<< HEAD
+                    <Component class="javax.swing.JTextField" name="jTextField5">
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField5ActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+=======
                     <Component class="javax.swing.JTextField" name="txtTienthua">
                     </Component>
                     <Component class="javax.swing.JCheckBox" name="cknChott">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Ch&#x1edd; thanh to&#xe1;n"/>
                       </Properties>
@@ -496,7 +809,11 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
+<<<<<<< HEAD
+                        <Component class="javax.swing.JTextArea" name="jTextArea1">
+=======
                         <Component class="javax.swing.JTextArea" name="txtGhichuHD">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="rows" type="int" value="5"/>
@@ -504,7 +821,11 @@
                         </Component>
                       </SubComponents>
                     </Container>
+<<<<<<< HEAD
+                    <Component class="javax.swing.JLabel" name="jLabel30">
+=======
                     <Component class="javax.swing.JLabel" name="lblTienCanTra">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -520,6 +841,30 @@
                         <Property name="text" type="java.lang.String" value="Kh&#xe1;ch tr&#x1ea3;"/>
                       </Properties>
                     </Component>
+<<<<<<< HEAD
+                    <Component class="javax.swing.JTextField" name="jTextField4">
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Component class="javax.swing.JButton" name="jButton8">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t h&#xf3;a &#x111;&#x1a1;n"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButton9">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="T&#x1ea1;o h&#xf3;a &#x111;&#x1a1;n"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButton10">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Th&#xea;m v&#xe0;o h&#xf3;a &#x111;&#x1a1;n ch&#x1edd;"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel4">
+=======
                     <Component class="javax.swing.JTextField" name="txtTienkhachtra">
                     </Component>
                   </SubComponents>
@@ -548,6 +893,7 @@
                   <Color blue="f0" green="b9" red="6b" type="rgb"/>
                 </Property>
               </Properties>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="&#x110;&#x1eb7;t h&#xe0;ng">
@@ -565,9 +911,15 @@
                               <Component id="jPanel7" alignment="1" max="32767" attributes="0"/>
                               <Component id="jPanel8" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
+<<<<<<< HEAD
+                                  <Component id="jButton11" min="-2" pref="165" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                                  <Component id="jButton12" max="32767" attributes="0"/>
+=======
                                   <Component id="btnAdddonDH" min="-2" pref="165" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                                   <Component id="btnNewdonDH" max="32767" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -581,12 +933,21 @@
                           <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
+                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jButton11" pref="71" max="32767" attributes="0"/>
+                              <Component id="jButton12" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="32" max="32767" attributes="0"/>
+=======
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="btnAdddonDH" pref="45" max="32767" attributes="0"/>
                               <Component id="btnNewdonDH" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -594,14 +955,20 @@
               <SubComponents>
                 <Container class="javax.swing.JPanel" name="jPanel7">
                   <Properties>
+<<<<<<< HEAD
+=======
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="f0" green="b9" red="6b" type="rgb"/>
                     </Property>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder title="Th&#xf4;ng tin chung">
                           <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
+<<<<<<< HEAD
+=======
                           <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                         </TitledBorder>
                       </Border>
                     </Property>
@@ -629,10 +996,17 @@
                                               </Group>
                                               <EmptySpace max="32767" attributes="0"/>
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
+<<<<<<< HEAD
+                                                  <Component id="jLabel20" max="32767" attributes="0"/>
+                                                  <Component id="jTextField6" pref="188" max="32767" attributes="0"/>
+                                                  <Component id="jTextField7" max="32767" attributes="0"/>
+                                                  <Component id="jLabel24" alignment="0" max="32767" attributes="0"/>
+=======
                                                   <Component id="lblMaNVDH" max="32767" attributes="0"/>
                                                   <Component id="txtMaTVDH" pref="188" max="32767" attributes="0"/>
                                                   <Component id="txtSDT" max="32767" attributes="0"/>
                                                   <Component id="lblNTDH" alignment="0" max="32767" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                                               </Group>
                                           </Group>
                                       </Group>
@@ -646,24 +1020,42 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
+<<<<<<< HEAD
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel19" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="jLabel20" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
+=======
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblMaNVDH" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                                   <Component id="jLabel19" min="-2" pref="25" max="-2" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel21" max="32767" attributes="0"/>
+<<<<<<< HEAD
+                                  <Component id="jTextField6" pref="26" max="32767" attributes="0"/>
+=======
                                   <Component id="txtMaTVDH" pref="26" max="32767" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel22" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+<<<<<<< HEAD
+                                  <Component id="jTextField7" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+=======
                                   <Component id="txtSDT" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel23" pref="25" max="32767" attributes="0"/>
+<<<<<<< HEAD
+                                  <Component id="jLabel24" max="32767" attributes="0"/>
+=======
                                   <Component id="lblNTDH" max="32767" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel25" min="-2" pref="23" max="-2" attributes="0"/>
@@ -680,7 +1072,11 @@
                         <Property name="text" type="java.lang.String" value="M&#xe3; nh&#xe2;n vi&#xea;n"/>
                       </Properties>
                     </Component>
+<<<<<<< HEAD
+                    <Component class="javax.swing.JLabel" name="jLabel20">
+=======
                     <Component class="javax.swing.JLabel" name="lblMaNVDH">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -696,21 +1092,33 @@
                         <Property name="text" type="java.lang.String" value="M&#xe3; th&#x1ebb; th&#xe0;nh vi&#xea;n"/>
                       </Properties>
                     </Component>
+<<<<<<< HEAD
+                    <Component class="javax.swing.JTextField" name="jTextField6">
+=======
                     <Component class="javax.swing.JTextField" name="txtMaTVDH">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel22">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="S&#x1ed1; &#x111;i&#x1ec7;n tho&#x1ea1;i kh&#xe1;ch"/>
                       </Properties>
                     </Component>
+<<<<<<< HEAD
+                    <Component class="javax.swing.JTextField" name="jTextField7">
+=======
                     <Component class="javax.swing.JTextField" name="txtSDT">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel23">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Ng&#xe0;y t&#x1ea1;o"/>
                       </Properties>
                     </Component>
+<<<<<<< HEAD
+                    <Component class="javax.swing.JLabel" name="jLabel24">
+=======
                     <Component class="javax.swing.JLabel" name="lblNTDH">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -733,7 +1141,11 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
+<<<<<<< HEAD
+                        <Component class="javax.swing.JTextArea" name="jTextArea2">
+=======
                         <Component class="javax.swing.JTextArea" name="txtNhanhang">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="rows" type="int" value="5"/>
@@ -745,14 +1157,20 @@
                 </Container>
                 <Container class="javax.swing.JPanel" name="jPanel8">
                   <Properties>
+<<<<<<< HEAD
+=======
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="f0" green="b9" red="6b" type="rgb"/>
                     </Property>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder title="Chi ti&#x1ebf;t">
                           <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
+<<<<<<< HEAD
+=======
                           <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                         </TitledBorder>
                       </Border>
                     </Property>
@@ -763,6 +1181,30 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
+<<<<<<< HEAD
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLabel36" min="-2" pref="83" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel26" alignment="0" min="-2" pref="63" max="-2" attributes="0"/>
+                                          <Component id="jLabel28" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel32" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel33" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel35" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jLabel27" max="32767" attributes="0"/>
+                                          <Component id="jLabel29" max="32767" attributes="0"/>
+                                          <Component id="jTextField8" max="32767" attributes="0"/>
+                                          <Component id="jLabel34" max="32767" attributes="0"/>
+                                          <Component id="jComboBox2" pref="194" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="jScrollPane6" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="35" max="32767" attributes="0"/>
+=======
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jLabel36" min="-2" pref="83" max="-2" attributes="0"/>
@@ -790,6 +1232,7 @@
                                   <Component id="jLabel33" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="37" max="32767" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -799,11 +1242,31 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel26" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+<<<<<<< HEAD
+                                  <Component id="jLabel27" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+=======
                                   <Component id="lblTienDH" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel28" pref="24" max="32767" attributes="0"/>
+<<<<<<< HEAD
+                                  <Component id="jLabel29" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLabel32" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jTextField8" max="32767" attributes="0"/>
+                                      <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel33" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="jLabel34" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+=======
                                   <Component id="lblGiamgiaDH" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace pref="31" max="32767" attributes="0"/>
@@ -815,10 +1278,20 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel33" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
                                   <Component id="lblKhachcantraDH" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel35" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+<<<<<<< HEAD
+                                  <Component id="jComboBox2" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jLabel36" min="-2" pref="24" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane6" min="-2" pref="115" max="-2" attributes="0"/>
+                              <EmptySpace pref="27" max="32767" attributes="0"/>
+=======
                                   <Component id="cbbHinhthucThanhtoan" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -826,6 +1299,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jScrollPane6" min="-2" pref="88" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -836,7 +1310,11 @@
                         <Property name="text" type="java.lang.String" value="Ti&#x1ec1;n h&#xe0;ng"/>
                       </Properties>
                     </Component>
+<<<<<<< HEAD
+                    <Component class="javax.swing.JLabel" name="jLabel27">
+=======
                     <Component class="javax.swing.JLabel" name="lblTienDH">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -852,7 +1330,11 @@
                         <Property name="text" type="java.lang.String" value="Gi&#x1ea3;m gi&#xe1;"/>
                       </Properties>
                     </Component>
+<<<<<<< HEAD
+                    <Component class="javax.swing.JLabel" name="jLabel29">
+=======
                     <Component class="javax.swing.JLabel" name="lblGiamgiaDH">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -868,14 +1350,22 @@
                         <Property name="text" type="java.lang.String" value="Ph&#xed; kh&#xe1;c"/>
                       </Properties>
                     </Component>
+<<<<<<< HEAD
+                    <Component class="javax.swing.JTextField" name="jTextField8">
+=======
                     <Component class="javax.swing.JTextField" name="txtPhiDH">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel33">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Kh&#xe1;ch c&#x1ea7;n tr&#x1ea3;"/>
                       </Properties>
                     </Component>
+<<<<<<< HEAD
+                    <Component class="javax.swing.JLabel" name="jLabel34">
+=======
                     <Component class="javax.swing.JLabel" name="lblKhachcantraDH">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -891,7 +1381,11 @@
                         <Property name="text" type="java.lang.String" value="H&#xcc;nh th&#x1ee9;c thanh to&#xe1;n"/>
                       </Properties>
                     </Component>
+<<<<<<< HEAD
+                    <Component class="javax.swing.JComboBox" name="jComboBox2">
+=======
                     <Component class="javax.swing.JComboBox" name="cbbHinhthucThanhtoan">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
@@ -915,7 +1409,11 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
+<<<<<<< HEAD
+                        <Component class="javax.swing.JTextArea" name="jTextArea3">
+=======
                         <Component class="javax.swing.JTextArea" name="txtGhichuDH">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="rows" type="int" value="5"/>
@@ -925,6 +1423,15 @@
                     </Container>
                   </SubComponents>
                 </Container>
+<<<<<<< HEAD
+                <Component class="javax.swing.JButton" name="jButton11">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Th&#xea;m h&#xf3;a &#x111;&#x1a1;n"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButton12">
+                  <Properties>
+=======
                 <Component class="javax.swing.JButton" name="btnAdddonDH">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -938,6 +1445,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/com/milkyway/Icons/Add.png"/>
                     </Property>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                     <Property name="text" type="java.lang.String" value="T&#x1ea1;o m&#x1edb;i"/>
                   </Properties>
                 </Component>
@@ -949,14 +1457,20 @@
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
+<<<<<<< HEAD
+=======
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="f0" green="b9" red="6b" type="rgb"/>
         </Property>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Gi&#x1ecf; h&#xe0;ng">
               <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
+<<<<<<< HEAD
+=======
               <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
             </TitledBorder>
           </Border>
         </Property>
@@ -966,6 +1480,24 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
+<<<<<<< HEAD
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jScrollPane2" max="32767" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" pref="61" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="258" max="-2" attributes="0"/>
+                          <Component id="jButton1" min="-2" pref="74" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+=======
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="btnBackGH" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
@@ -977,11 +1509,27 @@
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Component id="jScrollPane2" alignment="1" max="32767" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+<<<<<<< HEAD
+                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                  <Component id="jScrollPane2" min="-2" pref="221" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                          <Component id="jLabel1" alignment="3" max="32767" attributes="0"/>
+                          <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+=======
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane2" min="-2" pref="221" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -994,6 +1542,7 @@
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
               </Group>
           </Group>
         </DimensionLayout>
@@ -1006,7 +1555,11 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
+<<<<<<< HEAD
+            <Component class="javax.swing.JTable" name="jTable2">
+=======
             <Component class="javax.swing.JTable" name="tblGiohang">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="6" rowCount="0">
@@ -1059,16 +1612,32 @@
             </Component>
           </SubComponents>
         </Container>
+<<<<<<< HEAD
+        <Component class="javax.swing.JButton" name="jButton1">
+=======
         <Component class="javax.swing.JButton" name="btnBo">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
           <Properties>
             <Property name="text" type="java.lang.String" value="B&#x1ecf;"/>
           </Properties>
         </Component>
+<<<<<<< HEAD
+        <Component class="javax.swing.JButton" name="jButton2">
+=======
         <Component class="javax.swing.JButton" name="btnNextGH">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
           <Properties>
             <Property name="text" type="java.lang.String" value="&gt;&gt;"/>
           </Properties>
         </Component>
+<<<<<<< HEAD
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="1/3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton3">
+=======
         <Component class="javax.swing.JLabel" name="lblTrangGH">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1079,6 +1648,7 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnBackGH">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
           <Properties>
             <Property name="text" type="java.lang.String" value="&lt;&lt;"/>
           </Properties>
@@ -1087,14 +1657,20 @@
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel2">
       <Properties>
+<<<<<<< HEAD
+=======
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="f0" green="b9" red="6b" type="rgb"/>
         </Property>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Danh s&#xe1;ch s&#x1ea3;n ph&#x1ea9;m">
               <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
+<<<<<<< HEAD
+=======
               <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
             </TitledBorder>
           </Border>
         </Property>
@@ -1108,6 +1684,19 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jScrollPane3" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
+<<<<<<< HEAD
+                          <Component id="jTextField1" min="-2" pref="267" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jButton7" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+                          <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="jLabel2" min="-2" pref="88" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="jButton6" min="-2" max="-2" attributes="0"/>
+=======
                           <Component id="txtTimSP" min="-2" pref="267" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="btnTimSP" min="-2" max="-2" attributes="0"/>
@@ -1119,6 +1708,7 @@
                           <Component id="lblNextSP" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                           <Component id="btnQuet" min="-2" max="-2" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -1129,6 +1719,17 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
+<<<<<<< HEAD
+                  <Component id="jScrollPane3" min="-2" pref="345" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel2" alignment="3" max="32767" attributes="0"/>
+                      <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton6" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton7" alignment="3" min="-2" max="-2" attributes="0"/>
+=======
                   <Component id="jScrollPane3" min="-2" pref="277" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -1138,6 +1739,7 @@
                       <Component id="btnQuet" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtTimSP" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnTimSP" alignment="3" min="-2" max="-2" attributes="0"/>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -1152,7 +1754,11 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
+<<<<<<< HEAD
+            <Component class="javax.swing.JTable" name="jTable3">
+=======
             <Component class="javax.swing.JTable" name="tblDSSP">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="9" rowCount="0">
@@ -1223,16 +1829,32 @@
             </Component>
           </SubComponents>
         </Container>
+<<<<<<< HEAD
+        <Component class="javax.swing.JButton" name="jButton4">
+=======
         <Component class="javax.swing.JButton" name="lblNextSP">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
           <Properties>
             <Property name="text" type="java.lang.String" value="&gt;&gt;"/>
           </Properties>
         </Component>
+<<<<<<< HEAD
+        <Component class="javax.swing.JButton" name="jButton5">
+=======
         <Component class="javax.swing.JButton" name="btnBackSP">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
           <Properties>
             <Property name="text" type="java.lang.String" value="&lt;&lt;"/>
           </Properties>
         </Component>
+<<<<<<< HEAD
+        <Component class="javax.swing.JLabel" name="jLabel2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="1/200"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton6">
+=======
         <Component class="javax.swing.JLabel" name="lblSP">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1243,19 +1865,28 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnQuet">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
           <Properties>
             <Property name="text" type="java.lang.String" value="Qu&#xe9;t m&#xe3;"/>
           </Properties>
         </Component>
+<<<<<<< HEAD
+        <Component class="javax.swing.JTextField" name="jTextField1">
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton7">
+=======
         <Component class="javax.swing.JTextField" name="txtTimSP">
         </Component>
         <Component class="javax.swing.JButton" name="btnTimSP">
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
           <Properties>
             <Property name="text" type="java.lang.String" value="T&#xec;m SP"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
+<<<<<<< HEAD
+=======
     <Container class="javax.swing.JPanel" name="jPanel9">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1401,5 +2032,6 @@
         </DimensionLayout>
       </Layout>
     </Container>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
   </SubComponents>
 </Form>

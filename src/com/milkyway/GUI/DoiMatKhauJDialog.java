@@ -32,6 +32,8 @@ public class DoiMatKhauJDialog extends java.awt.Dialog {
         txtTaiKhoan.setText(Auth.user.getTaiKhoan());
     }
 
+    
+
     private void DoiMK() {
         StringBuilder sb = new StringBuilder();
         Validator.isNull(txtTaiKhoan, "Chưa nhập tên đăng nhập", sb);

@@ -23,10 +23,19 @@ public class NhanVienDAO extends MilkyWayDAO<NhanVien, String> {
             + "WHERE [MaNV] = ?";
     String delete_SQL = "Delete From NhanVien WHERE MaNV =?";
     String Select_All = "SELECT * FROM NhanVien";
+<<<<<<< HEAD
+    String Select_By_id = "Select *from NhanVien Where MaNV=?";
+    String Select_By_user = "Select *from NhanVien Where TaiKhoan=?";
+    String Select_By_UserName = "Select *from NhanVien Where TaiKhoan=?";
+    String Update_Reset_pass = "UPDATE NhanVien SET MatKhau=? WHERE TaiKhoan=? and Email=?";
+
+    
+=======
     String Select_By_id = "Select * from NhanVien Where MaNV=?";
     String Select_By_user = "Select * from NhanVien Where TaiKhoan=?";
     String Select_manv_danghoatdong = "Select * from NhanVien Where TrangThai=?";
     String update_nvnghiviec = "UPDATE [dbo].[NhanVien] SET [TrangThai] = ? WHERE MaNV = ?";
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
 
     @Override
     public void insert(NhanVien entity) {
@@ -36,6 +45,9 @@ public class NhanVienDAO extends MilkyWayDAO<NhanVien, String> {
     @Override
     public void update(NhanVien entity) {
         JDBCHelper.update(Update_SQL, entity.getHoTen(), entity.isGioiTinh(), entity.getNgaySinh(), entity.getSDT(), entity.getCMND(), entity.getEmail(), entity.getHinhAnh(), entity.isVaiTro(), entity.getGhiChu(), entity.getMaNV());
+    }
+    public void UpdatePass(NhanVien entity){
+        JDBCHelper.update(Update_Reset_pass, entity.getMatKhau());
     }
 
     @Override
@@ -97,6 +109,9 @@ public class NhanVienDAO extends MilkyWayDAO<NhanVien, String> {
         return list.get(0);
     }
 
+<<<<<<< HEAD
+    
+=======
     public void updateNhanVienNghiViec(boolean trangthai, String Manv) {
         JDBCHelper.update(update_nvnghiviec, trangthai, Manv);
     }
@@ -104,4 +119,5 @@ public class NhanVienDAO extends MilkyWayDAO<NhanVien, String> {
     public List<NhanVien> selectNhanVienDangHoatDong(boolean TrangThai) {
         return selectBySql(Select_manv_danghoatdong, TrangThai);
     }
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
 }

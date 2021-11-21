@@ -3,10 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/C:/Users/hoang/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/RandomMail.java</file>
+            <file>file:/C:/Users/hoang/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/QuenMKJDialog.java</file>
+            <file>file:/C:/Users/hoang/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/DangNhapJDialog.java</file>
+            <file>file:/C:/Users/hoang/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/DoiMatKhauJDialog.java</file>
+            <file>file:/C:/Users/hoang/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/ResetPass.java</file>
+=======
             <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/MainJFrame.java</file>
             <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/DAO/DongSPDAO.java</file>
             <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/SanPhamJPanel.java</file>
             <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/DAO/SanPhamDAO.java</file>
+>>>>>>> 6fa19b0ddb1d2b823d71670a9db623c908f0109c
         </group>
     </open-files>
 </project-private>
