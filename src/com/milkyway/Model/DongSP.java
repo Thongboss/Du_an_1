@@ -10,9 +10,9 @@ package com.milkyway.Model;
  * @author hoang
  */
 public class DongSP {
-private int IDDongSP,IDThuongHieu;
+
+    private int IDDongSP, IDThuongHieu;
     private String MaDongSP;
-    
     private String TenDongSP, GhiChu;
     private boolean TrangThai;
 
@@ -76,6 +76,9 @@ private int IDDongSP,IDThuongHieu;
         this.TrangThai = TrangThai;
     }
 
-   
+    @Override
+    public String toString() {
+        return TenDongSP;
+    }
 
 }

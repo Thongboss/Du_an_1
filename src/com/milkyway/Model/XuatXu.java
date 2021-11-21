@@ -10,7 +10,8 @@ package com.milkyway.Model;
  * @author ASUS
  */
 public class XuatXu {
-private int IDXuatXu;
+
+    private int IDXuatXu;
     private String MaQG;
     private String TenQG;
 
@@ -47,5 +48,9 @@ private int IDXuatXu;
         this.TenQG = TenQG;
     }
 
-  
+    @Override
+    public String toString() {
+        return TenQG;
+    }
+
 }

@@ -12,8 +12,9 @@ import java.util.Date;
  * @author hoang
  */
 public class SanPham {
-private int IDSanPham;
-    private String MaSP; 
+
+    private int IDSanPham;
+    private String MaSP;
     private int IDLoaiSP, IDDongSP;
     private String TenSP;
     private Date NgayXK;
@@ -98,5 +99,4 @@ private int IDSanPham;
         this.TrangThai = TrangThai;
     }
 
-    
 }

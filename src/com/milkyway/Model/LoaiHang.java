@@ -12,10 +12,8 @@ package com.milkyway.Model;
 public class LoaiHang {
 
     private int IDLoaiHang;
-
     private String MaLoai;
     private int IDNhomHang;
-
     private String TenLoai, GhiChu;
 
     public LoaiHang() {
@@ -67,6 +65,11 @@ public class LoaiHang {
 
     public void setGhiChu(String GhiChu) {
         this.GhiChu = GhiChu;
+    }
+
+    @Override
+    public String toString() {
+        return TenLoai;
     }
 
 }

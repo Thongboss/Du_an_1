@@ -11,18 +11,17 @@ import com.milkyway.Utils.Auth;
 import com.milkyway.Utils.JDBCHelper;
 import com.milkyway.Utils.MsgBox;
 import com.milkyway.Utils.Validator;
-import com.sun.javafx.css.CalculatedValue;
 import java.sql.CallableStatement;
 import java.sql.Types;
 import javax.swing.ImageIcon;
-import sun.net.www.protocol.http.AuthCache;
 
 /**
  *
  * @author DaiAustinYersin
  */
 public class DangNhapJDialog extends javax.swing.JDialog {
-    NhanVienDAO dao = new  NhanVienDAO();
+
+    NhanVienDAO dao = new NhanVienDAO();
 
     /**
      * Creates new form DangNhapJDialog
@@ -33,11 +32,12 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         setResizable(false);
     }
-    private void DangNhap(){
+
+    private void DangNhap() {
         StringBuilder sb = new StringBuilder();
-        Validator.isNull(txtTaiKhoan, "Chưa nhập tên đăng nhập", sb);
-        Validator.isNull(txtMatKhau, "Chưa nhập mật khẩu", sb);
-        if (sb.length()>0) {
+        Validator.isNull(txtTaiKhoan, "Chưa nhập tên đăng nhập", sb);
+        Validator.isNull(txtMatKhau, "Chưa nhập mật khẩu", sb);
+        if (sb.length() > 0) {
             MsgBox.alert(this, sb.toString());
             return;
         }
@@ -52,9 +52,9 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             cs.execute();
             if (!cs.getBoolean(3)) {
                 MsgBox.alert(this, cs.getNString(4));
-            }else{
+            } else {
                 if (!nv.isTrangThai()) {
-                    MsgBox.alert(this, "Nhân viên có tên đăng nhập" + txtTaiKhoan.getText()+"hiện không còn hoạt động");
+                    MsgBox.alert(this, "Nhân viên có  tên đăng nhập" + txtTaiKhoan.getText() + "hiện không có họat động");
                     return;
                 }
                 NhanVien nhanvien = dao.selectByUser(txtTaiKhoan.getText());
@@ -63,11 +63,10 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             }
         } catch (Exception e) {
             e.printStackTrace();
-           
+
         }
-        
+
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,8 +89,8 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         txtMatKhau = new javax.swing.JPasswordField();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnDangNhap = new javax.swing.JButton();
+        btnHuyBo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -154,29 +153,35 @@ public class DangNhapJDialog extends javax.swing.JDialog {
 
         jLabel7.setText("Tài khoản:");
 
+        txtTaiKhoan.setText("dainnph13993");
+
         jLabel8.setText("Mật khẩu:");
+
+        txtMatKhau.setText("123");
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setBackground(new java.awt.Color(102, 255, 102));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Tick.png"))); // NOI18N
-        jButton1.setText("Đăng nhập");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnDangNhap.setBackground(new java.awt.Color(102, 255, 102));
+        btnDangNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Tick.png"))); // NOI18N
+        btnDangNhap.setText("Đăng nhập");
+        btnDangNhap.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnDangNhapActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1);
+        jPanel3.add(btnDangNhap);
 
-        jButton2.setBackground(new java.awt.Color(255, 153, 153));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Delete.png"))); // NOI18N
-        jButton2.setText("Hủy bỏ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnHuyBo.setBackground(new java.awt.Color(255, 153, 153));
+        btnHuyBo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Delete.png"))); // NOI18N
+        btnHuyBo.setText("Hủy bỏ");
+        btnHuyBo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHuyBo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnHuyBoActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton2);
+        jPanel3.add(btnHuyBo);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -254,15 +259,15 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         btnClose.setIcon(new ImageIcon("src/com/milkyway/Icons/btn-close.png"));
     }//GEN-LAST:event_btnCloseMouseExited
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    if (MsgBox.confirm(this, "Bạn muốn hủy bỏ đăng nhập?")) {
+    private void btnHuyBoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyBoActionPerformed
+        if (MsgBox.confirm(this, "Bạn muốn hủy bỏ đăng nhập?")) {
             System.exit(0);
-        }    // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        }
+    }//GEN-LAST:event_btnHuyBoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-DangNhap();        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
+        DangNhap();
+    }//GEN-LAST:event_btnDangNhapActionPerformed
 
     /**
      * @param args the command line arguments
@@ -308,8 +313,8 @@ DangNhap();        // TODO add your handling code here:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnClose;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnDangNhap;
+    private javax.swing.JButton btnHuyBo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;

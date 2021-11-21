@@ -12,7 +12,8 @@ import java.util.Date;
  * @author Admin
  */
 public class HoaDon {
-private int IDHoaDon;
+
+    private int IDHoaDon;
     private String MaHD;
     private int IDNhanVien;
     private int IDTheTV;
@@ -109,5 +110,4 @@ private int IDHoaDon;
         this.TrangThai = TrangThai;
     }
 
-    
 }

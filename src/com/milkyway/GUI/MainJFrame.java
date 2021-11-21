@@ -5,6 +5,7 @@
  */
 package com.milkyway.GUI;
 
+import com.milkyway.Utils.Auth;
 import com.milkyway.Utils.ImageUtils;
 import com.milkyway.Utils.JThread;
 import com.milkyway.Utils.MsgBox;
@@ -25,7 +26,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private SanPhamJPanel spPanel;
     private TheThanhVienJPanel theTVPanel;
     private NhanVienJPanel nhanVienPanel;
-    private BanHangJPanel banHangJPanel;
+    private BanHang banHang;
+    private ThongKeJPanel thongKe;
 
     public MainJFrame() {
         initComponents();
@@ -39,6 +41,9 @@ public class MainJFrame extends javax.swing.JFrame {
 //        new JdbcJDialog(this, true).setVisible(true);
         new DangNhapJDialog(this, true).setVisible(true);
         JThread.runDateTime(lblDateTime);
+        JThread.runText(lblMain);
+        lblTenNV.setText(Auth.user.getHoTen());
+        lblRole.setText(Auth.user.isVaiTro() ? "Trưởng phòng" : "Nhân viên");
     }
 
     /**
@@ -93,7 +98,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnExit = new javax.swing.JLabel();
         btnMinimise = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblMain = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hệ thống đại lý sữa Milky Way");
@@ -471,7 +476,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(pnlThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pnlNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -551,10 +556,10 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Phầm mềm quản lý đại lý sữa Milky Way");
+        lblMain.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblMain.setForeground(new java.awt.Color(255, 255, 255));
+        lblMain.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMain.setText("Phầm mềm quản lý đại lý sữa Milky Way   ");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -564,7 +569,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1120, Short.MAX_VALUE)
+                .addComponent(lblMain, javax.swing.GroupLayout.DEFAULT_SIZE, 1120, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnMinimise, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -579,7 +584,7 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnMinimise, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -616,15 +621,15 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnBanHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBanHangMouseClicked
         if (evt.getClickCount() == 2) {
-            tbpMainPortal.remove(banHangJPanel);
+            tbpMainPortal.remove(banHang);
             return;
         }
-        if (banHangJPanel == null || tbpMainPortal.getComponentCount() == 0) {
-            banHangJPanel = new BanHangJPanel();
-            tbpMainPortal.addTab("Quản lý bán hàng", banHangJPanel);
-            tbpMainPortal.setSelectedComponent(banHangJPanel);
+        if (banHang == null || tbpMainPortal.getComponentCount() == 0) {
+            banHang = new BanHang();
+            tbpMainPortal.addTab("Quản lý bán hàng", banHang);
+            tbpMainPortal.setSelectedComponent(banHang);
         } else {
-            tbpMainPortal.setSelectedComponent(banHangJPanel);
+            tbpMainPortal.setSelectedComponent(banHang);
         }
     }//GEN-LAST:event_btnBanHangMouseClicked
 
@@ -699,7 +704,17 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnKhachHangMouseExited
 
     private void btnThongKeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThongKeMouseClicked
-        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            tbpMainPortal.remove(thongKe);
+            return;
+        }
+        if (thongKe == null || tbpMainPortal.getComponentCount() == 0) {
+            thongKe = new ThongKeJPanel();
+            tbpMainPortal.addTab("Tổng hợp - thống kê", thongKe);
+            tbpMainPortal.setSelectedComponent(thongKe);
+        } else {
+            tbpMainPortal.setSelectedComponent(thongKe);
+        }
     }//GEN-LAST:event_btnThongKeMouseClicked
 
     private void btnThongKeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThongKeMouseEntered
@@ -733,7 +748,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNhanVienMouseExited
 
     private void tbarDoiMKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbarDoiMKActionPerformed
-new DoiMatKhauJDialog(this, true).setVisible(true);        // TODO add your handling code here:
+        new DoiMatKhauJDialog(this, true).setVisible(true);
     }//GEN-LAST:event_tbarDoiMKActionPerformed
 
     /**
@@ -783,7 +798,6 @@ new DoiMatKhauJDialog(this, true).setVisible(true);        // TODO add your hand
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
@@ -797,6 +811,7 @@ new DoiMatKhauJDialog(this, true).setVisible(true);        // TODO add your hand
     private javax.swing.JToolBar.Separator jSeparator5;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lblDateTime;
+    private javax.swing.JLabel lblMain;
     private javax.swing.JLabel lblRole;
     private javax.swing.JLabel lblTenNV;
     private javax.swing.JPanel pnlBanHang;

@@ -16,77 +16,77 @@ import java.util.List;
  *
  * @author hoang
  */
-public class LoạiHangDAO extends MilkyWayDao<LoaiHang, String>{
-    String INSERT_SQL = "INSERT INTO LoaiHang(MaLoai,TenLoai,GhiChu) values(?,?,?)";
-    String UPDATE_SQL = "update LoaiHang set  TenLoai = ? Ghi Chu =? where MaLoai = ?";
+public class LoaiHangDAO extends MilkyWayDAO<LoaiHang, String> {
+
+    String INSERT_SQL = "INSERT INTO [dbo].[LoaiHang]([MaLoai],[IDNhomHang],[TenLoai],[GhiChu])\n"
+            + "     VALUES(?,?,?,?)";
+    String UPDATE_SQL = "UPDATE [dbo].[LoaiHang]\n"
+            + "   SET [IDNhomHang] = ?,[TenLoai] = ?,[GhiChu] = ?\n"
+            + " WHERE [MaLoai] = ?";
     String DELETE_SQL = "Delete from LoaiHang where MaLoai =?";
     String SELECT_ALL = "Select * from LoaiHang";
     String SELECT_BY_ID = "Select * from LoaiHang where MaLoai=?";
 
     @Override
     public void insert(LoaiHang entity) {
-        try {
-            JDBCHelper.update(INSERT_SQL, entity.getMaLoai(),entity.getTenLoai(),entity.getGhiChu());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        JDBCHelper.update(INSERT_SQL, entity.getMaLoai(), entity.getIDNhomHang(), entity.getTenLoai(), entity.getGhiChu());
     }
 
     @Override
     public void update(LoaiHang entity) {
-        try {
-            JDBCHelper.update(UPDATE_SQL, entity.getTenLoai(),entity.getGhiChu());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        JDBCHelper.update(UPDATE_SQL, entity.getIDNhomHang(), entity.getTenLoai(), entity.getGhiChu(), entity.getMaLoai());
     }
 
     @Override
     public void delete(String id) {
-        
-            try {
-                JDBCHelper.update(DELETE_SQL, id);
-            } catch (Exception e) {
-            }
-        
-        
+        JDBCHelper.update(DELETE_SQL, id);
     }
 
     @Override
     public LoaiHang selectById(String id) {
         List<LoaiHang> list = this.selectBySql(SELECT_BY_ID, id);
-                if (list.isEmpty()) {
+        if (list.isEmpty()) {
             return null;
         }
-                return list.get(0);
+        return list.get(0);
+    }
+
+    public List<LoaiHang> selectByNhomHang(String id) {
+        return selectBySql("select * from LoaiHang where IDNhomHang = ?", id);
+    }
+    
+    public LoaiHang selectByTenLoai(String name) {
+        List<LoaiHang> list = selectBySql("select * from LoaiHang where TenLoai = ?", name);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
     }
 
     @Override
     public List<LoaiHang> selectAll() {
-      return this.selectBySql(SELECT_ALL);
+        return this.selectBySql(SELECT_ALL);
     }
 
     @Override
     protected List<LoaiHang> selectBySql(String sql, Object... args) {
         try {
-             List<LoaiHang> lstLoaiHang =  new ArrayList<>();
+            List<LoaiHang> lstLoaiHang = new ArrayList<>();
             ResultSet rs = JDBCHelper.query(sql, args);
-            while(rs.next()){
+            while (rs.next()) {
                 LoaiHang entity = new LoaiHang();
+                entity.setIDLoaiHang(rs.getInt("IDLoaiHang"));
                 entity.setMaLoai(rs.getString("MaLoai"));
+                entity.setIDNhomHang(rs.getInt("IDNhomHang"));
                 entity.setTenLoai(rs.getString("TenLoai"));
                 entity.setGhiChu(rs.getString("GhiChu"));
+                lstLoaiHang.add(entity);
             }
-             rs.getStatement().getConnection().close();
+            rs.getStatement().getConnection().close();
             return lstLoaiHang;
         } catch (Exception e) {
-              e.printStackTrace();
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
-
-   
-
-   
-    
 }

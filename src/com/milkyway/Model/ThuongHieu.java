@@ -10,7 +10,8 @@ package com.milkyway.Model;
  * @author ASUS
  */
 public class ThuongHieu {
-private int IDThuongHieu;
+
+    private int IDThuongHieu;
     private String MaTH, TenTh, GhiChu;
     private boolean Trangthai;
 
@@ -65,6 +66,8 @@ private int IDThuongHieu;
         this.Trangthai = Trangthai;
     }
 
-   
-
+    @Override
+    public String toString() {
+        return TenTh;
+    }
 }

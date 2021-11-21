@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JPasswordField;
+import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -20,7 +21,7 @@ import javax.swing.JTextField;
  * @author DaiAustinYersin
  */
 public class Validator {
-    
+
     public static boolean isNull(JTextField txt, String mes, StringBuilder sb) {
         if (txt.getText().isEmpty()) {
             sb.append(mes).append("\n");
@@ -50,6 +51,17 @@ public class Validator {
             return true;
         } else {
             pass.setBackground(Color.WHITE);
+            return false;
+        }
+    }
+    
+    public static boolean isNull(JDateChooser date, String mes, StringBuilder sb) {
+        if (date.getDate() == null) {
+            sb.append(mes).append("\n");
+            date.setBackground(Color.YELLOW);
+            return true;
+        } else {
+            date.setBackground(Color.WHITE);
             return false;
         }
     }
@@ -200,6 +212,20 @@ public class Validator {
             txt.setBackground(Color.white);
         }
 
+        return ok;
+    }
+
+    public static boolean checkSoNguyenDuong(Object obj, StringBuilder sb) {
+        boolean ok = true;
+        try {
+            if (Integer.parseInt(obj.toString()) < 0) {
+                sb.append("Giá trị phải là số nguyên dương").append("\n");
+                ok = false;
+            }
+        } catch (Exception e) {
+            sb.append("Giá trị phải là số nguyên dương").append("\n");
+            ok = false;
+        }
         return ok;
     }
 }

@@ -10,7 +10,8 @@ package com.milkyway.Model;
  * @author hoang
  */
 public class NhomHang {
-private int IDNhomHang;
+
+    private int IDNhomHang;
     private String MaNhom;
     private String TenNhom, GhiChu;
 
@@ -56,7 +57,9 @@ private int IDNhomHang;
         this.GhiChu = GhiChu;
     }
 
-   
-    
+    @Override
+    public String toString() {
+        return TenNhom;
+    }
 
 }

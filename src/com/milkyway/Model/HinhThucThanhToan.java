@@ -10,7 +10,8 @@ package com.milkyway.Model;
  * @author DaiAustinYersin
  */
 public class HinhThucThanhToan {
-private int IDHinhThucThanhToan;
+
+    private int IDHinhThucThanhToan;
     private String MaHinhThucThanhToan;
     private String TenHinhThucThanhToan;
     private String GhiChu;
@@ -57,5 +58,4 @@ private int IDHinhThucThanhToan;
         this.GhiChu = GhiChu;
     }
 
-   
 }
