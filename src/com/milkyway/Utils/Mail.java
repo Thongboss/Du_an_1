@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.milkyway.Model;
+package com.milkyway.Utils;
 
 import static com.milkyway.Model.addTable.addTable;
 import java.util.Properties;

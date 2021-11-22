@@ -10,6 +10,7 @@ package com.milkyway.Model;
  * @author hoang
  */
 public class addTable {
+
     public static String addTable(String msg) {
         String colorMsg = "<table style=\"height: 108px;\" border=\"1\" width=\"487\">\n"
                 + "<tbody>\n"

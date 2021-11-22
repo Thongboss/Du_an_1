@@ -42,8 +42,12 @@ public class MainJFrame extends javax.swing.JFrame {
         new DangNhapJDialog(this, true).setVisible(true);
         JThread.runDateTime(lblDateTime);
         JThread.runText(lblMain);
-        lblTenNV.setText(Auth.user.getHoTen());
-        lblRole.setText(Auth.user.isVaiTro() ? "Trưởng phòng" : "Nhân viên");
+        loadUser();
+    }
+    
+    private void loadUser() {
+        lblTenNV.setText(DangNhapJDialog.showAuth()[0].toString());
+        lblRole.setText(Boolean.parseBoolean(DangNhapJDialog.showAuth()[1].toString()) ? "Trưởng phòng" : "Nhân viên");
     }
 
     /**
@@ -104,6 +108,13 @@ public class MainJFrame extends javax.swing.JFrame {
         setTitle("Hệ thống đại lý sữa Milky Way");
         setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(1440, 1017));
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -115,6 +126,11 @@ public class MainJFrame extends javax.swing.JFrame {
         tbarLogOut.setFocusable(false);
         tbarLogOut.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         tbarLogOut.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbarLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbarLogOutActionPerformed(evt);
+            }
+        });
         jToolBar1.add(tbarLogOut);
 
         tbarDoiMK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Refresh.png"))); // NOI18N
@@ -476,7 +492,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(pnlThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pnlNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -510,7 +526,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -726,6 +742,10 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThongKeMouseExited
 
     private void btnNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNhanVienMouseClicked
+        if (!Auth.isManager()) {
+            MsgBox.alert(this, "Bạn không có quyền sử dụng chức năng này");
+            return;
+        }
         if (evt.getClickCount() == 2) {
             tbpMainPortal.remove(nhanVienPanel);
             return;
@@ -750,6 +770,23 @@ public class MainJFrame extends javax.swing.JFrame {
     private void tbarDoiMKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbarDoiMKActionPerformed
         new DoiMatKhauJDialog(this, true).setVisible(true);
     }//GEN-LAST:event_tbarDoiMKActionPerformed
+
+    private void tbarLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbarLogOutActionPerformed
+        if (MsgBox.confirm(this, "Bạn có muốn đăng xuất khỏi phiên làm việc không?")) {
+            tbpMainPortal.removeAll();
+            Auth.user = null;
+            lblTenNV.setText("???");
+            lblRole.setText("???");
+            new DangNhapJDialog(this, true).setVisible(true);
+        }
+    }//GEN-LAST:event_tbarLogOutActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        try {
+            loadUser();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments

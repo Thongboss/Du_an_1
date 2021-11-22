@@ -28,18 +28,15 @@ public class ResetPass extends java.awt.Dialog {
      */
     public ResetPass(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        setLocationRelativeTo(null);
         initComponents();
+        setLocationRelativeTo(null);
     }
-
-    
 
     private void DoiMK() {
         StringBuilder sb = new StringBuilder();
-        Validator.isNull(txtTaiKhoan, "Chưa nhập tên đăng nhập", sb);
- 
-        Validator.isNull(txtNewPass, "Chưa nhập mật khẩu mới", sb);
-        Validator.isNull(txtNewPassCfm, "Chưa xác nhận mật khẩu mới", sb);
+        Validator.isNull(txtTaiKhoan, "Chưa nhập tên đăng nhập", sb);
+        Validator.isNull(txtNewPass, "Chưa nhập mật khẩu mới", sb);
+        Validator.isNull(txtNewPassCfm, "Chưa xác nhập mật khẩu mới", sb);
         if (sb.length() > 0) {
             MsgBox.alert(this, sb.toString());
             return;
@@ -47,24 +44,24 @@ public class ResetPass extends java.awt.Dialog {
         NhanVien nv;
         nv = dao.selectById(txtTaiKhoan.getText());
         try {
-             
+
             CallableStatement cs = (CallableStatement) JDBCHelper.getStmt("{call SP_ResetPass(?,?,?,?,?)}");
-            
+
             cs.setString(1, txtTaiKhoan.getText());
-            
+
             cs.setString(2, new String(txtNewPass.getPassword()));
             cs.setString(3, new String(txtNewPassCfm.getPassword()));
             cs.registerOutParameter(4, Types.BIT);
-            cs.registerOutParameter(5, Types.NVARCHAR); 
+            cs.registerOutParameter(5, Types.NVARCHAR);
             cs.execute();
             if (!cs.getBoolean(4)) {
                 MsgBox.alert(this, cs.getNString(5));
-            } else{
+            } else {
                 MsgBox.alert(this, cs.getNString(5));
                 this.dispose();
-            } 
-
+            }
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -78,7 +75,7 @@ public class ResetPass extends java.awt.Dialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        btnClose = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -89,7 +86,7 @@ public class ResetPass extends java.awt.Dialog {
         txtNewPassCfm = new javax.swing.JPasswordField();
         jPanel6 = new javax.swing.JPanel();
         btnDangNhap = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
 
         setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -105,20 +102,20 @@ public class ResetPass extends java.awt.Dialog {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Đổi mật khẩu");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/btn-close.png"))); // NOI18N
-        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnClose.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnClose.setForeground(new java.awt.Color(255, 255, 255));
+        btnClose.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/btn-close.png"))); // NOI18N
+        btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                btnCloseMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel3MouseEntered(evt);
+                btnCloseMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel3MouseExited(evt);
+                btnCloseMouseExited(evt);
             }
         });
 
@@ -135,7 +132,7 @@ public class ResetPass extends java.awt.Dialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addComponent(btnClose)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -144,7 +141,7 @@ public class ResetPass extends java.awt.Dialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnClose, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -170,10 +167,15 @@ public class ResetPass extends java.awt.Dialog {
         });
         jPanel6.add(btnDangNhap);
 
-        jButton6.setBackground(new java.awt.Color(255, 102, 102));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Delete.png"))); // NOI18N
-        jButton6.setText("Hủy bỏ");
-        jPanel6.add(jButton6);
+        btnCancel.setBackground(new java.awt.Color(255, 102, 102));
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Delete.png"))); // NOI18N
+        btnCancel.setText("Hủy bỏ");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnCancel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -235,21 +237,26 @@ public class ResetPass extends java.awt.Dialog {
         dispose();
     }//GEN-LAST:event_closeDialog
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+    private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
         this.dispose();
-    }//GEN-LAST:event_jLabel3MouseClicked
+    }//GEN-LAST:event_btnCloseMouseClicked
 
-    private void jLabel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseEntered
-        jLabel3.setIcon(new ImageIcon("src/com/milkyway/Icons/btn-close--hover.png"));
-    }//GEN-LAST:event_jLabel3MouseEntered
+    private void btnCloseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseEntered
+        btnClose.setIcon(new ImageIcon("src/com/milkyway/Icons/btn-close--hover.png"));
+    }//GEN-LAST:event_btnCloseMouseEntered
 
-    private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
-        jLabel3.setIcon(new ImageIcon("src/com/milkyway/Icons/btn-close.png"));
-    }//GEN-LAST:event_jLabel3MouseExited
+    private void btnCloseMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseExited
+        btnClose.setIcon(new ImageIcon("src/com/milkyway/Icons/btn-close.png"));
+    }//GEN-LAST:event_btnCloseMouseExited
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-     DoiMK();   // TODO add your handling code here:
+        DoiMK();
     }//GEN-LAST:event_btnDangNhapActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        new DangNhapJDialog(null, true).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -260,7 +267,6 @@ public class ResetPass extends java.awt.Dialog {
                 ResetPass dialog = new ResetPass(new java.awt.Frame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
                     }
                 });
                 dialog.setVisible(true);
@@ -270,15 +276,15 @@ public class ResetPass extends java.awt.Dialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JLabel btnClose;
     private javax.swing.JButton btnDangNhap;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPasswordField txtNewPass;

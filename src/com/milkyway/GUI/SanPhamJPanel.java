@@ -524,7 +524,7 @@ public class SanPhamJPanel extends javax.swing.JPanel {
         txtBarcode.setText(obj[11].toString());
         txtGhiChuSP.setText(obj[12] == null ? "" : obj[12].toString());
         lblAnhSP_SP.setIcon(ImageUtils.resizeImg(ImageUtils.read("SanPham", obj[14].toString()), lblAnhSP_SP));
-        lblAnhSP_SP.setToolTipText(tblSanPhamDangKD.getValueAt(rowSPDangKD, 14).toString());
+        lblAnhSP_SP.setToolTipText(obj[14].toString());
     }
 
     private Object[] getFormSanPham() {
