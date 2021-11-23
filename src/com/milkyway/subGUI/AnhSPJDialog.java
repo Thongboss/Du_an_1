@@ -45,6 +45,13 @@ public class AnhSPJDialog extends javax.swing.JDialog {
         }
         return false;
     }
+    
+    private AnhSP getFormAnhSP() {
+        AnhSP asp = new AnhSP();
+        asp.setMaAnhSP(txtMaAnhSP.getText().toUpperCase());
+        asp.setTenAnhSP(txtTenAnhSP.getText());
+        return asp;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -256,11 +263,11 @@ public class AnhSPJDialog extends javax.swing.JDialog {
             for (AnhSP asp : lst) {
                 if (txtMaAnhSP.getText().equalsIgnoreCase(asp.getMaAnhSP())) {
                     txtMaAnhSP.setBackground(Color.red);
-                    MsgBox.alert(this, "Trùng mã loại hàng");
+                    MsgBox.alert(this, "Trùng mã ảnh sản phẩm");
                     return;
                 }
             }
-            txtMaAnhSP.setBackground(Color.white);
+            anhSpDAO.insert(getFormAnhSP());
             MsgBox.alert(this, "Thêm thành công");
             this.dispose();
         } catch (Exception e) {

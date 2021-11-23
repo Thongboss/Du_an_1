@@ -24,6 +24,8 @@ public class SanPhamDAO {
     final String insert_All_About_SanPham = "{call SP_InsertAllSanPham(?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
     final String update_SanPham = "{call SP_UpdateSanPham(?,?,?,?,?,?,?,?,?,?,?,?,?)}";
     final String update_TrangThai_SanPham_By_Id = "update SanPham set TrangThai = ? where MaSP = ?";
+    final String select_SanPham_SapHetHan = "{call SP_SelectAllSanPhamSapHetHan()}";
+    final String select_SanPham_By_BarCode = "{call SP_SelectAllSanPhamByBarCode(?,?)}";
     
     public void insertSanPham(Object[] obj) {
         SanPham sp = new SanPham();
@@ -107,6 +109,20 @@ public class SanPhamDAO {
     public Object[] getAllAboutSanPhamNgungKDByID(String id) {
         String[] cols = {"MaSP", "TenSP", "TenLoai", "TenDongSP", "NgayXK", "HanSD", "SoLuongTon", "DonGia", "TenQG", "GiaTri", "TenDVT", "BarCode", "GhiChu", "TrangThai", "TenAnhSP"};
         List<Object[]> lst =  this.getListOfArray(select_All_About_SanPham_By_ID, cols, false, id);
+        if (lst.isEmpty()) {
+            return null;
+        }
+        return lst.get(0);
+    }
+    
+    public List<Object[]> getAllAboutSanPhamSapHetHan() {
+        String[] cols = {"MaSP", "TenSP", "TenLoai", "TenDongSP", "NgayXK", "HanSD", "SoLuongTon", "DonGia", "TenQG", "GiaTri", "TenDVT", "BarCode", "GhiChu", "TrangThai", "TenAnhSP"};
+        return this.getListOfArray(select_SanPham_SapHetHan, cols);
+    }
+    
+    public Object[] getAllAboutSanPhamDangKDByBarCode(String barcode) {
+        String[] cols = {"MaSP", "TenSP", "TenLoai", "TenDongSP", "NgayXK", "HanSD", "SoLuongTon", "DonGia", "TenQG", "GiaTri", "TenDVT", "BarCode", "GhiChu", "TrangThai", "TenAnhSP"};
+        List<Object[]> lst =  this.getListOfArray(select_SanPham_By_BarCode, cols, true, barcode);
         if (lst.isEmpty()) {
             return null;
         }

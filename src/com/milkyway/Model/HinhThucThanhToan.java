@@ -58,4 +58,9 @@ public class HinhThucThanhToan {
         this.GhiChu = GhiChu;
     }
 
+    @Override
+    public String toString() {
+        return TenHinhThucThanhToan;
+    }
+
 }
