@@ -19,13 +19,14 @@ public class TheThanhVien {
     private boolean GioiTinh;
     private Date NgaySinh;
     private String SDT, CMND, Email, HinhAnh;
+    private int Diem;
     private Date NgayTao, NgayHetHan;
     private String GhiChu;
 
     public TheThanhVien() {
     }
 
-    public TheThanhVien(int IDTheTV, String MaTheTV, String TenKH, boolean GioiTinh, Date NgaySinh, String SDT, String CMND, String Email, String HinhAnh, Date NgayTao, Date NgayHetHan, String GhiChu) {
+    public TheThanhVien(int IDTheTV, String MaTheTV, String TenKH, boolean GioiTinh, Date NgaySinh, String SDT, String CMND, String Email, String HinhAnh, int Diem, Date NgayTao, Date NgayHetHan, String GhiChu) {
         this.IDTheTV = IDTheTV;
         this.MaTheTV = MaTheTV;
         this.TenKH = TenKH;
@@ -35,6 +36,7 @@ public class TheThanhVien {
         this.CMND = CMND;
         this.Email = Email;
         this.HinhAnh = HinhAnh;
+        this.Diem = Diem;
         this.NgayTao = NgayTao;
         this.NgayHetHan = NgayHetHan;
         this.GhiChu = GhiChu;
@@ -110,6 +112,14 @@ public class TheThanhVien {
 
     public void setHinhAnh(String HinhAnh) {
         this.HinhAnh = HinhAnh;
+    }
+
+    public int getDiem() {
+        return Diem;
+    }
+
+    public void setDiem(int Diem) {
+        this.Diem = Diem;
     }
 
     public Date getNgayTao() {
