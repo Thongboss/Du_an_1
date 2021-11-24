@@ -28,6 +28,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private NhanVienJPanel nhanVienPanel;
     private BanHang banHang;
     private ThongKeJPanel thongKe;
+    private KhuyenMaiJPanel khuyenMaiJPanel;
 
     public MainJFrame() {
         initComponents();
@@ -686,7 +687,17 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSanPhamMouseExited
 
     private void btnKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKhuyenMaiMouseClicked
-        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            tbpMainPortal.remove(khuyenMaiJPanel);
+            return;
+        }
+        if (khuyenMaiJPanel == null || tbpMainPortal.getComponentCount() == 0) {
+            khuyenMaiJPanel = new KhuyenMaiJPanel();
+            tbpMainPortal.addTab("Khuyến mãi", khuyenMaiJPanel);
+            tbpMainPortal.setSelectedComponent(khuyenMaiJPanel);
+        } else {
+            tbpMainPortal.setSelectedComponent(khuyenMaiJPanel);
+        }
     }//GEN-LAST:event_btnKhuyenMaiMouseClicked
 
     private void btnKhuyenMaiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKhuyenMaiMouseEntered

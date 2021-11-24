@@ -131,7 +131,7 @@
                                   <Component id="btnQuet" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="btnThanhToan" min="-2" pref="172" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="btnTaoHD" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -148,8 +148,8 @@
                           <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btnThanhToan" alignment="3" pref="60" max="32767" attributes="0"/>
                               <Component id="btnQuet" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnThanhToan" alignment="0" pref="61" max="32767" attributes="0"/>
                               <Component id="btnTaoHD" linkSize="4" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -645,10 +645,12 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jPanel7" alignment="1" max="32767" attributes="0"/>
                               <Component id="jPanel8" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="btnAdddonDH" min="-2" pref="165" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="btnNewdonDH" min="-2" pref="168" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="btnNewdonDH" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnAdddonDH" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -662,12 +664,13 @@
                           <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btnNewdonDH" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnAdddonDH" alignment="3" max="32767" attributes="0"/>
+                              <Component id="btnAdddonDH" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
+                              <Component id="btnNewdonDH" linkSize="7" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                              <Component id="jButton1" linkSize="7" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="14" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -914,7 +917,7 @@
                                   <Component id="jLabel36" min="-2" pref="24" max="-2" attributes="0"/>
                                   <Component id="jScrollPane6" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="30" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -954,7 +957,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel32">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Ph&#xed; kh&#xe1;c"/>
+                        <Property name="text" type="java.lang.String" value="Ph&#xed; v&#x1ead;n chuy&#x1ec3;n"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtPhiDH">
@@ -1017,9 +1020,9 @@
                 <Component class="javax.swing.JButton" name="btnAdddonDH">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/com/milkyway/Icons/Add to basket.png"/>
+                      <Image iconType="3" name="/com/milkyway/Icons/Price list.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Th&#xea;m h&#xf3;a &#x111;&#x1a1;n"/>
+                    <Property name="text" type="java.lang.String" value="Thanh to&#xe1;n"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnNewdonDH">
@@ -1027,7 +1030,15 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/com/milkyway/Icons/Add.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="T&#x1ea1;o m&#x1edb;i"/>
+                    <Property name="text" type="java.lang.String" value="T&#x1ea1;o h&#xf3;a &#x111;&#x1a1;n"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButton1">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/com/milkyway/Icons/Bomb.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Ho&#xe0;n tr&#x1ea3;"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -1186,7 +1197,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="lblSP" min="-2" pref="88" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="lblNextSP" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnNextSP" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -1202,7 +1213,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblSP" alignment="3" max="32767" attributes="0"/>
                       <Component id="btnBackSP" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblNextSP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnNextSP" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtTimSP" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnTimSP" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -1212,7 +1223,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="lblNextSP">
+        <Component class="javax.swing.JButton" name="btnNextSP">
           <Properties>
             <Property name="text" type="java.lang.String" value="&gt;&gt;"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -1220,7 +1231,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lblNextSPActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNextSPActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnBackSP">

@@ -21,12 +21,12 @@ public class HoaDon {
     private Date NgayLap;
     private double TongTien;
     private String GhiChu;
-    private boolean TrangThai;
+    private String TrangThai;
 
     public HoaDon() {
     }
 
-    public HoaDon(int IDHoaDon, String MaHD, int IDNhanVien, int IDTheTV, int IDHinhThucThanhToan, Date NgayLap, double TongTien, String GhiChu, boolean TrangThai) {
+    public HoaDon(int IDHoaDon, String MaHD, int IDNhanVien, int IDTheTV, int IDHinhThucThanhToan, Date NgayLap, double TongTien, String GhiChu, String TrangThai) {
         this.IDHoaDon = IDHoaDon;
         this.MaHD = MaHD;
         this.IDNhanVien = IDNhanVien;
@@ -102,11 +102,11 @@ public class HoaDon {
         this.GhiChu = GhiChu;
     }
 
-    public boolean isTrangThai() {
+    public String isTrangThai() {
         return TrangThai;
     }
 
-    public void setTrangThai(boolean TrangThai) {
+    public void setTrangThai(String TrangThai) {
         this.TrangThai = TrangThai;
     }
 

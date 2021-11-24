@@ -100,7 +100,7 @@ public class BanHangDAO {
         }
     }
 
-    public List<Object[]> loadHoaDon(int tt) {
+    public List<Object[]> loadHoaDon(String tt) {
         try {
             String cols[] = {"MAHD", "MANV", "TENKH", "TRANGTHAI"};
             return this.getListOfArray(hoadon_tt, cols, tt);
@@ -231,7 +231,7 @@ public class BanHangDAO {
                 hd.setMaHD(rs.getString("MaHD"));
                 hd.setNgayLap(rs.getDate("NgayLap"));
                 hd.setTongTien(rs.getDouble("TongTien"));
-                hd.setTrangThai(rs.getBoolean("TrangThai"));
+                hd.setTrangThai(rs.getString("TrangThai"));
                 list.add(hd);
             }
             rs.getStatement().getConnection().close();
