@@ -120,17 +120,17 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
         tblKhuyenMai.setAutoCreateRowSorter(true);
         tblKhuyenMai.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã khuyến mãi", "Tên chương trình", "Loại sản phẩm", "Hình thức thanh toán", "Bắt đầu", "Kết thúc", "Giảm giá", "Mô tả"
+                "Mã khuyến mãi", "Tên chương trình", "Loại sản phẩm", "Dòng sản phẩm", "Hình thức thanh toán", "Bắt đầu", "Kết thúc", "Giảm giá", "Mô tả"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

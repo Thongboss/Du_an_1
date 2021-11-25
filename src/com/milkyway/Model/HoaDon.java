@@ -102,7 +102,7 @@ public class HoaDon {
         this.GhiChu = GhiChu;
     }
 
-    public String isTrangThai() {
+    public String getTrangThai() {
         return TrangThai;
     }
 
