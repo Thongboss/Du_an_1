@@ -63,7 +63,7 @@ public class QuetMaVachJFrame extends javax.swing.JFrame implements Runnable, Th
         panel.setPreferredSize(size);
         panel.setFPSDisplayed(true);
 
-        pnlScreen.add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 470));
+        pnlScreen.add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 300));
 
         executor.execute(this);
     }
@@ -285,12 +285,11 @@ public class QuetMaVachJFrame extends javax.swing.JFrame implements Runnable, Th
                                         .addGap(12, 12, 12)
                                         .addComponent(txtSoLuongTon, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtKetQua)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnTimKiem)))
+                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtKetQua)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnTimKiem)))))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(195, 195, 195)

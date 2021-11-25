@@ -411,7 +411,7 @@ public class BanHang extends javax.swing.JPanel {
         txtTienkhachtra = new javax.swing.JTextField();
         ckbNhanHD = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblThueVAT = new javax.swing.JLabel();
         btnXuatHD = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -586,19 +586,23 @@ public class BanHang extends javax.swing.JPanel {
 
         jLabel10.setText("Tổng tiền hàng");
 
+        lblTongtien.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        lblTongtien.setForeground(new java.awt.Color(0, 0, 255));
+        lblTongtien.setText("VND 100,000");
         lblTongtien.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 51)));
 
         jLabel12.setText("Giảm giá");
 
+        lblGiamgia.setText("10%");
         lblGiamgia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 51)));
 
-        jLabel14.setText("Phí  khác");
+        jLabel14.setText("Phí khác");
 
         jLabel15.setText("Hình thức thanh toán");
 
         cbbHinhThucThanhToan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tiền mặt" }));
 
-        jLabel16.setText("Khách Cần trả");
+        jLabel16.setText("Khách cần trả");
 
         jLabel17.setText("Tiền trả lại");
 
@@ -612,6 +616,9 @@ public class BanHang extends javax.swing.JPanel {
         txtGhichuHD.setRows(5);
         jScrollPane4.setViewportView(txtGhichuHD);
 
+        lblTienCanTra.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        lblTienCanTra.setForeground(new java.awt.Color(0, 0, 255));
+        lblTienCanTra.setText("VND 90,000");
         lblTienCanTra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 51)));
 
         jLabel31.setText("Khách trả");
@@ -621,9 +628,9 @@ public class BanHang extends javax.swing.JPanel {
 
         jLabel1.setText("Thuế VAT");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("1%");
+        lblThueVAT.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblThueVAT.setForeground(new java.awt.Color(255, 51, 51));
+        lblThueVAT.setText("1%");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -654,7 +661,7 @@ public class BanHang extends javax.swing.JPanel {
                                     .addComponent(lblGiamgia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtPhikhac)
                                     .addGroup(jPanel6Layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblThueVAT, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE)))))
                         .addContainerGap())
                     .addGroup(jPanel6Layout.createSequentialGroup()
@@ -664,14 +671,12 @@ public class BanHang extends javax.swing.JPanel {
                         .addGap(19, 19, 19))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel16)
-                                .addGap(37, 37, 37)
-                                .addComponent(lblTienCanTra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(50, 50, 50)
-                                .addComponent(txtTienkhachtra)))
+                            .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel16))
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTienCanTra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtTienkhachtra))
                         .addContainerGap())
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel15)
@@ -697,7 +702,7 @@ public class BanHang extends javax.swing.JPanel {
                 .addGap(13, 13, 13)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(lblThueVAT))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -710,11 +715,11 @@ public class BanHang extends javax.swing.JPanel {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtTienkhachtra, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTienthua, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ckbChoThanhToan)
                     .addComponent(ckbNhanHD))
@@ -1035,6 +1040,11 @@ public class BanHang extends javax.swing.JPanel {
         btnQuet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/barcode.png"))); // NOI18N
         btnQuet.setText("Quét mã");
         btnQuet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnQuet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -1749,6 +1759,10 @@ public class BanHang extends javax.swing.JPanel {
         thanhToan();
     }//GEN-LAST:event_btnXuatHDActionPerformed
 
+    private void btnQuetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuetActionPerformed
+        new QuetMaVachJFrame().setVisible(true);
+    }//GEN-LAST:event_btnQuetActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdddonDH;
@@ -1780,7 +1794,6 @@ public class BanHang extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -1849,6 +1862,7 @@ public class BanHang extends javax.swing.JPanel {
     private javax.swing.JLabel lblTensp2;
     private javax.swing.JLabel lblTensp3;
     private javax.swing.JLabel lblTensp4;
+    private javax.swing.JLabel lblThueVAT;
     private javax.swing.JLabel lblTienCanTra;
     private javax.swing.JLabel lblTienDH;
     private javax.swing.JLabel lblTongtien;
