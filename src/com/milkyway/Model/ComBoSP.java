@@ -15,27 +15,26 @@ public class ComBoSP {
     
     private int IDComboSP;
     private String MaComboSP, TenComboSP;
-    private int IDChiTietSP, SoLuongSP, SoLuongComboSP;
-    private double DonGia;
-    private Date NgayTao;
+    private int SoLuong;
+    private double TongGia;
+    private int GiamGia;
+    private Date NgayTao, NgayHetHan;
     private String GhiChu, AnhComboSP;
-    private boolean TrangThai;
 
     public ComBoSP() {
     }
 
-    public ComBoSP(int IDComboSP, String MaComboSP, String TenComboSP, int IDChiTietSP, int SoLuongSP, int SoLuongComboSP, double DonGia, Date NgayTao, String GhiChu, String AnhComboSP, boolean TrangThai) {
+    public ComBoSP(int IDComboSP, String MaComboSP, String TenComboSP, int SoLuong, double TongGia, int GiamGia, Date NgayTao, Date NgayHetHan, String GhiChu, String AnhComboSP) {
         this.IDComboSP = IDComboSP;
         this.MaComboSP = MaComboSP;
         this.TenComboSP = TenComboSP;
-        this.IDChiTietSP = IDChiTietSP;
-        this.SoLuongSP = SoLuongSP;
-        this.SoLuongComboSP = SoLuongComboSP;
-        this.DonGia = DonGia;
+        this.SoLuong = SoLuong;
+        this.TongGia = TongGia;
+        this.GiamGia = GiamGia;
         this.NgayTao = NgayTao;
+        this.NgayHetHan = NgayHetHan;
         this.GhiChu = GhiChu;
         this.AnhComboSP = AnhComboSP;
-        this.TrangThai = TrangThai;
     }
 
     public int getIDComboSP() {
@@ -62,36 +61,28 @@ public class ComBoSP {
         this.TenComboSP = TenComboSP;
     }
 
-    public int getIDChiTietSP() {
-        return IDChiTietSP;
+    public int getSoLuong() {
+        return SoLuong;
     }
 
-    public void setIDChiTietSP(int IDChiTietSP) {
-        this.IDChiTietSP = IDChiTietSP;
+    public void setSoLuong(int SoLuong) {
+        this.SoLuong = SoLuong;
     }
 
-    public int getSoLuongSP() {
-        return SoLuongSP;
+    public double getTongGia() {
+        return TongGia;
     }
 
-    public void setSoLuongSP(int SoLuongSP) {
-        this.SoLuongSP = SoLuongSP;
+    public void setTongGia(double TongGia) {
+        this.TongGia = TongGia;
     }
 
-    public int getSoLuongComboSP() {
-        return SoLuongComboSP;
+    public int getGiamGia() {
+        return GiamGia;
     }
 
-    public void setSoLuongComboSP(int SoLuongComboSP) {
-        this.SoLuongComboSP = SoLuongComboSP;
-    }
-
-    public double getDonGia() {
-        return DonGia;
-    }
-
-    public void setDonGia(double DonGia) {
-        this.DonGia = DonGia;
+    public void setGiamGia(int GiamGia) {
+        this.GiamGia = GiamGia;
     }
 
     public Date getNgayTao() {
@@ -100,6 +91,14 @@ public class ComBoSP {
 
     public void setNgayTao(Date NgayTao) {
         this.NgayTao = NgayTao;
+    }
+
+    public Date getNgayHetHan() {
+        return NgayHetHan;
+    }
+
+    public void setNgayHetHan(Date NgayHetHan) {
+        this.NgayHetHan = NgayHetHan;
     }
 
     public String getGhiChu() {
@@ -116,13 +115,5 @@ public class ComBoSP {
 
     public void setAnhComboSP(String AnhComboSP) {
         this.AnhComboSP = AnhComboSP;
-    }
-
-    public boolean isTrangThai() {
-        return TrangThai;
-    }
-
-    public void setTrangThai(boolean TrangThai) {
-        this.TrangThai = TrangThai;
     }
 }

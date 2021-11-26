@@ -17,23 +17,22 @@ import java.util.List;
  */
 public class ComBoSPDAO extends MilkyWayDAO<ComBoSP, String> {
 
-    final String INSERT_SQL = "INSERT INTO [dbo].[ComBoSP]([MaComboSP],[TenComboSP],[IDChiTietSP],[SoLuongSP],[SoLuongComboSP],[DonGia],[GhiChu],[AnhComBoSP])\n"
-            + "VALUES(?,?,?,?,?,?,?,?)";
-    final String UPDATE_SQL = "UPDATE [dbo].[ComBoSP]\n"
-            + "SET [TenComboSP] = ?,[SoLuongSP] = ?,[SoLuongComboSP] = ?,[DonGia] = ?,[GhiChu] = ?,[AnhComBoSP] = ?,[TrangThai] = ?\n"
-            + "WHERE [MaComboSP] = ?";
+    final String INSERT_SQL = "INSERT INTO [dbo].[ComBoSP]([MaComboSP],[TenComboSP],[IDChiTietSP],[SoLuongSP],[SoLuongComboSP],[DonGia],[GiamGia],[NgayHetHan],[GhiChu],[AnhComBoSP])\n"
+            + "     VALUES (?,?,?,?,?,?,?,?,?,?)";
+    final String UPDATE_SQL = "UPDATE [dbo].[ComBoSP] SET [TenComboSP] = ?,[SoLuongSP] = ?,[SoLuongComboSP] = ?,[DonGia] = ?,[GiamGia] = ?,[NgayHetHan] = ?,[GhiChu] = ?,[AnhComBoSP] = ?\n"
+            + " WHERE [MaComboSP] = ?";
     final String DELETE_SQL = "DELETE FROM [dbo].[ComBoSP] WHERE [MaComboSP] = ?";
     final String SELECT_BY_ID_SQL = "SELECT * FROM [dbo].[ComBoSP] WHERE [MaComboSP] = ?";
     final String SELECT_ALL_SQL = "SELECT * FROM [dbo].[ComBoSP]";
 
     @Override
     public void insert(ComBoSP entity) {
-        JDBCHelper.update(INSERT_SQL, entity.getMaComboSP(), entity.getTenComboSP(), entity.getIDChiTietSP(), entity.getSoLuongSP(), entity.getSoLuongComboSP(), entity.getDonGia(), entity.getGhiChu(), entity.getAnhComboSP());
+//        JDBCHelper.update(INSERT_SQL, entity.getMaComboSP(), entity.getTenComboSP(), entity.getIDChiTietSP(), entity.getSoLuongSP(), entity.getSoLuongComboSP(), entity.getDonGia(), entity.getGiamGia(), entity.getNgayHetHan(), entity.getGhiChu(), entity.getAnhComboSP());
     }
 
     @Override
     public void update(ComBoSP entity) {
-        JDBCHelper.update(UPDATE_SQL, entity.getTenComboSP(), entity.getSoLuongSP(), entity.getSoLuongComboSP(), entity.getDonGia(), entity.getGhiChu(), entity.getAnhComboSP(), entity.isTrangThai());
+//        JDBCHelper.update(UPDATE_SQL, entity.getTenComboSP(), entity.getSoLuongSP(), entity.getSoLuongComboSP(), entity.getDonGia(), entity.getGiamGia(), entity.getNgayHetHan(), entity.getGhiChu(), entity.getAnhComboSP());
     }
 
     @Override
@@ -61,8 +60,8 @@ public class ComBoSPDAO extends MilkyWayDAO<ComBoSP, String> {
         try {
             ResultSet rs = JDBCHelper.query(sql, args);
             while (rs.next()) {
-                ComBoSP cb = new ComBoSP(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getDouble(7), rs.getDate(8), rs.getString(9), rs.getString(10), rs.getBoolean(11));
-                lst.add(cb);
+//                ComBoSP cb = new ComBoSP(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getDouble(7), rs.getInt(8), rs.getDate(9), rs.getDate(10), rs.getString(11), rs.getString(12));
+//                lst.add(cb);
             }
             rs.getStatement().getConnection().close();
             return lst;

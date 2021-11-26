@@ -30,10 +30,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author PC
  */
-public class BanHang extends javax.swing.JPanel {
+public class BanHangJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form BanHang
+     * Creates new form BanHangJPanel
      */
     BanHangDAO bh = new BanHangDAO();
     String loaiHD[] = {"Chờ thanh toán", "Đang giao"};
@@ -53,7 +53,7 @@ public class BanHang extends javax.swing.JPanel {
     int sl1, sl2, sl3, sl4;
     HinhThucThanhToanDAO hinhThucThanhToanDAO = new HinhThucThanhToanDAO();
 
-    public BanHang() {
+    public BanHangJPanel() {
         initComponents();
         init();
         for (int i = 0; i < loaiHD.length; i++) {
@@ -194,7 +194,7 @@ public class BanHang extends javax.swing.JPanel {
                 MsgBox.alert(this, "Tiền thanh toán chưa đủ!");
                 return;
             } else {
-                txtTienthua.setText(String.valueOf(tiendu));
+                lblTienThua.setText(String.valueOf(tiendu));
             }
             String manv = lblMaNV.getText();
             int idnv = 0;
@@ -401,7 +401,6 @@ public class BanHang extends javax.swing.JPanel {
         cbbHinhThucThanhToan = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        txtTienthua = new javax.swing.JTextField();
         ckbChoThanhToan = new javax.swing.JCheckBox();
         jLabel18 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -412,6 +411,7 @@ public class BanHang extends javax.swing.JPanel {
         ckbNhanHD = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         lblThueVAT = new javax.swing.JLabel();
+        lblTienThua = new javax.swing.JLabel();
         btnXuatHD = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -512,8 +512,6 @@ public class BanHang extends javax.swing.JPanel {
 
         lblMaNV.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblMaNV.setForeground(new java.awt.Color(0, 0, 255));
-        lblMaNV.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMaNV.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 51)));
 
         jLabel5.setText("Mã thẻ thành viên");
 
@@ -523,12 +521,9 @@ public class BanHang extends javax.swing.JPanel {
 
         lblDiachi.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblDiachi.setForeground(new java.awt.Color(0, 0, 255));
-        lblDiachi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblDiachi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 51)));
 
         lblNgayTao.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblNgayTao.setForeground(new java.awt.Color(0, 0, 255));
-        lblNgayTao.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -539,9 +534,6 @@ public class BanHang extends javax.swing.JPanel {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDiachi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(0, 274, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6))
@@ -550,8 +542,11 @@ public class BanHang extends javax.swing.JPanel {
                             .addComponent(txtTheTV, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                             .addComponent(lblNgayTao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addGap(32, 32, 32)
+                        .addGap(37, 37, 37)
                         .addComponent(lblMaNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -586,15 +581,15 @@ public class BanHang extends javax.swing.JPanel {
 
         jLabel10.setText("Tổng tiền hàng");
 
-        lblTongtien.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        lblTongtien.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         lblTongtien.setForeground(new java.awt.Color(0, 0, 255));
         lblTongtien.setText("VND 100,000");
-        lblTongtien.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 51)));
 
         jLabel12.setText("Giảm giá");
 
+        lblGiamgia.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        lblGiamgia.setForeground(new java.awt.Color(255, 0, 0));
         lblGiamgia.setText("10%");
-        lblGiamgia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 51)));
 
         jLabel14.setText("Phí khác");
 
@@ -606,8 +601,6 @@ public class BanHang extends javax.swing.JPanel {
 
         jLabel17.setText("Tiền trả lại");
 
-        txtTienthua.setEditable(false);
-
         ckbChoThanhToan.setText("Chờ thanh toán");
 
         jLabel18.setText("Ghi chú hóa đơn");
@@ -616,12 +609,13 @@ public class BanHang extends javax.swing.JPanel {
         txtGhichuHD.setRows(5);
         jScrollPane4.setViewportView(txtGhichuHD);
 
-        lblTienCanTra.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        lblTienCanTra.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTienCanTra.setForeground(new java.awt.Color(0, 0, 255));
         lblTienCanTra.setText("VND 90,000");
-        lblTienCanTra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 51)));
 
         jLabel31.setText("Khách trả");
+
+        txtTienkhachtra.setName("Tiền khách trả"); // NOI18N
 
         ckbNhanHD.setSelected(true);
         ckbNhanHD.setText("Nhận kèm hóa đơn");
@@ -631,6 +625,10 @@ public class BanHang extends javax.swing.JPanel {
         lblThueVAT.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblThueVAT.setForeground(new java.awt.Color(255, 51, 51));
         lblThueVAT.setText("1%");
+
+        lblTienThua.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTienThua.setForeground(new java.awt.Color(0, 0, 255));
+        lblTienThua.setText("VND 10,000");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -642,13 +640,6 @@ public class BanHang extends javax.swing.JPanel {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane4)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel18)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37)
-                                .addComponent(txtTienthua))
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel10)
@@ -662,7 +653,13 @@ public class BanHang extends javax.swing.JPanel {
                                     .addComponent(txtPhikhac)
                                     .addGroup(jPanel6Layout.createSequentialGroup()
                                         .addComponent(lblThueVAT, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel18)
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(23, 23, 23)
+                                .addComponent(lblTienThua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(ckbChoThanhToan)
@@ -673,9 +670,9 @@ public class BanHang extends javax.swing.JPanel {
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel16))
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTienCanTra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblTienCanTra, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
                             .addComponent(txtTienkhachtra))
                         .addContainerGap())
                     .addGroup(jPanel6Layout.createSequentialGroup()
@@ -717,9 +714,9 @@ public class BanHang extends javax.swing.JPanel {
                     .addComponent(txtTienkhachtra, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTienthua, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTienThua))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ckbChoThanhToan)
                     .addComponent(ckbNhanHD))
@@ -729,6 +726,8 @@ public class BanHang extends javax.swing.JPanel {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lblTienCanTra, lblTienThua});
 
         btnXuatHD.setBackground(new java.awt.Color(102, 255, 102));
         btnXuatHD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Dollar.png"))); // NOI18N
@@ -1381,14 +1380,15 @@ public class BanHang extends javax.swing.JPanel {
                 .addGroup(pnlSP4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDongsp4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblTensp4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSP4Layout.createSequentialGroup()
+                    .addGroup(pnlSP4Layout.createSequentialGroup()
                         .addGroup(pnlSP4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel24)
                             .addComponent(jLabel27))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(9, 9, 9)
                         .addGroup(pnlSP4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblKL4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblDongia3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)))
+                            .addComponent(lblDongia3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(pnlSP4Layout.createSequentialGroup()
                         .addComponent(lblAnh4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 32, Short.MAX_VALUE)))
@@ -1452,7 +1452,7 @@ public class BanHang extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlDSSP, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnTimSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1460,8 +1460,8 @@ public class BanHang extends javax.swing.JPanel {
                         .addComponent(lblSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblNextSP))
                     .addComponent(txtTimSP)
-                    .addComponent(btnResest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(btnResest))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel9.setBackground(new java.awt.Color(107, 185, 240));
@@ -1524,17 +1524,17 @@ public class BanHang extends javax.swing.JPanel {
                 .addGap(0, 12, Short.MAX_VALUE))
         );
 
-        pnlWebcam.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 51)));
+        pnlWebcam.setPreferredSize(new java.awt.Dimension(411, 200));
 
         javax.swing.GroupLayout pnlWebcamLayout = new javax.swing.GroupLayout(pnlWebcam);
         pnlWebcam.setLayout(pnlWebcamLayout);
         pnlWebcamLayout.setHorizontalGroup(
             pnlWebcamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 411, Short.MAX_VALUE)
         );
         pnlWebcamLayout.setVerticalGroup(
             pnlWebcamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 195, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -1549,7 +1549,8 @@ public class BanHang extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlWebcam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(pnlWebcam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1562,9 +1563,9 @@ public class BanHang extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pnlWebcam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pnlWebcam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -1865,6 +1866,7 @@ public class BanHang extends javax.swing.JPanel {
     private javax.swing.JLabel lblThueVAT;
     private javax.swing.JLabel lblTienCanTra;
     private javax.swing.JLabel lblTienDH;
+    private javax.swing.JLabel lblTienThua;
     private javax.swing.JLabel lblTongtien;
     private javax.swing.JPanel pnlDSSP;
     private javax.swing.JPanel pnlSP1;
@@ -1883,7 +1885,6 @@ public class BanHang extends javax.swing.JPanel {
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtTheTV;
     private javax.swing.JTextField txtTienkhachtra;
-    private javax.swing.JTextField txtTienthua;
     private javax.swing.JTextField txtTimSP;
     // End of variables declaration//GEN-END:variables
 }

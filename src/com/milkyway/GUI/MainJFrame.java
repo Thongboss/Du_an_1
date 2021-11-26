@@ -26,7 +26,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private SanPhamJPanel spPanel;
     private TheThanhVienJPanel theTVPanel;
     private NhanVienJPanel nhanVienPanel;
-    private BanHang banHang;
+    private BanHangJPanel banHang;
     private ThongKeJPanel thongKe;
     private KhuyenMaiJPanel khuyenMaiJPanel;
 
@@ -34,18 +34,20 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         init();
     }
-    
+
     private void init() {
         setIconImage(ImageUtils.getAppIcon());
         setExtendedState(getExtendedState() | Frame.MAXIMIZED_BOTH);
-        new WelcomeJDialog(this, true).setVisible(true);
+//        new WelcomeJDialog(this, true).setVisible(true);
 //        new JdbcJDialog(this, true).setVisible(true);
         new DangNhapJDialog(this, true).setVisible(true);
         JThread.runDateTime(lblDateTime);
         JThread.runText(lblMain);
         loadUser();
+        banHang = new BanHangJPanel();
+        tbpMainPortal.addTab("Quản lý bán hàng", banHang);
     }
-    
+
     private void loadUser() {
         lblTenNV.setText(DangNhapJDialog.showAuth()[0].toString());
         lblRole.setText(Boolean.parseBoolean(DangNhapJDialog.showAuth()[1].toString()) ? "Trưởng phòng" : "Nhân viên");
@@ -162,7 +164,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jToolBar1.add(jSeparator1);
 
         tbarSanPham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/milk.png"))); // NOI18N
-        tbarSanPham.setText("Sản phẩm");
+        tbarSanPham.setText("Combo sản phẩm");
         tbarSanPham.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tbarSanPham.setFocusable(false);
         tbarSanPham.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -637,17 +639,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitMouseExited
 
     private void btnBanHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBanHangMouseClicked
-        if (evt.getClickCount() == 2) {
-            tbpMainPortal.remove(banHang);
-            return;
-        }
-        if (banHang == null || tbpMainPortal.getComponentCount() == 0) {
-            banHang = new BanHang();
-            tbpMainPortal.addTab("Quản lý bán hàng", banHang);
-            tbpMainPortal.setSelectedComponent(banHang);
-        } else {
-            tbpMainPortal.setSelectedComponent(banHang);
-        }
+        tbpMainPortal.setSelectedComponent(banHang);
     }//GEN-LAST:event_btnBanHangMouseClicked
 
     private void btnBanHangMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBanHangMouseEntered
@@ -663,7 +655,7 @@ public class MainJFrame extends javax.swing.JFrame {
             tbpMainPortal.remove(spPanel);
             return;
         }
-        if (spPanel == null || tbpMainPortal.getComponentCount() == 0) {
+        if (spPanel == null || tbpMainPortal.getComponentCount() == 1) {
             spPanel = new SanPhamJPanel();
             tbpMainPortal.addTab("Quản lý sản phẩm", spPanel);
             tbpMainPortal.setSelectedComponent(spPanel);
@@ -691,7 +683,7 @@ public class MainJFrame extends javax.swing.JFrame {
             tbpMainPortal.remove(khuyenMaiJPanel);
             return;
         }
-        if (khuyenMaiJPanel == null || tbpMainPortal.getComponentCount() == 0) {
+        if (khuyenMaiJPanel == null || tbpMainPortal.getComponentCount() == 1) {
             khuyenMaiJPanel = new KhuyenMaiJPanel();
             tbpMainPortal.addTab("Khuyến mãi", khuyenMaiJPanel);
             tbpMainPortal.setSelectedComponent(khuyenMaiJPanel);
@@ -713,7 +705,7 @@ public class MainJFrame extends javax.swing.JFrame {
             tbpMainPortal.remove(theTVPanel);
             return;
         }
-        if (theTVPanel == null || tbpMainPortal.getComponentCount() == 0) {
+        if (theTVPanel == null || tbpMainPortal.getComponentCount() == 1) {
             theTVPanel = new TheThanhVienJPanel();
             tbpMainPortal.addTab("Quản lý khách hàng", theTVPanel);
             tbpMainPortal.setSelectedComponent(theTVPanel);
@@ -735,7 +727,7 @@ public class MainJFrame extends javax.swing.JFrame {
             tbpMainPortal.remove(thongKe);
             return;
         }
-        if (thongKe == null || tbpMainPortal.getComponentCount() == 0) {
+        if (thongKe == null || tbpMainPortal.getComponentCount() == 1) {
             thongKe = new ThongKeJPanel();
             tbpMainPortal.addTab("Tổng hợp - thống kê", thongKe);
             tbpMainPortal.setSelectedComponent(thongKe);
@@ -761,7 +753,7 @@ public class MainJFrame extends javax.swing.JFrame {
             tbpMainPortal.remove(nhanVienPanel);
             return;
         }
-        if (nhanVienPanel == null || tbpMainPortal.getComponentCount() == 0) {
+        if (nhanVienPanel == null || tbpMainPortal.getComponentCount() == 1) {
             nhanVienPanel = new NhanVienJPanel();
             tbpMainPortal.addTab("Quản lý nhân viên", nhanVienPanel);
             tbpMainPortal.setSelectedComponent(nhanVienPanel);
