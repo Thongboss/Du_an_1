@@ -27,7 +27,7 @@ import static com.milkyway.Utils.ImageUtils.resizeImg;
 import com.milkyway.Utils.MsgBox;
 import com.milkyway.Utils.Validator;
 import com.milkyway.Utils.WebcamUtils;
-import com.milkyway.Utils.XFormater;
+import com.milkyway.Utils.XCurrency;
 import com.milkyway.subGUI.AnhSPJDialog;
 import com.milkyway.subGUI.DonViTinhJDialog;
 import com.milkyway.subGUI.DongSPJDialog;
@@ -537,7 +537,7 @@ public class SanPhamJPanel extends javax.swing.JPanel {
             List<Object[]> lst = sanPhamDAO.getAllAboutSanPhamDangKD();
             for (Object[] obj : lst) {
                 tableModel.addRow(new Object[]{
-                    obj[0], obj[1], obj[2], obj[3], obj[4], obj[5], obj[6], XFormater.toCurrency(Double.parseDouble(obj[7].toString())), obj[8], obj[9], obj[10], obj[11], obj[12], obj[13], obj[14]
+                    obj[0], obj[1], obj[2], obj[3], obj[4], obj[5], Integer.parseInt(obj[6].toString()), Double.parseDouble(obj[7].toString()), obj[8], obj[9], obj[10], obj[11], obj[12], obj[13], obj[14]
                 });
             }
         } catch (Exception e) {
@@ -589,7 +589,7 @@ public class SanPhamJPanel extends javax.swing.JPanel {
             List<Object[]> lst = sanPhamDAO.getAllAboutSanPhamNgungKD();
             for (Object[] obj : lst) {
                 tableModel.addRow(new Object[]{
-                    obj[0], obj[1], obj[2], obj[3], obj[4], obj[5], obj[6], XFormater.toCurrency(Double.parseDouble(obj[7].toString())), obj[8], obj[9], obj[10], obj[11], obj[12], obj[13], obj[14]
+                    obj[0], obj[1], obj[2], obj[3], obj[4], obj[5], Integer.parseInt(obj[6].toString()), Double.parseDouble(obj[7].toString()), obj[8], obj[9], obj[10], obj[11], obj[12], obj[13], obj[14]
                 });
             }
         } catch (Exception e) {
@@ -1860,7 +1860,7 @@ public class SanPhamJPanel extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false, false, false, false, false, false, true, false
@@ -1898,7 +1898,7 @@ public class SanPhamJPanel extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false, false, false, false, false, false, true, false

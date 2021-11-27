@@ -16,17 +16,19 @@ public class ChiTietComboSP {
     private int IDChiTietComboSP, IDComboSP, IDChiTietSP, SoLuong;
     private double DonGia;
     private Date HanSD;
+    private String BarCode;
 
     public ChiTietComboSP() {
     }
 
-    public ChiTietComboSP(int IDChiTietComboSP, int IDComboSP, int IDChiTietSP, int SoLuong, double DonGia, Date HanSD) {
+    public ChiTietComboSP(int IDChiTietComboSP, int IDComboSP, int IDChiTietSP, int SoLuong, double DonGia, Date HanSD, String BarCode) {
         this.IDChiTietComboSP = IDChiTietComboSP;
         this.IDComboSP = IDComboSP;
         this.IDChiTietSP = IDChiTietSP;
         this.SoLuong = SoLuong;
         this.DonGia = DonGia;
         this.HanSD = HanSD;
+        this.BarCode = BarCode;
     }
 
     public int getIDChiTietComboSP() {
@@ -75,5 +77,13 @@ public class ChiTietComboSP {
 
     public void setHanSD(Date HanSD) {
         this.HanSD = HanSD;
+    }
+
+    public String getBarCode() {
+        return BarCode;
+    }
+
+    public void setBarCode(String BarCode) {
+        this.BarCode = BarCode;
     }
 }

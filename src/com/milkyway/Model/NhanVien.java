@@ -12,7 +12,8 @@ import java.util.Date;
  * @author DaiAustinYersin
  */
 public class NhanVien {
-private int IDNhanVien;
+
+    private int IDNhanVien;
     private String MaNV;
     private String TaiKhoan;
     private byte[] MatKhau;
@@ -169,6 +170,4 @@ private int IDNhanVien;
         this.Salt = Salt;
     }
 
-   
-    
 }

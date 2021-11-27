@@ -22,8 +22,8 @@ import java.sql.*;
  */
 public class BanHangDAO {
 
-    String insert_HD = "INSERT INTO [dbo].[HoaDon]([MaHD],[IDNhanVien],[IDTheTV],[IDHinhThucThanhToan],[NgayLap],[TongTien],[GhiChu],[TrangThai])"
-            + " VALUES(?,?,?,?,?,?,?,?)";
+    String insert_HD = "INSERT INTO [dbo].[HoaDon]([MaHD],[IDNhanVien],[IDTheTV],[IDHinhThucThanhToan],[TongTien],[GhiChu],[TrangThai])"
+            + " VALUES(?,?,?,?,?,?,?)";
     String insert_CTHD = "INSERT INTO [dbo].[ChiTietHoaDon]([IDHoaDon],[IDChiTietSP],[SoLuong],[DonGia]) VALUES(?,?,?,?)";
     String update_HD = "UPDATE HOADON SET TRANGTHAI = ? WHERE MAHD = ?";
     String hoadon_tt = "SELECT MAHD, MANV, TENKH, HOADON.TRANGTHAI\n"
@@ -57,7 +57,7 @@ public class BanHangDAO {
 
     public void insert_HD(HoaDon entity) {
         try {
-            JDBCHelper.update(insert_HD, entity.getMaHD(), entity.getIDNhanVien(), entity.getIDTheTV(), entity.getIDHinhThucThanhToan(), entity.getNgayLap(), entity.getTongTien(), entity.getGhiChu(), entity.getTrangThai());
+            JDBCHelper.update(insert_HD, entity.getMaHD(), entity.getIDNhanVien(), entity.getIDTheTV() == 0 ? null : entity.getIDTheTV(), entity.getIDHinhThucThanhToan(), entity.getTongTien(), entity.getGhiChu(), entity.getTrangThai());
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);

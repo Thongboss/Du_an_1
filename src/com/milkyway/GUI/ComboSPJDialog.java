@@ -6,7 +6,9 @@
 package com.milkyway.GUI;
 
 import com.milkyway.DAO.SanPhamDAO;
-import com.milkyway.Utils.XFormater;
+import com.milkyway.Utils.ImageUtils;
+import com.milkyway.Utils.MsgBox;
+import com.milkyway.Utils.XCurrency;
 import java.util.List;
 import javax.swing.RowFilter;
 import javax.swing.event.DocumentEvent;
@@ -104,7 +106,7 @@ public class ComboSPJDialog extends javax.swing.JDialog {
         List<Object[]> lst = sanPhamDAO.getAllAboutSanPhamDangKD();
         for (Object[] obj : lst) {
             tableModel.addRow(new Object[]{
-                obj[0], obj[1], obj[2], obj[3], obj[5], obj[6], XFormater.toCurrency(Double.parseDouble(obj[7].toString())), obj[8], obj[9], obj[10], obj[11], obj[13]
+                obj[0], obj[1], obj[2], obj[3], obj[4], obj[5], Integer.parseInt(obj[6].toString()), Double.parseDouble(obj[7].toString()), obj[8], obj[9], obj[10], obj[11]
             });
         }
     }
@@ -114,14 +116,15 @@ public class ComboSPJDialog extends javax.swing.JDialog {
         txtTenSP.setText(obj[1].toString());
         txtLoaiHang.setText(obj[2].toString());
         txtDongSP.setText(obj[3].toString());
-        txtNgayXK.setText(obj[5].toString());
-        txtHanSD.setText(obj[6].toString());
-        txtSoLuongTon.setText(obj[7].toString());
-        txtDonGia.setText(obj[8].toString());
-        txtXuatXu.setText(obj[9].toString());
-        txtKhoiLuong.setText(obj[10].toString());
-        txtDonViTinh.setText(obj[11].toString());
-        txtBarcodeSP.setText(obj[13].toString());
+        txtNgayXK.setText(obj[4].toString());
+        txtHanSD.setText(obj[5].toString());
+        txtSoLuongTon.setText(obj[6].toString());
+        txtDonGia.setText(XCurrency.toCurrency(Double.parseDouble(obj[7].toString())));
+        txtXuatXu.setText(obj[8].toString());
+        txtKhoiLuong.setText(obj[9].toString());
+        txtDonViTinh.setText(obj[10].toString());
+        txtBarcodeSP.setText(obj[11].toString());
+        lblAnhSP.setIcon(ImageUtils.resizeImg(ImageUtils.read("SanPham", obj[14].toString()), lblAnhSP));
     }
 
     /**
@@ -167,6 +170,7 @@ public class ComboSPJDialog extends javax.swing.JDialog {
         txtSoLuongTon = new javax.swing.JTextField();
         txtNgayXK = new javax.swing.JTextField();
         txtHanSD = new javax.swing.JTextField();
+        btnThemCombo = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -197,6 +201,7 @@ public class ComboSPJDialog extends javax.swing.JDialog {
         jPanel6 = new javax.swing.JPanel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
+        btnTaoBarcode = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Quản lý Combo sản phẩm");
@@ -227,18 +232,25 @@ public class ComboSPJDialog extends javax.swing.JDialog {
         tblSanPham.setAutoCreateRowSorter(true);
         tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã sản phẩm", "Tên sản phẩm", "Loại hàng", "Dòng sản phẩm", "Ngày xuất kho", "Hạn sử dụng", "Số lượng tồn", "Đơn giá", "Xuất xứ", "Khối lượng", "Đơn vị tính", "Barcode"
+                "Mã sản phẩm", "Tên sản phẩm", "Loại hàng", "Dòng sản phẩm", "Ngày xuất kho", "Hạn sử dụng", "Số lượng tồn", "Đơn giá", "Xuất xứ", "Khối lượng", "Đơn vị tính", "Barcode", "Thêm vào Combo", "Số lượng thêm"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Integer.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -284,14 +296,14 @@ public class ComboSPJDialog extends javax.swing.JDialog {
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblAnhSP, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                .addComponent(lblAnhSP, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblAnhSP, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                .addComponent(lblAnhSP, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -347,6 +359,15 @@ public class ComboSPJDialog extends javax.swing.JDialog {
 
         txtHanSD.setEditable(false);
 
+        btnThemCombo.setBackground(new java.awt.Color(102, 255, 102));
+        btnThemCombo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Create.png"))); // NOI18N
+        btnThemCombo.setText("Thêm Combo");
+        btnThemCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemComboActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -355,7 +376,7 @@ public class ComboSPJDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(srpSanPhamDangKD)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -383,16 +404,18 @@ public class ComboSPJDialog extends javax.swing.JDialog {
                                     .addComponent(jLabel12))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtKhoiLuong, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                                    .addComponent(txtKhoiLuong, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
                                     .addComponent(txtXuatXu)
                                     .addComponent(txtDonGia)
                                     .addComponent(txtDonViTinh)
                                     .addComponent(txtBarcodeSP)
                                     .addComponent(txtSoLuongTon))
-                                .addGap(145, 145, 145))
+                                .addGap(117, 117, 117))
                             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnThemCombo)
+                            .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -452,9 +475,12 @@ public class ComboSPJDialog extends javax.swing.JDialog {
                                     .addComponent(txtBarcodeSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(srpSanPhamDangKD, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnThemCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(srpSanPhamDangKD, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -604,6 +630,14 @@ public class ComboSPJDialog extends javax.swing.JDialog {
                 .addGap(0, 9, Short.MAX_VALUE))
         );
 
+        btnTaoBarcode.setBackground(new java.awt.Color(255, 255, 255));
+        btnTaoBarcode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Add.png"))); // NOI18N
+        btnTaoBarcode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaoBarcodeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -646,7 +680,9 @@ public class ComboSPJDialog extends javax.swing.JDialog {
                                     .addComponent(txtNgayTao, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
                                     .addComponent(txtNgayHetHan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtBarcodeCombo)
-                                    .addComponent(jScrollPane1)))
+                                    .addComponent(jScrollPane1))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnTaoBarcode))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -685,7 +721,8 @@ public class ComboSPJDialog extends javax.swing.JDialog {
                             .addComponent(jLabel15)
                             .addComponent(spnSL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel21)
-                            .addComponent(txtBarcodeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtBarcodeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnTaoBarcode))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -704,11 +741,11 @@ public class ComboSPJDialog extends javax.swing.JDialog {
                             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Combo", jPanel3);
+        jTabbedPane1.addTab("Combo sản phẩm", jPanel3);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -750,6 +787,17 @@ public class ComboSPJDialog extends javax.swing.JDialog {
             e.printStackTrace();
         }
     }//GEN-LAST:event_tblSanPhamMouseClicked
+
+    private void btnThemComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemComboActionPerformed
+        if (tblSanPham.getSelectedRows() == null) {
+            MsgBox.alert(this, "Vui lòng chọn sản phẩm trong danh sách");
+            return;
+        }
+    }//GEN-LAST:event_btnThemComboActionPerformed
+
+    private void btnTaoBarcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoBarcodeActionPerformed
+        new QuetBarCodeInputJFrame().setVisible(true);
+    }//GEN-LAST:event_btnTaoBarcodeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -794,6 +842,8 @@ public class ComboSPJDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnTaoBarcode;
+    private javax.swing.JButton btnThemCombo;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

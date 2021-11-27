@@ -15,15 +15,15 @@ import javax.swing.JOptionPane;
 public class MsgBox {
 
     public static void alert(Component parent, String mes) {
-        JOptionPane.showMessageDialog(parent, mes, "Hệ thống quản lý đào tạo", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(parent, mes, "Phầm mềm quản lý đại lý sữa Milky Way", JOptionPane.INFORMATION_MESSAGE);
     }
     
     public static boolean confirm(Component parent, String mes) {
-        int result = JOptionPane.showConfirmDialog(parent, mes, "Hệ thống quản lý đào tạo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        int result = JOptionPane.showConfirmDialog(parent, mes, "Phầm mềm quản lý đại lý sữa Milky Way", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         return result == JOptionPane.YES_OPTION;
     }
     
     public static String prompt(Component parent, String mes) {
-        return JOptionPane.showInputDialog(parent, mes, "Hệ thống quản lý đào tạo", JOptionPane.INFORMATION_MESSAGE);
+        return JOptionPane.showInputDialog(parent, mes, "Phầm mềm quản lý đại lý sữa Milky Way", JOptionPane.INFORMATION_MESSAGE);
     }
 }

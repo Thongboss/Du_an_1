@@ -15,11 +15,10 @@ import com.milkyway.Model.TheThanhVien;
 import com.milkyway.Utils.Auth;
 import com.milkyway.Utils.JThread;
 import com.milkyway.Utils.MsgBox;
-import com.milkyway.Utils.XFormater;
+import com.milkyway.Utils.Validator;
+import com.milkyway.Utils.XCurrency;
 import java.awt.Image;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -35,19 +34,19 @@ public class BanHangJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BanHangJPanel
      */
-    BanHangDAO bh = new BanHangDAO();
+    BanHangDAO banHangDAO = new BanHangDAO();
     String loaiHD[] = {"Chờ thanh toán", "Đang giao"};
     int maxindex;
-    double tongtien = 0, cantra;
-    List<Object[]> listDS = bh.loadSanPham();
+    double tongTien = 0, tienCanTra;
+    List<Object[]> listDS = banHangDAO.loadSanPham();
     List<Object[]> listSP1 = new ArrayList<>();
     List<Object[]> listGH = new ArrayList<>();
     List<Object[]> listT = new ArrayList<>();
     List<Object[]> listTrungGian = new ArrayList<>();
-    List<TheThanhVien> listTTV = bh.loadListTTV();
-    List<NhanVien> ListNV = bh.loadListNV();
-    List<HinhThucThanhToan> listHTTT = bh.loadListHTTT();
-    List<HoaDon> listHD = bh.loadListHD();
+    List<TheThanhVien> listTTV = banHangDAO.loadListTTV();
+    List<NhanVien> ListNV = banHangDAO.loadListNV();
+    List<HinhThucThanhToan> listHTTT = banHangDAO.loadListHTTT();
+    List<HoaDon> listHD = banHangDAO.loadListHD();
     Object[] gh, sp1, sp2, sp3, sp4;
     int index = 0;
     int sl1, sl2, sl3, sl4;
@@ -105,20 +104,20 @@ public class BanHangJPanel extends javax.swing.JPanel {
         listT.removeAll(listT);
     }
 
-    void taoHoaDon() {
+    private void taoHoaDon() {
         double thanhtien;
         for (int i = 0; i < listGH.size(); i++) {
             Object[] sp = listGH.get(i);
             int sl = Integer.parseInt(sp[7].toString());
             double gia = Double.parseDouble(sp[5].toString());
             thanhtien = sl * gia;
-            tongtien += thanhtien;
+            tongTien += thanhtien;
         }
         String matvv = txtTheTV.getText();
         double giam = 0, phikhac, thue;
         for (int i = 0; i < listTTV.size(); i++) {
             if (listTTV.get(i).getMaTheTV().equals(matvv)) {
-                giam = tongtien * 0.03;
+                giam = tongTien * 0.03;
             }
         }
         if (txtPhikhac.getText().isEmpty()) {
@@ -126,12 +125,11 @@ public class BanHangJPanel extends javax.swing.JPanel {
         } else {
             phikhac = Double.parseDouble(txtPhikhac.getText());
         }
-        thue = tongtien * 0.01;
-        cantra = tongtien + thue + phikhac - giam;
-        lblTongtien.setText(XFormater.toCurrency(tongtien));
-        lblGiamgia.setText(XFormater.toCurrency(giam));
-        lblTienCanTra.setText(XFormater.toCurrency(cantra));
-
+        thue = tongTien * 0.01;
+        tienCanTra = tongTien + thue + phikhac - giam;
+        lblTongTien.setText(XCurrency.toCurrency(tongTien));
+        lblGiamgia.setText(XCurrency.toCurrency(giam));
+        lblTienCanTra.setText(XCurrency.toCurrency(tienCanTra));
     }
 
     void clearSP() {
@@ -140,7 +138,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
         lblDongsp1.setText("");
         lblKL1.setText("");
         lblTensp1.setText("");
-        lblDongia.setText("");
+        lblDonGia.setText("");
 
         lblAnh2.setIcon(icon);
         lblDongsp2.setText("");
@@ -161,8 +159,8 @@ public class BanHangJPanel extends javax.swing.JPanel {
         lblDongia3.setText("");
     }
 
-    List<Object[]> loadTrang(List<Object[]> list, int index) {
-//        List<Object[]> list = bh.loadSanPham();
+    private List<Object[]> loadTrang(List<Object[]> list, int index) {
+//        List<Object[]> list = banHangDAO.loadSanPham();
         int test = list.size() / 4;
         int du = list.size() % 4;
 
@@ -185,32 +183,38 @@ public class BanHangJPanel extends javax.swing.JPanel {
         }
         return listSP1;
     }
-
+    
     void thanhToan() {
         try {
-            double khachtra = Double.parseDouble(txtTienkhachtra.getText());
-            double tiendu = khachtra - cantra;
-            if (tiendu < 0) {
+            StringBuilder sb = new StringBuilder();
+            Validator.checkMoney(txtTienkhachtra, sb);
+            if (sb.length() > 0) {
+                MsgBox.alert(this, sb.toString());
+                return;
+            }
+            double tienKhachTra = Double.parseDouble(txtTienkhachtra.getText());
+            double tienThua = tienKhachTra - tienCanTra;
+            if (tienThua < 0) {
                 MsgBox.alert(this, "Tiền thanh toán chưa đủ!");
                 return;
             } else {
-                lblTienThua.setText(String.valueOf(tiendu));
+                lblTienThua.setText(String.valueOf(tienThua));
             }
             String manv = lblMaNV.getText();
-            int idnv = 0;
-            String mahd = listHD.get(listHD.size() - 1).getMaHD();
-            int mahdd = Integer.parseInt(mahd.substring(2));
+            int idNV = 0;
+            String maHD = listHD.get(listHD.size() - 1).getMaHD();
+            int mahdd = Integer.parseInt(maHD.substring(2));
             mahdd++;
             String thetv = txtTheTV.getText();
-            int idttv = 0;
+            int idTTV = 0;
             for (int i = 0; i < listTTV.size(); i++) {
                 if (listTTV.get(i).getMaTheTV().equals(thetv)) {
-                    idttv = listTTV.get(i).getIDTheTV();
+                    idTTV = listTTV.get(i).getIDTheTV();
                 }
             }
             for (int i = 0; i < ListNV.size(); i++) {
                 if (ListNV.get(i).getMaNV().equals(manv)) {
-                    idnv = ListNV.get(i).getIDNhanVien();
+                    idNV = ListNV.get(i).getIDNhanVien();
                 }
             }
             String httt = cbbHinhThucThanhToan.getSelectedItem().toString();
@@ -220,23 +224,22 @@ public class BanHangJPanel extends javax.swing.JPanel {
                     idht = listHTTT.get(i).getIDHinhThucThanhToan();
                 }
             }
-            Date Ngaytao = new SimpleDateFormat("yyyy/MM/dd").parse(lblNgayTaoDH.getText());
             String ghichu = txtGhichuHD.getText();
-            String trangt = ckbChoThanhToan.isSelected() ? "Chờ thanh toán" : "Đã thanh toán";
+            String trangThai = ckbChoThanhToan.isSelected() ? "Chờ thanh toán" : "Đã thanh toán";
             HoaDon hd = new HoaDon();
             hd.setMaHD("HD" + String.valueOf(mahdd));
-            hd.setIDNhanVien(idnv);
+            hd.setIDNhanVien(idNV);
             hd.setIDHinhThucThanhToan(idht);
-            hd.setNgayLap(Ngaytao);
             hd.setGhiChu(ghichu);
-            hd.setTongTien(tongtien);
-            if (!(thetv.equals(""))) {
-                hd.setIDTheTV(idttv);
-            }
-            hd.setTrangThai(trangt);
-            bh.insert_HD(hd);
+            hd.setTongTien(tongTien);
+            hd.setTrangThai(trangThai);
 
-            List<HoaDon> list = bh.loadListHD();
+            if (!thetv.isEmpty()) {
+                hd.setIDTheTV(idTTV);
+            }
+            
+            banHangDAO.insert_HD(hd);
+            List<HoaDon> list = banHangDAO.loadListHD();
             int idhd2 = list.get(list.size() - 1).getIDHoaDon();
             for (int i = 0; i < listGH.size(); i++) {
                 Object[] sp = listGH.get(i);
@@ -248,25 +251,31 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 cthd.setIDChiTietSP(idctsp);
                 cthd.setSoLuong(sl);
                 cthd.setDonGia(dongia);
-                bh.insert_CTHD(cthd);
+                banHangDAO.insert_CTHD(cthd);
             }
+            MsgBox.alert(this, "Thanh toán thành công!");
+            listGH.removeAll(listGH);
+            loadGH();
+            fillTableHD();
         } catch (Exception e) {
             e.printStackTrace();
+            MsgBox.alert(this, "Thanh toán thất bại");
+            throw new RuntimeException(e);
         }
     }
 
-    void loadGH() {
+    private void loadGH() {
         DefaultTableModel model = (DefaultTableModel) tblGiohang.getModel();
         model.setRowCount(0);
         for (Object[] ak : listGH) {
             double thanhtien = Integer.parseInt(ak[7].toString()) * Double.parseDouble(ak[5].toString());
             model.addRow(new Object[]{
-                ak[0], ak[2], ak[7], ak[5], XFormater.toCurrency(thanhtien)
+                ak[0], ak[2], ak[7], ak[5].toString(), XCurrency.toCurrency(thanhtien)
             });
         }
     }
 
-    void loadSP(List<Object[]> list) {
+    private void loadSP(List<Object[]> list) {
 //        List<Object[]> list = loadTrang(index);
         if (list.size() == 0) {
             JOptionPane.showMessageDialog(this, "Danh sách sản phẩm rỗng");
@@ -278,7 +287,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
             lblDongsp1.setText(sp1[1].toString());
             lblTensp1.setText(sp1[2].toString() + " " + sp1[3].toString());
             lblKL1.setText(sp1[4].toString());
-            lblDongia.setText(XFormater.toCurrency(Double.parseDouble(sp1[5].toString())));
+            lblDonGia.setText(XCurrency.toCurrency(Double.parseDouble(sp1[5].toString())));
         } else if (list.size() == 2) {
             sp1 = list.get(0);
             String anh1 = "img\\SanPham/" + sp1[6].toString();
@@ -287,7 +296,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
             lblDongsp1.setText(sp1[1].toString());
             lblTensp1.setText(sp1[2].toString() + " " + sp1[3].toString());
             lblKL1.setText(sp1[4].toString());
-            lblDongia.setText(XFormater.toCurrency(Double.parseDouble(sp1[5].toString())));
+            lblDonGia.setText(XCurrency.toCurrency(Double.parseDouble(sp1[5].toString())));
             sp2 = list.get(1);
             String anh2 = "SanPham/" + sp2[6].toString();
             ImageIcon icon2 = new ImageIcon(new ImageIcon(anh2).getImage().getScaledInstance(180, 185, Image.SCALE_DEFAULT));
@@ -295,7 +304,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
             lblDongsp2.setText(sp2[1].toString());
             lblTensp2.setText(sp2[2].toString() + " " + sp2[3].toString());
             lblKL2.setText(sp2[4].toString());
-            lblDongia1.setText(XFormater.toCurrency(Double.parseDouble(sp2[5].toString())));
+            lblDongia1.setText(XCurrency.toCurrency(Double.parseDouble(sp2[5].toString())));
         } else if (list.size() == 3) {
             sp1 = list.get(0);
             String anh1 = "img\\SanPham/" + sp1[6].toString();
@@ -304,14 +313,14 @@ public class BanHangJPanel extends javax.swing.JPanel {
             lblDongsp1.setText(sp1[1].toString());
             lblTensp1.setText(sp1[2].toString() + " " + sp1[3].toString());
             lblKL1.setText(sp1[4].toString());
-            lblDongia.setText(XFormater.toCurrency(Double.parseDouble(sp1[5].toString())));
+            lblDonGia.setText(XCurrency.toCurrency(Double.parseDouble(sp1[5].toString())));
             String anh2 = "img\\SanPham/" + sp2[6].toString();
             ImageIcon icon2 = new ImageIcon(new ImageIcon(anh2).getImage().getScaledInstance(180, 185, Image.SCALE_DEFAULT));
             lblAnh2.setIcon(icon2);
             lblDongsp2.setText(sp2[1].toString());
             lblTensp2.setText(sp2[2].toString() + " " + sp2[3].toString());
             lblKL2.setText(sp2[4].toString());
-            lblDongia1.setText(XFormater.toCurrency(Double.parseDouble(sp2[5].toString())));
+            lblDongia1.setText(XCurrency.toCurrency(Double.parseDouble(sp2[5].toString())));
             sp3 = list.get(2);
             String anh3 = "img\\SanPham/" + sp3[6].toString();
             ImageIcon icon3n = new ImageIcon(new ImageIcon(anh3).getImage().getScaledInstance(180, 185, Image.SCALE_DEFAULT));
@@ -319,7 +328,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
             lblDongsp3.setText(sp3[1].toString());
             lblTensp3.setText(sp3[2].toString() + " " + sp3[3].toString());
             lblKL3.setText(sp3[4].toString());
-            lblDongia2.setText(XFormater.toCurrency(Double.parseDouble(sp3[5].toString())));
+            lblDongia2.setText(XCurrency.toCurrency(Double.parseDouble(sp3[5].toString())));
         } else {
             sp1 = list.get(0);
             String anh1 = "img\\SanPham/" + sp1[6].toString();
@@ -328,7 +337,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
             lblDongsp1.setText(sp1[1].toString());
             lblTensp1.setText(sp1[2].toString() + " " + sp1[3].toString());
             lblKL1.setText(sp1[4].toString());
-            lblDongia.setText(XFormater.toCurrency(Double.parseDouble(sp1[5].toString())));
+            lblDonGia.setText(XCurrency.toCurrency(Double.parseDouble(sp1[5].toString())));
             sp2 = list.get(1);
             String anh2 = "img\\SanPham/" + sp2[6].toString();
             ImageIcon icon2 = new ImageIcon(new ImageIcon(anh2).getImage().getScaledInstance(180, 185, Image.SCALE_DEFAULT));
@@ -336,7 +345,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
             lblDongsp2.setText(sp2[1].toString());
             lblTensp2.setText(sp2[2].toString() + " " + sp2[3].toString());
             lblKL2.setText(sp2[4].toString());
-            lblDongia1.setText(XFormater.toCurrency(Double.parseDouble(sp2[5].toString())));
+            lblDongia1.setText(XCurrency.toCurrency(Double.parseDouble(sp2[5].toString())));
             sp3 = list.get(2);
             String anh3 = "img\\SanPham/" + sp3[6].toString();
             ImageIcon icon3 = new ImageIcon(new ImageIcon(anh3).getImage().getScaledInstance(180, 185, Image.SCALE_DEFAULT));
@@ -344,7 +353,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
             lblDongsp3.setText(sp3[1].toString());
             lblTensp3.setText(sp3[2].toString() + " " + sp3[3].toString());
             lblKL3.setText(sp3[4].toString());
-            lblDongia2.setText(XFormater.toCurrency(Double.parseDouble(sp3[5].toString())));
+            lblDongia2.setText(XCurrency.toCurrency(Double.parseDouble(sp3[5].toString())));
             sp4 = list.get(3);
             String anh4 = "img\\SanPham/" + sp4[6].toString();
             ImageIcon icon4 = new ImageIcon(new ImageIcon(anh4).getImage().getScaledInstance(180, 185, Image.SCALE_DEFAULT));
@@ -352,7 +361,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
             lblDongsp4.setText(sp4[1].toString());
             lblTensp4.setText(sp4[2].toString() + " " + sp4[3].toString());
             lblKL4.setText(sp4[4].toString());
-            lblDongia3.setText(XFormater.toCurrency(Double.parseDouble(sp4[5].toString())));
+            lblDongia3.setText(XCurrency.toCurrency(Double.parseDouble(sp4[5].toString())));
         }
     }
 
@@ -360,7 +369,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
         String cbb = cbbLoaiHD.getSelectedItem().toString();
         DefaultTableModel model = (DefaultTableModel) tblDSHD.getModel();
         model.setRowCount(0);
-        List<Object[]> list = bh.loadHoaDon(cbb);
+        List<Object[]> list = banHangDAO.loadHoaDon(cbb);
         for (Object[] hd : list) {
             model.addRow(hd);
         }
@@ -375,9 +384,6 @@ public class BanHangJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        buttonGroup3 = new javax.swing.ButtonGroup();
         jPanel13 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
@@ -392,7 +398,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
         lblNgayTao = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        lblTongtien = new javax.swing.JLabel();
+        lblTongTien = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         lblGiamgia = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -461,7 +467,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
         lblDongsp1 = new javax.swing.JLabel();
         lblTensp1 = new javax.swing.JLabel();
         lblKL1 = new javax.swing.JLabel();
-        lblDongia = new javax.swing.JLabel();
+        lblDonGia = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         pnlSP2 = new javax.swing.JPanel();
@@ -581,9 +587,9 @@ public class BanHangJPanel extends javax.swing.JPanel {
 
         jLabel10.setText("Tổng tiền hàng");
 
-        lblTongtien.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        lblTongtien.setForeground(new java.awt.Color(0, 0, 255));
-        lblTongtien.setText("VND 100,000");
+        lblTongTien.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        lblTongTien.setForeground(new java.awt.Color(0, 0, 255));
+        lblTongTien.setText("VND 100,000");
 
         jLabel12.setText("Giảm giá");
 
@@ -648,7 +654,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(29, 29, 29)
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblTongtien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblTongTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblGiamgia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtPhikhac)
                                     .addGroup(jPanel6Layout.createSequentialGroup()
@@ -687,7 +693,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-                    .addComponent(lblTongtien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblTongTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
@@ -934,11 +940,6 @@ public class BanHangJPanel extends javax.swing.JPanel {
 
         btnAdddonDH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Add to basket.png"))); // NOI18N
         btnAdddonDH.setText("Thêm hóa đơn");
-        btnAdddonDH.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdddonDHActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -991,7 +992,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã SP", "Tên SP", "Số lượng", "Đơn giá", "Thành tiền"
+                "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Đơn giá", "Thành tiền"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -1003,11 +1004,6 @@ public class BanHangJPanel extends javax.swing.JPanel {
             }
         });
         tblGiohang.setRowHeight(25);
-        tblGiohang.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblGiohangMouseClicked(evt);
-            }
-        });
         jScrollPane2.setViewportView(tblGiohang);
 
         btnBo.setBackground(new java.awt.Color(255, 102, 102));
@@ -1137,9 +1133,9 @@ public class BanHangJPanel extends javax.swing.JPanel {
         lblKL1.setForeground(new java.awt.Color(255, 0, 0));
         lblKL1.setText("jLabel4");
 
-        lblDongia.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        lblDongia.setForeground(new java.awt.Color(255, 0, 0));
-        lblDongia.setText("jLabel7");
+        lblDonGia.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        lblDonGia.setForeground(new java.awt.Color(255, 0, 0));
+        lblDonGia.setText("jLabel7");
 
         jLabel4.setText("Đơn giá:");
 
@@ -1161,7 +1157,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(pnlSP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblKL1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblDongia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(lblDonGia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
             .addGroup(pnlSP1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
@@ -1183,7 +1179,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel20))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlSP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDongia)
+                    .addComponent(lblDonGia)
                     .addComponent(jLabel4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1382,16 +1378,16 @@ public class BanHangJPanel extends javax.swing.JPanel {
                     .addComponent(lblTensp4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlSP4Layout.createSequentialGroup()
                         .addGroup(pnlSP4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel24)
-                            .addComponent(jLabel27))
-                        .addGap(9, 9, 9)
-                        .addGroup(pnlSP4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblKL4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblDongia3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(pnlSP4Layout.createSequentialGroup()
-                        .addComponent(lblAnh4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 32, Short.MAX_VALUE)))
+                            .addGroup(pnlSP4Layout.createSequentialGroup()
+                                .addGroup(pnlSP4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel24)
+                                    .addComponent(jLabel27))
+                                .addGap(9, 9, 9)
+                                .addGroup(pnlSP4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblKL4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblDongia3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)))
+                            .addComponent(lblAnh4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlSP4Layout.setVerticalGroup(
@@ -1473,7 +1469,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã HD", "Mã NV", "Tên KH", "Trạng thái"
+                "Mã hóa đơn", "Mã nhân viên", "Tên khách hàng", "Trạng thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -1573,12 +1569,10 @@ public class BanHangJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbbLoaiHDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbLoaiHDItemStateChanged
-        // TODO add your handling code here:
         fillTableHD();
     }//GEN-LAST:event_cbbLoaiHDItemStateChanged
 
     private void lblNextSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblNextSPActionPerformed
-        // TODO add your handling code here:
         index++;
         if (index >= maxindex) {
             index = 0;
@@ -1588,7 +1582,6 @@ public class BanHangJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_lblNextSPActionPerformed
 
     private void btnBackSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackSPActionPerformed
-        // TODO add your handling code here:
         index--;
         if (index < 0) {
             index = maxindex - 1;
@@ -1598,19 +1591,18 @@ public class BanHangJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackSPActionPerformed
 
     private void lblAnh1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnh1MouseClicked
-        // TODO add your handling code here:
         sl1 = 0;
         if (listGH.size() != 0) {
             try {
                 for (int i = 0; i < listGH.size(); i++) {
-                    Object[] n = listGH.get(i);
-                    int a = Integer.parseInt(n[8].toString());
+                    Object[] obj = listGH.get(i);
+                    int a = Integer.parseInt(obj[8].toString());
                     int b = Integer.parseInt(sp1[8].toString());
                     System.out.println(b);
                     if (a == b) {
-                        MsgBox.confirm(this, "Sản phẩm đã tồn tại trong giỏ hàng.Bạn có muốn thay đổi số lượng?");
+                        MsgBox.confirm(this, "Sản phẩm đã tồn tại trong giỏ hàng. Bạn có muốn thay đổi số lượng?");
                         sl1 = Integer.parseInt(MsgBox.prompt(this, "Nhập số lượng mua: "));
-                        n[7] = sl1;
+                        obj[7] = sl1;
                         loadGH();
                         return;
                     }
@@ -1629,18 +1621,17 @@ public class BanHangJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_lblAnh1MouseClicked
 
     private void lblAnh2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnh2MouseClicked
-        // TODO add your handling code here:
         sl2 = 0;
         if (listGH.size() != 0) {
             try {
                 for (int i = 0; i < listGH.size(); i++) {
-                    Object[] n = listGH.get(i);
-                    int a = Integer.parseInt(n[8].toString());
+                    Object[] obj = listGH.get(i);
+                    int a = Integer.parseInt(obj[8].toString());
                     int b = Integer.parseInt(sp2[8].toString());
                     if (a == b) {
-                        MsgBox.confirm(this, "Sản phẩm đã tồn tại trong giỏ hàng.Bạn có muốn thay đổi số lượng?");
+                        MsgBox.confirm(this, "Sản phẩm đã tồn tại trong giỏ hàng. Bạn có muốn thay đổi số lượng?");
                         sl2 = Integer.parseInt(MsgBox.prompt(this, "Nhập số lượng mua: "));
-                        n[7] = sl2;
+                        obj[7] = sl2;
                         loadGH();
                         return;
                     }
@@ -1659,18 +1650,17 @@ public class BanHangJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_lblAnh2MouseClicked
 
     private void lblAnh3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnh3MouseClicked
-        // TODO add your handling code here:
         sl3 = 0;
         if (listGH.size() != 0) {
             try {
                 for (int i = 0; i < listGH.size(); i++) {
-                    Object[] n = listGH.get(i);
-                    int a = Integer.parseInt(n[8].toString());
+                    Object[] obj = listGH.get(i);
+                    int a = Integer.parseInt(obj[8].toString());
                     int b = Integer.parseInt(sp3[8].toString());
                     if (a == b) {
-                        MsgBox.confirm(this, "Sản phẩm đã tồn tại trong giỏ hàng.Bạn có muốn thay đổi số lượng?");
+                        MsgBox.confirm(this, "Sản phẩm đã tồn tại trong giỏ hàng. Bạn có muốn thay đổi số lượng?");
                         sl3 = Integer.parseInt(MsgBox.prompt(this, "Nhập số lượng mua: "));
-                        n[7] = sl3;
+                        obj[7] = sl3;
                         loadGH();
                         return;
                     }
@@ -1689,18 +1679,17 @@ public class BanHangJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_lblAnh3MouseClicked
 
     private void lblAnh4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnh4MouseClicked
-        // TODO add your handling code here:
         sl4 = 0;
         if (listGH.size() != 0) {
             try {
                 for (int i = 0; i < listGH.size(); i++) {
-                    Object[] n = listGH.get(i);
-                    int a = Integer.parseInt(n[8].toString());
+                    Object[] obj = listGH.get(i);
+                    int a = Integer.parseInt(obj[8].toString());
                     int b = Integer.parseInt(sp4[8].toString());
                     if (a == b) {
-                        MsgBox.confirm(this, "Sản phẩm đã tồn tại trong giỏ hàng.Bạn có muốn thay đổi số lượng?");
+                        MsgBox.confirm(this, "Sản phẩm đã tồn tại trong giỏ hàng. Bạn có muốn thay đổi số lượng?");
                         sl4 = Integer.parseInt(MsgBox.prompt(this, "Nhập số lượng mua: "));
-                        n[7] = sl4;
+                        obj[7] = sl4;
                         loadGH();
                         return;
                     }
@@ -1718,12 +1707,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
         loadGH();
     }//GEN-LAST:event_lblAnh4MouseClicked
 
-    private void tblGiohangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGiohangMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblGiohangMouseClicked
-
     private void btnBoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBoActionPerformed
-        // TODO add your handling code here:
         int chon = tblGiohang.getSelectedRow();
         if (chon < 0) {
             MsgBox.alert(this, "Bạn chưa chọn mục để loại bỏ!");
@@ -1733,17 +1717,11 @@ public class BanHangJPanel extends javax.swing.JPanel {
         loadGH();
     }//GEN-LAST:event_btnBoActionPerformed
 
-    private void btnAdddonDHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdddonDHActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdddonDHActionPerformed
-
     private void btnTimSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimSPActionPerformed
-        // TODO add your handling code here:
         timSP();
     }//GEN-LAST:event_btnTimSPActionPerformed
 
     private void btnResestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResestActionPerformed
-        // TODO add your handling code here:
         txtTimSP.setText("");
         listTrungGian = loadTrang(listDS, 0);
         loadSP(listTrungGian);
@@ -1751,12 +1729,10 @@ public class BanHangJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnResestActionPerformed
 
     private void btnTaoHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoHDActionPerformed
-        // TODO add your handling code here:
         taoHoaDon();
     }//GEN-LAST:event_btnTaoHDActionPerformed
 
     private void btnXuatHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatHDActionPerformed
-        // TODO add your handling code here:
         thanhToan();
     }//GEN-LAST:event_btnXuatHDActionPerformed
 
@@ -1775,9 +1751,6 @@ public class BanHangJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnTaoHD;
     private javax.swing.JButton btnTimSP;
     private javax.swing.JButton btnXuatHD;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JComboBox<String> cbbHinhThucThanhToan;
     private javax.swing.JComboBox<String> cbbHinhthucThanhtoan;
     private javax.swing.JComboBox<String> cbbLoaiHD;
@@ -1838,7 +1811,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblAnh3;
     private javax.swing.JLabel lblAnh4;
     private javax.swing.JLabel lblDiachi;
-    private javax.swing.JLabel lblDongia;
+    private javax.swing.JLabel lblDonGia;
     private javax.swing.JLabel lblDongia1;
     private javax.swing.JLabel lblDongia2;
     private javax.swing.JLabel lblDongia3;
@@ -1867,7 +1840,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblTienCanTra;
     private javax.swing.JLabel lblTienDH;
     private javax.swing.JLabel lblTienThua;
-    private javax.swing.JLabel lblTongtien;
+    private javax.swing.JLabel lblTongTien;
     private javax.swing.JPanel pnlDSSP;
     private javax.swing.JPanel pnlSP1;
     private javax.swing.JPanel pnlSP2;

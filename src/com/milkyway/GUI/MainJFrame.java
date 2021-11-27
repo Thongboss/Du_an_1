@@ -68,7 +68,7 @@ public class MainJFrame extends javax.swing.JFrame {
         tbarDoiMK = new javax.swing.JButton();
         tbarStop = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
-        tbarSanPham = new javax.swing.JButton();
+        tbarComboSP = new javax.swing.JButton();
         tbarTheTV = new javax.swing.JButton();
         tbarHoaDon = new javax.swing.JButton();
         tbarThongKe = new javax.swing.JButton();
@@ -163,13 +163,18 @@ public class MainJFrame extends javax.swing.JFrame {
         jToolBar1.add(tbarStop);
         jToolBar1.add(jSeparator1);
 
-        tbarSanPham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/milk.png"))); // NOI18N
-        tbarSanPham.setText("Combo sản phẩm");
-        tbarSanPham.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tbarSanPham.setFocusable(false);
-        tbarSanPham.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        tbarSanPham.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(tbarSanPham);
+        tbarComboSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/milk.png"))); // NOI18N
+        tbarComboSP.setText("Combo sản phẩm");
+        tbarComboSP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tbarComboSP.setFocusable(false);
+        tbarComboSP.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        tbarComboSP.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbarComboSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbarComboSPActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(tbarComboSP);
 
         tbarTheTV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Clien list.png"))); // NOI18N
         tbarTheTV.setText("Khách hàng");
@@ -791,6 +796,10 @@ public class MainJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowGainedFocus
 
+    private void tbarComboSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbarComboSPActionPerformed
+        new ComboSPJDialog(this, false).setVisible(true);
+    }//GEN-LAST:event_tbarComboSPActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -860,12 +869,12 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel pnlNhanVien;
     private javax.swing.JPanel pnlSanPham;
     private javax.swing.JPanel pnlThongKe;
+    private javax.swing.JButton tbarComboSP;
     private javax.swing.JButton tbarDoiMK;
     private javax.swing.JButton tbarGTSP;
     private javax.swing.JButton tbarHDSD;
     private javax.swing.JButton tbarHoaDon;
     private javax.swing.JButton tbarLogOut;
-    private javax.swing.JButton tbarSanPham;
     private javax.swing.JButton tbarStop;
     private javax.swing.JButton tbarTheTV;
     private javax.swing.JButton tbarThongKe;

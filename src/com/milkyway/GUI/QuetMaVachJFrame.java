@@ -16,7 +16,7 @@ import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 import com.milkyway.DAO.SanPhamDAO;
 import com.milkyway.Utils.ImageUtils;
-import com.milkyway.Utils.XFormater;
+import com.milkyway.Utils.XCurrency;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -74,7 +74,7 @@ public class QuetMaVachJFrame extends javax.swing.JFrame implements Runnable, Th
             txtMaSP.setText(obj[0].toString());
             txtTenSP.setText(obj[1].toString());
             txtSoLuongTon.setText(obj[6].toString());
-            txtDonGia.setText(XFormater.toCurrency(Double.parseDouble(obj[7].toString())));
+            txtDonGia.setText(XCurrency.toCurrency(Double.parseDouble(obj[7].toString())));
             txtHanSD.setText(obj[5].toString());
             lblAnhSP.setIcon(ImageUtils.resizeImg(ImageUtils.read("SanPham", obj[14].toString()), lblAnhSP));
         } else {

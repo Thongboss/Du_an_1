@@ -147,7 +147,7 @@ public class Validator {
         }
 
         try {
-            double tien = XFormater.toDouble(txt);
+            double tien = XCurrency.toDouble(txt);
             if (tien <= 0) {
                 sb.append(txt.getName()).append(" phải lớn hơn 0").append("\n");
                 txt.setBackground(Color.red);

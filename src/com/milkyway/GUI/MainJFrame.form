@@ -121,7 +121,7 @@
             </Component>
             <Component class="javax.swing.JToolBar$Separator" name="jSeparator1">
             </Component>
-            <Component class="javax.swing.JButton" name="tbarSanPham">
+            <Component class="javax.swing.JButton" name="tbarComboSP">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/com/milkyway/Icons/milk.png"/>
@@ -134,6 +134,9 @@
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbarComboSPActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="tbarTheTV">
               <Properties>

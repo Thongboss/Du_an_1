@@ -14,7 +14,7 @@ import javax.swing.JTextField;
  *
  * @author DaiAustinYersin
  */
-public class XFormater {
+public class XCurrency {
 
     public static String toCurrency(double currencyAmount) {
         // Create a new Locale
