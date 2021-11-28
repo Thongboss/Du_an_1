@@ -12,7 +12,6 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JPasswordField;
-import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -66,23 +65,6 @@ public class Validator {
         }
     }
 
-    public static boolean checkNgayBatDau(JDateChooser date, StringBuilder sb) {
-        try {
-            if (date.getDate() == null) {
-                sb.append("Khai giảng chưa nhập").append("\n");
-                return false;
-            } else if (date.getDate().before(new Date())) {
-                sb.append("Ngày khai giảng phải sau ngày hôm nay").append("\n");
-                return false;
-            } else {
-                return true;
-            }
-        } catch (Exception e) {
-            sb.append("Ngày khai giảng không hợp lệ").append("\n");
-            return false;
-        }
-    }
-
     public static boolean checkNgaySinh(JDateChooser date, StringBuilder sb) {
         try {
             if (date.getDate() == null) {
@@ -96,6 +78,23 @@ public class Validator {
             }
         } catch (Exception e) {
             sb.append("Ngày sinh không hợp lệ").append("\n");
+            return false;
+        }
+    }
+    
+    public static boolean checkHanSD(JDateChooser date, StringBuilder sb) {
+        try {
+            if (date.getDate() == null) {
+                sb.append("Hạn sử dụng chưa nhập").append("\n");
+                return false;
+            } else if (date.getDate().before(new Date())) {
+                sb.append("Hạn sử dụng không hợp lệ").append("\n");
+                return false;
+            } else {
+                return true;
+            }
+        } catch (Exception e) {
+            sb.append("Hạn sử dụng không hợp lệ").append("\n");
             return false;
         }
     }
@@ -184,32 +183,6 @@ public class Validator {
         }
 
         if (ok) {
-        }
-
-        return ok;
-    }
-
-    public static boolean checkThoiLuong(JTextField txt, StringBuilder sb) {
-        boolean ok = true;
-        if (isNull(txt, "Thời lượng chưa nhập", sb)) {
-            return false;
-        }
-
-        try {
-            int thoiLuong = Integer.parseInt(txt.getText());
-            if (thoiLuong <= 0) {
-                sb.append("Thời lượng phải lơn hơn 0").append("\n");
-                txt.setBackground(Color.red);
-                ok = false;
-            }
-        } catch (NumberFormatException e) {
-            sb.append("Thời lượng phải là số dương").append("\n");
-            txt.setBackground(Color.red);
-            ok = false;
-        }
-
-        if (ok) {
-            txt.setBackground(Color.white);
         }
 
         return ok;

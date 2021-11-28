@@ -45,7 +45,7 @@ public class MainJFrame extends javax.swing.JFrame {
         JThread.runText(lblMain);
         loadUser();
         banHang = new BanHangJPanel();
-        tbpMainPortal.addTab("Quản lý bán hàng", banHang);
+//        tbpMainPortal.addTab("Quản lý bán hàng", banHang);
     }
 
     private void loadUser() {
@@ -644,7 +644,18 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitMouseExited
 
     private void btnBanHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBanHangMouseClicked
-        tbpMainPortal.setSelectedComponent(banHang);
+        if (evt.getClickCount() == 2) {
+            tbpMainPortal.remove(banHang);
+            banHang = null;
+            return;
+        }
+        if (banHang == null || tbpMainPortal.getComponentCount() == 0) {
+            banHang = new BanHangJPanel();
+            tbpMainPortal.addTab("Quản lý bán hàng", banHang);
+            tbpMainPortal.setSelectedComponent(banHang);
+        } else {
+            tbpMainPortal.setSelectedComponent(banHang);
+        }
     }//GEN-LAST:event_btnBanHangMouseClicked
 
     private void btnBanHangMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBanHangMouseEntered
@@ -658,9 +669,10 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSanPhamMouseClicked
         if (evt.getClickCount() == 2) {
             tbpMainPortal.remove(spPanel);
+            spPanel = null;
             return;
         }
-        if (spPanel == null || tbpMainPortal.getComponentCount() == 1) {
+        if (spPanel == null || tbpMainPortal.getComponentCount() == 0) {
             spPanel = new SanPhamJPanel();
             tbpMainPortal.addTab("Quản lý sản phẩm", spPanel);
             tbpMainPortal.setSelectedComponent(spPanel);
@@ -686,9 +698,10 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKhuyenMaiMouseClicked
         if (evt.getClickCount() == 2) {
             tbpMainPortal.remove(khuyenMaiJPanel);
+            khuyenMaiJPanel = null;
             return;
         }
-        if (khuyenMaiJPanel == null || tbpMainPortal.getComponentCount() == 1) {
+        if (khuyenMaiJPanel == null || tbpMainPortal.getComponentCount() == 0) {
             khuyenMaiJPanel = new KhuyenMaiJPanel();
             tbpMainPortal.addTab("Khuyến mãi", khuyenMaiJPanel);
             tbpMainPortal.setSelectedComponent(khuyenMaiJPanel);
@@ -708,9 +721,10 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKhachHangMouseClicked
         if (evt.getClickCount() == 2) {
             tbpMainPortal.remove(theTVPanel);
+            theTVPanel = null;
             return;
         }
-        if (theTVPanel == null || tbpMainPortal.getComponentCount() == 1) {
+        if (theTVPanel == null || tbpMainPortal.getComponentCount() == 0) {
             theTVPanel = new TheThanhVienJPanel();
             tbpMainPortal.addTab("Quản lý khách hàng", theTVPanel);
             tbpMainPortal.setSelectedComponent(theTVPanel);
@@ -730,9 +744,10 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnThongKeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThongKeMouseClicked
         if (evt.getClickCount() == 2) {
             tbpMainPortal.remove(thongKe);
+            thongKe = null;
             return;
         }
-        if (thongKe == null || tbpMainPortal.getComponentCount() == 1) {
+        if (thongKe == null || tbpMainPortal.getComponentCount() == 0) {
             thongKe = new ThongKeJPanel();
             tbpMainPortal.addTab("Tổng hợp - thống kê", thongKe);
             tbpMainPortal.setSelectedComponent(thongKe);
@@ -756,9 +771,10 @@ public class MainJFrame extends javax.swing.JFrame {
         }
         if (evt.getClickCount() == 2) {
             tbpMainPortal.remove(nhanVienPanel);
+            nhanVienPanel = null;
             return;
         }
-        if (nhanVienPanel == null || tbpMainPortal.getComponentCount() == 1) {
+        if (nhanVienPanel == null || tbpMainPortal.getComponentCount() == 0) {
             nhanVienPanel = new NhanVienJPanel();
             tbpMainPortal.addTab("Quản lý nhân viên", nhanVienPanel);
             tbpMainPortal.setSelectedComponent(nhanVienPanel);

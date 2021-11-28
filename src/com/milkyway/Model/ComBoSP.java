@@ -15,24 +15,23 @@ public class ComBoSP {
     
     private int IDComboSP;
     private String MaComboSP, TenComboSP;
-    private int SoLuong;
+    private int SoLuongSP;
     private double TongGia;
-    private int GiamGia;
     private Date NgayTao, NgayHetHan;
-    private String GhiChu, AnhComboSP;
+    private String Barcode, GhiChu, AnhComboSP;
 
     public ComBoSP() {
     }
 
-    public ComBoSP(int IDComboSP, String MaComboSP, String TenComboSP, int SoLuong, double TongGia, int GiamGia, Date NgayTao, Date NgayHetHan, String GhiChu, String AnhComboSP) {
+    public ComBoSP(int IDComboSP, String MaComboSP, String TenComboSP, int SoLuongSP, double TongGia, Date NgayTao, Date NgayHetHan, String Barcode, String GhiChu, String AnhComboSP) {
         this.IDComboSP = IDComboSP;
         this.MaComboSP = MaComboSP;
         this.TenComboSP = TenComboSP;
-        this.SoLuong = SoLuong;
+        this.SoLuongSP = SoLuongSP;
         this.TongGia = TongGia;
-        this.GiamGia = GiamGia;
         this.NgayTao = NgayTao;
         this.NgayHetHan = NgayHetHan;
+        this.Barcode = Barcode;
         this.GhiChu = GhiChu;
         this.AnhComboSP = AnhComboSP;
     }
@@ -61,12 +60,12 @@ public class ComBoSP {
         this.TenComboSP = TenComboSP;
     }
 
-    public int getSoLuong() {
-        return SoLuong;
+    public int getSoLuongSP() {
+        return SoLuongSP;
     }
 
-    public void setSoLuong(int SoLuong) {
-        this.SoLuong = SoLuong;
+    public void setSoLuongSP(int SoLuongSP) {
+        this.SoLuongSP = SoLuongSP;
     }
 
     public double getTongGia() {
@@ -75,14 +74,6 @@ public class ComBoSP {
 
     public void setTongGia(double TongGia) {
         this.TongGia = TongGia;
-    }
-
-    public int getGiamGia() {
-        return GiamGia;
-    }
-
-    public void setGiamGia(int GiamGia) {
-        this.GiamGia = GiamGia;
     }
 
     public Date getNgayTao() {
@@ -99,6 +90,14 @@ public class ComBoSP {
 
     public void setNgayHetHan(Date NgayHetHan) {
         this.NgayHetHan = NgayHetHan;
+    }
+
+    public String getBarcode() {
+        return Barcode;
+    }
+
+    public void setBarcode(String Barcode) {
+        this.Barcode = Barcode;
     }
 
     public String getGhiChu() {

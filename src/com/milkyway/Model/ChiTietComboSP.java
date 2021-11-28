@@ -5,7 +5,6 @@
  */
 package com.milkyway.Model;
 
-import java.util.Date;
 
 /**
  *
@@ -13,22 +12,15 @@ import java.util.Date;
  */
 public class ChiTietComboSP {
 
-    private int IDChiTietComboSP, IDComboSP, IDChiTietSP, SoLuong;
-    private double DonGia;
-    private Date HanSD;
-    private String BarCode;
+    private int IDChiTietComboSP, IDComboSP, IDChiTietSP;
 
     public ChiTietComboSP() {
     }
 
-    public ChiTietComboSP(int IDChiTietComboSP, int IDComboSP, int IDChiTietSP, int SoLuong, double DonGia, Date HanSD, String BarCode) {
+    public ChiTietComboSP(int IDChiTietComboSP, int IDComboSP, int IDChiTietSP) {
         this.IDChiTietComboSP = IDChiTietComboSP;
         this.IDComboSP = IDComboSP;
         this.IDChiTietSP = IDChiTietSP;
-        this.SoLuong = SoLuong;
-        this.DonGia = DonGia;
-        this.HanSD = HanSD;
-        this.BarCode = BarCode;
     }
 
     public int getIDChiTietComboSP() {
@@ -53,37 +45,5 @@ public class ChiTietComboSP {
 
     public void setIDChiTietSP(int IDChiTietSP) {
         this.IDChiTietSP = IDChiTietSP;
-    }
-
-    public int getSoLuong() {
-        return SoLuong;
-    }
-
-    public void setSoLuong(int SoLuong) {
-        this.SoLuong = SoLuong;
-    }
-
-    public double getDonGia() {
-        return DonGia;
-    }
-
-    public void setDonGia(double DonGia) {
-        this.DonGia = DonGia;
-    }
-
-    public Date getHanSD() {
-        return HanSD;
-    }
-
-    public void setHanSD(Date HanSD) {
-        this.HanSD = HanSD;
-    }
-
-    public String getBarCode() {
-        return BarCode;
-    }
-
-    public void setBarCode(String BarCode) {
-        this.BarCode = BarCode;
     }
 }

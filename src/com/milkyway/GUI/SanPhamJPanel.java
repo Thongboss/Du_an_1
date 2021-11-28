@@ -27,7 +27,6 @@ import static com.milkyway.Utils.ImageUtils.resizeImg;
 import com.milkyway.Utils.MsgBox;
 import com.milkyway.Utils.Validator;
 import com.milkyway.Utils.WebcamUtils;
-import com.milkyway.Utils.XCurrency;
 import com.milkyway.subGUI.AnhSPJDialog;
 import com.milkyway.subGUI.DonViTinhJDialog;
 import com.milkyway.subGUI.DongSPJDialog;

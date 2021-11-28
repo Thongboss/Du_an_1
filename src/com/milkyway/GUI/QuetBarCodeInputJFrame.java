@@ -15,6 +15,8 @@ import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 import com.milkyway.Utils.ImageUtils;
+import com.milkyway.Utils.MsgBox;
+import com.milkyway.Utils.Validator;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -222,10 +224,18 @@ public class QuetBarCodeInputJFrame extends javax.swing.JFrame implements Runnab
     private void btnXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacNhanActionPerformed
         SanPhamJPanel.barcode = txtKetQua.getText();
         SanPhamJPanel.getBarCode = true;
+        ComboSPJDialog.barcode = txtKetQua.getText();
+        ComboSPJDialog.getBarCode = true;
         this.dispose();
     }//GEN-LAST:event_btnXacNhanActionPerformed
 
     private void btnXuatAnhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatAnhActionPerformed
+        StringBuilder sb = new StringBuilder();
+        Validator.isNull(txtKetQua, "Chưa nhập mã", sb);
+        if (sb.length() > 0) {
+            MsgBox.alert(this, sb.toString());
+            return;
+        }
         webcam.close();
         ImageUtils.createBarCodeImage(txtKetQua.getText(), txtKetQua.getText());
         lblBarCode.setIcon(ImageUtils.resizeImg(ImageUtils.read("BarCode", txtKetQua.getText() + ".png"), lblBarCode));

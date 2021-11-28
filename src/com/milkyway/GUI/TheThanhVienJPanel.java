@@ -210,7 +210,6 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         Validator.isNull(txtEmail, "không được để trống MaTheTV", sb);
         Validator.checkEmail(txtEmail, sb);
         Validator.checkNgaySinh(txtNgaySinh, sb);
-        Validator.checkNgayBatDau(txtNgaySinh, sb);
 
         if (sb.length() > 0) {
             MsgBox.alert(this, sb.toString());

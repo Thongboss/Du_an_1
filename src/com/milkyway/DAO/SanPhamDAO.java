@@ -128,4 +128,21 @@ public class SanPhamDAO {
         }
         return lst.get(0);
     }
+    
+    public int select_Id_ChiTietSP_By_MaSP(String id) {
+        try {
+            ResultSet rs = JDBCHelper.query("select IDChiTietSP from ChiTietSanPham where IDSanPham = (select IDSanPham from SanPham where MaSP = ?)", id);
+            if (rs.next()) {
+                return rs.getInt(1);
+            } else {
+                return 0;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public void update_SoLuong_By_MaSP(String maSP, int soLuong) {
+        JDBCHelper.update("update ChiTietSanPham set SoLuongTon = ? where IDSanPham = (select IDSanPham from SanPham where MaSP = ?)", soLuong, maSP);
+    }
 }
