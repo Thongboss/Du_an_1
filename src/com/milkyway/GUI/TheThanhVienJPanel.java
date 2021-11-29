@@ -12,13 +12,16 @@ import com.milkyway.Utils.MsgBox;
 import com.milkyway.Utils.Validator;
 import com.milkyway.Utils.WebcamUtils;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.util.Date;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.RowFilter;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -30,23 +33,52 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
      * Creates new form NhanVienJPanel1
      */
     TheThanhVienDAO dao = new TheThanhVienDAO();
-    int row = -1;
+
+    int rowConHan, rowHetHan = -1;
     JFileChooser fileChooser = new JFileChooser();
+    String imageName = "";
+    TableRowSorter<TableModel> sortTTV;
 
     public TheThanhVienJPanel() {
         initComponents();
-        fillTable();
+        fillTabTheHetHan();
+        fillTableTheTVConHan();
+        txtTimKiem.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String str = txtTimKiem.getText();
+                if (str.trim().length() == 0) {
+                    sortTTV.setRowFilter(null);
+                } else {
+                    //(?i) means case insensitive search
+                    sortTTV.setRowFilter(RowFilter.regexFilter("(?i)" + str));
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String str = txtTimKiem.getText();
+                if (str.trim().length() == 0) {
+                    sortTTV.setRowFilter(null);
+                } else {
+                    //(?i) means case insensitive search
+                    sortTTV.setRowFilter(RowFilter.regexFilter("(?i)" + str));
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
     }
 
-    void insert() {
+    private void insert() {
         TheThanhVien tv = getForm();
-//        if (this.check() == true) {
-//            return;
-//
-//        }
+
         try {
             dao.insert(tv);
-            this.fillTable();
+            this.fillTableTheTVConHan();
             this.clearForm();
             MsgBox.alert(this, "Thêm mới thành công!");
 
@@ -57,35 +89,32 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
 
     }
 
-    void clearForm() {
+    private void clearForm() {
         TheThanhVien tv = new TheThanhVien();
         this.setForm(tv);
-        this.row = -1;
+        this.rowConHan = -1;
         txtNgayTao.setDate(new Date());
+        txtDiem.setText("0");
     }
 
-    TheThanhVien getForm() {
+    private TheThanhVien getForm() {
         TheThanhVien tv = new TheThanhVien();
         tv.setMaTheTV(txtMaTheTV.getText());
         tv.setTenKH(txtHoTen.getText());
-        tv.setGioiTinh(rdoNu.isSelected());
+        tv.setGioiTinh(rdoNam.isSelected());
         tv.setNgaySinh(txtNgaySinh.getDate());
         tv.setSDT(txtSDT.getText());
         tv.setCMND(txtCMND.getText());
         tv.setEmail(txtEmail.getText());
         tv.setNgayTao(txtNgayTao.getDate());
         tv.setNgayHetHan(txtNgayHetHan.getDate());
-        if (tv.getHinhAnh() != null) {
-            String anh = null;
-            ImageIcon icon = new ImageIcon(new ImageIcon(anh).getImage().getScaledInstance(lblAnh.getWidth(), lblAnh.getHeight(), Image.SCALE_DEFAULT));
-            lblAnh.setIcon(icon);
-        }
+        tv.setHinhAnh(lblAnh.getText());
 
         return tv;
 
     }
 
-    void setForm(TheThanhVien tv) {
+    private void setForm(TheThanhVien tv) {
         txtMaTheTV.setText(tv.getMaTheTV());
         txtHoTen.setText(tv.getTenKH());
         if (tv.isGioiTinh()) {
@@ -100,53 +129,60 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         txtEmail.setText(tv.getEmail());
         txtNgayTao.setDate(tv.getNgayTao());
         txtNgayHetHan.setDate(tv.getNgayHetHan());
+        txtDiem.setText(tv.getDiem() + "");
         lblAnh.setToolTipText(tv.getHinhAnh());
-        BufferedImage img = null;
         if (tv.getHinhAnh() != null) {
             String anh = null;
             ImageIcon icon = new ImageIcon(new ImageIcon(anh).getImage().getScaledInstance(lblAnh.getWidth(), lblAnh.getHeight(), Image.SCALE_DEFAULT));
             lblAnh.setIcon(icon);
+
+        } else {
+            lblAnh.setIcon(null);
         }
 
     }
 
-    void edit() {
-        String mattv = (String) tblTheThanhVien.getValueAt(this.row, 0);
+    private void edit() {
+        String mattv = (String) tblTheThanhVien.getValueAt(this.rowConHan, 0);
         TheThanhVien tv = dao.selectById(mattv);
         this.setForm(tv);
-        this.row = -1;
-        this.updateStatus();
+        this.rowConHan = -1;
     }
 
-    void update() {
-        TheThanhVien tv = new TheThanhVien();
+    private void update() {
+        TheThanhVien tv = getForm();
         try {
             dao.update(tv);
-            this.fillTable();
-            MsgBox.alert(this, "Sửa thành công!");
+            this.fillTableTheTVConHan();
+            MsgBox.alert(this, "Cập nhật thành công!");
         } catch (Exception e) {
-            MsgBox.alert(this, "Sửa thất bại!");
+            MsgBox.alert(this, "Cập nhật thất bại!");
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-
     }
 
-//    boolean check() {
-//        
-//        
-//
-//    }
-    
-    void fillTable() {
+    private void fillTableTheTVConHan() {
         DefaultTableModel model = (DefaultTableModel) tblTheThanhVien.getModel();
+        sortTTV = new TableRowSorter<>(model);
         model.setRowCount(0);
+        tblTheThanhVien.setRowSorter(sortTTV);
         try {
-            List<TheThanhVien> list = dao.selectAll();
+            List<TheThanhVien> list = dao.selectTheTVConHan();
             for (TheThanhVien ttv : list) {
-                model.addRow(new Object[]{
-                    ttv.getMaTheTV(), ttv.getTenKH(), ttv.isGioiTinh() ? "Nam" : "Nữ", ttv.getNgaySinh(), ttv.getSDT(), ttv.getCMND(), ttv.getEmail(), ttv.getNgayTao(), ttv.getNgayHetHan()
-                });
+                Object[] rowdata = new Object[]{
+                    ttv.getMaTheTV(),
+                    ttv.getTenKH(),
+                    ttv.isGioiTinh() ? "Nam" : "Nữ",
+                    ttv.getNgaySinh(),
+                    ttv.getSDT(),
+                    ttv.getCMND(),
+                    ttv.getEmail(),
+                    ttv.getNgayTao(),
+                    ttv.getNgayHetHan(),
+                    ttv.getDiem()
+                };
+                model.addRow(rowdata);
 
             }
         } catch (Exception e) {
@@ -155,61 +191,45 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         }
     }
 
-    void updateStatus() {
-        boolean edit = (this.row >= 0);
-        boolean first = (this.row == 0);
-        boolean last = (this.row == tblTheThanhVien.getRowCount() - 1);
-        btnThem.setEnabled(!edit);
-        btnMoi.setEnabled(!edit);
-        btnTimKiem.setEnabled(edit);
-        btnCapNhat.setEnabled(!edit);
-        btnChonAnh.setEnabled(!edit);
-        btnWebcam.setEnabled(!edit);
-
-    }
-
-    void chonAnh() {
-        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            File file = fileChooser.getSelectedFile();
-            ImageUtils.save("TheThanhVien", file);
-            ImageIcon icon = ImageUtils.read("TheThanhVien", file.getName());
-            lblAnh.setIcon(icon);
-            lblAnh.setToolTipText(file.getName());
-        }
-
-    }
-
-    private void setstatus(boolean insertable) {
-
-    }
-
-    void fillTabTheHetHan() {
-        DefaultTableModel model = (DefaultTableModel) tblTheThanhVien.getModel();
+    private void fillTabTheHetHan() {
+        DefaultTableModel model = (DefaultTableModel) tblTheTVHetHan.getModel();
         model.setRowCount(0);
         try {
-            List<TheThanhVien> list = dao.selectAll();
+            List<TheThanhVien> list = dao.selectTheTVHetHan();
             for (TheThanhVien ttv : list) {
-                model.addRow(new Object[]{
-                    ttv.getMaTheTV(), ttv.getTenKH(), ttv.isGioiTinh() ? "Nam" : "Nữ", ttv.getNgaySinh(), ttv.getSDT(), ttv.getCMND(), ttv.getEmail(), ttv.getNgayTao(), ttv.getNgayHetHan()
+                System.out.println(ttv.getMaTheTV());
 
-                });
+                Object[] rowdata = new Object[]{
+                    ttv.getMaTheTV(),
+                    ttv.getTenKH(),
+                    ttv.isGioiTinh() ? "Nam" : "Nữ",
+                    ttv.getNgaySinh(),
+                    ttv.getSDT(),
+                    ttv.getCMND(),
+                    ttv.getEmail(),
+                    ttv.getNgayTao(),
+                    ttv.getNgayHetHan()
+
+                };
+                model.addRow(rowdata);
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
-    boolean check() {
+    boolean ValidateForm() {
         StringBuilder sb = new StringBuilder();
-        Validator.isNull(txtMaTheTV, "không được để trống MaTheTV", sb);
-        Validator.isNull(txtHoTen, "không được để trống MaTheTV", sb);
-        Validator.isNull(txtSDT, "không được để trống MaTheTV ", sb);
-        Validator.isNull(txtMaTheTV, "không được để trống MaTheTV", sb);
-        Validator.isNull(txtMaTheTV, "không được để trống MaTheTV", sb);
-        Validator.isNull(txtCMND, "không được để trống MaTheTV", sb);
-        Validator.isNull(txtEmail, "không được để trống MaTheTV", sb);
+        Validator.isNull(txtMaTheTV, "Không được để trống mã thẻ", sb);
+        Validator.isNull(txtHoTen, "Không được để trống hoten", sb);
+        Validator.isNull(txtSDT, "Không được để trống sdt ", sb);
+        Validator.isNull(txtCMND, "Không được để trống CMND", sb);
+        Validator.isNull(txtEmail, "Không được để trống Email", sb);
         Validator.checkEmail(txtEmail, sb);
         Validator.checkNgaySinh(txtNgaySinh, sb);
+        Validator.checkHanSD(txtNgayHetHan, sb);
 
         if (sb.length() > 0) {
             MsgBox.alert(this, sb.toString());
@@ -227,12 +247,6 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
             MsgBox.alert(this, "trùng mã nhân viên ");
             return false;
         }
-
-    }
-
-    public void ResizeImage(String imageName) {
-        ImageIcon icon = new ImageIcon("img" + imageName);
-
     }
 
     /**
@@ -273,7 +287,6 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         btnThem = new javax.swing.JButton();
         btnCapNhat = new javax.swing.JButton();
         btnMoi = new javax.swing.JButton();
-        btnUpdateStatus = new javax.swing.JButton();
         btnWebcam = new javax.swing.JButton();
         btnChonAnh = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -286,10 +299,12 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         txtTimKiem = new javax.swing.JTextField();
         btnTimKiem = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        txtDiem = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        btnUpdateStatus1 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblTheTVHetHan = new javax.swing.JTable();
+        btnGiaHan = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(107, 185, 240));
 
@@ -329,7 +344,7 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblAnh, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                .addComponent(lblAnh, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -390,16 +405,6 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         });
         jPanel6.add(btnMoi);
 
-        btnUpdateStatus.setBackground(new java.awt.Color(153, 255, 255));
-        btnUpdateStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Save.png"))); // NOI18N
-        btnUpdateStatus.setText("Cập nhật trạng thái");
-        btnUpdateStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateStatusActionPerformed(evt);
-            }
-        });
-        jPanel6.add(btnUpdateStatus);
-
         btnWebcam.setBackground(new java.awt.Color(255, 102, 255));
         btnWebcam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Camera.png"))); // NOI18N
         btnWebcam.setText("Chụp ảnh");
@@ -422,18 +427,25 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
 
         tblTheThanhVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã thẻ", "Họ tên", "Giới tính", "Ngày sinh", "Số điện thoại", "CMND", "Email", "Ngày tạo", "Ngày hết hạn"
+                "Mã thẻ", "Họ tên", "Giới tính", "Ngày sinh", "Số điện thoại", "CMND", "Email", "Ngày tạo", "Ngày hết hạn", "Điểm"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -487,6 +499,9 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
 
         jPanel7Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnTimKiem, txtTimKiem});
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel13.setText("Điểm:");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -494,7 +509,6 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -522,7 +536,8 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
                                 .addGap(117, 117, 117)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtCMND)
-                                    .addComponent(txtEmail))))
+                                    .addComponent(txtEmail)
+                                    .addComponent(txtDiem))))
                         .addGap(32, 32, 32)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel14)
@@ -537,9 +552,13 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
                             .addComponent(jScrollPane1))
                         .addGap(110, 110, 110)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(137, 137, 137))
+                        .addGap(103, 103, 103))
                     .addComponent(jScrollPane2)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -590,20 +609,21 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
                             .addComponent(jScrollPane1)))
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(txtDiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Danh sách", jPanel3);
 
         jPanel4.setBackground(new java.awt.Color(107, 185, 240));
-
-        btnUpdateStatus1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Save.png"))); // NOI18N
-        btnUpdateStatus1.setText("Cập nhật trạng thái");
 
         tblTheTVHetHan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -634,6 +654,16 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         tblTheTVHetHan.setRowHeight(25);
         jScrollPane3.setViewportView(tblTheTVHetHan);
 
+        btnGiaHan.setBackground(new java.awt.Color(255, 102, 102));
+        btnGiaHan.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnGiaHan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Alarm.png"))); // NOI18N
+        btnGiaHan.setText("Gia hạn");
+        btnGiaHan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGiaHanActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -641,19 +671,19 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 991, Short.MAX_VALUE)
-                        .addComponent(btnUpdateStatus1))
-                    .addComponent(jScrollPane3))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1162, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnGiaHan)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnUpdateStatus1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
+                .addComponent(btnGiaHan)
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -714,60 +744,73 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnWebcamActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        if (!ValidateForm()) {
+
+            return;
+        }
+        if (checktrungmathetv()) {
+            return;
+
+        }
+        checktrungmathetv();
         insert();
-        fillTable();
+        fillTableTheTVConHan();
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
-        updateStatus();
-        fillTable();
-        fillTabTheHetHan();
+        try {
+            update();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_btnCapNhatActionPerformed
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
         clearForm();
-        setstatus(true);
     }//GEN-LAST:event_btnMoiActionPerformed
 
-    private void btnUpdateStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateStatusActionPerformed
-        try {
-            if (check()) {
-                update();
-                fillTable();
-                fillTabTheHetHan();
-            }
-
-        } catch (Exception e) {
-
-        }
-    }//GEN-LAST:event_btnUpdateStatusActionPerformed
-
     private void btnChonAnhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonAnhActionPerformed
-        chonAnh();
+        try {
+            ImageUtils.openAndInsertHinhAnh("TheThanhVien", lblAnh);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnChonAnhActionPerformed
 
     private void tblTheThanhVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTheThanhVienMouseClicked
         try {
-            row = tblTheThanhVien.getSelectedRow();
-            edit();
+            rowConHan = tblTheThanhVien.getSelectedRow();
+            this.edit();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_tblTheThanhVienMouseClicked
 
+    private void btnGiaHanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiaHanActionPerformed
+        try {
+            for (int i = 0; i < tblTheTVHetHan.getRowCount(); i++) {
+                dao.updateGiaHan(tblTheTVHetHan.getValueAt(i, 0).toString(), tblTheTVHetHan.getValueAt(i, 8).toString());
+            }
+            fillTabTheHetHan();
+            fillTableTheTVConHan();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnGiaHanActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnChonAnh;
+    private javax.swing.JButton btnGiaHan;
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTimKiem;
-    private javax.swing.JButton btnUpdateStatus;
-    private javax.swing.JButton btnUpdateStatus1;
     private javax.swing.JButton btnWebcam;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -794,6 +837,7 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
     private javax.swing.JTable tblTheTVHetHan;
     private javax.swing.JTable tblTheThanhVien;
     private javax.swing.JTextField txtCMND;
+    private javax.swing.JTextField txtDiem;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtHoTen;
     private javax.swing.JTextField txtMaTheTV;

@@ -5,17 +5,71 @@
  */
 package com.milkyway.GUI;
 
+import com.milkyway.DAO.DongSPDAO;
+import com.milkyway.DAO.LoaiHangDAO;
+import com.milkyway.Model.LoaiHang;
+import com.milkyway.Model.DongSP;
+import com.milkyway.Utils.MsgBox;
+import com.milkyway.Model.KhuyenMai;
+import com.milkyway.DAO.HinhThucThanhToanDAO;
+import com.milkyway.DAO.KhuyenMaiDao;
+import com.milkyway.Model.HinhThucThanhToan;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
+import com.milkyway.Utils.Validator;
+import java.util.Date;
+import javax.swing.RowFilter;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author DaiAustinYersin
  */
 public class KhuyenMaiJPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form KhuyenMaiJPanel
-     */
+    LoaiHangDAO loaiHangDAO = new LoaiHangDAO();
+    DongSPDAO DSPdao = new DongSPDAO();
+    HinhThucThanhToanDAO HTTTDao = new HinhThucThanhToanDAO();
+    KhuyenMaiDao KMdao = new KhuyenMaiDao();
+
+    int row = -1;
+    TableRowSorter<TableModel> sortKM;
+
     public KhuyenMaiJPanel() {
         initComponents();
+        init();
+
+        txtTimKiem.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String str = txtTimKiem.getText().trim();
+                if (str.trim().length() == 0) {
+                    sortKM.setRowFilter(null);
+                } else {
+                    sortKM.setRowFilter(RowFilter.regexFilter("(?i)" + str));
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String str = txtTimKiem.getText().trim();
+                if (str.trim().length() == 0) {
+                    sortKM.setRowFilter(null);
+                } else {
+                    sortKM.setRowFilter(RowFilter.regexFilter("(?i)" + str));
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+
+            }
+        });
+
     }
 
     /**
@@ -58,7 +112,7 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
         txtNgayBD = new com.toedter.calendar.JDateChooser();
         txtGiamGia = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
+        txtTimKiem = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         jDateChooser3 = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
@@ -105,6 +159,11 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
         btnThem.setBackground(new java.awt.Color(153, 255, 153));
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Create.png"))); // NOI18N
         btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
         jPanel6.add(btnThem);
 
         btnCapNhat.setBackground(new java.awt.Color(255, 255, 102));
@@ -126,7 +185,7 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã khuyến mãi", "Tên chương trình", "Loại sản phẩm", "Dòng sản phẩm", "Hình thức thanh toán", "Bắt đầu", "Kết thúc", "Giảm giá", "Mô tả"
+                "Mã khuyến mãi", "Tên chương trình", "Dòng Sản Phẩm", "Loại sản phẩm", "Hình thức thanh toán", "Bắt đầu", "Kết thúc", "Giảm giá", "Mô tả"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -138,7 +197,15 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
             }
         });
         tblKhuyenMai.setRowHeight(25);
+        tblKhuyenMai.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblKhuyenMaiMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblKhuyenMai);
+        if (tblKhuyenMai.getColumnModel().getColumnCount() > 0) {
+            tblKhuyenMai.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Loại sản phẩm:");
@@ -164,14 +231,14 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                .addComponent(txtTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField2)
+                .addComponent(txtTimKiem)
                 .addContainerGap())
         );
 
@@ -317,9 +384,9 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(24, 24, 24))
         );
 
         jTabbedPane1.addTab("Danh sách", jPanel3);
@@ -374,6 +441,31 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+
+        try {
+            if (!MsgBox.confirm(this, "Bạn có muốn thêm không ?")) {
+                return ;
+            }
+            if(check()){
+                insert();
+            }
+        } catch (Exception e) {
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void tblKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhuyenMaiMouseClicked
+        try {
+            row = tblKhuyenMai.getSelectedRow();
+            this.showform();
+
+        } catch (Exception e) {
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblKhuyenMaiMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;
@@ -406,7 +498,6 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTable tblKhuyenMai;
     private javax.swing.JTextField txtGiamGia;
     private javax.swing.JTextField txtMaKM;
@@ -414,5 +505,153 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser txtNgayBD;
     private com.toedter.calendar.JDateChooser txtNgayKT;
     private javax.swing.JTextField txtTenKM;
+    private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
+
+    private void fillLoaiSanPham() {
+
+        DefaultComboBoxModel comboBoxModel = (DefaultComboBoxModel) cbbLoaiSP.getModel();
+        comboBoxModel.removeAllElements();
+        try {
+            List<LoaiHang> lst = loaiHangDAO.selectAll();
+            for (LoaiHang lh : lst) {
+                comboBoxModel.addElement(lh.getTenLoai());
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, e.getMessage());
+        }
+
+    }
+
+    private void fillDongSanPham() {
+
+        DefaultComboBoxModel comboBoxModel = (DefaultComboBoxModel) cbbDongSP.getModel();
+        comboBoxModel.removeAllElements();
+        try {
+            List<DongSP> dongsp = DSPdao.selectAll();
+            for (DongSP dsp : dongsp) {
+                comboBoxModel.addElement(dsp.getTenDongSP());
+
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, e.getMessage());
+        }
+
+    }
+
+    private void hinhthucthanhtoan() {
+
+        DefaultComboBoxModel comboBoxModel = (DefaultComboBoxModel) cbbHinhThucThanhToan.getModel();
+        comboBoxModel.removeAllElements();
+        try {
+            List<HinhThucThanhToan> hinhthucthanhtoan = HTTTDao.selectAll();
+            for (HinhThucThanhToan HHTT : hinhthucthanhtoan) {
+                comboBoxModel.addElement(HHTT.getTenHinhThucThanhToan());
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, e.getMessage());
+        }
+    }
+
+    private void init() {
+        hinhthucthanhtoan();
+        fillLoaiSanPham();
+        fillDongSanPham();
+        filltotable();
+    }
+
+    private KhuyenMai getform() {
+        KhuyenMai km = new KhuyenMai();
+        km.setMaKM(txtMaKM.getText());
+        km.setTenKM(txtTenKM.getText());
+        km.setIDLoaiHang(loaiHangDAO.selectByTenLoai(cbbLoaiSP.getSelectedItem().toString()).getIDLoaiHang());
+        km.setIDDongSP(DSPdao.selectByTenDong(cbbDongSP.getSelectedItem().toString()).getIDDongSP());
+        km.setIDHinhThucThanhToan(HTTTDao.selectByTenhinhThucThanhToan(cbbHinhThucThanhToan.getSelectedItem().toString()).getIDHinhThucThanhToan());
+        km.setThoiGianBatDau(new Date());
+        km.setThoiGianKetThuc(txtNgayKT.getDate());
+        km.setGiamGia(Integer.parseInt(txtGiamGia.getText()));
+        km.setMoTa(txtMoTa.getText());
+        System.out.println(km);
+        return km;
+    }
+
+    private void insert() {
+        try {
+            KhuyenMai km = getform();
+            KMdao.insert(km);
+            MsgBox.alert(this, "thêm thành công ");
+            filltotable();
+
+        } catch (Exception e) {
+        }
+    }
+
+    private void filltotable() {
+
+        DefaultTableModel model = (DefaultTableModel) tblKhuyenMai.getModel();
+        sortKM = new TableRowSorter<>(model);
+        tblKhuyenMai.setRowSorter(sortKM);
+
+        model.setRowCount(0);
+        try {
+            List<KhuyenMai> listKm = KMdao.selectAll();
+            for (KhuyenMai km : listKm) {
+                String Dongsp = DSPdao.selectbyidDongsp(km.getIDDongSP()).getTenDongSP();
+                String loaihang = loaiHangDAO.SelectByidLoaiHang(km.getIDLoaiHang()).getTenLoai();
+                String hinhthucthanhtoan = (String) HTTTDao.selectByIDhinhThucThanhToan(km.getIDHinhThucThanhToan()).getTenHinhThucThanhToan();
+                Object[] rowdata = {
+                    km.getMaKM(),
+                    km.getTenKM(),
+                    km.getIDLoaiHang(),
+                    km.getIDHinhThucThanhToan(),
+                    km.getThoiGianBatDau(),
+                    km.getThoiGianKetThuc(),
+                    km.getGiamGia(),
+                    km.getMoTa()
+                };
+
+                model.addRow(new Object[]{km.getMaKM(), km.getTenKM(), Dongsp, loaihang, hinhthucthanhtoan, km.getThoiGianBatDau(), km.getThoiGianKetThuc(), km.getGiamGia(), km.getMoTa()});
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
+    }
+
+    private void showform() {
+        String MAKM = (String) tblKhuyenMai.getValueAt(row, 0);
+        KhuyenMai km = KMdao.selectById(MAKM);
+        this.setform(km);
+
+    }
+
+    private void setform(KhuyenMai km) {
+        txtMaKM.setText(km.getMaKM());
+        txtTenKM.setText(km.getTenKM());
+        cbbLoaiSP.setSelectedItem(loaiHangDAO.SelectByidLoaiHang(km.getIDLoaiHang()).getTenLoai());
+        cbbHinhThucThanhToan.setSelectedItem(HTTTDao.selectByIDhinhThucThanhToan(km.getIDHinhThucThanhToan()).getTenHinhThucThanhToan());
+        cbbDongSP.setSelectedItem(DSPdao.selectbyidDongsp(km.getIDDongSP()).getTenDongSP());
+        txtNgayBD.setDate(km.getThoiGianBatDau());
+        txtNgayKT.setDate(km.getThoiGianKetThuc());
+        txtGiamGia.setText(String.valueOf(km.getGiamGia()));
+        txtMoTa.setText(km.getMoTa());
+
+    }
+
+    private boolean check() {
+
+        StringBuilder sb = new StringBuilder();
+        Validator.isNull(txtMaKM, "Không được để trống mã", sb);
+        Validator.isNull(txtGiamGia, "Không được để trống giảm giá", sb);
+        Validator.isNull(txtTenKM, "Không được để trống tên khuyến mãi", sb);
+      
+        if (sb.length() > 0) {
+            MsgBox.alert(this, sb.toString());
+            return false;
+        }
+
+        return true;
+    }
+
 }

@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.milkyway.DAO;
 
 import com.milkyway.Model.TheThanhVien;
 import com.milkyway.Utils.JDBCHelper;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
 import java.util.List;
 
 /**
@@ -20,11 +15,13 @@ public class TheThanhVienDAO extends MilkyWayDAO<TheThanhVien, String> {
 
     String insert_sql = "INSERT INTO [dbo].[TheThanhVien]([MaTheTV],[TenKH],[GioiTinh],[NgaySinh],[SDT],[CMND],[Email],[HinhAnh],[NgayTao],[NgayHetHan],[GhiChu])\n"
             + "     VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-    String update_sql = "UPDATE  TheThanhVien SET TenKH = ? ,SET GioiTinh = ?,SET NgaySinh = ?,SET SDT = ?,"
-            + " SET CMND = ?,SET Email = ?,SET HinhAnh = ?,SET NguoiTao =?, SET NgayTao = ? ,SET NgayHetHan=?,SET GhiChu=?, SET TrangThai = ? WHERE MaTheTV =?";
-    String delete_sql = "DELETE TheThanhVien where MaTheTV = ?";
-    String select_all_sql = " select * from TheThanhVien";
-    String select_Byid_sql = " select * from TheThanhVien Where MaTheTV = ?";
+    String update_sql = "UPDATE [dbo].[TheThanhVien]\n"
+            + "   SET [TenKH] = ?,[GioiTinh] = ?,[NgaySinh] = ?,[SDT] = ?,[CMND] = ?,[Email] = ?,[HinhAnh] = ?,[NgayHetHan] = ?,[GhiChu] = ?\n"
+            + " WHERE [MaTheTV] = ?";
+    String delete_sql = "DELETE from TheThanhVien where MaTheTV = ?";
+    String select_all_sql = " select * from TheThanhVien ";
+    String select_By_id_sql = "select * from TheThanhVien Where MaTheTV = ?";
+    String update_GiaHan = "Update [dbo].[TheThanhVien] set NgayHetHan = ? where MaTheTV = ?";
 
     @Override
     public void insert(TheThanhVien Entity) {
@@ -34,8 +31,8 @@ public class TheThanhVienDAO extends MilkyWayDAO<TheThanhVien, String> {
 
     @Override
     public void update(TheThanhVien Entity) {
-        JDBCHelper.update(insert_sql, Entity.getTenKH(), Entity.isGioiTinh(), Entity.getNgaySinh(), Entity.getSDT(), Entity.getCMND(), Entity.getEmail(),
-                Entity.getHinhAnh(), Entity.getNgayTao(), Entity.getNgayHetHan(), Entity.getMaTheTV());
+        JDBCHelper.update(update_sql, Entity.getTenKH(), Entity.isGioiTinh(), Entity.getNgaySinh(), Entity.getSDT(), Entity.getCMND(), Entity.getEmail(),
+                Entity.getHinhAnh(), Entity.getNgayHetHan(), Entity.getGhiChu(), Entity.getMaTheTV());
     }
 
     @Override
@@ -45,11 +42,15 @@ public class TheThanhVienDAO extends MilkyWayDAO<TheThanhVien, String> {
 
     @Override
     public TheThanhVien selectById(String id) {
-        List<TheThanhVien> list = this.selectBySql(select_Byid_sql, id);
+        List<TheThanhVien> list = this.selectBySql(select_By_id_sql, id);
         if (list.isEmpty()) {
             return null;
         }
         return list.get(0);
+    }
+    
+    public void updateGiaHan(String id, String ngayHetHan) {
+        JDBCHelper.update(update_GiaHan, ngayHetHan, id);
     }
 
     @Override
@@ -89,6 +90,14 @@ public class TheThanhVienDAO extends MilkyWayDAO<TheThanhVien, String> {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<TheThanhVien> selectTheTVConHan() {
+        return selectBySql("select * from TheThanhVien where NgayHetHan >= getDate()");
+    }
+
+    public List<TheThanhVien> selectTheTVHetHan() {
+        return selectBySql("select * from TheThanhVien where NgayHetHan < getDate()");
     }
 
 }

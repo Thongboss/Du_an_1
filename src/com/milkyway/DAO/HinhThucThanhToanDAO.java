@@ -75,4 +75,21 @@ public class HinhThucThanhToanDAO extends MilkyWayDAO<HinhThucThanhToan, String>
             throw new RuntimeException(e);
         }
     }
+
+    public HinhThucThanhToan selectByTenhinhThucThanhToan(String name) {
+        List<HinhThucThanhToan> list = selectBySql("select * from HinhThucThanhToan where TenHinhThucThanhToan = ?", name);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
+
+    public HinhThucThanhToan selectByIDhinhThucThanhToan(int idHinhThucThanhToan) {
+        List<HinhThucThanhToan> list = selectBySql("select * from HinhThucThanhToan where idHinhThucThanhToan = ?", idHinhThucThanhToan);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
+    
 }

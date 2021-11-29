@@ -47,19 +47,20 @@ public class DongSPDAO extends MilkyWayDAO<DongSP, String> {
         }
         return list.get(0);
     }
-    
+
     public DongSP selectByTenDong(String name) {
         List<DongSP> list = selectBySql("select * from DongSP where TenDongSP = ?", name);
         if (list.isEmpty()) {
             return null;
         }
         return list.get(0);
+
     }
 
     public List<DongSP> selectByThuongHieuAndStatus(String id, boolean status) {
         return this.selectBySql("select * from DongSP where IDThuongHieu = ? and TrangThai = ?", id, status);
     }
-    
+
     public List<DongSP> selectByStatus(boolean status) {
         return this.selectBySql("select * from DongSP where TrangThai = ?", status);
     }
@@ -92,6 +93,14 @@ public class DongSPDAO extends MilkyWayDAO<DongSP, String> {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public DongSP selectbyidDongsp(int IDDongSP) {
+        List<DongSP> list = selectBySql("select * from DongSP where IDDongSP = ?", IDDongSP);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
     }
 
 }

@@ -30,6 +30,7 @@ public class BanHangDAO {
             + "FROM HOADON JOIN NHANVIEN ON HOADON.IDNHANVIEN = NHANVIEN.IDNHANVIEN\n"
             + "JOIN THETHANHVIEN ON HOADON.IDTHETV = THETHANHVIEN.IDTHETV\n"
             + "WHERE HOADON.TRANGTHAI = ?";
+    String update_CTSP = "UPDATE ChiTietSanPham SET SoLuongTon = ? WHERE IDChiTietSP = ?";
     String sanpham = "SELECT MaSP,TenDongSP,TenSP,GiaTri,SoLuongTon,DONGIA,TenAnhSP,SoLuongTon,IDChiTietSP\n" +
             "FROM SANPHAM JOIN CHITIETSANPHAM ON SANPHAM.IDSANPHAM = CHITIETSANPHAM.IDSANPHAM\n" +
             "JOIN DONVITINH ON CHITIETSANPHAM.IDDONVITINH = DONVITINH.IDDONVITINH\n" +
@@ -39,6 +40,11 @@ public class BanHangDAO {
             "JOIN THUONGHIEU ON DONGSP.IDTHUONGHIEU = THUONGHIEU.IDTHUONGHIEU\n" +
             "JOIN AnhSP ON AnhSP.IDAnhSP = CHITIETSANPHAM.IDAnhSP\n" +
             "WHERE SanPham.TrangThai = 1";
+    String hdCho = "SELECT MASP, TENSP, SOLUONG, ChiTietHoaDon.DonGia, (SOLUONG * ChiTietHoaDon.DonGia) AS THANHTIEN, IDChiTietHD, ChiTietSanPham.IDChiTietSP\n" +
+            "FROM HoaDon JOIN ChiTietHoaDon ON HoaDon.IDHoaDon = ChiTietHoaDon.IDHoaDon\n" +
+            "JOIN ChiTietSanPham ON ChiTietHoaDon.IDChiTietSP = ChiTietSanPham.IDChiTietSP\n" +
+            "JOIN SanPham ON ChiTietSanPham.IDSanPham = SanPham.IDSanPham\n" +
+            "WHERE HoaDon.IDHoaDon = ?";
     String select_NV = "SELECT * FROM NHANVIEN";
     String select_TTV = "SELECT * FROM THETHANHVIEN";
     String select_HTTT = "SELECT * FROM HINHTHUCTHANHTOAN";
@@ -82,6 +88,15 @@ public class BanHangDAO {
             throw new RuntimeException(e);
         }
     }
+    
+    public void update_CTSP(ChiTietSanPham entity){
+        try {
+            JDBCHelper.update(update_CTSP, entity.getSoLuongTon(), entity.getIDChiTietSP());
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
 
     private List<Object[]> getListOfArray(String sql, String[] cols, Object... args) {
         try {
@@ -96,6 +111,16 @@ public class BanHangDAO {
             }
             rs.getStatement().getConnection().close();
             return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public List<Object[]> xuLyHoaDon(int id){
+        try {
+            String cols[] = {"MASP","TENSP","SOLUONG","DonGia","THANHTIEN","IDChiTietHD","IDChiTietSP"};
+            return this.getListOfArray(hdCho, cols, id);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);

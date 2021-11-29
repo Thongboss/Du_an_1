@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 package com.milkyway.DAO;
-
 import com.milkyway.Model.LoaiHang;
-import com.milkyway.Model.NhomHang;
 import com.milkyway.Utils.JDBCHelper;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -88,5 +86,13 @@ public class LoaiHangDAO extends MilkyWayDAO<LoaiHang, String> {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
+    }
+    
+    public LoaiHang SelectByidLoaiHang(int idLoaiHang){
+       List<LoaiHang> list = selectBySql("select * from LoaiHang where IDLoaiHang = ?", idLoaiHang);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
     }
 }
