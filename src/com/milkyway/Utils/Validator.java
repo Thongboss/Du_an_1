@@ -22,7 +22,7 @@ import javax.swing.JTextField;
 public class Validator {
 
     public static boolean isNull(JTextField txt, String mes, StringBuilder sb) {
-        if (txt.getText().isEmpty()) {
+        if (txt.getText().trim().isEmpty()) {
             sb.append(mes).append("\n");
             txt.setBackground(Color.YELLOW);
             return true;
@@ -33,7 +33,7 @@ public class Validator {
     }
 
     public static boolean isNull(JTextArea txt, String mes, StringBuilder sb) {
-        if (txt.getText().isEmpty()) {
+        if (txt.getText().trim().isEmpty()) {
             sb.append(mes).append("\n");
             txt.setBackground(Color.YELLOW);
             return true;

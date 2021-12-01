@@ -283,7 +283,8 @@ public class BanHang extends javax.swing.JPanel {
             String trangThai = "Hóa đơn hủy khi chờ";
             Date ngay = (Date) sp[0];
             
-            LocalDate date = LocalDate.ofInstant(ngay.toInstant(), ZoneId.systemDefault());
+//            LocalDate date = LocalDate.ofInstant(ngay.toInstant(), ZoneId.systemDefault());
+            LocalDate date = LocalDate.now(ZoneId.systemDefault());
             
             if (localDate.equals(date) == false) {
                 bh.update_TrangThai_HoaDon_By_ID(trangThai, idhd);

@@ -15,45 +15,49 @@ import com.milkyway.Model.KhuyenMai;
  *
  * @author ASUS
  */
-public class KhuyenMaiDao extends MilkyWayDAO<KhuyenMai, String> {
+public class KhuyenMaiDAO extends MilkyWayDAO<KhuyenMai, String> {
 
-    String Insert_sql = "INSERT INTO [dbo].[KhuyenMai]([MaKM] ,[TenKM],[IDLoaiHang],[IDDongSP],[IDHinhThucThanhToan],[ThoiGianBatDau],[ThoiGianKetThuc],[GiamGia],[MoTa])VALUES(?,?,?,?,?,?,?,?,?)";
-    String update_sql = "UPDATE [dbo].[KhuyenMai] SET [IDDongSP] = ?,[IDHinhThucThanhToan] = ?,[ThoiGianBatDau] = ?,[ThoiGianKetThuc] =?,[GiamGia] =?,[MoTa] = ? WHERE MaKM = ?";
-    String Select_By_id = "Select * from KhuyenMai Where MaKM=?";
-    String Select_all = "Select * from KhuyenMai";
+    final String Insert_sql = "INSERT INTO [dbo].[KhuyenMai]([MaKM] ,[TenKM],[IDLoaiHang],[IDDongSP],[IDHinhThucThanhToan],[ThoiGianBatDau],[ThoiGianKetThuc],[GiamGia],[MoTa])VALUES(?,?,?,?,?,?,?,?,?)";
+    final String update_sql = "UPDATE [dbo].[KhuyenMai] SET [IDLoaiHang] = ?, [IDDongSP] = ?,[IDHinhThucThanhToan] = ?,[ThoiGianBatDau] = ?,[ThoiGianKetThuc] =?,[GiamGia] =?,[MoTa] = ? WHERE MaKM = ?";
+    final String Select_By_id = "Select * from KhuyenMai Where MaKM=?";
+    final String Select_all = "Select * from KhuyenMai";
+    final String Select_All_ConHan = "Select * from KhuyenMai where ThoiGianKetThuc >= getdate()";
+    final String Select_All_HetHan = "Select * from KhuyenMai where ThoiGianKetThuc < getdate()";
 
     @Override
     public void insert(KhuyenMai entity) {
-
         JDBCHelper.update(Insert_sql, entity.getMaKM(),entity.getTenKM(), entity.getIDLoaiHang(), entity.getIDDongSP(), entity.getIDHinhThucThanhToan(), entity.getThoiGianBatDau(), entity.getThoiGianKetThuc(), entity.getGiamGia(), entity.getMoTa());
-
     }
 
     @Override
     public void update(KhuyenMai entity) {
-        JDBCHelper.update(update_sql, entity.getIDDongSP(), entity.getIDHinhThucThanhToan(), entity.getThoiGianBatDau(), entity.getThoiGianKetThuc(), entity.getGiamGia(),entity.getMoTa(), entity.getMaKM());
+        JDBCHelper.update(update_sql, entity.getIDLoaiHang(), entity.getIDDongSP(), entity.getIDHinhThucThanhToan(), entity.getThoiGianBatDau(), entity.getThoiGianKetThuc(), entity.getGiamGia(),entity.getMoTa(), entity.getMaKM());
     }
 
     @Override
     public void delete(String id) {
-
     }
 
     @Override
     public KhuyenMai selectById(String id) {
-
         List<KhuyenMai> list = this.selectBySql(Select_By_id, id);
         if (list.isEmpty()) {
             return null;
         }
-
         return list.get(0);
     }
 
     @Override
     public List<KhuyenMai> selectAll() {
-
         return selectBySql(Select_all);
+    }
+    
+    public List<KhuyenMai> selectAllConHan() {
+        return selectBySql(Select_All_ConHan);
+    }
+    
+    public List<KhuyenMai> selectAllHetHan() {
+        return selectBySql(Select_All_HetHan);
     }
 
     @Override
@@ -79,10 +83,8 @@ public class KhuyenMaiDao extends MilkyWayDAO<KhuyenMai, String> {
             rs.getStatement().getConnection().close();
             return listKM;
         } catch (Exception e) {
-
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
-
     }
-
 }
