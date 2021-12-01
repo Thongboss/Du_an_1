@@ -25,13 +25,13 @@ public class BanHangDAO {
     String insert_HD = "INSERT INTO [dbo].[HoaDon]([MaHD],[IDNhanVien],[IDTheTV],[IDHinhThucThanhToan],[TongTien],[GhiChu],[TrangThai])"
             + " VALUES(?,?,?,?,?,?,?)";
     String insert_CTHD = "INSERT INTO [dbo].[ChiTietHoaDon]([IDHoaDon],[IDChiTietSP],[SoLuong],[DonGia]) VALUES(?,?,?,?)";
-    String update_HD = "UPDATE HOADON SET TRANGTHAI = ? WHERE MAHD = ?";
-    String hoadon_tt = "SELECT MAHD, MANV, TENKH, HOADON.TRANGTHAI\n"
-            + "FROM HOADON JOIN NHANVIEN ON HOADON.IDNHANVIEN = NHANVIEN.IDNHANVIEN\n"
-            + "JOIN THETHANHVIEN ON HOADON.IDTHETV = THETHANHVIEN.IDTHETV\n"
+    String update_TrangThai_HoaDon_By_MaHD = "UPDATE HOADON SET TRANGTHAI = ? WHERE MAHD = ?";
+    String update_TrangThai_HoaDon_By_ID = "UPDATE HoaDon SET TrangThai = ? WHERE IDHoaDon = ?";
+    String hoadon_tt = "SELECT MAHD, MANV, TongTien, HOADON.TRANGTHAI\n"
+            + "FROM HOADON JOIN NHANVIEN ON HOADON.IDNHANVIEN = NHANVIEN.IDNHANVIEN "
             + "WHERE HOADON.TRANGTHAI = ?";
-    String update_CTSP = "UPDATE ChiTietSanPham SET SoLuongTon = ? WHERE IDChiTietSP = ?";
-    String sanpham = "SELECT MaSP,TenDongSP,TenSP,GiaTri,SoLuongTon,DONGIA,TenAnhSP,SoLuongTon,IDChiTietSP\n" +
+    String update_soLuongTon_CTSP_By_ID = "UPDATE ChiTietSanPham SET SoLuongTon = ? WHERE IDChiTietSP = ?";
+    String selectSanPhamDangKD = "SELECT MaSP,TenDongSP,TenSP,GiaTri,SoLuongTon,DONGIA,TenAnhSP,SoLuongTon,IDChiTietSP\n" +
             "FROM SANPHAM JOIN CHITIETSANPHAM ON SANPHAM.IDSANPHAM = CHITIETSANPHAM.IDSANPHAM\n" +
             "JOIN DONVITINH ON CHITIETSANPHAM.IDDONVITINH = DONVITINH.IDDONVITINH\n" +
             "JOIN KHOILUONG ON CHITIETSANPHAM.IDKHOILUONG = KHOILUONG.IDKHOILUONG\n" +
@@ -40,11 +40,14 @@ public class BanHangDAO {
             "JOIN THUONGHIEU ON DONGSP.IDTHUONGHIEU = THUONGHIEU.IDTHUONGHIEU\n" +
             "JOIN AnhSP ON AnhSP.IDAnhSP = CHITIETSANPHAM.IDAnhSP\n" +
             "WHERE SanPham.TrangThai = 1";
-    String hdCho = "SELECT MASP, TENSP, SOLUONG, ChiTietHoaDon.DonGia, (SOLUONG * ChiTietHoaDon.DonGia) AS THANHTIEN, IDChiTietHD, ChiTietSanPham.IDChiTietSP\n" +
+    String selectHoaDonCho = "SELECT MASP, TENSP, SOLUONG, ChiTietHoaDon.DonGia, (SOLUONG * ChiTietHoaDon.DonGia) AS THANHTIEN, IDChiTietHD, ChiTietSanPham.IDChiTietSP\n" +
             "FROM HoaDon JOIN ChiTietHoaDon ON HoaDon.IDHoaDon = ChiTietHoaDon.IDHoaDon\n" +
             "JOIN ChiTietSanPham ON ChiTietHoaDon.IDChiTietSP = ChiTietSanPham.IDChiTietSP\n" +
             "JOIN SanPham ON ChiTietSanPham.IDSanPham = SanPham.IDSanPham\n" +
             "WHERE HoaDon.IDHoaDon = ?";
+    String duyet_HD = "SELECT NgayLap, SoLuongTon,SoLuong, ChiTietSanPham.IDChiTietSP , IDChiTietHD, HoaDon.IDHoaDon\n" +
+            "FROM HoaDon JOIN ChiTietHoaDon ON HoaDon.IDHoaDon = ChiTietHoaDon.IDHoaDon\n" +
+            "JOIN ChiTietSanPham ON ChiTietHoaDon.IDChiTietSP = ChiTietSanPham.IDChiTietSP";
     String select_NV = "SELECT * FROM NHANVIEN";
     String select_TTV = "SELECT * FROM THETHANHVIEN";
     String select_HTTT = "SELECT * FROM HINHTHUCTHANHTOAN";
@@ -80,9 +83,25 @@ public class BanHangDAO {
         }
     }
 
-    public void update_HD(HoaDon entity) {
+    public void update_TrangThai_HoaDon_By_MaHD(HoaDon entity) {
         try {
-            JDBCHelper.update(update_HD, entity.getTrangThai(), entity.getMaHD());
+            JDBCHelper.update(update_TrangThai_HoaDon_By_MaHD, entity.getTrangThai(), entity.getMaHD());
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+    public void update_TrangThai_HoaDon_By_ID(String tt, int id) {
+        try {
+            JDBCHelper.update(update_TrangThai_HoaDon_By_ID, tt, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+    public void update_soLuongTon_CTSP_By_ID(int slt, int id){
+        try {
+            JDBCHelper.update(update_soLuongTon_CTSP_By_ID, slt, id);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -91,7 +110,7 @@ public class BanHangDAO {
     
     public void update_CTSP(ChiTietSanPham entity){
         try {
-            JDBCHelper.update(update_CTSP, entity.getSoLuongTon(), entity.getIDChiTietSP());
+            JDBCHelper.update(update_soLuongTon_CTSP_By_ID, entity.getSoLuongTon(), entity.getIDChiTietSP());
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -117,10 +136,20 @@ public class BanHangDAO {
         }
     }
     
+    public List<Object[]> duyet_HD(){
+        try {
+            String cols[] = {"NgayLap","SoLuongTon","SoLuong","IDChiTietSP","IDChiTietHD","IDHoaDon"};
+            return this.getListOfArray(duyet_HD, cols);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+    
     public List<Object[]> xuLyHoaDon(int id){
         try {
             String cols[] = {"MASP","TENSP","SOLUONG","DonGia","THANHTIEN","IDChiTietHD","IDChiTietSP"};
-            return this.getListOfArray(hdCho, cols, id);
+            return this.getListOfArray(selectHoaDonCho, cols, id);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -129,7 +158,7 @@ public class BanHangDAO {
 
     public List<Object[]> loadHoaDon(String tt) {
         try {
-            String cols[] = {"MAHD", "MANV", "TENKH", "TRANGTHAI"};
+            String cols[] = {"MAHD", "MANV", "TongTien", "TRANGTHAI"};
             return this.getListOfArray(hoadon_tt, cols, tt);
         } catch (Exception e) {
             e.printStackTrace();
@@ -140,7 +169,7 @@ public class BanHangDAO {
     public List<Object[]> loadSanPham() {
         try {
             String cols[] = {"MASP", "TenDongSP", "TenSP", "GiaTri", "SoLuongTon", "DONGIA","TenAnhSP","SOLUONGTON","IDChiTietSP"};
-            return this.getListOfArray(sanpham, cols);
+            return this.getListOfArray(selectSanPhamDangKD, cols);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);

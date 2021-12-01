@@ -3475,7 +3475,7 @@ public class SanPhamJPanel extends javax.swing.JPanel {
             rowKL = tblKhoiLuong.getSelectedRow();
             KhoiLuong kl = khoiLuongDAO.selectById(tblKhoiLuong.getValueAt(rowKL, 0).toString());
             setFormKhoiLuong(kl);
-            updateStatus(rowKL, txtMaKhoiLuong, btnThemKhoiLuong, btnXoaKhoiLuong);
+            updateStatus(rowKL, txtMaKhoiLuong, btnThemKhoiLuong, btnCapNhatKhoiLuong, btnXoaKhoiLuong);
         } catch (Exception e) {
             e.printStackTrace();
         }

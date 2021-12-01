@@ -1055,6 +1055,7 @@ public class ComboSPJDialog extends javax.swing.JDialog {
                 obj[6] = Integer.parseInt(obj[6].toString()) - maSP_soLuong.get(key);
                 sanPhamDAO.update_SoLuong_By_MaSP(key, Integer.parseInt(obj[6].toString()));
             }
+            fillToTableComboSP();
             MsgBox.alert(this, "Thêm thành công");
         } catch (Exception e) {
             MsgBox.alert(this, "Thêm thất bại");
@@ -1124,6 +1125,10 @@ public class ComboSPJDialog extends javax.swing.JDialog {
                         }
                         soLuong += Integer.parseInt(tbl_SoLuong.toString());
                         tbl_SoLuongTon = Integer.parseInt(tbl_SoLuongTon.toString()) - Integer.parseInt(tbl_SoLuong.toString());
+                        if (Integer.parseInt(tbl_SoLuongTon.toString()) < 0) {
+                            MsgBox.alert(this, "Không đủ hàng để tạo hóa đơn");
+                            return;
+                        }
                         tblSanPham.setValueAt(tbl_SoLuongTon, i, 6);
                     }
                 }

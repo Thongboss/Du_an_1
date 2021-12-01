@@ -39,7 +39,8 @@ public class NhanVienDAO extends MilkyWayDAO<NhanVien, String> {
     public void update(NhanVien entity) {
         JDBCHelper.update(Update_SQL, entity.getHoTen(), entity.isGioiTinh(), entity.getNgaySinh(), entity.getSDT(), entity.getCMND(), entity.getEmail(), entity.getHinhAnh(), entity.isVaiTro(), entity.getGhiChu(), entity.getMaNV());
     }
-    public void UpdatePass(NhanVien entity){
+
+    public void UpdatePass(NhanVien entity) {
         JDBCHelper.update(Update_Reset_pass, entity.getMatKhau());
     }
 

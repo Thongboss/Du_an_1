@@ -157,8 +157,10 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
         jPanel6.setBackground(new java.awt.Color(107, 185, 240));
 
         btnThem.setBackground(new java.awt.Color(153, 255, 153));
+        btnThem.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Create.png"))); // NOI18N
         btnThem.setText("Thêm");
+        btnThem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
@@ -167,13 +169,17 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
         jPanel6.add(btnThem);
 
         btnCapNhat.setBackground(new java.awt.Color(255, 255, 102));
+        btnCapNhat.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Edit.png"))); // NOI18N
         btnCapNhat.setText("Cập nhật");
+        btnCapNhat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel6.add(btnCapNhat);
 
         btnMoi.setBackground(new java.awt.Color(204, 204, 204));
+        btnMoi.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Document.png"))); // NOI18N
         btnMoi.setText("Mới");
+        btnMoi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel6.add(btnMoi);
 
         tblKhuyenMai.setAutoCreateRowSorter(true);

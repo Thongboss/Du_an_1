@@ -16,6 +16,8 @@ import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 import com.milkyway.DAO.SanPhamDAO;
 import com.milkyway.Utils.ImageUtils;
+import com.milkyway.Utils.MsgBox;
+import com.milkyway.Utils.Validator;
 import com.milkyway.Utils.XCurrency;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
@@ -24,6 +26,7 @@ import java.awt.image.BufferedImage;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
+import javax.swing.UIManager;
 
 /**
  *
@@ -38,7 +41,7 @@ public class QuetMaVachJFrame extends javax.swing.JFrame implements Runnable, Th
     private Webcam webcam = null;
 
     private static final long serialVersionUID = 6441489157408381878L;
-    private Executor executor = Executors.newSingleThreadExecutor(this);
+    private final Executor executor = Executors.newSingleThreadExecutor(this);
 
     SanPhamDAO sanPhamDAO = new SanPhamDAO();
 
@@ -69,6 +72,12 @@ public class QuetMaVachJFrame extends javax.swing.JFrame implements Runnable, Th
     }
 
     private void loadSanPham(String barcode) {
+        StringBuilder sb = new StringBuilder();
+        Validator.isNull(txtKetQua, "Chưa nhập mã barcode", sb);
+        if (sb.length() > 0) {
+            MsgBox.alert(this, sb.toString());
+            return;
+        }
         Object[] obj = sanPhamDAO.getAllAboutSanPhamDangKDByBarCode(barcode);
         if (obj != null) {
             txtMaSP.setText(obj[0].toString());
@@ -197,16 +206,31 @@ public class QuetMaVachJFrame extends javax.swing.JFrame implements Runnable, Th
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Số lượng:");
 
+        spnSoLuong.setValue(1);
+        spnSoLuong.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spnSoLuongStateChanged(evt);
+            }
+        });
+
         jPanel2.setBackground(new java.awt.Color(107, 185, 240));
 
         btnThem.setBackground(new java.awt.Color(102, 255, 102));
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Accept.png"))); // NOI18N
         btnThem.setText("Thêm vào giỏ");
+        btnThem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnThem.setEnabled(false);
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnThem);
 
         btnCancel.setBackground(new java.awt.Color(255, 153, 153));
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Delete.png"))); // NOI18N
         btnCancel.setText("Hủy bỏ");
+        btnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelActionPerformed(evt);
@@ -236,6 +260,7 @@ public class QuetMaVachJFrame extends javax.swing.JFrame implements Runnable, Th
 
         btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Search.png"))); // NOI18N
         btnTimKiem.setText("Tìm kiếm");
+        btnTimKiem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTimKiemActionPerformed(evt);
@@ -376,8 +401,34 @@ public class QuetMaVachJFrame extends javax.swing.JFrame implements Runnable, Th
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        loadSanPham(txtKetQua.getText());
+        loadSanPham(txtKetQua.getText().trim());
+        btnThem.setEnabled(true);
     }//GEN-LAST:event_btnTimKiemActionPerformed
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        try {
+            StringBuilder sb = new StringBuilder();
+            Validator.checkSoNguyenDuong(spnSoLuong.getValue(), sb);
+            if (sb.length() > 0) {
+                MsgBox.alert(this, sb.toString());
+                return;
+            }
+            BanHang.sanPhamQuetTuBarcode = sanPhamDAO.getAllAboutSanPhamDangKDByBarCode(txtKetQua.getText());
+            BanHang.getSanPhamQuetTuBarcode = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void spnSoLuongStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnSoLuongStateChanged
+        if (Integer.parseInt(spnSoLuong.getValue().toString()) > 0) {
+            btnThem.setEnabled(true);
+            spnSoLuong.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("Spinner.border"));
+        } else {
+            spnSoLuong.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.red, java.awt.Color.red));
+            btnThem.setEnabled(false);
+        }
+    }//GEN-LAST:event_spnSoLuongStateChanged
 
     /**
      * @param args the command line arguments

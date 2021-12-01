@@ -17,6 +17,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import com.milkyway.Utils.ImageUtils;
+import java.text.Normalizer;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -36,6 +38,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         initComponents();
         fillToTable();
         fillTableDaThoiViec();
+
     }
 
     /**
@@ -146,7 +149,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblAnh, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                .addComponent(lblAnh, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -156,6 +159,26 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                 .addComponent(lblAnh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        txtHoTen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtHoTenMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtHoTenMouseEntered(evt);
+            }
+        });
+        txtHoTen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtHoTenKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtHoTenKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtHoTenKeyTyped(evt);
+            }
+        });
 
         buttonGroup1.add(rdoNam);
         rdoNam.setText("Nam");
@@ -185,8 +208,10 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         jPanel6.setBackground(new java.awt.Color(107, 185, 240));
 
         btnThem.setBackground(new java.awt.Color(153, 255, 153));
+        btnThem.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Create.png"))); // NOI18N
         btnThem.setText("Thêm");
+        btnThem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
@@ -195,8 +220,10 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         jPanel6.add(btnThem);
 
         btnCapNhat.setBackground(new java.awt.Color(255, 255, 102));
+        btnCapNhat.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Edit.png"))); // NOI18N
         btnCapNhat.setText("Cập nhật");
+        btnCapNhat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCapNhatActionPerformed(evt);
@@ -205,8 +232,10 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         jPanel6.add(btnCapNhat);
 
         btnMoi.setBackground(new java.awt.Color(204, 204, 204));
+        btnMoi.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Document.png"))); // NOI18N
         btnMoi.setText("Mới");
+        btnMoi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMoiActionPerformed(evt);
@@ -215,8 +244,10 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         jPanel6.add(btnMoi);
 
         btnUpdateStatus.setBackground(new java.awt.Color(153, 255, 255));
+        btnUpdateStatus.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnUpdateStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Save.png"))); // NOI18N
         btnUpdateStatus.setText("Cập nhật trạng thái");
+        btnUpdateStatus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnUpdateStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateStatusActionPerformed(evt);
@@ -225,8 +256,10 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         jPanel6.add(btnUpdateStatus);
 
         btnWebcam.setBackground(new java.awt.Color(255, 102, 255));
+        btnWebcam.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnWebcam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Camera.png"))); // NOI18N
         btnWebcam.setText("Chụp ảnh");
+        btnWebcam.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnWebcam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnWebcamActionPerformed(evt);
@@ -235,8 +268,10 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         jPanel6.add(btnWebcam);
 
         btnChonAnh.setBackground(new java.awt.Color(153, 153, 255));
+        btnChonAnh.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnChonAnh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Upload.png"))); // NOI18N
         btnChonAnh.setText("Chọn ảnh");
+        btnChonAnh.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnChonAnh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnChonAnhActionPerformed(evt);
@@ -330,7 +365,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(195, 195, 195))
+                        .addGap(127, 127, 127))
                     .addComponent(jScrollPane2))
                 .addContainerGap())
         );
@@ -355,12 +390,13 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                             .addComponent(txtTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12)
                             .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13)
-                            .addComponent(ckbRole))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel13)
+                                .addComponent(ckbRole))
+                            .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -390,7 +426,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -427,8 +463,10 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         tblNhanVienDaThoiViec.setRowHeight(25);
         jScrollPane4.setViewportView(tblNhanVienDaThoiViec);
 
+        btnUpdateStatus1.setBackground(new java.awt.Color(153, 255, 255));
         btnUpdateStatus1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Save.png"))); // NOI18N
         btnUpdateStatus1.setText("Cập nhật trạng thái");
+        btnUpdateStatus1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnUpdateStatus1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateStatus1ActionPerformed(evt);
@@ -518,6 +556,11 @@ public class NhanVienJPanel extends javax.swing.JPanel {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
 
         try {
+
+            if (!MsgBox.confirm(this, "Bạn có muốn thêm không ? ")) {
+
+                return;
+            }
 
             if (checkTrungMaNV() && validateForm() && checkTrungTaiKhoan()) {
                 insert();
@@ -613,10 +656,44 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         fillToTable();
     }//GEN-LAST:event_btnUpdateStatusActionPerformed
 
+    private void txtHoTenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtHoTenMouseClicked
+
+    }//GEN-LAST:event_txtHoTenMouseClicked
+
+    private void txtHoTenMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtHoTenMouseEntered
+
+
+    }//GEN-LAST:event_txtHoTenMouseEntered
+
+    private void txtHoTenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoTenKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHoTenKeyPressed
+
+    private void txtHoTenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoTenKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHoTenKeyTyped
+
+    private void txtHoTenKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoTenKeyReleased
+        try {
+            List<NhanVien> listnv = nvdao.selectAll();
+            String tk = txtHoTen.getText().trim();
+            txtMaNV.setText(unAccent(tk.toLowerCase().substring(tk.lastIndexOf(" ") + 1) + tk.substring(0, 1).toLowerCase() + tk.substring(tk.indexOf(" ") + 1).charAt(0)).toLowerCase() + "0000" + listnv.size());
+
+            txtTaiKhoan.setText(unAccent(tk.toLowerCase().substring(tk.lastIndexOf(" ") + 1) + tk.substring(0, 1).toLowerCase() + tk.substring(tk.indexOf(" ") + 1).charAt(0)).toLowerCase() + "0000" + listnv.size());
+
+        } catch (Exception e) {
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHoTenKeyReleased
+
     private NhanVien getForm() {
         NhanVien nv = new NhanVien();
-        nv.setMaNV(txtMaNV.getText());
-        nv.setTaiKhoan(txtTaiKhoan.getText());
+        List<NhanVien> listnv = nvdao.selectAll();
+        String tk = txtHoTen.getText().trim();
+
+        nv.setMaNV(unAccent(tk.toLowerCase().substring(tk.lastIndexOf(" ") + 1) + tk.substring(0, 1).toLowerCase() + tk.substring(tk.indexOf(" ") + 1).charAt(0)).toLowerCase() + "0000" + listnv.size());
+        nv.setTaiKhoan(unAccent(tk.toLowerCase().substring(tk.lastIndexOf(" ") + 1) + tk.substring(0, 1).toLowerCase() + tk.substring(tk.indexOf(" ") + 1).charAt(0)).toLowerCase() + "0000" + listnv.size());
+
         nv.setMatKhau(new String(txtPass.getPassword()).getBytes());
         nv.setHoTen(txtHoTen.getText());
         nv.setGioiTinh(rdoNam.isSelected());
@@ -628,7 +705,6 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         nv.setVaiTro(ckbRole.isSelected());
         nv.setGhiChu(txtNote.getText());
         nv.setHinhAnh(lblAnh.getToolTipText());
-
         return nv;
 
     }
@@ -637,7 +713,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         try {
             NhanVien nv = getForm();
             nvdao.insert(nv);
-            MsgBox.alert(this, "thêm thành công nhân viên ");
+            MsgBox.alert(this, "Thêm thành công nhân viên");
             fillToTable();
         } catch (Exception e) {
             e.printStackTrace();
@@ -826,6 +902,13 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         Image image = icon.getImage();
         ImageIcon icon1 = new ImageIcon(image.getScaledInstance(lblAnh.getWidth(), lblAnh.getHeight(), image.SCALE_SMOOTH));
         lblAnh.setIcon(icon1);
+    }
+
+    public String unAccent(String s) {
+        String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
+        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+        return pattern.matcher(temp).replaceAll("");
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

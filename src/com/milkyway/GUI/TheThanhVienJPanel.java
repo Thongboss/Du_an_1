@@ -43,6 +43,7 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         initComponents();
         fillTabTheHetHan();
         fillTableTheTVConHan();
+        txtNgayTao.setDate(new Date());
         txtTimKiem.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -108,7 +109,7 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         tv.setEmail(txtEmail.getText());
         tv.setNgayTao(txtNgayTao.getDate());
         tv.setNgayHetHan(txtNgayHetHan.getDate());
-        tv.setHinhAnh(lblAnh.getText());
+        tv.setHinhAnh(lblAnh.getToolTipText());
 
         return tv;
 
@@ -130,16 +131,10 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         txtNgayTao.setDate(tv.getNgayTao());
         txtNgayHetHan.setDate(tv.getNgayHetHan());
         txtDiem.setText(tv.getDiem() + "");
-        lblAnh.setToolTipText(tv.getHinhAnh());
         if (tv.getHinhAnh() != null) {
-            String anh = null;
-            ImageIcon icon = new ImageIcon(new ImageIcon(anh).getImage().getScaledInstance(lblAnh.getWidth(), lblAnh.getHeight(), Image.SCALE_DEFAULT));
-            lblAnh.setIcon(icon);
-
-        } else {
-            lblAnh.setIcon(null);
+            lblAnh.setIcon(ImageUtils.resizeImg(ImageUtils.read("TheThanhVien", tv.getHinhAnh()), lblAnh));
+            lblAnh.setToolTipText(tv.getHinhAnh());
         }
-
     }
 
     private void edit() {
@@ -197,8 +192,6 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         try {
             List<TheThanhVien> list = dao.selectTheTVHetHan();
             for (TheThanhVien ttv : list) {
-                System.out.println(ttv.getMaTheTV());
-
                 Object[] rowdata = new Object[]{
                     ttv.getMaTheTV(),
                     ttv.getTenKH(),
@@ -258,6 +251,7 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -344,7 +338,7 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblAnh, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                .addComponent(lblAnh, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -355,8 +349,10 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        buttonGroup1.add(rdoNam);
         rdoNam.setText("Nam");
 
+        buttonGroup1.add(rdoNu);
         rdoNu.setSelected(true);
         rdoNu.setText("Nữ");
 
@@ -376,8 +372,10 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         jPanel6.setBackground(new java.awt.Color(107, 185, 240));
 
         btnThem.setBackground(new java.awt.Color(153, 255, 153));
+        btnThem.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Create.png"))); // NOI18N
         btnThem.setText("Thêm");
+        btnThem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
@@ -386,8 +384,10 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         jPanel6.add(btnThem);
 
         btnCapNhat.setBackground(new java.awt.Color(255, 255, 102));
+        btnCapNhat.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Edit.png"))); // NOI18N
         btnCapNhat.setText("Cập nhật");
+        btnCapNhat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCapNhatActionPerformed(evt);
@@ -396,8 +396,10 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         jPanel6.add(btnCapNhat);
 
         btnMoi.setBackground(new java.awt.Color(204, 204, 204));
+        btnMoi.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Document.png"))); // NOI18N
         btnMoi.setText("Mới");
+        btnMoi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMoiActionPerformed(evt);
@@ -406,8 +408,10 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         jPanel6.add(btnMoi);
 
         btnWebcam.setBackground(new java.awt.Color(255, 102, 255));
+        btnWebcam.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnWebcam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Camera.png"))); // NOI18N
         btnWebcam.setText("Chụp ảnh");
+        btnWebcam.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnWebcam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnWebcamActionPerformed(evt);
@@ -416,8 +420,10 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         jPanel6.add(btnWebcam);
 
         btnChonAnh.setBackground(new java.awt.Color(153, 153, 255));
+        btnChonAnh.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnChonAnh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Upload.png"))); // NOI18N
         btnChonAnh.setText("Chọn ảnh");
+        btnChonAnh.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnChonAnh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnChonAnhActionPerformed(evt);
@@ -440,7 +446,7 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -452,6 +458,7 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
             }
         });
         tblTheThanhVien.setRowHeight(25);
+        tblTheThanhVien.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblTheThanhVien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblTheThanhVienMouseClicked(evt);
@@ -465,9 +472,12 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel16.setText("Ngày hết hạn:");
 
+        txtNgayTao.setEnabled(false);
+
         jPanel7.setBackground(new java.awt.Color(107, 185, 240));
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm kiếm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
 
+        btnTimKiem.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Search.png"))); // NOI18N
         btnTimKiem.setText("Tìm kiếm");
 
@@ -501,6 +511,8 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("Điểm:");
+
+        txtDiem.setEditable(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -552,7 +564,7 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
                             .addComponent(jScrollPane1))
                         .addGap(110, 110, 110)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(103, 103, 103))
+                        .addGap(34, 34, 34))
                     .addComponent(jScrollPane2)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -612,7 +624,7 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(txtDiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -627,31 +639,25 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
 
         tblTheTVHetHan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã thẻ", "Họ tên", "Giới tính", "Ngày sinh", "Số điện thoại", "CMND", "Email", "Ngày tạo", "Ngày hết hạn", "Trạng thái"
+                "Mã thẻ", "Họ tên", "Giới tính", "Ngày sinh", "Số điện thoại", "CMND", "Email", "Ngày tạo", "Ngày hết hạn"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
-            };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, true
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
         tblTheTVHetHan.setRowHeight(25);
+        tblTheTVHetHan.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane3.setViewportView(tblTheTVHetHan);
 
         btnGiaHan.setBackground(new java.awt.Color(255, 102, 102));
@@ -682,8 +688,8 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnGiaHan)
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -745,7 +751,6 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         if (!ValidateForm()) {
-
             return;
         }
         if (checktrungmathetv()) {
@@ -807,6 +812,7 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnWebcam;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
