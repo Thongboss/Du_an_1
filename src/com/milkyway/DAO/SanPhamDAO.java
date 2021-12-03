@@ -6,6 +6,7 @@
 package com.milkyway.DAO;
 
 import com.milkyway.Model.ChiTietSanPham;
+import com.milkyway.Model.DongSP;
 import com.milkyway.Model.SanPham;
 import com.milkyway.Utils.JDBCHelper;
 import java.sql.ResultSet;
@@ -26,6 +27,7 @@ public class SanPhamDAO {
     final String update_TrangThai_SanPham_By_Id = "update SanPham set TrangThai = ? where MaSP = ?";
     final String select_SanPham_SapHetHan = "{call SP_SelectAllSanPhamSapHetHan()}";
     final String select_SanPham_By_BarCode = "{call SP_SelectAllSanPhamByBarCode(?,?)}";
+    
     
     public void insertSanPham(Object[] obj) {
         SanPham sp = new SanPham();
@@ -145,4 +147,42 @@ public class SanPhamDAO {
     public void update_SoLuong_By_MaSP(String maSP, int soLuong) {
         JDBCHelper.update("update ChiTietSanPham set SoLuongTon = ? where IDSanPham = (select IDSanPham from SanPham where MaSP = ?)", soLuong, maSP);
     }
+        public SanPham select_SPbyID(String name) {
+       List<SanPham> lst = selectBySql("select * from SanPham where TenSP =?", name);
+            if (lst.isEmpty()) {
+                return null;
+                
+            }
+            return lst.get(0);
+    }
+        public SanPham selectbyIDSanPham(int IDSanPham){
+           List<SanPham> list = selectBySql("Select * from SanPham where IDSanPham = ?", IDSanPham);
+           if(list.isEmpty()){
+               return null;
+           }
+           return list.get(0);
+       }
+       protected List<SanPham> selectBySql(String sql, Object... args){
+           try {
+               List<SanPham> lst = new ArrayList<>();
+               ResultSet rs = new JDBCHelper().query(sql, args);
+               while (rs.next()){
+                   SanPham entity = new SanPham();
+                   entity.setIDSanPham(rs.getInt("IDSanPham"));
+                   entity.setMaSP(rs.getString("MaSP"));
+                   entity.setIDLoaiSP(rs.getInt("IDLoaiSP"));
+                   entity.setIDDongSP(rs.getInt("IDDongSP"));
+                   entity.setTenSP(rs.getString("TenSP"));
+                   entity.setNgayXK(rs.getDate("NgayXK"));
+                   entity.setGhiChu(rs.getString("GhiChu"));
+                   entity.setTrangThai(rs.getBoolean("TrangThai"));
+                   lst.add(entity);
+               }
+               rs.getStatement().getConnection().close();
+               return lst;
+           } catch (Exception e) {
+                e.printStackTrace();
+            throw new RuntimeException(e);
+           }
+       }
 }
