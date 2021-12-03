@@ -40,6 +40,15 @@ public class BanHangDAO {
             + "JOIN THUONGHIEU ON DONGSP.IDTHUONGHIEU = THUONGHIEU.IDTHUONGHIEU\n"
             + "JOIN AnhSP ON AnhSP.IDAnhSP = CHITIETSANPHAM.IDAnhSP\n"
             + "WHERE SanPham.TrangThai = 1";
+    String selectSanPhamDangKDByIDAndBarCode = "SELECT MaSP,TenDongSP,TenSP,GiaTri,SoLuongTon,DONGIA,TenAnhSP,SoLuongTon,IDChiTietSP\n"
+            + "FROM SANPHAM JOIN CHITIETSANPHAM ON SANPHAM.IDSANPHAM = CHITIETSANPHAM.IDSANPHAM\n"
+            + "JOIN DONVITINH ON CHITIETSANPHAM.IDDONVITINH = DONVITINH.IDDONVITINH\n"
+            + "JOIN KHOILUONG ON CHITIETSANPHAM.IDKHOILUONG = KHOILUONG.IDKHOILUONG\n"
+            + "JOIN XUATXU ON CHITIETSANPHAM.IDXUATXU = XUATXU.IDXUATXU\n"
+            + "JOIN DONGSP ON SANPHAM.IDDONGSP = DONGSP.IDDONGSP\n"
+            + "JOIN THUONGHIEU ON DONGSP.IDTHUONGHIEU = THUONGHIEU.IDTHUONGHIEU\n"
+            + "JOIN AnhSP ON AnhSP.IDAnhSP = CHITIETSANPHAM.IDAnhSP\n"
+            + "WHERE SanPham.TrangThai = 1 and Barcode = ?";
     String selectHoaDonCho = "SELECT MASP, TENSP, SOLUONG, ChiTietHoaDon.DonGia, (SOLUONG * ChiTietHoaDon.DonGia) AS THANHTIEN, IDChiTietHD, ChiTietSanPham.IDChiTietSP\n"
             + "FROM HoaDon JOIN ChiTietHoaDon ON HoaDon.IDHoaDon = ChiTietHoaDon.IDHoaDon\n"
             + "JOIN ChiTietSanPham ON ChiTietHoaDon.IDChiTietSP = ChiTietSanPham.IDChiTietSP\n"
@@ -192,6 +201,20 @@ public class BanHangDAO {
         try {
             String cols[] = {"MASP", "TenDongSP", "TenSP", "GiaTri", "SoLuongTon", "DONGIA", "TenAnhSP", "SOLUONGTON", "IDChiTietSP"};
             return this.getListOfArray(selectSanPhamDangKD, cols);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Object[] loadSanPhamQuetTuBarCode(String barcode) {
+        try {
+            String[] cols = {"MASP", "TenDongSP", "TenSP", "GiaTri", "SoLuongTon", "DONGIA", "TenAnhSP", "SOLUONGTON", "IDChiTietSP"};
+            List<Object[]> lst = this.getListOfArray(selectSanPhamDangKDByIDAndBarCode, cols, barcode);
+            if (lst.isEmpty()) {
+                return null;
+            }
+            return lst.get(0);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);

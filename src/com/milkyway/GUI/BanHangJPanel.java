@@ -307,12 +307,12 @@ public class BanHangJPanel extends javax.swing.JPanel {
             }
             if (!(ckbChoThanhToan.isSelected())) {
                 StringBuilder sb = new StringBuilder();
-                Validator.checkMoney(txtTienkhachtra, sb);
+                Validator.checkMoney(txtTienKhachTra, sb);
                 if (sb.length() > 0) {
                     MsgBox.alert(this, sb.toString());
                     return;
                 }
-                double khachtra = Double.parseDouble(txtTienkhachtra.getText());
+                double khachtra = Double.parseDouble(txtTienKhachTra.getText());
                 double tiendu = khachtra - tienCanTra;
                 if (tiendu < 0) {
                     MsgBox.alert(this, "Tiền thanh toán chưa đủ!");
@@ -423,8 +423,6 @@ public class BanHangJPanel extends javax.swing.JPanel {
             loadGH1();
             loadGH();
             fillTableHD();
-            txtTienkhachtra.setText("");
-            lblTienCanTra.setText("");
         } catch (Exception e) {
             e.printStackTrace();
             MsgBox.alert(this, "Thanh toán thất bại");
@@ -781,12 +779,12 @@ public class BanHangJPanel extends javax.swing.JPanel {
         txtGhichuHD = new javax.swing.JTextArea();
         lblTienCanTra = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        txtTienkhachtra = new javax.swing.JTextField();
+        txtTienKhachTra = new javax.swing.JTextField();
         ckbNhanHD = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         lblThueVAT = new javax.swing.JLabel();
         lblTienTraLai = new javax.swing.JLabel();
-        btnXuatHD = new javax.swing.JButton();
+        btnThanhToan = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
@@ -922,6 +920,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
         btnSuDungDiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Favourites.png"))); // NOI18N
         btnSuDungDiem.setText("Sử dụng");
         btnSuDungDiem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSuDungDiem.setEnabled(false);
         btnSuDungDiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSuDungDiemActionPerformed(evt);
@@ -1056,7 +1055,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
         jLabel31.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel31.setText("Khách trả");
 
-        txtTienkhachtra.setName("Tiền khách trả"); // NOI18N
+        txtTienKhachTra.setName("Tiền khách trả"); // NOI18N
 
         ckbNhanHD.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         ckbNhanHD.setSelected(true);
@@ -1106,7 +1105,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
                                         .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGap(74, 74, 74)))
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtTienkhachtra, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTienKhachTra, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblTienCanTra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(jLabel18)
@@ -1128,7 +1127,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
                         .addContainerGap())))
         );
 
-        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtPhikhac, txtTienkhachtra});
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtPhikhac, txtTienKhachTra});
 
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1160,7 +1159,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtTienkhachtra, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTienKhachTra, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1176,14 +1175,14 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        btnXuatHD.setBackground(new java.awt.Color(102, 255, 102));
-        btnXuatHD.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnXuatHD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Dollar.png"))); // NOI18N
-        btnXuatHD.setText("Thanh toán");
-        btnXuatHD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnXuatHD.addActionListener(new java.awt.event.ActionListener() {
+        btnThanhToan.setBackground(new java.awt.Color(102, 255, 102));
+        btnThanhToan.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnThanhToan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Dollar.png"))); // NOI18N
+        btnThanhToan.setText("Thanh toán");
+        btnThanhToan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnThanhToan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXuatHDActionPerformed(evt);
+                btnThanhToanActionPerformed(evt);
             }
         });
 
@@ -1199,7 +1198,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnXuatHD, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(119, 119, 119))
         );
         jPanel3Layout.setVerticalGroup(
@@ -1210,7 +1209,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
-                .addComponent(btnXuatHD, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -2191,19 +2190,25 @@ public class BanHangJPanel extends javax.swing.JPanel {
         taoHoaDon();
     }//GEN-LAST:event_btnTaoHDActionPerformed
 
-    private void btnXuatHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatHDActionPerformed
+    private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
+        StringBuilder sb = new StringBuilder();
+        Validator.checkMoney(txtTienKhachTra, sb);
+        if (sb.length() > 0) {
+            MsgBox.alert(this, sb.toString());
+            return;
+        }
+        if (tienCanTra >= 100000) {
+//            theThanhVienDAO.updateDiem("0", txtMaTheTV.getText());
+            int diemThuong = (int) Math.floor(tienCanTra * 0.01 / 1000);
+            theThanhVienDAO.updateDiem(diemThuong + "", txtMaTheTV.getText());
+        }
         thanhToan();
         txtMaTheTV.setText("");
         txtHoTenTV.setText("");
         txtDiemTV.setText("");
         lblTongTien.setText("");
         lblGiamGia.setText("");
-        lblTienTraLai.setText("");
-        if (tienCanTra >= 50000) {
-            int diemThuong = (int) Math.floor(tienCanTra * 0.01 / 1000);
-            theThanhVienDAO.updateDiem(diemThuong + "", txtMaTheTV.getText());
-        }
-    }//GEN-LAST:event_btnXuatHDActionPerformed
+    }//GEN-LAST:event_btnThanhToanActionPerformed
 
     private void btnQuetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuetActionPerformed
         new QuetMaVachJFrame().setVisible(true);
@@ -2233,9 +2238,9 @@ public class BanHangJPanel extends javax.swing.JPanel {
 
     private void ckbChoThanhToanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ckbChoThanhToanMouseClicked
         if (ckbChoThanhToan.isSelected()) {
-            txtTienkhachtra.setEditable(false);
+            txtTienKhachTra.setEditable(false);
         } else {
-            txtTienkhachtra.setEditable(true);
+            txtTienKhachTra.setEditable(true);
         }
     }//GEN-LAST:event_ckbChoThanhToanMouseClicked
 
@@ -2248,10 +2253,17 @@ public class BanHangJPanel extends javax.swing.JPanel {
 
     private void btnXacNhanTheTVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacNhanTheTVActionPerformed
         try {
+            StringBuilder sb = new StringBuilder();
+            Validator.isNull(txtMaTheTV, "Mã thẻ thành viên chưa nhập", sb);
+            if (sb.length() > 0) {
+                MsgBox.alert(this, sb.toString());
+                return;
+            }
             TheThanhVien theThanhVien = theThanhVienDAO.selectById(txtMaTheTV.getText());
             if (theThanhVien != null) {
                 txtHoTenTV.setText(theThanhVien.getTenKH());
                 txtDiemTV.setText(theThanhVien.getDiem() + "");
+                btnSuDungDiem.setEnabled(true);
             } else {
                 txtHoTenTV.setText("");
                 txtDiemTV.setText("");
@@ -2266,7 +2278,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
             if (MsgBox.confirm(this, "Bạn có muốn sử dụng điểm không?")) {
                 giamGia += Double.parseDouble(txtDiemTV.getText()) * 1000;
                 taoHoaDon();
-                theThanhVienDAO.updateDiem("0", txtMaTheTV.getText());
+                btnSuDungDiem.setEnabled(false);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -2284,9 +2296,9 @@ public class BanHangJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnResest;
     private javax.swing.JButton btnSuDungDiem;
     private javax.swing.JButton btnTaoHD;
+    private javax.swing.JButton btnThanhToan;
     private javax.swing.JButton btnTimSP;
     private javax.swing.JButton btnXacNhanTheTV;
-    private javax.swing.JButton btnXuatHD;
     private javax.swing.JComboBox<String> cbbHinhThucThanhToan;
     private javax.swing.JComboBox<String> cbbHinhthucThanhtoan;
     private javax.swing.JComboBox<String> cbbLoaiHD;
@@ -2395,7 +2407,7 @@ public class BanHangJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtPhiDH;
     private javax.swing.JTextField txtPhikhac;
     private javax.swing.JTextField txtSDT;
-    private javax.swing.JTextField txtTienkhachtra;
+    private javax.swing.JTextField txtTienKhachTra;
     private javax.swing.JTextField txtTimSP;
     // End of variables declaration//GEN-END:variables
 }
