@@ -11,10 +11,9 @@ import com.milkyway.Utils.ImageUtils;
 import com.milkyway.Utils.MsgBox;
 import com.milkyway.Utils.Validator;
 import com.milkyway.Utils.WebcamUtils;
-import java.awt.Image;
+import java.awt.Color;
 import java.util.Date;
 import java.util.List;
-import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.RowFilter;
 import javax.swing.event.DocumentEvent;
@@ -32,7 +31,7 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
     /**
      * Creates new form NhanVienJPanel1
      */
-    TheThanhVienDAO dao = new TheThanhVienDAO();
+    TheThanhVienDAO theThanhVienDAO = new TheThanhVienDAO();
 
     int rowConHan, rowHetHan = -1;
     JFileChooser fileChooser = new JFileChooser();
@@ -78,7 +77,7 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         TheThanhVien tv = getForm();
 
         try {
-            dao.insert(tv);
+            theThanhVienDAO.insert(tv);
             this.fillTableTheTVConHan();
             this.clearForm();
             MsgBox.alert(this, "Thêm mới thành công!");
@@ -110,7 +109,7 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         tv.setNgayTao(txtNgayTao.getDate());
         tv.setNgayHetHan(txtNgayHetHan.getDate());
         tv.setHinhAnh(lblAnh.getToolTipText());
-
+        
         return tv;
 
     }
@@ -139,7 +138,7 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
 
     private void edit() {
         String mattv = (String) tblTheThanhVien.getValueAt(this.rowConHan, 0);
-        TheThanhVien tv = dao.selectById(mattv);
+        TheThanhVien tv = theThanhVienDAO.selectById(mattv);
         this.setForm(tv);
         this.rowConHan = -1;
     }
@@ -147,7 +146,7 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
     private void update() {
         TheThanhVien tv = getForm();
         try {
-            dao.update(tv);
+            theThanhVienDAO.update(tv);
             this.fillTableTheTVConHan();
             MsgBox.alert(this, "Cập nhật thành công!");
         } catch (Exception e) {
@@ -163,7 +162,7 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         tblTheThanhVien.setRowSorter(sortTTV);
         try {
-            List<TheThanhVien> list = dao.selectTheTVConHan();
+            List<TheThanhVien> list = theThanhVienDAO.selectTheTVConHan();
             for (TheThanhVien ttv : list) {
                 Object[] rowdata = new Object[]{
                     ttv.getMaTheTV(),
@@ -190,7 +189,7 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblTheTVHetHan.getModel();
         model.setRowCount(0);
         try {
-            List<TheThanhVien> list = dao.selectTheTVHetHan();
+            List<TheThanhVien> list = theThanhVienDAO.selectTheTVHetHan();
             for (TheThanhVien ttv : list) {
                 Object[] rowdata = new Object[]{
                     ttv.getMaTheTV(),
@@ -232,12 +231,15 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         return true;
     }
 
-    private boolean checktrungmathetv() {
+    private boolean checkTrungMaTheTV() {
         String mattv = txtMaTheTV.getText();
-        if (mattv == null) {
+        TheThanhVien theThanhVien = theThanhVienDAO.selectById(mattv);
+        if (theThanhVien == null) {
+            txtMaTheTV.setBackground(Color.white);
             return true;
         } else {
-            MsgBox.alert(this, "trùng mã nhân viên ");
+            txtMaTheTV.setBackground(Color.red);
+            MsgBox.alert(this, "Trùng mã thẻ thành viên");
             return false;
         }
     }
@@ -338,7 +340,7 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblAnh, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                .addComponent(lblAnh, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -564,7 +566,7 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
                             .addComponent(jScrollPane1))
                         .addGap(110, 110, 110)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34))
+                        .addGap(82, 82, 82))
                     .addComponent(jScrollPane2)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -750,21 +752,27 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnWebcamActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        if (!ValidateForm()) {
-            return;
+        try {
+            if (!ValidateForm()) {
+                return;
+            }
+            if (checkTrungMaTheTV()) {
+                return;
+            }
+            insert();
+            fillTableTheTVConHan();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        if (checktrungmathetv()) {
-            return;
-
-        }
-        checktrungmathetv();
-        insert();
-        fillTableTheTVConHan();
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
         try {
+            if (!ValidateForm()) {
+                return;
+            }
             update();
+            fillTableTheTVConHan();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -794,7 +802,7 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
     private void btnGiaHanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiaHanActionPerformed
         try {
             for (int i = 0; i < tblTheTVHetHan.getRowCount(); i++) {
-                dao.updateGiaHan(tblTheTVHetHan.getValueAt(i, 0).toString(), tblTheTVHetHan.getValueAt(i, 8).toString());
+                theThanhVienDAO.updateGiaHan(tblTheTVHetHan.getValueAt(i, 0).toString(), tblTheTVHetHan.getValueAt(i, 8).toString());
             }
             fillTabTheHetHan();
             fillTableTheTVConHan();

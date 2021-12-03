@@ -6,8 +6,8 @@
             <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/MainJFrame.java</file>
             <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/BanHang.java</file>
             <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/SanPhamJPanel.java</file>
-            <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/KhuyenMaiJPanel.java</file>
-            <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/subGUI/TheThanhVienJDialog.java</file>
+            <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/DAO/ThongKeDAO.java</file>
+            <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/DAO/BanHangDAO.java</file>
         </group>
     </open-files>
 </project-private>
