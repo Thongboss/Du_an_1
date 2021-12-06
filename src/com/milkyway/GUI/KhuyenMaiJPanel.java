@@ -659,8 +659,8 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
                 listKM = khuyenMaiDAO.selectAllHetHan();
             }
             for (KhuyenMai km : listKM) {
-                String Dongsp = DSPdao.selectbyidDongsp(km.getIDDongSP()).getTenDongSP();
-                String loaihang = loaiHangDAO.SelectByidLoaiHang(km.getIDLoaiHang()).getTenLoai();
+                String Dongsp = DSPdao.selectByIdDongSP(km.getIDDongSP()).getTenDongSP();
+                String loaihang = loaiHangDAO.SelectByIdLoaiHang(km.getIDLoaiHang()).getTenLoai();
 
                 model.addRow(new Object[]{
                     km.getMaKM(), km.getTenKM(), Dongsp, loaihang, km.getThoiGianBatDau(), km.getThoiGianKetThuc(), km.getGiamGia(), km.getMoTa()
@@ -681,8 +681,8 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
     private void setform(KhuyenMai km) {
         txtMaKM.setText(km.getMaKM());
         txtTenKM.setText(km.getTenKM());
-        cbbLoaiSP.setSelectedItem(loaiHangDAO.SelectByidLoaiHang(km.getIDLoaiHang()).getTenLoai());
-        cbbDongSP.setSelectedItem(DSPdao.selectbyidDongsp(km.getIDDongSP()).getTenDongSP());
+        cbbLoaiSP.setSelectedItem(loaiHangDAO.SelectByIdLoaiHang(km.getIDLoaiHang()).getTenLoai());
+        cbbDongSP.setSelectedItem(DSPdao.selectByIdDongSP(km.getIDDongSP()).getTenDongSP());
         txtNgayBD.setDate(km.getThoiGianBatDau());
         txtNgayKT.setDate(km.getThoiGianKetThuc());
         txtGiamGia.setText(String.valueOf(km.getGiamGia()));

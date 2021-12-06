@@ -76,7 +76,7 @@ public class HinhThucThanhToanDAO extends MilkyWayDAO<HinhThucThanhToan, String>
         }
     }
 
-    public HinhThucThanhToan selectByTenhinhThucThanhToan(String name) {
+    public HinhThucThanhToan selectByTenHinhThucThanhToan(String name) {
         List<HinhThucThanhToan> list = selectBySql("select * from HinhThucThanhToan where TenHinhThucThanhToan = ?", name);
         if (list.isEmpty()) {
             return null;
@@ -84,7 +84,7 @@ public class HinhThucThanhToanDAO extends MilkyWayDAO<HinhThucThanhToan, String>
         return list.get(0);
     }
 
-    public HinhThucThanhToan selectByIDhinhThucThanhToan(int idHinhThucThanhToan) {
+    public HinhThucThanhToan selectByIDHinhThucThanhToan(int idHinhThucThanhToan) {
         List<HinhThucThanhToan> list = selectBySql("select * from HinhThucThanhToan where idHinhThucThanhToan = ?", idHinhThucThanhToan);
         if (list.isEmpty()) {
             return null;

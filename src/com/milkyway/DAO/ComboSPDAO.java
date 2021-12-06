@@ -27,12 +27,12 @@ public class ComboSPDAO extends MilkyWayDAO<ComBoSP, String> {
 
     @Override
     public void insert(ComBoSP entity) {
-        JDBCHelper.update(INSERT_SQL, entity.getMaComboSP(), entity.getTenComboSP(), entity.getSoLuongSP(), entity.getTongGia(), entity.getNgayHetHan(), entity.getBarcode(), entity.getGhiChu(), entity.getAnhComboSP());
+        JDBCHelper.update(INSERT_SQL, entity.getMaComboSP(), entity.getTenComboSP(), entity.getSoLuong(), entity.getDonGia(), entity.getNgayHetHan(), entity.getBarcode(), entity.getGhiChu(), entity.getAnhComboSP());
     }
 
     @Override
     public void update(ComBoSP entity) {
-        JDBCHelper.update(UPDATE_SQL, entity.getTenComboSP(), entity.getSoLuongSP(), entity.getTongGia(), entity.getNgayHetHan(), entity.getBarcode(), entity.getGhiChu(), entity.getAnhComboSP(), entity.getMaComboSP());
+        JDBCHelper.update(UPDATE_SQL, entity.getTenComboSP(), entity.getSoLuong(), entity.getDonGia(), entity.getNgayHetHan(), entity.getBarcode(), entity.getGhiChu(), entity.getAnhComboSP(), entity.getMaComboSP());
     }
 
     @Override
@@ -72,8 +72,8 @@ public class ComboSPDAO extends MilkyWayDAO<ComBoSP, String> {
                 cb.setIDComboSP(rs.getInt(1));
                 cb.setMaComboSP(rs.getString(2));
                 cb.setTenComboSP(rs.getString(3));
-                cb.setSoLuongSP(rs.getInt(4));
-                cb.setTongGia(rs.getDouble(5));
+                cb.setSoLuong(rs.getInt(4));
+                cb.setDonGia(rs.getDouble(5));
                 cb.setNgayTao(rs.getDate(6));
                 cb.setNgayHetHan(rs.getDate(7));
                 cb.setBarcode(rs.getString(8));

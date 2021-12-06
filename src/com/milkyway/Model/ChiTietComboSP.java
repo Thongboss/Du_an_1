@@ -12,17 +12,18 @@ package com.milkyway.Model;
  */
 public class ChiTietComboSP {
 
-    private int IDChiTietComboSP, IDComboSP, IDChiTietSP;
+    private int IDChiTietComboSP, IDComboSP, IDChiTietSP, SoLuongSP;
 
     public ChiTietComboSP() {
     }
 
-    public ChiTietComboSP(int IDChiTietComboSP, int IDComboSP, int IDChiTietSP) {
+    public ChiTietComboSP(int IDChiTietComboSP, int IDComboSP, int IDChiTietSP, int SoLuongSP) {
         this.IDChiTietComboSP = IDChiTietComboSP;
         this.IDComboSP = IDComboSP;
         this.IDChiTietSP = IDChiTietSP;
+        this.SoLuongSP = SoLuongSP;
     }
-
+    
     public int getIDChiTietComboSP() {
         return IDChiTietComboSP;
     }
@@ -45,5 +46,13 @@ public class ChiTietComboSP {
 
     public void setIDChiTietSP(int IDChiTietSP) {
         this.IDChiTietSP = IDChiTietSP;
+    }
+
+    public int getSoLuongSP() {
+        return SoLuongSP;
+    }
+
+    public void setSoLuongSP(int SoLuongSP) {
+        this.SoLuongSP = SoLuongSP;
     }
 }

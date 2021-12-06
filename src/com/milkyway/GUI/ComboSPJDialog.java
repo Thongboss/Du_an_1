@@ -50,7 +50,7 @@ public class ComboSPJDialog extends javax.swing.JDialog {
     List<ComBoSP> listComboSP = comboSPDAO.selectAll();
     List<String> lstMaSP = new ArrayList<>();
     Map<String, Integer> maSP_soLuong;
-    int soLuong;
+    int soLuongSPThemVaoCombo, soLuongCombo;
     static boolean getBarCode = false;
     static String barcode = "";
 
@@ -156,8 +156,8 @@ public class ComboSPJDialog extends javax.swing.JDialog {
         ComBoSP cb = new ComBoSP();
         cb.setMaComboSP(txtMaCombo.getText());
         cb.setTenComboSP(txtTenCombo.getText());
-        cb.setSoLuongSP(Integer.parseInt(spnSL.getValue().toString()));
-        cb.setTongGia(Double.parseDouble(txtTongGia.getText()));
+        cb.setSoLuong(Integer.parseInt(spnSoLuong.getValue().toString()));
+        cb.setDonGia(Double.parseDouble(txtTongGia.getText()));
         cb.setNgayTao(txtNgayTao.getDate());
         cb.setNgayHetHan(txtNgayHetHan.getDate());
         cb.setBarcode(txtBarcodeCombo.getText());
@@ -169,8 +169,8 @@ public class ComboSPJDialog extends javax.swing.JDialog {
     private void setFormComboSP(ComBoSP cb) {
         txtMaCombo.setText(cb.getMaComboSP());
         txtTenCombo.setText(cb.getTenComboSP());
-        spnSL.setValue(cb.getSoLuongSP());
-        txtTongGia.setText(cb.getTongGia() + "");
+        spnSoLuong.setValue(cb.getSoLuong());
+        txtTongGia.setText(cb.getDonGia() + "");
         txtNgayTao.setDate(cb.getNgayTao());
         txtNgayHetHan.setDate(cb.getNgayHetHan());
         txtBarcodeCombo.setText(cb.getBarcode());
@@ -204,7 +204,7 @@ public class ComboSPJDialog extends javax.swing.JDialog {
             }
             for (ComBoSP cb : lst) {
                 tableModel.addRow(new Object[]{
-                    cb.getMaComboSP(), cb.getTenComboSP(), cb.getSoLuongSP(), cb.getTongGia(), cb.getNgayTao(), cb.getNgayHetHan(), cb.getBarcode(), cb.getGhiChu()
+                    cb.getMaComboSP(), cb.getTenComboSP(), cb.getSoLuong(), cb.getDonGia(), cb.getNgayTao(), cb.getNgayHetHan(), cb.getBarcode(), cb.getGhiChu()
                 });
             }
         } catch (Exception e) {
@@ -232,7 +232,7 @@ public class ComboSPJDialog extends javax.swing.JDialog {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         txtMaCombo = new javax.swing.JTextField();
-        spnSL = new javax.swing.JSpinner();
+        spnSoLuong = new javax.swing.JSpinner();
         txtTongGia = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
@@ -330,9 +330,9 @@ public class ComboSPJDialog extends javax.swing.JDialog {
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Ngày hết hạn:");
 
-        spnSL.addChangeListener(new javax.swing.event.ChangeListener() {
+        spnSoLuong.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                spnSLStateChanged(evt);
+                spnSoLuongStateChanged(evt);
             }
         });
 
@@ -591,7 +591,7 @@ public class ComboSPJDialog extends javax.swing.JDialog {
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(txtTongGia, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
                                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addComponent(spnSL, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(spnSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(btnConfirmSL))
                                             .addComponent(jScrollPane3))))
@@ -642,7 +642,7 @@ public class ComboSPJDialog extends javax.swing.JDialog {
                                     .addComponent(btnConfirmSL)
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel15)
-                                        .addComponent(spnSL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(spnSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtTongGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1033,7 +1033,7 @@ public class ComboSPJDialog extends javax.swing.JDialog {
             }
 
             Validator.isNull(txtTenCombo, "Tên Combo chưa nhập", sb);
-            Validator.checkSoNguyenDuong(spnSL.getValue(), sb);
+            Validator.checkSoNguyenDuong(spnSoLuong.getValue(), sb);
             Validator.checkMoney(txtTongGia, sb);
             Validator.checkHanSD(txtNgayHetHan, sb);
 
@@ -1075,33 +1075,47 @@ public class ComboSPJDialog extends javax.swing.JDialog {
         txtNgayHetHan.setDate(null);
         txtBarcodeCombo.setText("");
         txtGhiChuCombo.setText("");
-        spnSL.setEnabled(true);
-        spnSL.setValue(2);
-        spnSL.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.yellow, java.awt.Color.yellow));
+        spnSoLuong.setEnabled(true);
+        spnSoLuong.setValue(1);
+        spnSoLuong.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.yellow, java.awt.Color.yellow));
         lblAnhCombo.setIcon(null);
-        MsgBox.alert(this, "Nhập số lượng sản phẩm cần thêm vào Combo mới");
+        MsgBox.alert(this, "Nhập số lượng Combo cần tạo");
     }//GEN-LAST:event_btnMoiActionPerformed
 
-    private void spnSLStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnSLStateChanged
-        if (Integer.parseInt(spnSL.getValue().toString()) > 1) {
+    private void spnSoLuongStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnSoLuongStateChanged
+        if (Integer.parseInt(spnSoLuong.getValue().toString()) > 0) {
+            soLuongCombo = Integer.parseInt(spnSoLuong.getValue().toString());
             btnConfirmSL.setEnabled(true);
-            spnSL.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.yellow, java.awt.Color.yellow));
+            spnSoLuong.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.yellow, java.awt.Color.yellow));
         } else {
-            spnSL.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.red, java.awt.Color.red));
+            spnSoLuong.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.red, java.awt.Color.red));
             btnConfirmSL.setEnabled(false);
         }
-    }//GEN-LAST:event_spnSLStateChanged
+    }//GEN-LAST:event_spnSoLuongStateChanged
 
     private void btnConfirmSLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmSLActionPerformed
         tbpComboSP.setSelectedIndex(1);
-        btnThemVaoCombo.setEnabled(true);
-        MsgBox.alert(this, "Vui lòng chọn " + spnSL.getValue().toString() + " sản phẩm thêm vào Combo");
+        soLuongSPThemVaoCombo = 0;
+        Object test;
+        while (true) {
+            try {
+                test = MsgBox.prompt(this, "Nhập số lượng sản phẩm muốn thêm vào combo").trim();
+                soLuongSPThemVaoCombo = Integer.parseInt(test.toString());
+                btnThemVaoCombo.setEnabled(true);
+                MsgBox.alert(this, "Vui lòng chọn " + soLuongSPThemVaoCombo + " sản phẩm thêm vào Combo");
+                break;
+            } catch (NullPointerException e) {
+                MsgBox.alert(this, "Vui lòng nhập số lượng");
+            } catch (NumberFormatException e) {
+                MsgBox.alert(this, "Vui lòng nhập số");
+            }
+        }
     }//GEN-LAST:event_btnConfirmSLActionPerformed
 
     private void btnThemVaoComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemVaoComboActionPerformed
         try {
-            soLuong = 0;
             double tongGia = 0;
+            int soLuongSP = 0;
             maSP_soLuong.clear();
             lstMaSP.clear();
             for (int i = 0; i < tblSanPham.getRowCount(); i++) {
@@ -1116,15 +1130,15 @@ public class ComboSPJDialog extends javax.swing.JDialog {
                         return;
                     }
                     if (Boolean.parseBoolean(tbl_ThemVaoCombo.toString()) == true && Integer.parseInt(tbl_SoLuong.toString()) > 0) {
-                        maSP_soLuong.put(tbl_MaSP.toString(), Integer.parseInt(tbl_SoLuong.toString()));
+                        maSP_soLuong.put(tbl_MaSP.toString(), Integer.parseInt(tbl_SoLuong.toString()) * soLuongCombo);
                         int j = 1;
                         while (j <= Integer.parseInt(tbl_SoLuong.toString())) {
                             lstMaSP.add(tbl_MaSP.toString());
                             j++;
                             tongGia += Double.parseDouble(tbl_DonGia.toString());
                         }
-                        soLuong += Integer.parseInt(tbl_SoLuong.toString());
-                        tbl_SoLuongTon = Integer.parseInt(tbl_SoLuongTon.toString()) - Integer.parseInt(tbl_SoLuong.toString());
+                        soLuongSP += Integer.parseInt(tbl_SoLuong.toString());
+                        tbl_SoLuongTon = Integer.parseInt(tbl_SoLuongTon.toString()) - Integer.parseInt(tbl_SoLuong.toString()) * soLuongCombo;
                         if (Integer.parseInt(tbl_SoLuongTon.toString()) < 0) {
                             MsgBox.alert(this, "Không đủ hàng để tạo hóa đơn");
                             return;
@@ -1133,19 +1147,19 @@ public class ComboSPJDialog extends javax.swing.JDialog {
                     }
                 }
             }
-            if (soLuong != Integer.parseInt(spnSL.getValue().toString())) {
-                MsgBox.alert(this, "Vui lòng chọn sản phẩm và nhập đúng " + spnSL.getValue() + " sản phẩm");
-                lstMaSP.clear();
+            if (soLuongSPThemVaoCombo != soLuongSP) {
+                MsgBox.alert(this, "Vui lòng chọn sản phẩm và nhập đúng " + soLuongSPThemVaoCombo + " sản phẩm");
                 return;
             }
             btnThem.setEnabled(true);
             btnThemBarcode.setEnabled(true);
             txtMaCombo.setText("Combo_");
-            txtTenCombo.setText("Combo " + soLuong + " sản phẩm - ");
+            txtTenCombo.setText("Combo " + soLuongSPThemVaoCombo + " sản phẩm - ");
             txtNgayHetHan.setDate(XDate.toDate(sanPhamDAO.getAllAboutSanPhamDangKDByID(lstMaSP.get(0))[5].toString(), "yyyy-MM-dd"));
 
             Set<String> maSP = maSP_soLuong.keySet();
             for (String key : maSP) {
+                System.out.println(key + " - " + maSP_soLuong.get(key));
                 Object[] obj = sanPhamDAO.getAllAboutSanPhamDangKDByID(key);
                 if (!txtMaCombo.getText().contains(key)) {
                     txtMaCombo.setText(txtMaCombo.getText() + key + "_");
@@ -1163,7 +1177,7 @@ public class ComboSPJDialog extends javax.swing.JDialog {
             txtTongGia.setText(tongGia + "");
             btnConfirmSL.setEnabled(false);
             btnThemVaoCombo.setEnabled(false);
-            spnSL.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("Spinner.border"));
+            spnSoLuong.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("Spinner.border"));
             btnChonAnh.setEnabled(true);
             btnWebcam.setEnabled(true);
             tbpComboSP.setSelectedIndex(0);
@@ -1179,9 +1193,9 @@ public class ComboSPJDialog extends javax.swing.JDialog {
             rowCombo = tblComboSP.getSelectedRow();
             ComBoSP cb = comboSPDAO.selectById(tblComboSP.getValueAt(rowCombo, 0).toString());
             setFormComboSP(cb);
-            spnSL.setEnabled(false);
+            spnSoLuong.setEnabled(false);
             btnConfirmSL.setEnabled(false);
-            spnSL.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("Spinner.border"));
+            spnSoLuong.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("Spinner.border"));
             updateStatus(rowCombo, txtMaCombo, btnThem, btnCapNhat, btnChonAnh, btnWebcam, btnThemBarcode);
         } catch (Exception e) {
             e.printStackTrace();
@@ -1197,7 +1211,7 @@ public class ComboSPJDialog extends javax.swing.JDialog {
             StringBuilder sb = new StringBuilder();
             Validator.isNull(txtMaCombo, "Mã Combo chưa nhập", sb);
             Validator.isNull(txtTenCombo, "Tên Combo chưa nhập", sb);
-            Validator.checkSoNguyenDuong(spnSL.getValue(), sb);
+            Validator.checkSoNguyenDuong(spnSoLuong.getValue(), sb);
             Validator.checkMoney(txtTongGia, sb);
             Validator.checkHanSD(txtNgayHetHan, sb);
 
@@ -1205,7 +1219,7 @@ public class ComboSPJDialog extends javax.swing.JDialog {
                 MsgBox.alert(this, sb.toString());
                 return;
             }
-            
+
             comboSPDAO.update(getFormComboSP());
             fillToTableComboSP();
             MsgBox.alert(this, "Cập nhật thành công");
@@ -1310,7 +1324,7 @@ public class ComboSPJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblAnhSP;
     private javax.swing.JRadioButton rdoConHan;
     private javax.swing.JRadioButton rdoHetHan;
-    private javax.swing.JSpinner spnSL;
+    private javax.swing.JSpinner spnSoLuong;
     private javax.swing.JScrollPane srpSanPhamDangKD;
     private javax.swing.JTable tblComboSP;
     private javax.swing.JTable tblSanPham;

@@ -88,7 +88,7 @@ public class LoaiHangDAO extends MilkyWayDAO<LoaiHang, String> {
         }
     }
     
-    public LoaiHang SelectByidLoaiHang(int idLoaiHang){
+    public LoaiHang SelectByIdLoaiHang(int idLoaiHang){
        List<LoaiHang> list = selectBySql("select * from LoaiHang where IDLoaiHang = ?", idLoaiHang);
         if (list.isEmpty()) {
             return null;

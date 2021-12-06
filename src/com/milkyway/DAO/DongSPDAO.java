@@ -95,7 +95,7 @@ public class DongSPDAO extends MilkyWayDAO<DongSP, String> {
 
     }
 
-    public DongSP selectbyidDongsp(int IDDongSP) {
+    public DongSP selectByIdDongSP(int IDDongSP) {
         List<DongSP> list = selectBySql("select * from DongSP where IDDongSP = ?", IDDongSP);
         if (list.isEmpty()) {
             return null;
