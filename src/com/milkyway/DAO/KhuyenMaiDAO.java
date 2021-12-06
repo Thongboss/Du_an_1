@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import com.milkyway.Model.KhuyenMai;
+import com.milkyway.Model.SanPham;
 
 /**
  *
@@ -18,11 +19,16 @@ import com.milkyway.Model.KhuyenMai;
 public class KhuyenMaiDAO extends MilkyWayDAO<KhuyenMai, String> {
 
     final String Insert_sql = "INSERT INTO [dbo].[KhuyenMai]([MaKM] ,[TenKM],[IDSanPham],[IDDongSP],[ThoiGianBatDau],[ThoiGianKetThuc],[GiamGia],[MoTa])VALUES(?,?,?,?,?,?,?,?)";
-    final String update_sql = "UPDATE [dbo].[KhuyenMai] SET [IDSanPham] = ?, [IDDongSP] = ?,[ThoiGianBatDau] = ?,[ThoiGianKetThuc] =?,[GiamGia] =?,[MoTa] = ? WHERE MaKM = ?";
+    final String update_sql = "UPDATE [dbo].[KhuyenMai] SET [TenKM] = ? , [ThoiGianKetThuc] =?,[GiamGia] =?,[MoTa] = ? WHERE MaKM = ?";
     final String Select_By_id = "Select * from KhuyenMai Where MaKM=?";
     final String Select_all = "Select * from KhuyenMai";
     final String Select_All_ConHan = "Select * from KhuyenMai where ThoiGianKetThuc >= getdate()";
     final String Select_All_HetHan = "Select * from KhuyenMai where ThoiGianKetThuc < getdate()";
+    final String Insert_sql_dongsp = "INSERT INTO [dbo].[KhuyenMai]([MaKM],[TenKM],[IDSanPham],[IDDongSP],[ThoiGianBatDau],[ThoiGianKetThuc],[GiamGia],[MoTa]) values(?,?,?,?,?,?,?,?)";
+    final String View_Table = "select MaKM, TenKM, TenDongSP, TenSP, ThoiGianBatDau, ThoiGianKetThuc,GiamGia,MoTa from KhuyenMai join DongSP on KhuyenMai.IDDongSP = DongSP.IDDongSP\n" +
+"left outer join SanPham on KhuyenMai.IDSanPham = SanPham.IDSanPham";
+    final String select_SP = "SELECT * FROM SANPHAM";
+    
 
     @Override
     public void insert(KhuyenMai entity) {
@@ -31,7 +37,7 @@ public class KhuyenMaiDAO extends MilkyWayDAO<KhuyenMai, String> {
 
     @Override
     public void update(KhuyenMai entity) {
-        JDBCHelper.update(update_sql, entity.getIDSanPham(), entity.getIDDongSP(),  entity.getThoiGianBatDau(), entity.getThoiGianKetThuc(), entity.getGiamGia(),entity.getMoTa(), entity.getMaKM());
+        JDBCHelper.update(update_sql,entity.getTenKM(),entity.getThoiGianKetThuc(), entity.getGiamGia(),entity.getMoTa(), entity.getMaKM());
     }
 
     @Override
@@ -86,5 +92,70 @@ public class KhuyenMaiDAO extends MilkyWayDAO<KhuyenMai, String> {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
+    }
+     public void insertDSP(KhuyenMai entity) {
+         
+        JDBCHelper.update(Insert_sql_dongsp, entity.getMaKM(),entity.getTenKM(),entity.getIDSanPham()== 0 ? null : entity.getIDSanPham(), entity.getIDDongSP(), entity.getThoiGianBatDau(), entity.getThoiGianKetThuc(), entity.getGiamGia(), entity.getMoTa());
+    }
+      public void insertSP(KhuyenMai entity) {
+         
+        JDBCHelper.update(Insert_sql_dongsp, entity.getMaKM(),entity.getTenKM(),entity.getIDSanPham(), entity.getIDDongSP()==0? null : entity.getIDDongSP(), entity.getThoiGianBatDau(), entity.getThoiGianKetThuc(), entity.getGiamGia(), entity.getMoTa());
+    }
+      
+        private List<Object[]> getListOfArray(String sql, String[] cols, Object... args) {
+        try {
+            List<Object[]> list = new ArrayList<>();
+            ResultSet rs = JDBCHelper.query(sql, args);
+            while (rs.next()) {
+                Object[] vals = new Object[cols.length];
+                for (int i = 0; i < cols.length; i++) {
+                    vals[i] = rs.getObject(cols[i]);
+                }
+                list.add(vals);
+            }
+            rs.getStatement().getConnection().close();
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+        public List<Object[]> ViewTable(){
+            try {
+                String cols[] = {"MaKM", "TenKM", "TenDongSP", "TenSP", "ThoiGianBatDau","ThoiGianKetThuc","GiamGia","MoTa"};
+                return this.getListOfArray(View_Table, cols);
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new RuntimeException();
+            }
+        }
+         private List<SanPham> selectBySP(String sql, Object... args) {
+        try {
+            List<SanPham> list = new ArrayList<>();
+            ResultSet rs = JDBCHelper.query(sql, args);
+            while (rs.next()) {
+                SanPham ttv = new SanPham();
+                ttv.setGhiChu(rs.getString("GhiChu"));
+                ttv.setIDDongSP(rs.getInt("IDDongSP"));
+                ttv.setIDLoaiSP(rs.getInt("IDLoaiSP"));
+                ttv.setIDSanPham(rs.getInt("IDSanPham"));
+                ttv.setMaSP(rs.getString("MaSP"));
+                ttv.setNgayXK(rs.getDate("NgayXK"));
+                ttv.setTenSP(rs.getString("TenSP"));
+                ttv.setTrangThai(rs.getBoolean("TrangThai"));
+               
+                list.add(ttv);
+            }
+            rs.getStatement().getConnection().close();
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<SanPham> loadListSP() {
+        return this.selectBySP(select_SP);
     }
 }

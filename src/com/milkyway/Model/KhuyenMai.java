@@ -15,7 +15,8 @@ public class KhuyenMai {
 
     private int IDKhuyenMai;
     private String MaKM, TenKM;
-    private int IDSanPham, IDDongSP, IDHinhThucThanhToan;
+    private int IDSanPham , IDDongSP , IDHinhThucThanhToan;
+
     private Date ThoiGianBatDau, ThoiGianKetThuc;
     private int GiamGia;
     private String MoTa;

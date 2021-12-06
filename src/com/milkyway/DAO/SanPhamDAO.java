@@ -27,7 +27,7 @@ public class SanPhamDAO {
     final String update_TrangThai_SanPham_By_Id = "update SanPham set TrangThai = ? where MaSP = ?";
     final String select_SanPham_SapHetHan = "{call SP_SelectAllSanPhamSapHetHan()}";
     final String select_SanPham_By_BarCode = "{call SP_SelectAllSanPhamByBarCode(?,?)}";
-    
+    final String select_SP = "SELECT * FROM SANPHAM";
     
     public void insertSanPham(Object[] obj) {
         SanPham sp = new SanPham();
@@ -185,4 +185,5 @@ public class SanPhamDAO {
             throw new RuntimeException(e);
            }
        }
+      
 }
