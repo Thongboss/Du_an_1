@@ -18,8 +18,13 @@ import com.milkyway.Model.SanPham;
  */
 public class KhuyenMaiDAO extends MilkyWayDAO<KhuyenMai, String> {
 
+<<<<<<< HEAD
     final String Insert_sql = "INSERT INTO [dbo].[KhuyenMai]([MaKM] ,[TenKM],[IDSanPham],[IDDongSP],[ThoiGianBatDau],[ThoiGianKetThuc],[GiamGia],[MoTa])VALUES(?,?,?,?,?,?,?,?)";
     final String update_sql = "UPDATE [dbo].[KhuyenMai] SET [TenKM] = ? , [ThoiGianKetThuc] =?,[GiamGia] =?,[MoTa] = ? WHERE MaKM = ?";
+=======
+    final String Insert_sql = "INSERT INTO [dbo].[KhuyenMai]([MaKM] ,[TenKM],[IDLoaiHang],[IDDongSP],[ThoiGianBatDau],[ThoiGianKetThuc],[GiamGia],[MoTa])VALUES(?,?,?,?,?,?,?,?)";
+    final String update_sql = "UPDATE [dbo].[KhuyenMai] SET [IDLoaiHang] = ?, [IDDongSP] = ?,[ThoiGianBatDau] = ?,[ThoiGianKetThuc] =?,[GiamGia] =?,[MoTa] = ? WHERE MaKM = ?";
+>>>>>>> 32be48392abad4369b4867c69f73ee73717d0db4
     final String Select_By_id = "Select * from KhuyenMai Where MaKM=?";
     final String Select_all = "Select * from KhuyenMai";
     final String Select_All_ConHan = "Select * from KhuyenMai where ThoiGianKetThuc >= getdate()";
@@ -32,12 +37,20 @@ public class KhuyenMaiDAO extends MilkyWayDAO<KhuyenMai, String> {
 
     @Override
     public void insert(KhuyenMai entity) {
+<<<<<<< HEAD
         JDBCHelper.update(Insert_sql, entity.getMaKM(),entity.getTenKM(), entity.getIDSanPham(), entity.getIDDongSP(), entity.getThoiGianBatDau(), entity.getThoiGianKetThuc(), entity.getGiamGia(), entity.getMoTa());
+=======
+        JDBCHelper.update(Insert_sql, entity.getMaKM(),entity.getTenKM(), entity.getIDLoaiHang(), entity.getIDDongSP(), entity.getThoiGianBatDau(), entity.getThoiGianKetThuc(), entity.getGiamGia(), entity.getMoTa());
+>>>>>>> 32be48392abad4369b4867c69f73ee73717d0db4
     }
 
     @Override
     public void update(KhuyenMai entity) {
+<<<<<<< HEAD
         JDBCHelper.update(update_sql,entity.getTenKM(),entity.getThoiGianKetThuc(), entity.getGiamGia(),entity.getMoTa(), entity.getMaKM());
+=======
+        JDBCHelper.update(update_sql, entity.getIDLoaiHang(), entity.getIDDongSP(), entity.getThoiGianBatDau(), entity.getThoiGianKetThuc(), entity.getGiamGia(),entity.getMoTa(), entity.getMaKM());
+>>>>>>> 32be48392abad4369b4867c69f73ee73717d0db4
     }
 
     @Override
@@ -78,7 +91,10 @@ public class KhuyenMaiDAO extends MilkyWayDAO<KhuyenMai, String> {
                 entity.setTenKM(rs.getString("TenKM"));
                 entity.setIDSanPham(rs.getInt("IDSanPham"));
                 entity.setIDDongSP(rs.getInt("IDDongSP"));
+<<<<<<< HEAD
                
+=======
+>>>>>>> 32be48392abad4369b4867c69f73ee73717d0db4
                 entity.setThoiGianBatDau(rs.getDate("ThoiGianBatDau"));
                 entity.setThoiGianKetThuc(rs.getDate("ThoiGianKetThuc"));
                 entity.setGiamGia(rs.getInt("giamgia"));

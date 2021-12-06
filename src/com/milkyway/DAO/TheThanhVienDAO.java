@@ -22,6 +22,7 @@ public class TheThanhVienDAO extends MilkyWayDAO<TheThanhVien, String> {
     String select_all_sql = " select * from TheThanhVien ";
     String select_By_id_sql = "select * from TheThanhVien Where MaTheTV = ?";
     String update_GiaHan = "Update [dbo].[TheThanhVien] set NgayHetHan = ? where MaTheTV = ?";
+    String update_Diem = "Update [dbo].[TheThanhVien] set Diem = ? where MaTheTV = ?";
 
     @Override
     public void insert(TheThanhVien Entity) {
@@ -52,6 +53,10 @@ public class TheThanhVienDAO extends MilkyWayDAO<TheThanhVien, String> {
     public void updateGiaHan(String id, String ngayHetHan) {
         JDBCHelper.update(update_GiaHan, ngayHetHan, id);
     }
+    
+    public void updateDiem(String diem, String id) {
+        JDBCHelper.update(update_Diem, diem, id);
+    }
 
     @Override
     public List<TheThanhVien> selectAll() {
@@ -60,30 +65,25 @@ public class TheThanhVienDAO extends MilkyWayDAO<TheThanhVien, String> {
 
     @Override
     protected List<TheThanhVien> selectBySql(String sql, Object... args) {
-
         List<TheThanhVien> list = new ArrayList<>();
         try {
-
             ResultSet rs = JDBCHelper.query(sql, args);
             while (rs.next()) {
-
                 TheThanhVien Entity = new TheThanhVien();
                 Entity.setIDTheTV(rs.getInt("IDTheTV"));
                 Entity.setMaTheTV(rs.getString("MaTheTV"));
                 Entity.setTenKH(rs.getString("TenKH"));
                 Entity.setGioiTinh(rs.getBoolean("GioiTinh"));
-
                 Entity.setNgaySinh(rs.getDate("NgaySinh"));
-
                 Entity.setSDT(rs.getString("SDT"));
                 Entity.setCMND(rs.getString("CMND"));
                 Entity.setEmail(rs.getString("Email"));
-                Entity.setHinhAnh("HinhAnh");
+                Entity.setHinhAnh(rs.getString("HinhAnh"));
                 Entity.setNgayTao(rs.getDate("NgayTao"));
                 Entity.setNgayHetHan(rs.getDate("NgayHetHan"));
                 Entity.setGhiChu(rs.getString("GhiChu"));
+                Entity.setDiem(rs.getInt("Diem"));
                 list.add(Entity);
-
             }
             rs.getStatement().getConnection().close();
             return list;

@@ -31,23 +31,35 @@ public class BanHangDAO {
             + "FROM HOADON JOIN NHANVIEN ON HOADON.IDNHANVIEN = NHANVIEN.IDNHANVIEN "
             + "WHERE HOADON.TRANGTHAI = ?";
     String update_soLuongTon_CTSP_By_ID = "UPDATE ChiTietSanPham SET SoLuongTon = ? WHERE IDChiTietSP = ?";
-    String selectSanPhamDangKD = "SELECT MaSP,TenDongSP,TenSP,GiaTri,SoLuongTon,DONGIA,TenAnhSP,SoLuongTon,IDChiTietSP\n" +
-            "FROM SANPHAM JOIN CHITIETSANPHAM ON SANPHAM.IDSANPHAM = CHITIETSANPHAM.IDSANPHAM\n" +
-            "JOIN DONVITINH ON CHITIETSANPHAM.IDDONVITINH = DONVITINH.IDDONVITINH\n" +
-            "JOIN KHOILUONG ON CHITIETSANPHAM.IDKHOILUONG = KHOILUONG.IDKHOILUONG\n" +
-            "JOIN XUATXU ON CHITIETSANPHAM.IDXUATXU = XUATXU.IDXUATXU\n" +
-            "JOIN DONGSP ON SANPHAM.IDDONGSP = DONGSP.IDDONGSP\n" +
-            "JOIN THUONGHIEU ON DONGSP.IDTHUONGHIEU = THUONGHIEU.IDTHUONGHIEU\n" +
-            "JOIN AnhSP ON AnhSP.IDAnhSP = CHITIETSANPHAM.IDAnhSP\n" +
-            "WHERE SanPham.TrangThai = 1";
-    String selectHoaDonCho = "SELECT MASP, TENSP, SOLUONG, ChiTietHoaDon.DonGia, (SOLUONG * ChiTietHoaDon.DonGia) AS THANHTIEN, IDChiTietHD, ChiTietSanPham.IDChiTietSP\n" +
-            "FROM HoaDon JOIN ChiTietHoaDon ON HoaDon.IDHoaDon = ChiTietHoaDon.IDHoaDon\n" +
-            "JOIN ChiTietSanPham ON ChiTietHoaDon.IDChiTietSP = ChiTietSanPham.IDChiTietSP\n" +
-            "JOIN SanPham ON ChiTietSanPham.IDSanPham = SanPham.IDSanPham\n" +
-            "WHERE HoaDon.IDHoaDon = ?";
-    String duyet_HD = "SELECT NgayLap, SoLuongTon,SoLuong, ChiTietSanPham.IDChiTietSP , IDChiTietHD, HoaDon.IDHoaDon\n" +
-            "FROM HoaDon JOIN ChiTietHoaDon ON HoaDon.IDHoaDon = ChiTietHoaDon.IDHoaDon\n" +
-            "JOIN ChiTietSanPham ON ChiTietHoaDon.IDChiTietSP = ChiTietSanPham.IDChiTietSP";
+    String selectSanPhamDangKD = "SELECT MaSP,TenDongSP,TenSP,GiaTri,SoLuongTon,DONGIA,TenAnhSP,SoLuongTon,IDChiTietSP\n"
+            + "FROM SANPHAM JOIN CHITIETSANPHAM ON SANPHAM.IDSANPHAM = CHITIETSANPHAM.IDSANPHAM\n"
+            + "JOIN DONVITINH ON CHITIETSANPHAM.IDDONVITINH = DONVITINH.IDDONVITINH\n"
+            + "JOIN KHOILUONG ON CHITIETSANPHAM.IDKHOILUONG = KHOILUONG.IDKHOILUONG\n"
+            + "JOIN XUATXU ON CHITIETSANPHAM.IDXUATXU = XUATXU.IDXUATXU\n"
+            + "JOIN DONGSP ON SANPHAM.IDDONGSP = DONGSP.IDDONGSP\n"
+            + "JOIN THUONGHIEU ON DONGSP.IDTHUONGHIEU = THUONGHIEU.IDTHUONGHIEU\n"
+            + "JOIN AnhSP ON AnhSP.IDAnhSP = CHITIETSANPHAM.IDAnhSP\n"
+            + "WHERE SanPham.TrangThai = 1";
+    String selectSanPhamDangKDByIDAndBarCode = "SELECT MaSP,TenDongSP,TenSP,GiaTri,SoLuongTon,DONGIA,TenAnhSP,SoLuongTon,IDChiTietSP\n"
+            + "FROM SANPHAM JOIN CHITIETSANPHAM ON SANPHAM.IDSANPHAM = CHITIETSANPHAM.IDSANPHAM\n"
+            + "JOIN DONVITINH ON CHITIETSANPHAM.IDDONVITINH = DONVITINH.IDDONVITINH\n"
+            + "JOIN KHOILUONG ON CHITIETSANPHAM.IDKHOILUONG = KHOILUONG.IDKHOILUONG\n"
+            + "JOIN XUATXU ON CHITIETSANPHAM.IDXUATXU = XUATXU.IDXUATXU\n"
+            + "JOIN DONGSP ON SANPHAM.IDDONGSP = DONGSP.IDDONGSP\n"
+            + "JOIN THUONGHIEU ON DONGSP.IDTHUONGHIEU = THUONGHIEU.IDTHUONGHIEU\n"
+            + "JOIN AnhSP ON AnhSP.IDAnhSP = CHITIETSANPHAM.IDAnhSP\n"
+            + "WHERE SanPham.TrangThai = 1 and Barcode = ?";
+    String selectHoaDonCho = "SELECT MASP, TENSP, SOLUONG, ChiTietHoaDon.DonGia, (SOLUONG * ChiTietHoaDon.DonGia) AS THANHTIEN, IDChiTietHD, ChiTietSanPham.IDChiTietSP\n"
+            + "FROM HoaDon JOIN ChiTietHoaDon ON HoaDon.IDHoaDon = ChiTietHoaDon.IDHoaDon\n"
+            + "JOIN ChiTietSanPham ON ChiTietHoaDon.IDChiTietSP = ChiTietSanPham.IDChiTietSP\n"
+            + "JOIN SanPham ON ChiTietSanPham.IDSanPham = SanPham.IDSanPham\n"
+            + "WHERE HoaDon.IDHoaDon = ?";
+    String duyet_HD = "SELECT NgayLap, SoLuongTon,SoLuong, ChiTietSanPham.IDChiTietSP , IDChiTietHD, HoaDon.IDHoaDon\n"
+            + "FROM HoaDon JOIN ChiTietHoaDon ON HoaDon.IDHoaDon = ChiTietHoaDon.IDHoaDon\n"
+            + "JOIN ChiTietSanPham ON ChiTietHoaDon.IDChiTietSP = ChiTietSanPham.IDChiTietSP\n"
+            + "WHERE TrangThai = N'Chờ thanh toán'";
+    String hoadon_rong = "delete HoaDon where IDHoaDon not in (select IDHoaDon from ChiTietHoaDon)";
+    String delete_cthd = "DELETE ChiTietHoaDon WHERE IDChiTietHD = ?";
     String select_NV = "SELECT * FROM NHANVIEN";
     String select_TTV = "SELECT * FROM THETHANHVIEN";
     String select_HTTT = "SELECT * FROM HINHTHUCTHANHTOAN";
@@ -72,7 +84,6 @@ public class BanHangDAO {
             throw new RuntimeException(e);
         }
     }
-    
 
     public void insert_CTHD(ChiTietHoaDon entity) {
         try {
@@ -91,6 +102,25 @@ public class BanHangDAO {
             throw new RuntimeException(e);
         }
     }
+
+    public void delete_cthd(int id) {
+        try {
+            JDBCHelper.update(delete_cthd, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void delete_hd_rong() {
+        try {
+            JDBCHelper.update(hoadon_rong);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
     public void update_TrangThai_HoaDon_By_ID(String tt, int id) {
         try {
             JDBCHelper.update(update_TrangThai_HoaDon_By_ID, tt, id);
@@ -99,7 +129,8 @@ public class BanHangDAO {
             throw new RuntimeException(e);
         }
     }
-    public void update_soLuongTon_CTSP_By_ID(int slt, int id){
+
+    public void update_soLuongTon_CTSP_By_ID(int slt, int id) {
         try {
             JDBCHelper.update(update_soLuongTon_CTSP_By_ID, slt, id);
         } catch (Exception e) {
@@ -107,8 +138,8 @@ public class BanHangDAO {
             throw new RuntimeException(e);
         }
     }
-    
-    public void update_CTSP(ChiTietSanPham entity){
+
+    public void update_CTSP(ChiTietSanPham entity) {
         try {
             JDBCHelper.update(update_soLuongTon_CTSP_By_ID, entity.getSoLuongTon(), entity.getIDChiTietSP());
         } catch (Exception e) {
@@ -135,20 +166,20 @@ public class BanHangDAO {
             throw new RuntimeException(e);
         }
     }
-    
-    public List<Object[]> duyet_HD(){
+
+    public List<Object[]> duyet_HD() {
         try {
-            String cols[] = {"NgayLap","SoLuongTon","SoLuong","IDChiTietSP","IDChiTietHD","IDHoaDon"};
+            String cols[] = {"NgayLap", "SoLuongTon", "SoLuong", "IDChiTietSP", "IDChiTietHD", "IDHoaDon"};
             return this.getListOfArray(duyet_HD, cols);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
-    
-    public List<Object[]> xuLyHoaDon(int id){
+
+    public List<Object[]> xuLyHoaDon(int id) {
         try {
-            String cols[] = {"MASP","TENSP","SOLUONG","DonGia","THANHTIEN","IDChiTietHD","IDChiTietSP"};
+            String cols[] = {"MASP", "TENSP", "SOLUONG", "DonGia", "THANHTIEN", "IDChiTietHD", "IDChiTietSP"};
             return this.getListOfArray(selectHoaDonCho, cols, id);
         } catch (Exception e) {
             e.printStackTrace();
@@ -168,8 +199,22 @@ public class BanHangDAO {
 
     public List<Object[]> loadSanPham() {
         try {
-            String cols[] = {"MASP", "TenDongSP", "TenSP", "GiaTri", "SoLuongTon", "DONGIA","TenAnhSP","SOLUONGTON","IDChiTietSP"};
+            String cols[] = {"MASP", "TenDongSP", "TenSP", "GiaTri", "SoLuongTon", "DONGIA", "TenAnhSP", "SOLUONGTON", "IDChiTietSP"};
             return this.getListOfArray(selectSanPhamDangKD, cols);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Object[] loadSanPhamQuetTuBarCode(String barcode) {
+        try {
+            String[] cols = {"MASP", "TenDongSP", "TenSP", "GiaTri", "SoLuongTon", "DONGIA", "TenAnhSP", "SOLUONGTON", "IDChiTietSP"};
+            List<Object[]> lst = this.getListOfArray(selectSanPhamDangKDByIDAndBarCode, cols, barcode);
+            if (lst.isEmpty()) {
+                return null;
+            }
+            return lst.get(0);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);

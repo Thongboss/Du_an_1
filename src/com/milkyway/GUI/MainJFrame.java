@@ -26,7 +26,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private SanPhamJPanel spPanel;
     private TheThanhVienJPanel theTVPanel;
     private NhanVienJPanel nhanVienPanel;
-    private BanHang banHang;
+    private BanHangJPanel banHang;
     private ThongKeJPanel thongKe;
     private KhuyenMaiJPanel khuyenMaiJPanel;
 
@@ -648,7 +648,7 @@ public class MainJFrame extends javax.swing.JFrame {
             return;
         }
         if (banHang == null || tbpMainPortal.getComponentCount() == 0) {
-            banHang = new BanHang();
+            banHang = new BanHangJPanel();
             tbpMainPortal.addTab("Quản lý bán hàng", banHang);
             tbpMainPortal.setSelectedComponent(banHang);
         } else {

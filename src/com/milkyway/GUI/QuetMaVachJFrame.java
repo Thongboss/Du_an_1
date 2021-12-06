@@ -413,8 +413,8 @@ public class QuetMaVachJFrame extends javax.swing.JFrame implements Runnable, Th
                 MsgBox.alert(this, sb.toString());
                 return;
             }
-            BanHang.sanPhamQuetTuBarcode = sanPhamDAO.getAllAboutSanPhamDangKDByBarCode(txtKetQua.getText());
-            BanHang.getSanPhamQuetTuBarcode = true;
+            BanHangJPanel.sanPhamQuetTuBarcode = sanPhamDAO.getAllAboutSanPhamDangKDByBarCode(txtKetQua.getText());
+            BanHangJPanel.getSanPhamQuetTuBarcode = true;
         } catch (Exception e) {
             e.printStackTrace();
         }

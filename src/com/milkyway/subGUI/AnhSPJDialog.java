@@ -287,6 +287,7 @@ public class AnhSPJDialog extends javax.swing.JDialog {
     private void btnChonAnhSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonAnhSPActionPerformed
         try {
             ImageUtils.openAndInsertHinhAnh("SanPham", lblAnhSP);
+            txtMaAnhSP.setText(lblAnhSP.getToolTipText().substring(0, lblAnhSP.getToolTipText().length() - 4));
             txtTenAnhSP.setText(lblAnhSP.getToolTipText());
         } catch (Exception e) {
             MsgBox.alert(this, e.getMessage());
