@@ -3,9 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/C:/Users/van95/OneDrive/Documents/NetBeans%20Project/MilkyWay/src/com/milkyway/Model/KhuyenMai.java</file>
+            <file>file:/C:/Users/van95/OneDrive/Documents/NetBeans%20Project/MilkyWay/src/com/milkyway/DAO/KhuyenMaiDAO.java</file>
+            <file>file:/C:/Users/van95/OneDrive/Documents/NetBeans%20Project/MilkyWay/src/com/milkyway/GUI/KhuyenMaiJPanel.java</file>
+            <file>file:/C:/Users/van95/OneDrive/Documents/NetBeans%20Project/MilkyWay/src/com/milkyway/GUI/BanHang.java</file>
+            <file>file:/C:/Users/van95/OneDrive/Documents/NetBeans%20Project/MilkyWay/src/com/milkyway/DAO/DongSPDAO.java</file>
+            <file>file:/C:/Users/van95/OneDrive/Documents/NetBeans%20Project/MilkyWay/src/com/milkyway/DAO/SanPhamDAO.java</file>
+            <file>file:/C:/Users/van95/OneDrive/Documents/NetBeans%20Project/MilkyWay/src/com/milkyway/GUI/MainJFrame.java</file>
+            <file>file:/C:/Users/van95/OneDrive/Documents/NetBeans%20Project/MilkyWay/src/com/milkyway/Utils/JDBCHelper.java</file>
+            <file>file:/C:/Users/van95/OneDrive/Documents/NetBeans%20Project/MilkyWay/src/com/milkyway/DAO/BanHangDAO.java</file>
+=======
             <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/MainJFrame.java</file>
+<<<<<<< HEAD
             <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/ComboSPJDialog.java</file>
             <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/DAO/ComboSPDAO.java</file>
+=======
+            <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/QuetMaVachJFrame.java</file>
+            <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/GUI/BanHangJPanel.java</file>
+            <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/DAO/SanPhamDAO.java</file>
+            <file>file:/C:/Users/DaiAustinYersin/Documents/NetBeansProjects/MilkyWay/src/com/milkyway/DAO/BanHangDAO.java</file>
+>>>>>>> 32be48392abad4369b4867c69f73ee73717d0db4
+>>>>>>> d91af323505cb90f826fdd7c584a47acb3f4714b
         </group>
     </open-files>
 </project-private>

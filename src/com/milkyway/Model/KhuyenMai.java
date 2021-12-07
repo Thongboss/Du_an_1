@@ -15,7 +15,7 @@ public class KhuyenMai {
 
     private int IDKhuyenMai;
     private String MaKM, TenKM;
-    private int IDLoaiHang, IDDongSP;
+    private int IDSanPham, IDDongSP;
     private Date ThoiGianBatDau, ThoiGianKetThuc;
     private int GiamGia;
     private String MoTa;
@@ -23,11 +23,15 @@ public class KhuyenMai {
     public KhuyenMai() {
     }
 
-    public KhuyenMai(int IDKhuyenMai, String MaKM, String TenKM, int IDLoaiHang, int IDDongSP, Date ThoiGianBatDau, Date ThoiGianKetThuc, int GiamGia, String MoTa) {
+    public KhuyenMai(int IDKhuyenMai, String MaKM, String TenKM, int IDSanPham, int IDDongSP, int IDHinhThucThanhToan, Date ThoiGianBatDau, Date ThoiGianKetThuc, int GiamGia, String MoTa) {
+
+    }
+
+    public KhuyenMai(int IDKhuyenMai, String MaKM, String TenKM, int IDSanPham, int IDDongSP, Date ThoiGianBatDau, Date ThoiGianKetThuc, int GiamGia, String MoTa) {
         this.IDKhuyenMai = IDKhuyenMai;
         this.MaKM = MaKM;
         this.TenKM = TenKM;
-        this.IDLoaiHang = IDLoaiHang;
+        this.IDSanPham = IDSanPham;
         this.IDDongSP = IDDongSP;
         this.ThoiGianBatDau = ThoiGianBatDau;
         this.ThoiGianKetThuc = ThoiGianKetThuc;
@@ -59,12 +63,12 @@ public class KhuyenMai {
         this.TenKM = TenKM;
     }
 
-    public int getIDLoaiHang() {
-        return IDLoaiHang;
+    public int getIDSanPham() {
+        return IDSanPham;
     }
 
-    public void setIDLoaiHang(int IDLoaiHang) {
-        this.IDLoaiHang = IDLoaiHang;
+    public void setIDSanPham(int IDSanPham) {
+        this.IDSanPham = IDSanPham;
     }
 
     public int getIDDongSP() {
@@ -106,4 +110,5 @@ public class KhuyenMai {
     public void setMoTa(String MoTa) {
         this.MoTa = MoTa;
     }
+
 }
