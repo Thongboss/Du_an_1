@@ -24,7 +24,6 @@ public class KhuyenMai {
     }
 
     public KhuyenMai(int IDKhuyenMai, String MaKM, String TenKM, int IDSanPham, int IDDongSP, int IDHinhThucThanhToan, Date ThoiGianBatDau, Date ThoiGianKetThuc, int GiamGia, String MoTa) {
-
     }
 
     public KhuyenMai(int IDKhuyenMai, String MaKM, String TenKM, int IDSanPham, int IDDongSP, Date ThoiGianBatDau, Date ThoiGianKetThuc, int GiamGia, String MoTa) {
