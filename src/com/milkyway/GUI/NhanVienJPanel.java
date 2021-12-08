@@ -691,8 +691,8 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         List<NhanVien> listnv = nvdao.selectAll();
         String tk = txtHoTen.getText().trim();
 
-        nv.setMaNV(unAccent(tk.toLowerCase().substring(tk.lastIndexOf(" ") + 1) + tk.substring(0, 1).toLowerCase() + tk.substring(tk.indexOf(" ") + 1).charAt(0)).toLowerCase() + "0000" + listnv.size());
-        nv.setTaiKhoan(unAccent(tk.toLowerCase().substring(tk.lastIndexOf(" ") + 1) + tk.substring(0, 1).toLowerCase() + tk.substring(tk.indexOf(" ") + 1).charAt(0)).toLowerCase() + "0000" + listnv.size());
+        nv.setMaNV(txtMaNV.getText());
+        nv.setTaiKhoan(txtTaiKhoan.getText());
 
         nv.setMatKhau(new String(txtPass.getPassword()).getBytes());
         nv.setHoTen(txtHoTen.getText());
