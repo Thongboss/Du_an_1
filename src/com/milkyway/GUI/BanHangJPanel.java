@@ -1381,11 +1381,6 @@ public class BanHangJPanel extends javax.swing.JPanel {
 
         btnAdddonDH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Add to basket.png"))); // NOI18N
         btnAdddonDH.setText("Thêm hóa đơn");
-        btnAdddonDH.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdddonDHActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -2172,10 +2167,6 @@ public class BanHangJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnBoActionPerformed
 
-    private void btnAdddonDHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdddonDHActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdddonDHActionPerformed
-
     private void btnTimSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimSPActionPerformed
         timSP();
     }//GEN-LAST:event_btnTimSPActionPerformed
@@ -2198,7 +2189,6 @@ public class BanHangJPanel extends javax.swing.JPanel {
             return;
         }
         if (tienCanTra >= 100000) {
-//            theThanhVienDAO.updateDiem("0", txtMaTheTV.getText());
             int diemThuong = (int) Math.floor(tienCanTra * 0.01 / 1000);
             theThanhVienDAO.updateDiem(diemThuong + "", txtMaTheTV.getText());
         }

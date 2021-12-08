@@ -34,7 +34,7 @@ public class FIlePDF {
         try {
 
             // Tạo đối tượng PdfWriter
-            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\van95\\OneDrive\\Documents\\NetBeans Project\\MilkyWay\\PDF\\milkyway.pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("PDF\\milkyway.pdf"));
 
             // Mở file để thực hiện ghi
             document.open();

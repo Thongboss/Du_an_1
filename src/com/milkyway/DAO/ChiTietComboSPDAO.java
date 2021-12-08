@@ -17,14 +17,14 @@ import java.util.List;
  */
 public class ChiTietComboSPDAO extends MilkyWayDAO<ChiTietComboSP, String>{
     
-    final String INSERT_SQL = "INSERT INTO [dbo].[ChiTietComboSP]([IDComboSP],[IDChiTietSP]) VALUES (?,?)";
+    final String INSERT_SQL = "INSERT INTO [dbo].[ChiTietComboSP]([IDComboSP],[IDChiTietSP],[SoLuongSP]) VALUES (?,?,?)";
     final String DELETE_SQL = "DELETE FROM [dbo].[ChiTietComboSP] WHERE [IDComboSP] = ?";
     final String SELECT_BY_ID_SQL = "SELECT * FROM [dbo].[ChiTietComboSP] WHERE [IDChiTietComboSP] = ?";
     final String SELECT_ALL_SQL = "SELECT * FROM [dbo].[ChiTietComboSP]";
 
     @Override
     public void insert(ChiTietComboSP entity) {
-        JDBCHelper.update(INSERT_SQL, entity.getIDComboSP(), entity.getIDChiTietSP());
+        JDBCHelper.update(INSERT_SQL, entity.getIDComboSP(), entity.getIDChiTietSP(), entity.getSoLuongSP());
     }
 
     @Override

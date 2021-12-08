@@ -176,7 +176,7 @@ public class ComboSPJDialog extends javax.swing.JDialog {
         txtBarcodeCombo.setText(cb.getBarcode());
         txtGhiChuCombo.setText(cb.getGhiChu());
         if (cb.getAnhComboSP() != null) {
-            lblAnhCombo.setIcon(ImageUtils.resizeImg(ImageUtils.read("SanPham", cb.getAnhComboSP()), lblAnhCombo));
+            lblAnhCombo.setIcon(ImageUtils.resizeImg(ImageUtils.read("ComboSanPham", cb.getAnhComboSP()), lblAnhCombo));
             lblAnhCombo.setToolTipText(cb.getAnhComboSP());
         }
     }
@@ -316,7 +316,7 @@ public class ComboSPJDialog extends javax.swing.JDialog {
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Số lượng:");
+        jLabel15.setText("Số lượng Combo có thể mua:");
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
@@ -577,45 +577,44 @@ public class ComboSPJDialog extends javax.swing.JDialog {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(jLabel13)
                                         .addGap(18, 18, 18)
                                         .addComponent(txtMaCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel14)
-                                            .addComponent(jLabel15)
-                                            .addComponent(jLabel16))
+                                        .addComponent(jLabel15)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtTongGia, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
-                                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addComponent(spnSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(btnConfirmSL))
-                                            .addComponent(jScrollPane3))))
-                                .addGap(74, 74, 74)
+                                        .addComponent(spnSoLuong)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnConfirmSL))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel14)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel16)
+                                        .addGap(31, 31, 31)
+                                        .addComponent(txtTongGia, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(103, 103, 103)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel19)
+                                    .addComponent(jLabel18)
+                                    .addComponent(jLabel22)
+                                    .addComponent(jLabel21))
+                                .addGap(32, 32, 32)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel19)
-                                            .addComponent(jLabel18))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtNgayTao, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
-                                            .addComponent(txtNgayHetHan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel22)
-                                            .addComponent(jLabel21))
-                                        .addGap(54, 54, 54)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
-                                            .addComponent(txtBarcodeCombo))
+                                            .addComponent(txtBarcodeCombo)
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnThemBarcode))))
+                                        .addComponent(btnThemBarcode))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtNgayHetHan, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtNgayTao, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -637,7 +636,7 @@ public class ComboSPJDialog extends javax.swing.JDialog {
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel14)
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnConfirmSL)
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -652,20 +651,20 @@ public class ComboSPJDialog extends javax.swing.JDialog {
                                     .addComponent(txtNgayTao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel18))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel19)
-                                    .addComponent(txtNgayHetHan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtNgayHetHan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel19))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel21)
-                                        .addComponent(txtBarcodeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtBarcodeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel21))
                                     .addComponent(btnThemBarcode))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel22)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
+                        .addGap(29, 29, 29)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -878,7 +877,7 @@ public class ComboSPJDialog extends javax.swing.JDialog {
                                     .addComponent(jLabel12))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtKhoiLuong, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                                    .addComponent(txtKhoiLuong, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
                                     .addComponent(txtXuatXu)
                                     .addComponent(txtDonGia)
                                     .addComponent(txtDonViTinh)
@@ -1007,12 +1006,12 @@ public class ComboSPJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnThemBarcodeActionPerformed
 
     private void btnWebcamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWebcamActionPerformed
-        WebcamUtils.chupAnh("SanPham");
+        WebcamUtils.chupAnh("ComboSanPham");
     }//GEN-LAST:event_btnWebcamActionPerformed
 
     private void btnChonAnhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonAnhActionPerformed
         try {
-            ImageUtils.openAndInsertHinhAnh("SanPham", lblAnhCombo);
+            ImageUtils.openAndInsertHinhAnh("ComboSanPham", lblAnhCombo);
         } catch (Exception e) {
             MsgBox.alert(this, e.getMessage());
         }
@@ -1049,6 +1048,7 @@ public class ComboSPJDialog extends javax.swing.JDialog {
                 ChiTietComboSP chiTietComboSP = new ChiTietComboSP();
                 chiTietComboSP.setIDComboSP(comboSPDAO.selectById(txtMaCombo.getText()).getIDComboSP());
                 chiTietComboSP.setIDChiTietSP(sanPhamDAO.select_Id_ChiTietSP_By_MaSP(key));
+                chiTietComboSP.setSoLuongSP(maSP_soLuong.get(key) / soLuongCombo);
                 chiTietComboSPDAO.insert(chiTietComboSP);
 
                 Object[] obj = sanPhamDAO.getAllAboutSanPhamDangKDByID(key);
@@ -1159,7 +1159,7 @@ public class ComboSPJDialog extends javax.swing.JDialog {
 
             Set<String> maSP = maSP_soLuong.keySet();
             for (String key : maSP) {
-                System.out.println(key + " - " + maSP_soLuong.get(key));
+//                System.out.println(key + " - " + maSP_soLuong.get(key));
                 Object[] obj = sanPhamDAO.getAllAboutSanPhamDangKDByID(key);
                 if (!txtMaCombo.getText().contains(key)) {
                     txtMaCombo.setText(txtMaCombo.getText() + key + "_");

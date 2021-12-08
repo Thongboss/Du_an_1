@@ -17,9 +17,9 @@ import java.util.List;
  */
 public class ComboSPDAO extends MilkyWayDAO<ComBoSP, String> {
 
-    final String INSERT_SQL = "INSERT INTO [dbo].[ComBoSP]([MaComboSP],[TenComboSP],[SoLuong],[DonGia],[NgayTao],[NgayHetHan],[Barcode],[GhiChu],[AnhComBoSP])\n"
+    final String INSERT_SQL = "INSERT INTO [dbo].[ComBoSP]([MaComboSP],[TenComboSP],[SoLuong],[DonGia],[NgayHetHan],[Barcode],[GhiChu],[AnhComBoSP])\n"
             + "	VALUES (?,?,?,?,?,?,?,?)";
-    final String UPDATE_SQL = "UPDATE [dbo].[ComBoSP] SET [TenComboSP] = ?,[SoLuongSP] = ?,[TongGia] = ?,[NgayHetHan] = ?,[Barcode] = ?,[GhiChu] = ?,[AnhComBoSP] = ?\n"
+    final String UPDATE_SQL = "UPDATE [dbo].[ComBoSP] SET [TenComboSP] = ?,[SoLuong] = ?,[DonGia] = ?,[NgayHetHan] = ?,[Barcode] = ?,[GhiChu] = ?,[AnhComBoSP] = ?\n"
             + " WHERE [MaComboSP] = ?";
     final String DELETE_SQL = "DELETE FROM [dbo].[ComBoSP] WHERE [MaComboSP] = ?";
     final String SELECT_BY_ID_SQL = "SELECT * FROM [dbo].[ComBoSP] WHERE [MaComboSP] = ?";

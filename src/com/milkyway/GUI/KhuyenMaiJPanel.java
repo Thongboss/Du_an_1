@@ -7,14 +7,12 @@ package com.milkyway.GUI;
 
 import com.milkyway.DAO.DongSPDAO;
 import com.milkyway.DAO.LoaiHangDAO;
-import com.milkyway.Model.LoaiHang;
 import com.milkyway.Model.DongSP;
 import com.milkyway.Utils.MsgBox;
 import com.milkyway.Model.KhuyenMai;
 import com.milkyway.DAO.HinhThucThanhToanDAO;
 import com.milkyway.DAO.KhuyenMaiDAO;
 import com.milkyway.DAO.SanPhamDAO;
-import com.milkyway.Model.HinhThucThanhToan;
 import com.milkyway.Model.SanPham;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -22,8 +20,6 @@ import javax.swing.table.DefaultTableModel;
 import com.milkyway.Utils.Validator;
 import java.awt.Color;
 import java.util.Date;
-import javafx.scene.control.RadioButton;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
@@ -286,6 +282,11 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
         btnLoc.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnLoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Zoom.png"))); // NOI18N
         btnLoc.setText("Lọc");
+        btnLoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLocActionPerformed(evt);
+            }
+        });
 
         ckbConHan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         ckbConHan.setForeground(new java.awt.Color(255, 255, 255));
@@ -332,6 +333,7 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
         );
 
         buttonGroup1.add(rdoDSP);
+        rdoDSP.setSelected(true);
         rdoDSP.setText("Dòng sản phẩm");
         rdoDSP.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -606,6 +608,10 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_rdoSPStateChanged
 
+    private void btnLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLocActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;
@@ -875,6 +881,8 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
         Validator.isNull(txtMaKM, "Không được để trống mã", sb);
         Validator.isNull(txtGiamGia, "Không được để trống giảm giá", sb);
         Validator.isNull(txtTenKM, "Không được để trống tên khuyến mãi", sb);
+        Validator.isNull(txtNgayBD, "Không được để trống ngày bắt đầu", sb);
+        Validator.isNull(txtNgayKT, "Không được để trống ngày bắt đầu", sb);
 
         for (KhuyenMai km : lstKM_All) {
             if (txtMaKM.getText().equalsIgnoreCase(km.getMaKM())) {
