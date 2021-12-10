@@ -3688,7 +3688,8 @@ public class SanPhamJPanel extends javax.swing.JPanel {
             if (checkNull(txtMaSP, txtTenSP, txtDonGia, txtBarcode)) {
                 return;
             }
-            Validator.isNull(txtHanSD, "Hạn sử dụng chưa nhập", sb);
+            Validator.checkHanSD(txtHanSD, sb);
+            Validator.checkSoNguyenDuong(spnSoLuong.getValue(), sb);
             if (sb.length() > 0) {
                 MsgBox.alert(this, sb.toString());
                 return;

@@ -11,6 +11,7 @@ import com.milkyway.Utils.ImageUtils;
 import com.milkyway.Utils.MsgBox;
 import com.milkyway.Utils.Validator;
 import com.milkyway.Utils.WebcamUtils;
+import com.milkyway.Utils.XDate;
 import java.awt.Color;
 import java.util.Date;
 import java.util.List;
@@ -666,6 +667,7 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
         btnGiaHan.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnGiaHan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Alarm.png"))); // NOI18N
         btnGiaHan.setText("Gia hạn");
+        btnGiaHan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGiaHan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGiaHanActionPerformed(evt);
@@ -800,8 +802,18 @@ public class TheThanhVienJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_tblTheThanhVienMouseClicked
 
     private void btnGiaHanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiaHanActionPerformed
+        if (!MsgBox.confirm(this, "Bạn có muốn gia hạn các thẻ thành viên không?")) {
+            return;
+        }
         try {
+            StringBuilder sb = new StringBuilder();
+            
             for (int i = 0; i < tblTheTVHetHan.getRowCount(); i++) {
+                Validator.checkNgayHetHan(XDate.toDate(tblTheTVHetHan.getValueAt(i, 8).toString(), "dd-MM-yyyy"), sb);
+                if (sb.length() > 0) {
+                    MsgBox.alert(this, sb.toString());
+                    return;
+                }
                 theThanhVienDAO.updateGiaHan(tblTheTVHetHan.getValueAt(i, 0).toString(), tblTheTVHetHan.getValueAt(i, 8).toString());
             }
             fillTabTheHetHan();

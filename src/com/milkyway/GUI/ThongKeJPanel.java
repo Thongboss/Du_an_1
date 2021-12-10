@@ -5,6 +5,26 @@
  */
 package com.milkyway.GUI;
 
+import com.milkyway.DAO.DongSPDAO;
+import com.milkyway.DAO.LoaiHangDAO;
+import com.milkyway.DAO.ThongKeDAO;
+import com.milkyway.Model.DongSP;
+import com.milkyway.Model.LoaiHang;
+import com.milkyway.Utils.MsgBox;
+import java.io.FileOutputStream;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
+import javax.swing.JTable;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 /**
  *
  * @author PC
@@ -14,8 +34,129 @@ public class ThongKeJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ThongKe
      */
+    LoaiHangDAO loaiHangDAO = new LoaiHangDAO();
+    DongSPDAO dongSPDAO = new DongSPDAO();
+    ThongKeDAO thongKeDAO = new ThongKeDAO();
+
     public ThongKeJPanel() {
         initComponents();
+        init();
+    }
+
+    private void init() {
+        fillComboBoxLoaiHang();
+        fillComboBoxDongSP();
+        fillThongKeSoLuongSP();
+        fillToTableThongKeSP();
+    }
+
+    private void fillComboBoxLoaiHang() {
+        DefaultComboBoxModel comboBoxModel = (DefaultComboBoxModel) cbbLoaiSP.getModel();
+        comboBoxModel.removeAllElements();
+        comboBoxModel.addElement("Chọn loại sản phẩm");
+        List<LoaiHang> lst = loaiHangDAO.selectAll();
+        for (LoaiHang lh : lst) {
+            comboBoxModel.addElement(lh.getTenLoai());
+        }
+    }
+
+    private void fillComboBoxDongSP() {
+        DefaultComboBoxModel comboBoxModel = (DefaultComboBoxModel) cbbDongSP.getModel();
+        comboBoxModel.removeAllElements();
+        comboBoxModel.addElement("Chọn dòng sản phẩm");
+        List<DongSP> lst = dongSPDAO.selectByStatus(true);
+        for (DongSP dsp : lst) {
+            comboBoxModel.addElement(dsp.getTenDongSP());
+        }
+    }
+
+    private void fillThongKeSoLuongSP() {
+        Object[] obj = thongKeDAO.thongKeSoLuongSanPham();
+        lblSoSPDangKD.setText(obj[0].toString());
+        lblSoSPHetHang.setText(obj[1].toString());
+        lblSoSPSapHetHan.setText(obj[2].toString());
+        lblSoSanPhamSapHetHang.setText(obj[3].toString());
+        lblSoSanPhamNgungKD.setText(obj[4].toString());
+    }
+
+    private void fillToTableThongKeSP() {
+        DefaultTableModel tableModel = (DefaultTableModel) tblSanPham.getModel();
+        tableModel.setRowCount(0);
+        try {
+            List<Object[]> lst;
+            switch (cbbHinhThucThongKe.getSelectedIndex()) {
+                case 0:
+                    lst = thongKeDAO.thongKeSanPhamMuaNhieuNhat(cbbLoaiSP.getSelectedItem().toString(), cbbDongSP.getSelectedItem().toString());
+                    break;
+                case 1:
+                    lst = thongKeDAO.thongKeSanPhamMuaItNhat(cbbLoaiSP.getSelectedItem().toString(), cbbDongSP.getSelectedItem().toString());
+                    break;
+                case 2:
+                    lst = thongKeDAO.thongKeSanPhamDoanhThuNhieuNhat(cbbLoaiSP.getSelectedItem().toString(), cbbDongSP.getSelectedItem().toString());
+                    break;
+                case 3:
+                    lst = thongKeDAO.thongKeSanPhamDoanhThuItNhat(cbbLoaiSP.getSelectedItem().toString(), cbbDongSP.getSelectedItem().toString());
+                    break;
+                default:
+                    lst = null;
+            }
+            for (Object[] obj : lst) {
+                tableModel.addRow(new Object[]{
+                    obj[0], obj[1], obj[2], obj[3], obj[4], obj[5], obj[6], obj[7], obj[8], obj[9]
+                });
+            }
+        } catch (Exception e) {
+        }
+    }
+    
+    private void exportToExcel(JTable tbl, String name) {
+        try {
+            DefaultTableModel tableModel = (DefaultTableModel) tbl.getModel();
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet spreadsheet = workbook.createSheet(tbl.getName());
+
+            XSSFRow row = null;
+            Cell cell = null;
+
+            row = spreadsheet.createRow((short) 0);
+            row.setHeight((short) 500);
+            cell = row.createCell(0, CellType.STRING);
+            cell.setCellValue(name);
+            spreadsheet.addMergedRegion(new CellRangeAddress(0, 0, cell.getColumnIndex(), tableModel.getColumnCount() - 1));
+
+            row = spreadsheet.createRow((short) 1);
+            row.setHeight((short) 500);
+            for (int i = 0; i < tableModel.getColumnCount(); i++) {
+                cell = row.createCell(i, CellType.STRING);
+                cell.setCellValue(tableModel.getColumnName(i));
+            }
+
+            for (int i = 0; i < tableModel.getRowCount(); i++) {
+                row = spreadsheet.createRow((short) 2 + i);
+                row.setHeight((short) 400);
+                for (int j = 0; j < tableModel.getColumnCount(); j++) {
+                    cell = row.createCell(j);
+                    cell.setCellValue(tbl.getValueAt(i, j).toString());
+                }
+            }
+
+            JFileChooser fileChooser = new JFileChooser("doc/ThongKe");
+            fileChooser.setDialogTitle("Save as ...");
+            FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Files", "xls", "xlsx");
+            fileChooser.setFileFilter(extensionFilter);
+            int path = fileChooser.showSaveDialog(null);
+            if (path != JFileChooser.APPROVE_OPTION) {
+                return;
+            }
+            FileOutputStream out = new FileOutputStream(fileChooser.getSelectedFile() + ".xlsx");
+            workbook.write(out);
+            out.close();
+            MsgBox.alert(this, "Xuất file excel thành công");
+
+        } catch (Exception e) {
+            MsgBox.alert(this, "Xuất file excel thất bại");
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -292,16 +433,31 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Phân loại", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 15), new java.awt.Color(255, 255, 255))); // NOI18N
 
         cbbLoaiSP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Loại sản phẩm" }));
+        cbbLoaiSP.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbHinhThucThongKeItemStateChanged(evt);
+            }
+        });
 
         cbbDongSP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dòng sản phẩm" }));
+        cbbDongSP.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbHinhThucThongKeItemStateChanged(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Chọn hình thức thống kê");
 
         cbbHinhThucThongKe.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        cbbHinhThucThongKe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Top sản phẩm được mua nhiều nhất", "Top sản phẩm được mua ít nhất" }));
+        cbbHinhThucThongKe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Top sản phẩm được mua nhiều nhất", "Top sản phẩm được mua ít nhất", "Top sản phẩm doanh thu nhiều nhất", "Top sản phẩm doanh thu ít nhất" }));
         cbbHinhThucThongKe.setToolTipText("");
+        cbbHinhThucThongKe.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbHinhThucThongKeItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -335,20 +491,20 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         tblSanPham.setAutoCreateRowSorter(true);
         tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã sản phẩm", "Tên sản phẩm", "Loại hàng", "Dòng sản phẩm", "Ngày xuất kho", "Hạn sử dụng", "Số lượng tồn", "Đơn giá", "Xuất xứ", "Khối lượng", "Đơn vị tính", "Barcode", "Ghi chú"
+                "Mã sản phẩm", "Tên sản phẩm", "Loại hàng", "Dòng sản phẩm", "Ngày xuất kho", "Hạn sử dụng", "Số lượng tồn", "Đơn giá", "Số lượng bán", "Doanh thu"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -359,6 +515,7 @@ public class ThongKeJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblSanPham.setName("Thống kê sản phẩm"); // NOI18N
         tblSanPham.setRowHeight(25);
         tblSanPham.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         srpSanPhamDangKD.setViewportView(tblSanPham);
@@ -368,6 +525,11 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         btnExcelSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/excel.png"))); // NOI18N
         btnExcelSP.setText("Export to Excel");
         btnExcelSP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExcelSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelSPActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -878,7 +1040,7 @@ public class ThongKeJPanel extends javax.swing.JPanel {
                             .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane2)
                         .addComponent(jScrollPane5)))
-                .addContainerGap(370, Short.MAX_VALUE))
+                .addContainerGap(413, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -928,6 +1090,14 @@ public class ThongKeJPanel extends javax.swing.JPanel {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 839, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cbbHinhThucThongKeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbHinhThucThongKeItemStateChanged
+        fillToTableThongKeSP();
+    }//GEN-LAST:event_cbbHinhThucThongKeItemStateChanged
+
+    private void btnExcelSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelSPActionPerformed
+        exportToExcel(tblSanPham, cbbHinhThucThongKe.getSelectedItem().toString());
+    }//GEN-LAST:event_btnExcelSPActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

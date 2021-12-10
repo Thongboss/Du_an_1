@@ -98,6 +98,23 @@ public class Validator {
             return false;
         }
     }
+    
+    public static boolean checkNgayHetHan(Date date, StringBuilder sb) {
+        try {
+            if (date == null) {
+                sb.append("Ngày hết hạn chưa nhập").append("\n");
+                return false;
+            } else if (date.before(new Date())) {
+                sb.append("Ngày hết hạn không hợp lệ").append("\n");
+                return false;
+            } else {
+                return true;
+            }
+        } catch (Exception e) {
+            sb.append("Ngày hết hạn không hợp lệ").append("\n");
+            return false;
+        }
+    }
 
     public static boolean checkId(JTextField txt, String str, StringBuilder sb, String mes) {
         if (txt.getText().equalsIgnoreCase(str)) {

@@ -34,5 +34,32 @@ public class ThongKeDAO {
         }
     }
     
+    public Object[] thongKeSoLuongSanPham() {
+        String[] cols = {"SoLuongDangDK", "SoLuongHetHang", "SoLuongSapHetHan", "SoLuongSapHetHang", "SoLuongNgungKD"};
+        List<Object[]> lst = getListOfArray("{call SP_ThongKeSoLuongSP()}", cols);
+        if (lst.isEmpty()) {
+            return null;
+        }
+        return lst.get(0);
+    }
     
+    public List<Object[]> thongKeSanPhamMuaNhieuNhat(String tenLoai, String tenDongSP) {
+        String[] cols = {"MaSP", "TenSP", "TenLoai", "TenDongSP", "NgayXK", "HanSD", "SoLuongTon", "DonGia", "SoLuongMua", "DoanhThu"};
+        return getListOfArray("{call SP_ThongKeSanPhamMuaNhieuNhat(?,?)}", cols, tenLoai, tenDongSP);
+    }
+    
+    public List<Object[]> thongKeSanPhamMuaItNhat(String tenLoai, String tenDongSP) {
+        String[] cols = {"MaSP", "TenSP", "TenLoai", "TenDongSP", "NgayXK", "HanSD", "SoLuongTon", "DonGia", "SoLuongMua", "DoanhThu"};
+        return getListOfArray("{call SP_ThongKeSanPhamMuaItNhat(?,?)}", cols, tenLoai, tenDongSP);
+    }
+    
+    public List<Object[]> thongKeSanPhamDoanhThuNhieuNhat(String tenLoai, String tenDongSP) {
+        String[] cols = {"MaSP", "TenSP", "TenLoai", "TenDongSP", "NgayXK", "HanSD", "SoLuongTon", "DonGia", "SoLuongMua", "DoanhThu"};
+        return getListOfArray("{call SP_ThongKeSanPhamDoanhThuNhieuNhat(?,?)}", cols, tenLoai, tenDongSP);
+    }
+    
+    public List<Object[]> thongKeSanPhamDoanhThuItNhat(String tenLoai, String tenDongSP) {
+        String[] cols = {"MaSP", "TenSP", "TenLoai", "TenDongSP", "NgayXK", "HanSD", "SoLuongTon", "DonGia", "SoLuongMua", "DoanhThu"};
+        return getListOfArray("{call SP_ThongKeSanPhamDoanhThuItNhat(?,?)}", cols, tenLoai, tenDongSP);
+    }
 }
