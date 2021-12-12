@@ -5,8 +5,10 @@
  */
 package com.milkyway.DAO;
 
+import com.milkyway.Model.ChiTietComboSP;
 import com.milkyway.Model.ChiTietHoaDon;
 import com.milkyway.Model.ChiTietSanPham;
+import com.milkyway.Model.ComBoSP;
 import com.milkyway.Model.HinhThucThanhToan;
 import com.milkyway.Model.HoaDon;
 import com.milkyway.Model.NhanVien;
@@ -58,7 +60,17 @@ public class BanHangDAO {
             + "FROM HoaDon JOIN ChiTietHoaDon ON HoaDon.IDHoaDon = ChiTietHoaDon.IDHoaDon\n"
             + "JOIN ChiTietSanPham ON ChiTietHoaDon.IDChiTietSP = ChiTietSanPham.IDChiTietSP\n"
             + "WHERE TrangThai = N'Chờ thanh toán'";
+    String load_combo = "SELECT MaComboSP, TenComboSP, NgayTao, NgayHetHan, SoLuong, DonGia, AnhComBoSP, SoLuong, IDChiTietSP\n"
+            + "FROM ComBoSP JOIN ChiTietComboSP ON ComBoSP.IDComboSP = ChiTietComboSP.IDComboSP";
+    String select_hddg = "SELECT MaHD, MaNV, TongTien, HoaDon.TrangThai \n" +
+            "FROM HOADON JOIN NhanVien ON HoaDon.IDNhanVien = NhanVien.IDNhanVien\n" +
+            "WHERE HoaDon.TrangThai = N'Đang giao'";
+    String update_Ghichuhd = "UPDATE HoaDon\n" +
+            "SET TrangThai = ?\n" +
+            "WHERE IDHoaDon = ?";
+    String select_CTCB = "SELECT*FROM ChiTietComboSP";
     String hoadon_rong = "delete HoaDon where IDHoaDon not in (select IDHoaDon from ChiTietHoaDon)";
+    String select_combo = "SELECT*FROM ComBoSP";
     String delete_cthd = "DELETE ChiTietHoaDon WHERE IDChiTietHD = ?";
     String select_NV = "SELECT * FROM NHANVIEN";
     String select_TTV = "SELECT * FROM THETHANHVIEN";
@@ -97,6 +109,15 @@ public class BanHangDAO {
     public void update_TrangThai_HoaDon_By_MaHD(HoaDon entity) {
         try {
             JDBCHelper.update(update_TrangThai_HoaDon_By_MaHD, entity.getTrangThai(), entity.getMaHD());
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public void update_Ghichu_HD_By_ID(String ghichu, int id){
+        try {
+            JDBCHelper.update(update_Ghichuhd, ghichu, id);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -176,6 +197,16 @@ public class BanHangDAO {
             throw new RuntimeException(e);
         }
     }
+    
+    public List<Object[]> load_HD_DG(){
+        try {
+            String cols[] = {"MaHD", "MaNV", "TongTien", "TrangThai"};
+            return this.getListOfArray(select_hddg, cols);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
 
     public List<Object[]> xuLyHoaDon(int id) {
         try {
@@ -201,6 +232,16 @@ public class BanHangDAO {
         try {
             String cols[] = {"MASP", "TenDongSP", "TenSP", "GiaTri", "SoLuongTon", "DONGIA", "TenAnhSP", "SOLUONGTON", "IDChiTietSP"};
             return this.getListOfArray(selectSanPhamDangKD, cols);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Object[]> loadComBo() {
+        try {
+            String cols[] = {"MaComboSP", "TenComboSP", "NgayTao", "NgayHetHan", "SoLuong", "DonGia", "AnhComBoSP", "SoLuong", "IDChiTietSP"};
+            return this.getListOfArray(load_combo, cols);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -294,6 +335,60 @@ public class BanHangDAO {
         return this.selectBySQLTTV(select_TTV);
     }
 
+    private List<ComBoSP> selectBySQLDH(String sql, Object... args) {
+        try {
+            List<ComBoSP> list = new ArrayList<>();
+            ResultSet rs = JDBCHelper.query(sql, args);
+            while (rs.next()) {
+                ComBoSP dh = new ComBoSP();
+                dh.setAnhComboSP(rs.getString("AnhComBoSP"));
+                dh.setBarcode(rs.getString("Barcode"));
+                dh.setDonGia(rs.getDouble("Dongia"));
+                dh.setGhiChu("Ghichu");
+                dh.setIDComboSP(rs.getInt("IDComboSP"));
+                dh.setMaComboSP("MaComboSP");
+                dh.setNgayHetHan(rs.getDate("NgayHetHan"));
+                dh.setNgayTao(rs.getDate("NgayTao"));
+                dh.setSoLuong(rs.getInt("SoLuong"));
+                dh.setTenComboSP("TenComboSP");
+                list.add(dh);
+            }
+            rs.getStatement().getConnection().close();
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<ComBoSP> loadListComBoSP() {
+        return this.selectBySQLDH(select_combo);
+    }
+    
+    private List<ChiTietComboSP> selectBySQLCTHD(String sql, Object... args){
+        try {
+            List<ChiTietComboSP> list = new ArrayList<>();
+            ResultSet rs = JDBCHelper.query(sql, args);
+            while (rs.next()) {
+                ChiTietComboSP ctcb = new ChiTietComboSP();
+                ctcb.setIDChiTietComboSP(rs.getInt("IDChiTietComboSP"));
+                ctcb.setIDChiTietSP(rs.getInt("IDChiTietSP"));
+                ctcb.setIDComboSP(rs.getInt("IDComboSP"));
+                ctcb.setSoLuongSP(rs.getInt("SoLuongSP"));
+                list.add(ctcb);
+            }
+            rs.getStatement().getConnection().close();
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public List<ChiTietComboSP> loadListCTCB(){
+        return this.selectBySQLCTHD(select_CTCB);
+    }
+
     private List<HinhThucThanhToan> selectBySQLHTTT(String sql, Object... args) {
         try {
             List<HinhThucThanhToan> list = new ArrayList<>();
@@ -347,7 +442,7 @@ public class BanHangDAO {
         return this.selectBySQLHD(select_HD);
     }
 
-    private List<ChiTietHoaDon> selectBySQLCTHD(String sql, Object... args) {
+    private List<ChiTietHoaDon> selectByCTHD(String sql, Object... args){
         try {
             List<ChiTietHoaDon> list = new ArrayList<>();
             ResultSet rs = JDBCHelper.query(sql, args);
@@ -369,7 +464,7 @@ public class BanHangDAO {
     }
 
     public List<ChiTietHoaDon> loadListCTHD() {
-        return this.selectBySQLCTHD(select_CTHD);
+        return this.selectByCTHD(select_CTHD);
     }
 
     private List<ChiTietSanPham> selectBySQLCTSP(String sql, Object... args) {

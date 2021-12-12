@@ -241,6 +241,7 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
         jLabel15.setText("Sản phẩm");
 
         cbbSP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbbSP.setEnabled(false);
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel16.setText("Giảm giá:");
@@ -343,11 +344,6 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
 
         buttonGroup1.add(rdoSP);
         rdoSP.setText("Sản phẩm");
-        rdoSP.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                rdoSPStateChanged(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -527,12 +523,6 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         try {
             if (check()) {
-//                if (rdoDSP.isSelected()) {
-//                    insertDSP();
-//                }
-//                else if(rdoSP.isSelected()){
-//                    insertDSP();
-//                }
                 insertDSP();
             }
         } catch (Exception e) {
@@ -586,27 +576,18 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_ckbConHanStateChanged
 
     private void txtMoTaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMoTaFocusGained
-        txtMoTa.setText("Áp dụng với " + cbbDongSP.getSelectedItem() + ", dòng " + cbbSP.getSelectedItem());
+        txtMoTa.setText("Áp dụng với " + (cbbDongSP.isEnabled() ? cbbDongSP.getSelectedItem() + ", " : "") + "dòng " + (cbbSP.isEnabled() ? cbbSP.getSelectedItem() : ""));
     }//GEN-LAST:event_txtMoTaFocusGained
 
     private void rdoDSPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rdoDSPStateChanged
-
         if (rdoDSP.isSelected()) {
             cbbSP.setEnabled(false);
+            cbbDongSP.setEnabled(true);
         } else {
             cbbSP.setEnabled(true);
-        }
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rdoDSPStateChanged
-
-    private void rdoSPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rdoSPStateChanged
-        if (rdoSP.isSelected()) {
             cbbDongSP.setEnabled(false);
-        } else {
-            cbbDongSP.setEnabled(true);
         }
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rdoSPStateChanged
+    }//GEN-LAST:event_rdoDSPStateChanged
 
     private void btnLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocActionPerformed
         // TODO add your handling code here:
@@ -786,7 +767,6 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
         List<Object[]> lst = khuyenMaiDAO.ViewTable();
         for (int i = 0; i < lst.size(); i++) {
             Object[] ob = lst.get(i);
-            System.out.println(ob[0]);
             DefaultTableModel model = (DefaultTableModel) tblKhuyenMai.getModel();
             sortKM = new TableRowSorter<>(model);
             tblKhuyenMai.setRowSorter(sortKM);
@@ -806,39 +786,10 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
                     });
                 }
             } catch (Exception e) {
-                e.printStackTrace();
             }
             for (Object[] obj : lst) {
                 model.addRow(obj);
             }
-//        List<KhuyenMai> listKM;
-//            if (ckbConHan.isSelected()) {
-//                listKM = khuyenMaiDAO.selectAllConHan();
-//            } else {
-//                listKM = khuyenMaiDAO.selectAllHetHan();
-//            }
-//        sortKM = new TableRowSorter<>(model);
-//        tblKhuyenMai.setRowSorter(sortKM);
-//        model.setRowCount(0);
-//        try {
-//            List<KhuyenMai> listKM;
-//            if (ckbConHan.isSelected()) {
-//                listKM = khuyenMaiDAO.selectAllConHan();
-//            } else {
-//                listKM = khuyenMaiDAO.selectAllHetHan();
-//            }
-//            for (KhuyenMai km : listKM) {
-//                Object[] obj;
-//                String Dongsp = DSPdao.selectbyidDongsp(km.getIDDongSP()).getTenDongSP();
-//                String sanpham = spDAO.selectbyIDSanPham(km.getIDSanPham()).getTenSP();
-//
-//                model.addRow(new Object[]{
-//                    km.getMaKM(), km.getTenKM(), Dongsp, sanpham, km.getThoiGianBatDau(), km.getThoiGianKetThuc(), km.getGiamGia(), km.getMoTa()
-//                });
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
         }
     }
 
@@ -853,8 +804,6 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
         txtMaKM.setText(km.getMaKM());
         txtTenKM.setText(km.getTenKM());
         cbbDongSP.setSelectedItem(DSPdao.selectByIdDongSP(km.getIDDongSP()).getTenDongSP());
-//        System.out.println("a");
-//        System.out.println(km.getIDSanPham());
         if (km.getIDSanPham() == 0) {
             cbbSP.setEnabled(false);
             rdoDSP.setSelected(true);
@@ -866,8 +815,6 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
             cbbSP.setSelectedItem(spDAO.selectbyIDSanPham(km.getIDSanPham()).getTenSP());
 
         }
-//        cbbDongSP.setSelectedItem(DSPdao.selectbyidDongsp(km.getIDDongSP()).getTenDongSP());
-//        cbbSP.setSelectedItem(spDAO.selectbyIDSanPham(km.getIDSanPham()).getTenSP());
         cbbDongSP.setSelectedItem(DSPdao.selectByIdDongSP(km.getIDDongSP()).getTenDongSP());
         txtNgayBD.setDate(km.getThoiGianBatDau());
         txtNgayKT.setDate(km.getThoiGianKetThuc());
@@ -900,56 +847,6 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
 
         return true;
     }
-//        private void fillToTableDSP() {
-//        DefaultTableModel model = (DefaultTableModel) tblKhuyenMai.getModel();
-//        sortKM = new TableRowSorter<>(model);
-//        tblKhuyenMai.setRowSorter(sortKM);
-//        model.setRowCount(0);
-//        try {
-//            List<KhuyenMai> listKM;
-//            if (ckbConHan.isSelected()) {
-//                listKM = khuyenMaiDAO.selectAllConHan();
-//            } else {
-//                listKM = khuyenMaiDAO.selectAllHetHan();
-//            }
-//            for (KhuyenMai km : listKM) {
-//                Object[] obj;
-//                String Dongsp = DSPdao.selectbyidDongsp(km.getIDDongSP()).getTenDongSP();
-////                String sanpham = spDAO.selectbyIDSanPham(km.getIDSanPham()).getTenSP();
-//
-//                model.addRow(new Object[]{
-//                    km.getMaKM(), km.getTenKM(), Dongsp,null, km.getThoiGianBatDau(), km.getThoiGianKetThuc(), km.getGiamGia(), km.getMoTa()
-//                });
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//            private void fillToTableSP() {
-//        DefaultTableModel model = (DefaultTableModel) tblKhuyenMai.getModel();
-//        sortKM = new TableRowSorter<>(model);
-//        tblKhuyenMai.setRowSorter(sortKM);
-//        model.setRowCount(0);
-//        try {
-//            List<KhuyenMai> listKM;
-//            if (ckbConHan.isSelected()) {
-//                listKM = khuyenMaiDAO.selectAllConHan();
-//            } else {
-//                listKM = khuyenMaiDAO.selectAllHetHan();
-//            }
-//            for (KhuyenMai km : listKM) {
-//                Object[] obj;
-////                String Dongsp = DSPdao.selectbyidDongsp(km.getIDDongSP()).getTenDongSP();
-//                String sanpham = spDAO.selectbyIDSanPham(km.getIDSanPham()).getTenSP();
-//
-//                model.addRow(new Object[]{
-//                    km.getMaKM(), km.getTenKM(),null, sanpham, km.getThoiGianBatDau(), km.getThoiGianKetThuc(), km.getGiamGia(), km.getMoTa()
-//                });
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     private void insertDSP() {
         try {
@@ -966,26 +863,9 @@ public class KhuyenMaiJPanel extends javax.swing.JPanel {
             } else {
 
                 KhuyenMai km = getform();
-//                         km.setIDDongSP(0)  ;
                 khuyenMaiDAO.insertSP(km);
                 fillToTable();
             }
-        } catch (Exception e) {
-            MsgBox.alert(this, "Thêm thất bại");
-            e.printStackTrace();
-        }
-    }
-
-    private void insertSP() {
-        try {
-            if (!MsgBox.confirm(this, "Bạn có muốn thêm không ?")) {
-                return;
-            }
-
-            KhuyenMai km = getform();
-            khuyenMaiDAO.insertSP(km);
-            fillToTable();
-            MsgBox.alert(this, "Thêm thành công ");
         } catch (Exception e) {
             MsgBox.alert(this, "Thêm thất bại");
             e.printStackTrace();

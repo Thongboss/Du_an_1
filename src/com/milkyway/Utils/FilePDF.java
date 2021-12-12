@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.milkyway.GUI;
+package com.milkyway.Utils;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -25,7 +25,7 @@ import com.itextpdf.text.pdf.PdfWriter;
  *
  * @author van95
  */
-public class FIlePDF {
+public class FilePDF {
 
     public static void main(String[] args) {
         // Tạo đối tượng tài liệu

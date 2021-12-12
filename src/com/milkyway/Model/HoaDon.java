@@ -13,27 +13,33 @@ import java.util.Date;
  */
 public class HoaDon {
 
-    private int IDHoaDon;
-    private String MaHD;
+    private int IDHoaDon,IDChiTietHoaDon,SoLuong;
+    private String MaHD,TenSP,MaNV,MaTheTV;
     private int IDNhanVien;
     private int IDTheTV;
     private int IDHinhThucThanhToan;
     private Date NgayLap;
-    private double TongTien;
+    private double TongTien,DonGia;
     private String GhiChu;
     private String TrangThai;
 
     public HoaDon() {
     }
 
-    public HoaDon(int IDHoaDon, String MaHD, int IDNhanVien, int IDTheTV, int IDHinhThucThanhToan, Date NgayLap, double TongTien, String GhiChu, String TrangThai) {
+    public HoaDon(int IDHoaDon, int IDChiTietHoaDon, int SoLuong, String MaHD, String TenSP, String MaNV, String MaTheTV, int IDNhanVien, int IDTheTV, int IDHinhThucThanhToan, Date NgayLap, double TongTien, double DonGia, String GhiChu, String TrangThai) {
         this.IDHoaDon = IDHoaDon;
+        this.IDChiTietHoaDon = IDChiTietHoaDon;
+        this.SoLuong = SoLuong;
         this.MaHD = MaHD;
+        this.TenSP = TenSP;
+        this.MaNV = MaNV;
+        this.MaTheTV = MaTheTV;
         this.IDNhanVien = IDNhanVien;
         this.IDTheTV = IDTheTV;
         this.IDHinhThucThanhToan = IDHinhThucThanhToan;
         this.NgayLap = NgayLap;
         this.TongTien = TongTien;
+        this.DonGia = DonGia;
         this.GhiChu = GhiChu;
         this.TrangThai = TrangThai;
     }
@@ -46,12 +52,52 @@ public class HoaDon {
         this.IDHoaDon = IDHoaDon;
     }
 
+    public int getIDChiTietHoaDon() {
+        return IDChiTietHoaDon;
+    }
+
+    public void setIDChiTietHoaDon(int IDChiTietHoaDon) {
+        this.IDChiTietHoaDon = IDChiTietHoaDon;
+    }
+
+    public int getSoLuong() {
+        return SoLuong;
+    }
+
+    public void setSoLuong(int SoLuong) {
+        this.SoLuong = SoLuong;
+    }
+
     public String getMaHD() {
         return MaHD;
     }
 
     public void setMaHD(String MaHD) {
         this.MaHD = MaHD;
+    }
+
+    public String getTenSP() {
+        return TenSP;
+    }
+
+    public void setTenSP(String TenSP) {
+        this.TenSP = TenSP;
+    }
+
+    public String getMaNV() {
+        return MaNV;
+    }
+
+    public void setMaNV(String MaNV) {
+        this.MaNV = MaNV;
+    }
+
+    public String getMaTheTV() {
+        return MaTheTV;
+    }
+
+    public void setMaTheTV(String MaTheTV) {
+        this.MaTheTV = MaTheTV;
     }
 
     public int getIDNhanVien() {
@@ -94,6 +140,14 @@ public class HoaDon {
         this.TongTien = TongTien;
     }
 
+    public double getDonGia() {
+        return DonGia;
+    }
+
+    public void setDonGia(double DonGia) {
+        this.DonGia = DonGia;
+    }
+
     public String getGhiChu() {
         return GhiChu;
     }
@@ -109,5 +163,4 @@ public class HoaDon {
     public void setTrangThai(String TrangThai) {
         this.TrangThai = TrangThai;
     }
-
 }

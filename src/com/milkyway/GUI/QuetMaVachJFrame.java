@@ -14,6 +14,7 @@ import com.google.zxing.MultiFormatReader;
 import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
+import com.milkyway.DAO.BanHangDAO;
 import com.milkyway.DAO.SanPhamDAO;
 import com.milkyway.Utils.ImageUtils;
 import com.milkyway.Utils.MsgBox;
@@ -23,6 +24,7 @@ import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
+import java.util.Arrays;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
@@ -44,6 +46,7 @@ public class QuetMaVachJFrame extends javax.swing.JFrame implements Runnable, Th
     private final Executor executor = Executors.newSingleThreadExecutor(this);
 
     SanPhamDAO sanPhamDAO = new SanPhamDAO();
+    BanHangDAO banHangDAO = new BanHangDAO();
 
     public QuetMaVachJFrame() {
         initComponents();
@@ -413,7 +416,11 @@ public class QuetMaVachJFrame extends javax.swing.JFrame implements Runnable, Th
                 MsgBox.alert(this, sb.toString());
                 return;
             }
-            BanHangJPanel.sanPhamQuetTuBarcode = sanPhamDAO.getAllAboutSanPhamDangKDByBarCode(txtKetQua.getText());
+            Object[] obj = banHangDAO.loadSanPhamQuetTuBarCode(txtKetQua.getText());
+            obj[7] = Integer.parseInt(spnSoLuong.getValue().toString());
+            BanHangJPanel.sanPhamQuetTuBarcode = obj;
+            
+            System.out.println(Arrays.toString(BanHangJPanel.sanPhamQuetTuBarcode));
             BanHangJPanel.getSanPhamQuetTuBarcode = true;
         } catch (Exception e) {
             e.printStackTrace();

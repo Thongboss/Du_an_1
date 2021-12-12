@@ -48,7 +48,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void loadUser() {
         lblTenNV.setText(DangNhapJDialog.showAuth()[0].toString());
-        lblRole.setText(Boolean.parseBoolean(DangNhapJDialog.showAuth()[1].toString()) ? "Trưởng phòng" : "Nhân viên");
+        lblRole.setText(Boolean.parseBoolean(DangNhapJDialog.showAuth()[1].toString()) ? "Trưởng cửa hàng" : "Nhân viên");
     }
 
     /**
@@ -188,6 +188,11 @@ public class MainJFrame extends javax.swing.JFrame {
         tbarHoaDon.setFocusable(false);
         tbarHoaDon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         tbarHoaDon.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbarHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbarHoaDonActionPerformed(evt);
+            }
+        });
         jToolBar1.add(tbarHoaDon);
 
         tbarThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/milkyway/Icons/Bar chart.png"))); // NOI18N
@@ -813,6 +818,10 @@ public class MainJFrame extends javax.swing.JFrame {
     private void tbarComboSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbarComboSPActionPerformed
         new ComboSPJDialog(this, false).setVisible(true);
     }//GEN-LAST:event_tbarComboSPActionPerformed
+
+    private void tbarHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbarHoaDonActionPerformed
+        new HoaDonJDiaLog(this, true).setVisible(true);
+    }//GEN-LAST:event_tbarHoaDonActionPerformed
 
     /**
      * @param args the command line arguments
