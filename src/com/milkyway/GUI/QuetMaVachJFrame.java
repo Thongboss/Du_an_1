@@ -418,10 +418,10 @@ public class QuetMaVachJFrame extends javax.swing.JFrame implements Runnable, Th
             }
             Object[] obj = banHangDAO.loadSanPhamQuetTuBarCode(txtKetQua.getText());
             obj[7] = Integer.parseInt(spnSoLuong.getValue().toString());
-            BanHang.sanPhamQuetTuBarcode = obj;
+            BanHangJPanel.sanPhamQuetTuBarcode = obj;
             
-            System.out.println(Arrays.toString(BanHang.sanPhamQuetTuBarcode));
-            BanHang.getSanPhamQuetTuBarcode = true;
+            System.out.println(Arrays.toString(BanHangJPanel.sanPhamQuetTuBarcode));
+            BanHangJPanel.getSanPhamQuetTuBarcode = true;
         } catch (Exception e) {
             e.printStackTrace();
         }
