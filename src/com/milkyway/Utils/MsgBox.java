@@ -26,4 +26,8 @@ public class MsgBox {
     public static String prompt(Component parent, String mes) {
         return JOptionPane.showInputDialog(parent, mes, "Phầm mềm quản lý đại lý sữa Milky Way", JOptionPane.INFORMATION_MESSAGE);
     }
+    
+    public static String prompt1(Component parent, String mes) {
+        return JOptionPane.showInputDialog(parent, mes, 1);
+    }
 }
