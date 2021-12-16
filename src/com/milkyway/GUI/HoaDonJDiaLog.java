@@ -486,6 +486,8 @@ public class HoaDonJDiaLog extends javax.swing.JDialog {
                 "MaDatHang", "MaNV", "MaTTV", "NgayLap", "HoTenKH", "SDT", "DiaChi", "TTien", "HTTT", "GhiChu", "TrangThai"
             }
         ));
+        tblDatHang.setRowHeight(25);
+        tblDatHang.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblDatHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblDatHangMouseClicked(evt);

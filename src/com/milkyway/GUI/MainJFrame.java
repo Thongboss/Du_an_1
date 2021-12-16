@@ -820,7 +820,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_tbarComboSPActionPerformed
 
     private void tbarHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbarHoaDonActionPerformed
-        new HoaDon(this, true).setVisible(true);
+        new HoaDonJDiaLog(this, true).setVisible(true);
     }//GEN-LAST:event_tbarHoaDonActionPerformed
 
     /**
