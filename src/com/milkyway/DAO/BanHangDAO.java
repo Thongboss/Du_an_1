@@ -46,7 +46,7 @@ public class BanHangDAO {
             + "JOIN DONGSP ON SANPHAM.IDDONGSP = DONGSP.IDDONGSP\n"
             + "JOIN THUONGHIEU ON DONGSP.IDTHUONGHIEU = THUONGHIEU.IDTHUONGHIEU\n"
             + "JOIN AnhSP ON AnhSP.IDAnhSP = CHITIETSANPHAM.IDAnhSP\n"
-            + "WHERE SanPham.TrangThai = 1";
+            + "WHERE SanPham.TrangThai = 1 AND ChiTietSanPham.SoLuongTon > 0";
     String selectSanPhamDangKDByIDAndBarCode = "SELECT MaSP,TenDongSP,TenSP,GiaTri,SoLuongTon,DONGIA,TenAnhSP,SoLuongTon,IDChiTietSP\n"
             + "FROM SANPHAM JOIN CHITIETSANPHAM ON SANPHAM.IDSANPHAM = CHITIETSANPHAM.IDSANPHAM\n"
             + "JOIN DONVITINH ON CHITIETSANPHAM.IDDONVITINH = DONVITINH.IDDONVITINH\n"
@@ -61,29 +61,29 @@ public class BanHangDAO {
             + "JOIN ChiTietSanPham ON ChiTietHoaDon.IDChiTietSP = ChiTietSanPham.IDChiTietSP\n"
             + "JOIN SanPham ON ChiTietSanPham.IDSanPham = SanPham.IDSanPham\n"
             + "WHERE HoaDon.IDHoaDon = ?";
-    String select_HD_DG = "SELECT MASP, TENSP, SOLUONG, ChiTietDatHang.DonGia, (SOLUONG * ChiTietDatHang.DonGia) AS THANHTIEN, IDChiTietDatHang, ChiTietSanPham.IDChiTietSP\n" +
-            "FROM DatHang JOIN ChiTietDatHang ON ChiTietDatHang.IDDatHang = DatHang.IDDatHang\n" +
-            "JOIN ChiTietSanPham ON ChiTietSanPham.IDChiTietSP = ChiTietDatHang.IDChiTietSP\n" +
-            "JOIN SanPham ON ChiTietSanPham.IDSanPham = SanPham.IDSanPham\n" +
-            "WHERE MaDatHang = ?";
+    String select_HD_DG = "SELECT MASP, TENSP, SOLUONG, ChiTietDatHang.DonGia, (SOLUONG * ChiTietDatHang.DonGia) AS THANHTIEN, IDChiTietDatHang, ChiTietSanPham.IDChiTietSP\n"
+            + "FROM DatHang JOIN ChiTietDatHang ON ChiTietDatHang.IDDatHang = DatHang.IDDatHang\n"
+            + "JOIN ChiTietSanPham ON ChiTietSanPham.IDChiTietSP = ChiTietDatHang.IDChiTietSP\n"
+            + "JOIN SanPham ON ChiTietSanPham.IDSanPham = SanPham.IDSanPham\n"
+            + "WHERE MaDatHang = ?";
     String duyet_HD = "SELECT NgayLap, SoLuongTon,SoLuong, ChiTietSanPham.IDChiTietSP , IDChiTietHD, HoaDon.IDHoaDon\n"
             + "FROM HoaDon JOIN ChiTietHoaDon ON HoaDon.IDHoaDon = ChiTietHoaDon.IDHoaDon\n"
             + "JOIN ChiTietSanPham ON ChiTietHoaDon.IDChiTietSP = ChiTietSanPham.IDChiTietSP\n"
             + "WHERE TrangThai = N'Chờ thanh toán'";
     String load_combo = "SELECT MaComboSP, TenComboSP, NgayTao, NgayHetHan, SoLuong, DonGia, AnhComBoSP, SoLuong, IDChiTietSP\n"
             + "FROM ComBoSP JOIN ChiTietComboSP ON ComBoSP.IDComboSP = ChiTietComboSP.IDComboSP";
-    String select_hddg = "SELECT MaHD, MaNV, TongTien, HoaDon.TrangThai \n" +
-            "FROM HOADON JOIN NhanVien ON HoaDon.IDNhanVien = NhanVien.IDNhanVien\n" +
-            "WHERE HoaDon.TrangThai = N'Đang giao'";
-    String update_Ghichuhd = "UPDATE HoaDon\n" +
-            "SET TrangThai = ?\n" +
-            "WHERE IDHoaDon = ?";
-    String update_ttDH = "UPDATE DatHang\n" +
-            "SET TrangThai = ?\n" +
-            "WHERE MaDatHang = ?";
-    String update_Ghichu_DH = "UPDATE DatHang\n" +
-            "SET GhiChu = ?\n" +
-            "WHERE MaDatHang = ?";
+    String select_hddg = "SELECT MaHD, MaNV, TongTien, HoaDon.TrangThai \n"
+            + "FROM HOADON JOIN NhanVien ON HoaDon.IDNhanVien = NhanVien.IDNhanVien\n"
+            + "WHERE HoaDon.TrangThai = N'Đang giao'";
+    String update_Ghichuhd = "UPDATE HoaDon\n"
+            + "SET TrangThai = ?\n"
+            + "WHERE IDHoaDon = ?";
+    String update_ttDH = "UPDATE DatHang\n"
+            + "SET TrangThai = ?\n"
+            + "WHERE MaDatHang = ?";
+    String update_Ghichu_DH = "UPDATE DatHang\n"
+            + "SET GhiChu = ?\n"
+            + "WHERE MaDatHang = ?";
     String select_DH = "SELECT*FROM DatHang";
     String select_CTDH = "SELECT*FROM ChiTietDatHang";
     String select_CTCB = "SELECT*FROM ChiTietComboSP";
@@ -114,8 +114,8 @@ public class BanHangDAO {
             throw new RuntimeException(e);
         }
     }
-    
-    public void insert_DH(DatHang entity){
+
+    public void insert_DH(DatHang entity) {
         try {
             JDBCHelper.update(insert_DH, entity.getMaDatHang(), entity.getIDNhanVien(), entity.getIDTheTV() == 0 ? null : entity.getIDTheTV(), entity.getNgayLap(), entity.getHoTenKhachHang(), entity.getSDT(), entity.getDiaChi(), entity.getTongTien(), entity.getIDHinhThucThanhToan(), entity.getGhiChu(), entity.getTrangThai());
         } catch (Exception e) {
@@ -132,8 +132,8 @@ public class BanHangDAO {
             throw new RuntimeException(e);
         }
     }
-    
-    public void insret_CTDH(ChiTietDatHang entity){
+
+    public void insret_CTDH(ChiTietDatHang entity) {
         try {
             JDBCHelper.update(insert_CTDH, entity.getIDDatHang(), entity.getIDChiTietSP(), entity.getSoLuong(), entity.getDonGia());
         } catch (Exception e) {
@@ -150,8 +150,8 @@ public class BanHangDAO {
             throw new RuntimeException(e);
         }
     }
-    
-    public void update_TTDH(String tt, String ma){
+
+    public void update_TTDH(String tt, String ma) {
         try {
             JDBCHelper.update(update_ttDH, tt, ma);
         } catch (Exception e) {
@@ -159,8 +159,8 @@ public class BanHangDAO {
             throw new RuntimeException(e);
         }
     }
-    
-    public void update_Ghichu_HD_By_ID(String ghichu, int id){
+
+    public void update_Ghichu_HD_By_ID(String ghichu, int id) {
         try {
             JDBCHelper.update(update_Ghichuhd, ghichu, id);
         } catch (Exception e) {
@@ -168,8 +168,8 @@ public class BanHangDAO {
             throw new RuntimeException(e);
         }
     }
-    
-    public void update_Ghichu_DH(String ghichu, String ma){
+
+    public void update_Ghichu_DH(String ghichu, String ma) {
         try {
             JDBCHelper.update(update_Ghichu_DH, ghichu, ma);
         } catch (Exception e) {
@@ -251,8 +251,8 @@ public class BanHangDAO {
             throw new RuntimeException(e);
         }
     }
-    
-    public List<Object[]> load_HD_DG(){
+
+    public List<Object[]> load_HD_DG() {
         try {
             String cols[] = {"MaHD", "MaNV", "TongTien", "TrangThai"};
             return this.getListOfArray(select_hddg, cols);
@@ -271,8 +271,8 @@ public class BanHangDAO {
             throw new RuntimeException(e);
         }
     }
-    
-    public List<Object[]> xulyDH(String ma){
+
+    public List<Object[]> xulyDH(String ma) {
         try {
             String cols[] = {"MASP", "TENSP", "SOLUONG", "DonGia", "THANHTIEN", "IDChiTietDatHang", "IDChiTietSP"};
             return this.getListOfArray(select_HD_DG, cols, ma);
@@ -428,8 +428,8 @@ public class BanHangDAO {
     public List<ComBoSP> loadListComBoSP() {
         return this.selectBySQLDH(select_combo);
     }
-    
-    private List<ChiTietComboSP> selectBySQLCTHD(String sql, Object... args){
+
+    private List<ChiTietComboSP> selectBySQLCTHD(String sql, Object... args) {
         try {
             List<ChiTietComboSP> list = new ArrayList<>();
             ResultSet rs = JDBCHelper.query(sql, args);
@@ -448,8 +448,8 @@ public class BanHangDAO {
             throw new RuntimeException(e);
         }
     }
-    
-    public List<ChiTietComboSP> loadListCTCB(){
+
+    public List<ChiTietComboSP> loadListCTCB() {
         return this.selectBySQLCTHD(select_CTCB);
     }
 
@@ -505,8 +505,8 @@ public class BanHangDAO {
     public List<HoaDon> loadListHD() {
         return this.selectBySQLHD(select_HD);
     }
-    
-    private List<DatHang> selectByDH(String sql, Object... args){
+
+    private List<DatHang> selectByDH(String sql, Object... args) {
         try {
             List<DatHang> list = new ArrayList<>();
             ResultSet rs = JDBCHelper.query(sql, args);
@@ -533,12 +533,12 @@ public class BanHangDAO {
             throw new RuntimeException(e);
         }
     }
-    
-    public List<DatHang> loadListDH(){
+
+    public List<DatHang> loadListDH() {
         return this.selectByDH(select_DH);
     }
-    
-    private List<ChiTietDatHang> select_CTDH(String sql, Object... args){
+
+    private List<ChiTietDatHang> select_CTDH(String sql, Object... args) {
         try {
             List<ChiTietDatHang> list = new ArrayList<>();
             ResultSet rs = JDBCHelper.query(sql, args);
@@ -558,12 +558,12 @@ public class BanHangDAO {
             throw new RuntimeException(e);
         }
     }
-    
-    public List<ChiTietDatHang> loadCTDH(){
+
+    public List<ChiTietDatHang> loadCTDH() {
         return this.select_CTDH(select_CTDH);
     }
 
-    private List<ChiTietHoaDon> selectByCTHD(String sql, Object... args){
+    private List<ChiTietHoaDon> selectByCTHD(String sql, Object... args) {
         try {
             List<ChiTietHoaDon> list = new ArrayList<>();
             ResultSet rs = JDBCHelper.query(sql, args);
